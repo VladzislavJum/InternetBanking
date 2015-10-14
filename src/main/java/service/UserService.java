@@ -1,7 +1,6 @@
 package service;
 
-import entity.User;
-import org.springframework.stereotype.Service;
+import domain.User;
 
 /**
  * Created by Vlad on 13.10.2015.

@@ -1,7 +1,7 @@
 package service.impl;
 
 import dao.UserDAO;
-import entity.User;
+import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void lockCard() {
         userDAO.lockCard();
-
     }
     @Transactional
     public void unlockCard() {

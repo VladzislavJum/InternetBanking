@@ -1,7 +1,8 @@
 package service;
 
-import entity.Card;
-import org.springframework.stereotype.Service;
+import domain.Card;
+
+import java.util.List;
 
 /**
  * Created by Vlad on 13.10.2015.
@@ -10,4 +11,5 @@ import org.springframework.stereotype.Service;
 public interface CardService {
     void addCard(Card card);
 
+    List<Card> getCards();
 }

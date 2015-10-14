@@ -5,9 +5,9 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="entity.User"/>
-		<mapping class="entity.Card"/>
-		<mapping class="entity.BankAccount"/>
-		<mapping class="entity.Type"/>
+		<mapping class="domain.User"/>
+		<!--<mapping class="domain.Card"/>
+		<mapping class="domain.BankAccount"/>
+		<mapping class="domain.Type"/>-->
 	</session-factory>
 </hibernate-configuration>

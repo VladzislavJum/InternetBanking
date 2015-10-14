@@ -1,15 +1,16 @@
 package dao.impl;
 
 import dao.CardDAO;
-import entity.Card;
+import domain.Card;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class CardDAOImpl implements CardDAO{
+public class CardDAOImpl implements CardDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -19,7 +20,7 @@ public class CardDAOImpl implements CardDAO{
     }
 
     public List<Card> getCards() {
-        return sessionFactory.getCurrentSession().createQuery("from entity.Card")
+        return sessionFactory.getCurrentSession().createQuery("from domain.Card")
                 .list();
     }
 

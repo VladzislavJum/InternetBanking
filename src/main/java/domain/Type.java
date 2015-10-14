@@ -1,4 +1,4 @@
-package entity;
+package domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,22 @@ public class Type {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    public String getString() {
+        return string;
+    }
+
+    public void setString(String string) {
+        this.string = string;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @Column(name = "type", unique = true)
     private String string;

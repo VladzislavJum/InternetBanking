@@ -1,9 +1,10 @@
 package dao.impl;
 
 import dao.UserDAO;
-import entity.User;
+import domain.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
     private SessionFactory sessionFactory;
 
     public List<User> getUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from entity.User")
+        return sessionFactory.getCurrentSession().createQuery("from domain.User")
                 .list();
     }
 

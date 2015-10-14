@@ -1,13 +1,15 @@
-package entity;
+package domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "Bank Account")
@@ -29,8 +31,8 @@ public class BankAccount {
     @OneToOne(mappedBy = "id")
     private User user;
 
-    @OneToMany(mappedBy = "id")
-    private Card card;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Card> cardList;
 
     public Integer getId() {
         return id;
@@ -46,6 +48,14 @@ public class BankAccount {
 
     public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public Long getAmountOfMoney() {
+        return amountOfMoney;
+    }
+
+    public void setAmountOfMoney(Long amountOfMoney) {
+        this.amountOfMoney = amountOfMoney;
     }
 
     public Type getType() {
@@ -64,14 +74,11 @@ public class BankAccount {
         this.user = user;
     }
 
-    public Card getCard() {
-        return card;
+    public List<Card> getCardList() {
+        return cardList;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
     }
-
-
-
 }

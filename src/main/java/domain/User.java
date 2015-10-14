@@ -1,4 +1,5 @@
-package entity;
+package domain;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user_")
 public class User {
 
     @Id
@@ -16,31 +17,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(name = "firstName")
+    private String firstName;
+
     @Column(name = "surname")
     private String  surname;
-
-    @Column(name = "name")
-    private String  name;
 
     @Column(name = "secondName")
     private String  secondName;
 
-    @Column(name = "dateOfBirth")
+   /* @Column(firstName = "dateOfBirth")
     private String dateOfBirth;
-
+*/
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
-
-    @Column(name = "userRole")
-    private boolean isUser;
-
-    public boolean isUser() {
-        return isUser;
-    }
-
-    public void setIsUser(boolean isUser) {
-        this.isUser = isUser;
-    }
 
     public Integer getId() {
         return id;
@@ -58,12 +48,12 @@ public class User {
         this.surname = surname;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSecondName() {
@@ -74,14 +64,14 @@ public class User {
         this.secondName = secondName;
     }
 
-    public String getDateOfBirth() {
+   /* public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
+*/
     public String getPassportNumber() {
         return passportNumber;
     }
