@@ -1,12 +1,12 @@
-package controllers;
+package by.jum.internetbanking.controllers;
 
-import domain.User;
+import by.jum.internetbanking.enity.User;
+import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import service.UserService;
 
 @Controller
 public class AddUserController {
@@ -19,6 +19,4 @@ public class AddUserController {
     public void addUser(@ModelAttribute("user") User user){
         userService.addUser(user);
     }
-
-
 }

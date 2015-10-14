@@ -1,10 +1,9 @@
-package dao.impl;
+package by.jum.internetbanking.dao.impl;
 
-import dao.CardDAO;
-import domain.Card;
+import by.jum.internetbanking.dao.CardDAO;
+import by.jum.internetbanking.enity.Card;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class CardDAOImpl implements CardDAO {
     }
 
     public List<Card> getCards() {
-        return sessionFactory.getCurrentSession().createQuery("from domain.Card")
+        return sessionFactory.getCurrentSession().createQuery("from by.jum.internetbanking.enity.Card")
                 .list();
     }
 

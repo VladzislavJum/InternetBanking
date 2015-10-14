@@ -1,6 +1,6 @@
-package service;
+package by.jum.internetbanking.service;
 
-import domain.Card;
+import by.jum.internetbanking.enity.Card;
 
 import java.util.List;
 

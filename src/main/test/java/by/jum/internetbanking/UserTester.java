@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import service.UserService;
+import by.jum.internetbanking.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan(basePackages = {
-        "entity", "dao", "service"
+        "entity", "by.jum.internetbanking.dao", "by.jum.internetbanking.service"
 })
 
 @ContextConfiguration({

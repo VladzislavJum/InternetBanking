@@ -1,4 +1,4 @@
-package domain;
+package by.jum.internetbanking.enity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

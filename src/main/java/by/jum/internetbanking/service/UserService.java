@@ -1,6 +1,6 @@
-package service;
+package by.jum.internetbanking.service;
 
-import domain.User;
+import by.jum.internetbanking.enity.User;
 
 /**
  * Created by Vlad on 13.10.2015.

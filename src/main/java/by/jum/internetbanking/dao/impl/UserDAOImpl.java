@@ -1,10 +1,9 @@
-package dao.impl;
+package by.jum.internetbanking.dao.impl;
 
-import dao.UserDAO;
-import domain.User;
+import by.jum.internetbanking.dao.UserDAO;
+import by.jum.internetbanking.enity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
     private SessionFactory sessionFactory;
 
     public List<User> getUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from domain.User")
+        return sessionFactory.getCurrentSession().createQuery("from by.jum.internetbanking.enity.User")
                 .list();
     }
 

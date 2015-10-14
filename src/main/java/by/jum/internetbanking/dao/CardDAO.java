@@ -1,6 +1,7 @@
-package dao;
+package by.jum.internetbanking.dao;
 
-import domain.Card;
+
+import by.jum.internetbanking.enity.Card;
 
 import java.util.List;
 

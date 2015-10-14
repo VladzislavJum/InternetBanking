@@ -1,11 +1,11 @@
-package service.impl;
+package by.jum.internetbanking.service.impl;
 
-import dao.UserDAO;
-import domain.User;
+import by.jum.internetbanking.dao.UserDAO;
+import by.jum.internetbanking.enity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import service.UserService;
+import by.jum.internetbanking.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
