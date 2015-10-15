@@ -1,39 +1,45 @@
-package by.jum.internetbanking.enity;
+package by.jum.internetbanking.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "Card")
-public class Card {
+@Table(name = "cards")
+public class Card implements Serializable{
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "pincode")
-    private Integer pincode;
+    @Column(name = "pin_code")
+    private Integer pinCode;
 
-    @Column(name = "CardStatus")
+    @Column(name = "card_status")
     private boolean cardStatus;
 
-    @OneToOne(mappedBy = "id")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", insertable=false, updatable=false)
     private BankAccount bankAccount;
 
-    @OneToOne(mappedBy = "id")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", insertable=false, updatable=false)
     private User user;
 
-    public Integer getPincode() {
-        return pincode;
+    public Integer getPinCode() {
+        return pinCode;
     }
 
-    public void setPincode(Integer pincode) {
-        this.pincode = pincode;
+    public void setPinCode(Integer pinCode) {
+        this.pinCode = pinCode;
     }
 
     public Integer getId() {

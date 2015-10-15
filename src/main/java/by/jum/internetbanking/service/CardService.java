@@ -1,6 +1,7 @@
 package by.jum.internetbanking.service;
 
-import by.jum.internetbanking.enity.Card;
+import by.jum.internetbanking.entity.Card;
+import by.jum.internetbanking.entity.User;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 public interface CardService {
-    void addCard(Card card);
-
-    List<Card> getCards();
+    void createCard(Card card);
+    void deleteCard(Card card);
+    List<User> getCardList();
 }

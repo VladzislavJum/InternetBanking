@@ -1,37 +1,29 @@
 package by.jum.internetbanking.dao.impl;
 
+import by.jum.internetbanking.dao.AbstractBaseDAO;
 import by.jum.internetbanking.dao.UserDAO;
-import by.jum.internetbanking.enity.User;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import by.jum.internetbanking.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
 
-    public List<User> getUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from by.jum.internetbanking.enity.User")
-                .list();
+    public List<User> getList() {
+        return null;
     }
 
-    public void addUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+    public void delete(User user) {
+        super.save(user);
     }
 
-    public void pay() {
-
+    public void update(User user) {
+        super.update(user);
     }
 
-    public void lockCard() {
-
-    }
-
-    public void unlockCard() {
-
+    public void save(User user) {
+        super.save(user);
     }
 }

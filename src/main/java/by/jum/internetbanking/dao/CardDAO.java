@@ -1,13 +1,21 @@
 package by.jum.internetbanking.dao;
 
 
-import by.jum.internetbanking.enity.Card;
+import by.jum.internetbanking.entity.Card;
+import by.jum.internetbanking.entity.User;
 
 import java.util.List;
 
 public interface CardDAO {
-    void addCard(Card card);
+    List<Card> getList();
 
-    List getCards();
+    void save(Card card);
 
+    void update(Card card);
+
+    void delete(Card card);
+
+    void lock();
+
+    void unlock();
 }

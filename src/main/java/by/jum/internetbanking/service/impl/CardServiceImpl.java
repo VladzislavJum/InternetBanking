@@ -1,27 +1,33 @@
 package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.CardDAO;
-import by.jum.internetbanking.enity.Card;
+import by.jum.internetbanking.entity.Card;
+import by.jum.internetbanking.entity.User;
+import by.jum.internetbanking.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import by.jum.internetbanking.service.CardService;
 
 import java.util.List;
 
 @Service
-public class CardServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
 
     @Autowired
     private CardDAO cardDAO;
 
     @Transactional
-    public void addCard(Card card) {
-        cardDAO.addCard(card);
+    public void createCard(Card card) {
+        cardDAO.save(card);
     }
 
     @Transactional
-    public List<Card> getCards() {
-        return cardDAO.getCards();
+    public void deleteCard(Card card) {
+        cardDAO.delete(card);
+    }
+
+    @Transactional
+    public List<User> getCardList() {
+        return null;
     }
 }

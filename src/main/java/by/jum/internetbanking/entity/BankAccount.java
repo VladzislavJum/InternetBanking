@@ -1,4 +1,4 @@
-package by.jum.internetbanking.enity;
+package by.jum.internetbanking.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,29 +6,34 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "Bank Account")
-public class BankAccount {
+@Table
+public class BankAccount implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "accountNumber", unique = true)
+    @Column(name = "account_number", unique = true)
     private Integer accountNumber;
 
-    @Column (name = "amountOfMoney")
+    @Column (name = "amount_of_money")
     private Long amountOfMoney;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne
+    @JoinColumn(name = "id")
     private Type type;
 
-    @OneToOne(mappedBy = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", insertable=false, updatable=false)
     private User user;
 
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)

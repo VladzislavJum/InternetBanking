@@ -1,29 +1,34 @@
-package by.jum.internetbanking.enity;
+package by.jum.internetbanking.entity;
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "user_")
-public class User {
+@Table(name = "users")
+public class User implements Serializable{
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "firstName")
+    @Column(name = "username")
     private String firstName;
 
     @Column(name = "surname")
     private String  surname;
 
-    @Column(name = "secondName")
+    @Column(name = "secondname")
     private String  secondName;
 
    /* @Column(firstName = "dateOfBirth")
@@ -31,6 +36,19 @@ public class User {
 */
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Card> cardList;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
 
     public Integer getId() {
         return id;

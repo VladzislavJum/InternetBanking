@@ -10,5 +10,5 @@
        <context:component-scan base-package="by.jum.internetbanking.dao"/>
        <context:component-scan base-package="by.jum.internetbanking.service"/>
 
-       <import resource="/WEB-INF/dataBase.xml"/>
+       <import resource="classpath:dataBase.xml"/>
 </beans>

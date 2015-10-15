@@ -1,19 +1,16 @@
 package by.jum.internetbanking.dao;
 
-import by.jum.internetbanking.enity.User;
+import by.jum.internetbanking.entity.User;
 
 import java.util.List;
 
 
 public interface UserDAO {
 
-    List<User> getUsers();
+    List<User> getList();
 
-    void addUser(User user);
+    void save(User user);
+    void update(User user);
+    void delete(User user);
 
-    void pay();
-
-    void lockCard();
-
-    void unlockCard();
 }
