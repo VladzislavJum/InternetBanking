@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -20,7 +19,7 @@ public class User implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long userID;
 
     @Column(name = "username")
     private String firstName;
@@ -37,11 +36,11 @@ public class User implements Serializable{
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
     private List<Card> cardList;
 
   /*  @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")*/
+    @JoinColumn(name = "userID")*/
     public List<Card> getCardList() {
         return cardList;
     }
@@ -50,12 +49,12 @@ public class User implements Serializable{
         this.cardList = cardList;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getSurname() {

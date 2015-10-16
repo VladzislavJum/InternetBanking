@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -17,13 +16,13 @@ public class Type implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long typeID;
 
     @Column(name = "type", unique = true)
     private String string;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "typeID")
     private BankAccount bankAccount;
 
     public BankAccount getBankAccount() {
@@ -42,11 +41,11 @@ public class Type implements Serializable{
         this.string = string;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getTypeID() {
+        return typeID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTypeID(Long typeID) {
+        this.typeID = typeID;
     }
 }

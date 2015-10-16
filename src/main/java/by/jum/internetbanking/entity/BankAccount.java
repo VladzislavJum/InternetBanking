@@ -20,7 +20,7 @@ public class BankAccount implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long bankAccountID;
 
     @Column(name = "account_number", unique = true)
     private Integer accountNumber;
@@ -29,22 +29,22 @@ public class BankAccount implements Serializable {
     private Long amountOfMoney;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "bankAccountID")
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "bankAccountID", insertable = false, updatable = false)
     private User user;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
     private List<Card> cardList;
 
-    public Integer getId() {
-        return id;
+    public Long getBankAccountID() {
+        return bankAccountID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBankAccountID(Long bankAccountID) {
+        this.bankAccountID = bankAccountID;
     }
 
     public Integer getAccountNumber() {

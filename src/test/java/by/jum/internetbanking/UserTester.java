@@ -32,4 +32,5 @@ public class UserTester {
     public void addUser() {
         userService.registerUser(user);
     }
+
 }

@@ -30,7 +30,7 @@ public class UserFacadeImpl implements UserFacade {
 
     public UserDTO getUserByID(long userID) {
         User user = userService.getUserByID(userID);
-        
+
         return userConverter.convert(user);
     }
 

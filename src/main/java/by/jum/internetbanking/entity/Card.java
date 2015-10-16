@@ -18,7 +18,7 @@ public class Card implements Serializable{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long cardID;
 
     @Column(name = "pin_code")
     private Integer pinCode;
@@ -27,11 +27,11 @@ public class Card implements Serializable{
     private boolean status;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable=false, updatable=false)
+    @JoinColumn(name = "cardID", insertable=false, updatable=false)
     private BankAccount bankAccount;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable=false, updatable=false)
+    @JoinColumn(name = "cardID", insertable=false, updatable=false)
     private User user;
 
     public Integer getPinCode() {
@@ -42,13 +42,13 @@ public class Card implements Serializable{
         this.pinCode = pinCode;
     }
 
-    public Integer getId() {
+    public Long getCardID() {
 
-        return id;
+        return cardID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCardID(Long cardID) {
+        this.cardID = cardID;
     }
 
     public boolean getStatus() {

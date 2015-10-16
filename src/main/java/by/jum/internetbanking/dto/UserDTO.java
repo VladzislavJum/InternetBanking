@@ -1,8 +1,5 @@
 package by.jum.internetbanking.dto;
 
-/**
- * Created by Vlad on 16.10.2015.
- */
 public class UserDTO {
     private String firstName;
     private String  surname;
