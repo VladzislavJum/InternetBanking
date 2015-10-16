@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class BankAccount implements Serializable{
+public class BankAccount implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class BankAccount implements Serializable{
     @Column(name = "account_number", unique = true)
     private Integer accountNumber;
 
-    @Column (name = "amount_of_money")
+    @Column(name = "amount_of_money")
     private Long amountOfMoney;
 
     @OneToOne
@@ -33,7 +33,7 @@ public class BankAccount implements Serializable{
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable=false, updatable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private User user;
 
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)

@@ -12,7 +12,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
 
     public List<User> getList() {
-        return null;
+        return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User").list();
     }
 
     public void delete(User user) {
@@ -26,4 +26,5 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public void save(User user) {
         super.save(user);
     }
+
 }

@@ -23,8 +23,8 @@ public class Card implements Serializable{
     @Column(name = "pin_code")
     private Integer pinCode;
 
-    @Column(name = "card_status")
-    private boolean cardStatus;
+    @Column(name = "status")
+    private boolean status;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "id", insertable=false, updatable=false)
@@ -51,12 +51,12 @@ public class Card implements Serializable{
         this.id = id;
     }
 
-    public boolean isCardStatus() {
-        return cardStatus;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setCardStatus(boolean cardStatus) {
-        this.cardStatus = cardStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public BankAccount getBankAccount() {

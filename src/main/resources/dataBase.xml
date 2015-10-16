@@ -16,7 +16,7 @@
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-          p:location="/jdbc.properties"/>
+          p:location="jdbc.properties"/>
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">

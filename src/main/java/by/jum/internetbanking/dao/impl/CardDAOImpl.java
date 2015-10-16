@@ -23,7 +23,7 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
     }
 
     public List<Card> getList() {
-        return null;
+        return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.Card").list();
     }
 
     public void lock() {

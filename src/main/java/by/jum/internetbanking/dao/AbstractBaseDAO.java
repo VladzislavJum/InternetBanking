@@ -21,5 +21,11 @@ public abstract class AbstractBaseDAO {
         sessionFactory.getCurrentSession().update(object);
     }
 
-//    protected abstract List<T> getList();
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 }

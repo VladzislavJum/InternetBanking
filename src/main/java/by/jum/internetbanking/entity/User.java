@@ -40,8 +40,8 @@ public class User implements Serializable{
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Card> cardList;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+  /*  @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")*/
     public List<Card> getCardList() {
         return cardList;
     }

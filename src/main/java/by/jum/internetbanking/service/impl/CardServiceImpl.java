@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("cardService")
 public class CardServiceImpl implements CardService {
 
     @Autowired
