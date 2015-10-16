@@ -1,6 +1,9 @@
-package by.jum.internetbanking.form;
+package by.jum.internetbanking.dto;
 
-public class RegistrationUserForm {
+/**
+ * Created by Vlad on 16.10.2015.
+ */
+public class UserDTO {
     private String firstName;
     private String  surname;
     private String  secondName;

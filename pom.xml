@@ -7,50 +7,62 @@
     <version>1.0-SNAPSHOT</version>
     <name>InternetBanking Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <junit-version>4.12</junit-version>
+        <java-version>1.8</java-version>
+        <org.springframework-version>4.2.1.RELEASE</org.springframework-version>
+        <org.slf4j-version>1.5.8</org.slf4j-version>
+        <org.hibernate-version>5.0.2.Final</org.hibernate-version>
+        <postgresql-version>9.1-901-1.jdbc4</postgresql-version>
+        <javax.servlet-version>3.0.1</javax.servlet-version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
+            <version>${javax.servlet-version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.2.1.RELEASE</version>
+            <version>${org.springframework-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.2.1.RELEASE</version>
+            <version>${org.springframework-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>4.2.1.RELEASE</version>
+            <version>${org.springframework-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.2.1.RELEASE</version>
+            <version>${org.springframework-version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.0.2.Final</version>
+            <version>${org.hibernate-version}</version>
         </dependency>
 
        <!-- <dependency>
@@ -69,13 +81,13 @@
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
+            <version>${postgresql-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.8</version>
+            <version>${org.slf4j-version}</version>
         </dependency>
 
     </dependencies>

@@ -1,6 +1,5 @@
 package by.jum.internetbanking.dao.impl;
 
-import by.jum.internetbanking.dao.AbstractBaseDAO;
 import by.jum.internetbanking.dao.CardDAO;
 import by.jum.internetbanking.entity.Card;
 import org.springframework.stereotype.Repository;

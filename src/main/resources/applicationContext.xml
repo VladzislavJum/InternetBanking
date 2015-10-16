@@ -8,7 +8,6 @@
        <context:annotation-config/>
 
        <context:component-scan base-package="by.jum.internetbanking"/>
-       <!--<context:component-scan base-package="by.jum.internetbanking.service"/>-->
 
        <import resource="classpath:dataBase.xml"/>
 </beans>

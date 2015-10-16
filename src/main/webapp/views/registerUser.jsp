@@ -13,7 +13,7 @@
     <title></title>
 </head>
 <body>
-<form:form method="post" action="add" commandName="user">
+<form:form method="post" action="addUser" commandName="user">
 
   <table>
     <tr>
