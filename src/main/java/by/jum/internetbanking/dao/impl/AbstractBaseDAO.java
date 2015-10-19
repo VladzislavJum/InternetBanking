@@ -28,4 +28,5 @@ public abstract class AbstractBaseDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 }

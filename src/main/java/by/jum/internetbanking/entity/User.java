@@ -6,15 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -25,22 +25,22 @@ public class User implements Serializable{
     private String firstName;
 
     @Column(name = "surname")
-    private String  surname;
+    private String surname;
 
     @Column(name = "secondname")
-    private String  secondName;
+    private String secondName;
 
-   /* @Column(firstName = "dateOfBirth")
-    private String dateOfBirth;
-*/
+    /* @Column(firstName = "dateOfBirth")
+     private String dateOfBirth;
+ */
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
 
     @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
     private List<Card> cardList;
 
-  /*  @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")*/
+    /*  @OneToMany(fetch = FetchType.LAZY)
+      @JoinColumn(name = "userID")*/
     public List<Card> getCardList() {
         return cardList;
     }
@@ -81,14 +81,14 @@ public class User implements Serializable{
         this.secondName = secondName;
     }
 
-   /* public String getDateOfBirth() {
-        return dateOfBirth;
-    }
+    /* public String getDateOfBirth() {
+         return dateOfBirth;
+     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-*/
+     public void setDateOfBirth(String dateOfBirth) {
+         this.dateOfBirth = dateOfBirth;
+     }
+ */
     public String getPassportNumber() {
         return passportNumber;
     }

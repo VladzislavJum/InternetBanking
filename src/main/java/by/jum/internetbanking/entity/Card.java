@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "cards")
-public class Card implements Serializable{
+@Table(name = "card")
+public class Card implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,14 @@ public class Card implements Serializable{
     private Integer pinCode;
 
     @Column(name = "status")
-    private boolean status;
+    private boolean status = true;
+
+   /* @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cardID", insertable = false, updatable = false)
+    private BankAccount bankAccount;*/
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardID", insertable=false, updatable=false)
-    private BankAccount bankAccount;
-
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardID", insertable=false, updatable=false)
+    @JoinColumn(name = "cardID", insertable = false, updatable = false)
     private User user;
 
     public Integer getPinCode() {
@@ -59,13 +59,13 @@ public class Card implements Serializable{
         this.status = status;
     }
 
-    public BankAccount getBankAccount() {
+   /* public BankAccount getBankAccount() {
         return bankAccount;
     }
 
     public void setBankAccount(BankAccount bankAccount) {
         this.bankAccount = bankAccount;
-    }
+    }*/
 
     public User getUser() {
         return user;

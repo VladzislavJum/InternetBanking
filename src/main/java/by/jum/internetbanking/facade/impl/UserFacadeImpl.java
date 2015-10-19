@@ -9,7 +9,10 @@ import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.util.ArrayList;
+import java.util.List;
+
+@Component("userFacade")
 public class UserFacadeImpl implements UserFacade {
 
     @Autowired
@@ -18,20 +21,21 @@ public class UserFacadeImpl implements UserFacade {
     @Autowired
     private UserConverter userConverter;
 
-    public void registerUser(RegistrationUserForm registrationUserForm) {
-        User user = new User();
-        user.setFirstName(registrationUserForm.getFirstName());
-        user.setSurname(registrationUserForm.getSurname());
-        user.setSecondName(registrationUserForm.getSecondName());
-        user.setPassportNumber(registrationUserForm.getPassportNumber());
-
-        userService.registerUser(user);
+    public void registerUser(UserDTO userDTO) {
+       userService.registerUser(userConverter.convertToUser(userDTO));
     }
 
     public UserDTO getUserByID(long userID) {
-        User user = userService.getUserByID(userID);
+        return userConverter.convertToUserDTO(userService.getUserByID(userID));
+    }
 
-        return userConverter.convert(user);
+    public List<UserDTO> getUserList(){
+        List<UserDTO> userDTOList = new ArrayList<>();
+
+        List<User> userList = userService.getUserList();
+        userList.forEach(user -> userDTOList.add(userConverter.convertToUserDTO(user)));
+
+        return userDTOList;
     }
 
 }

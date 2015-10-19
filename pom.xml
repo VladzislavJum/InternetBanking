@@ -16,6 +16,7 @@
         <org.hibernate-version>5.0.2.Final</org.hibernate-version>
         <postgresql-version>9.1-901-1.jdbc4</postgresql-version>
         <javax.servlet-version>3.0.1</javax.servlet-version>
+        <jstl-version>1.2</jstl-version>
     </properties>
 
 
@@ -88,6 +89,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${org.slf4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl-version}</version>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>

@@ -26,4 +26,9 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         super.save(user);
     }
 
+    public User get(Long id){
+        return getSessionFactory().getCurrentSession().load(User.class, id);
+    }
+
+
 }

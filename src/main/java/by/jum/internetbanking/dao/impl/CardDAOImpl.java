@@ -26,10 +26,14 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
     }
 
     public void lock() {
-
+      //  getSessionFactory().getCurrentSession().createQuery()
     }
 
     public void unlock() {
 
+    }
+
+    public Card get(Long id) {
+        return getSessionFactory().getCurrentSession().get(Card.class, id);
     }
 }

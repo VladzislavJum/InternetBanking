@@ -27,10 +27,11 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public List<User> getUserList() {
-        return null;
+        return userDAO.getList();
     }
 
+    @Transactional
     public User getUserByID(long userID) {
-        return null;
+        return userDAO.get(userID);
     }
 }

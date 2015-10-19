@@ -2,8 +2,8 @@ package by.jum.internetbanking.form;
 
 public class RegistrationUserForm {
     private String firstName;
-    private String  surname;
-    private String  secondName;
+    private String surname;
+    private String secondName;
     private String passportNumber;
 
     public String getFirstName() {

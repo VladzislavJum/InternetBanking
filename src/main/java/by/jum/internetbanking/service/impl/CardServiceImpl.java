@@ -2,7 +2,6 @@ package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.CardDAO;
 import by.jum.internetbanking.entity.Card;
-import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,12 @@ public class CardServiceImpl implements CardService {
     }
 
     @Transactional
-    public List<User> getCardList() {
-        return null;
+    public List<Card> getCardList(){
+        return cardDAO.getList();
+    }
+
+    @Transactional
+    public Card getCardByID(long cardID) {
+        return cardDAO.get(cardID);
     }
 }
