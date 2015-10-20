@@ -1,7 +1,6 @@
 package by.jum.internetbanking.facade.impl;
 
 import by.jum.internetbanking.dto.CardDTO;
-import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.Card;
 import by.jum.internetbanking.facade.CardFacade;
 import by.jum.internetbanking.facade.converter.CardConverter;
@@ -23,14 +22,13 @@ public class CardFacadeImpl implements CardFacade {
     private CardConverter cardConverter;
 
     @Override
-    public void createCard(CardDTO cardDTO) {
-
-        cardService.createCard(cardConverter.convertToCard(cardDTO));
+    public void createCard(CreateCardForm createCardForm) {
+        cardService.createCard(cardConverter.convertFormToCard(createCardForm));
     }
 
     @Override
     public CardDTO getCardByID(long cardID) {
-        return cardConverter.convertToCardDTO(cardService.getCardByID(cardID));
+        return cardConverter.convertCardToDTO(cardService.getCardByID(cardID));
     }
 
     @Override
@@ -39,7 +37,7 @@ public class CardFacadeImpl implements CardFacade {
         List<CardDTO> cardDTOList = new ArrayList<>();
         List<Card> cardList = cardService.getCardList();
 
-        cardList.forEach(card -> cardDTOList.add(cardConverter.convertToCardDTO(card)));
+        cardList.forEach(card -> cardDTOList.add(cardConverter.convertCardToDTO(card)));
         return cardDTOList;
 
     }

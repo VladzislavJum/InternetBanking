@@ -6,9 +6,10 @@ import by.jum.internetbanking.form.RegistrationUserForm;
 import java.util.List;
 
 public interface UserFacade {
-    void registerUser(UserDTO userDTO);
+    void registerUser(RegistrationUserForm registrationUserForm);
 
     UserDTO getUserByID(long userID);
+
     List<UserDTO> getUserList();
 
 }

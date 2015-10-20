@@ -1,20 +1,25 @@
 package by.jum.internetbanking.entity;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class User implements Serializable{
 
     @Id
     @Column(name = "id")
@@ -30,17 +35,14 @@ public class User implements Serializable {
     @Column(name = "secondname")
     private String secondName;
 
-    /* @Column(firstName = "dateOfBirth")
-     private String dateOfBirth;
- */
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
 
     @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
     private List<Card> cardList;
 
-    /*  @OneToMany(fetch = FetchType.LAZY)
-      @JoinColumn(name = "userID")*/
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userID")
     public List<Card> getCardList() {
         return cardList;
     }
@@ -81,14 +83,6 @@ public class User implements Serializable {
         this.secondName = secondName;
     }
 
-    /* public String getDateOfBirth() {
-         return dateOfBirth;
-     }
-
-     public void setDateOfBirth(String dateOfBirth) {
-         this.dateOfBirth = dateOfBirth;
-     }
- */
     public String getPassportNumber() {
         return passportNumber;
     }
@@ -96,4 +90,5 @@ public class User implements Serializable {
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
     }
+
 }

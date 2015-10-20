@@ -10,7 +10,7 @@ import java.util.List;
 public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
 
     public void delete(Card card) {
-        super.save(card);
+        super.delete(card);
     }
 
     public void update(Card card) {
@@ -26,7 +26,7 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
     }
 
     public void lock() {
-      //  getSessionFactory().getCurrentSession().createQuery()
+//      getSessionFactory().getCurrentSession().createQuery("");
     }
 
     public void unlock() {

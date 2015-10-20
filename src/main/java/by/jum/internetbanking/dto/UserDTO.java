@@ -5,6 +5,15 @@ public class UserDTO {
     private String  surname;
     private String  secondName;
     private String passportNumber;
+    private Long userID;
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
 
     public String getFirstName() {
         return firstName;

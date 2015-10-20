@@ -21,19 +21,19 @@ public class UserFacadeImpl implements UserFacade {
     @Autowired
     private UserConverter userConverter;
 
-    public void registerUser(UserDTO userDTO) {
-       userService.registerUser(userConverter.convertToUser(userDTO));
+    public void registerUser(RegistrationUserForm registrationUserForm) {
+        userService.registerUser(userConverter.convertUserFormToUser(registrationUserForm));
     }
 
     public UserDTO getUserByID(long userID) {
-        return userConverter.convertToUserDTO(userService.getUserByID(userID));
+        return userConverter.convertUserToDTO(userService.getUserByID(userID));
     }
 
     public List<UserDTO> getUserList(){
         List<UserDTO> userDTOList = new ArrayList<>();
 
         List<User> userList = userService.getUserList();
-        userList.forEach(user -> userDTOList.add(userConverter.convertToUserDTO(user)));
+        userList.forEach(user -> userDTOList.add(userConverter.convertUserToDTO(user)));
 
         return userDTOList;
     }

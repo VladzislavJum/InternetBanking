@@ -31,7 +31,7 @@ public class Card implements Serializable {
     private BankAccount bankAccount;*/
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardID", insertable = false, updatable = false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private User user;
 
     public Integer getPinCode() {

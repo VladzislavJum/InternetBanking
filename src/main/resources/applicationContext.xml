@@ -9,5 +9,7 @@
 
        <context:component-scan base-package="by.jum.internetbanking"/>
 
+
+       <import resource="classpath:security-context.xml"/>
        <import resource="classpath:dataBase.xml"/>
 </beans>

@@ -29,9 +29,7 @@ public class UserTester {
 
     @Test
     public void getListUser() {
-
         userFacade.getUserList().forEach(userDTO -> System.out.println(userDTO.getFirstName()));
-
     }
 
 }

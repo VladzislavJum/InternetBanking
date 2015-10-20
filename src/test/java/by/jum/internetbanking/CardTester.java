@@ -18,27 +18,26 @@ public class CardTester {
     public void init() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        UserFacade userFacade = (UserFacade) applicationContext.getBean("userFacade");
         cardDTO = new CardDTO();
-        cardDTO.setPinCode(1234);
+        cardDTO.setPinCode(654);
 //        cardDTO.setUserDTO(userFacade.getUserByID(15));
 
         cardFacade = (CardFacade) applicationContext.getBean("cardFacade");
 
     }
 
-   /* @Test
+  /* @Test
     public void createCard() {
         cardFacade.createCard(cardDTO);
     }*/
 
-    /*@Test
+    @Test
     public void getList(){
         cardFacade.getCardList().forEach(cardDTO -> System.out.println(cardDTO.getPinCode()));
-    }*/
+    }
 
-    @Test
+    /*@Test
     public void getByID() {
         System.out.println(cardFacade.getCardByID(7).getPinCode());
-    }
+    }*/
 }
