@@ -7,35 +7,35 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
+
+    <!--ShaPasswordEncoder не забыть-->
+
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/user*" access="ROLE_USER"/>
-
-
         <access-denied-handler error-page="/error"/>
+        <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
         <form-login
                 login-page="/login"
-                login-processing-url="/j_spring_security_check"
                 default-target-url="/welcome"
                 authentication-failure-url="/login?error"
-                username-parameter="login"
+                username-parameter="username"
                 password-parameter="password"/>
-        <logout logout-success-url="/login?logout"
-                logout-url="/logout"
-                invalidate-session="true"
-                />
+        <logout logout-success-url="/login?logout"/>
         <csrf/>
     </http>
 
-    <!--ShaPasswordEncoder не забыть-->
-    <authentication-manager>
+
+    <!--<authentication-manager>
         <authentication-provider>
-            <user-service>
-                <user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>
-                <user name="user1" password="1111" authorities="ROLE_USER"/>
-                <user name="user2" password="2222" disabled="true" authorities="ROLE_USER"/>
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="select login, password, enabled from users where login = ?"
+                               authorities-by-username-query="select u.login, ur.role from users u, role ur where u.id = ur.user_id and u.login = ? " />
+        </authentication-provider>
+    </authentication-manager>-->
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService" >
+            <password-encoder hash="md5" />
         </authentication-provider>
     </authentication-manager>
-
-
 </beans:beans>
+

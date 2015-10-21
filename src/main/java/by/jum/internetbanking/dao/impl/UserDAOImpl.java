@@ -4,6 +4,7 @@ import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -26,9 +27,20 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         super.save(user);
     }
 
-    public User get(Long id){
+    public User getById(Long id){
         return getSessionFactory().getCurrentSession().load(User.class, id);
     }
 
+    @Override
+    public User getByUserName(String login) {
+        List<User> userList;
+        userList = getSessionFactory().getCurrentSession().
+                createQuery("from by.jum.internetbanking.entity.User where login=?").setParameter(0, login).list();
 
+        if (userList.size() > 0) {
+            return userList.get(0);
+        } else {
+            return null;
+        }
+    }
 }

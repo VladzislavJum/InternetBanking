@@ -15,7 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -38,13 +40,59 @@ public class User implements Serializable{
     @Column(name = "passportNumber", unique = true)
     private String passportNumber;
 
+    @Column(name = "login", unique = true)
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "enabled")
+    private boolean isEnabled = true;
+
+
+    private Set<Role> userRole = new HashSet<>(0);
+
     @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
     private List<Card> cardList;
+
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID")
     public List<Card> getCardList() {
         return cardList;
+    }
+
+
+    public Set<Role> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<Role> userRole) {
+        this.userRole = userRole;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setIsEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setCardList(List<Card> cardList) {

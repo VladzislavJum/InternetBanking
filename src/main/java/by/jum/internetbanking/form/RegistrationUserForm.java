@@ -1,12 +1,13 @@
 package by.jum.internetbanking.form;
 
 public class RegistrationUserForm {
-    private String login;
     private String firstName;
     private String surname;
     private String secondName;
     private String passportNumber;
+    private String login;
     private String password;
+    private String userRole;
 
 
     public String getLogin() {

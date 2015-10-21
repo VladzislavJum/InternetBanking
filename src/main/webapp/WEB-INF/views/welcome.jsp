@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-Good!!
-<spring:message code="label.firstname"/>
+<h1>Title : ${title}</h1>
+<h1>Message : ${message}</h1>
 </body>
 </html>

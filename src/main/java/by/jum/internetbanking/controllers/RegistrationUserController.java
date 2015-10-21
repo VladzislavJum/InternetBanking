@@ -21,6 +21,7 @@ public class RegistrationUserController {
     @RequestMapping(value = "/signupgood", method = RequestMethod.POST)
     public String register(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm) {
         userFacade.registerUser(registrationUserForm);
+
         return "welcome";
     }
 

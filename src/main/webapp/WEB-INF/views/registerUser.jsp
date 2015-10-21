@@ -3,6 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<spring:message code="label.firstname" var="firstname"/>
+<spring:message code="label.surname" var="surname"/>
+<spring:message code="label.secondname" var="secondname"/>
+<spring:message code="label.passportnumber" var="passportnumber"/>
+
+
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -12,38 +18,33 @@
 </head>
 
 <body>
+<a href="?lang=en"><spring:message code="label.lang_en"/></a>
+| <a href="?lang=ru"><spring:message code="label.lang_ru"/></a>
+
 <form:form class="form-horizontal" method="post" action="/signupgood" commandName="userForm">
     <div class="form-group" style="margin-top: 10%;">
 
-        <label class="control-label col-xs-5">
-            <spring:message code="label.firstname" var="fname"/>
-        </label>
+        <label class="control-label col-xs-5">${firstname}</label>
         <div class="col-xs-3">
-            <form:input class="form-control" path="firstName" />
+            <input class="form-control" name="firstName" placeholder="${firstname}" required/>
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5">
-            <spring:message code="label.surname" var="surname"/>
-        </label>
+        <label class="control-label col-xs-5">${surname}</label>
         <div class="col-xs-3">
-            <form:input class="form-control" path="surname"/>
+            <input class="form-control" name="surname" placeholder="${surname}" required/>
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5">
-            <spring:message code="label.secondname" var="sname"/>
-        </label>
+        <label class="control-label col-xs-5">${secondname}</label>
         <div class="col-xs-3">
-            <form:input class="form-control" path="secondName"/>
+            <input class="form-control" name="secondName" placeholder="${secondname}" required/>
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5">
-            <spring:message code="label.passportnumber" var="pnumber"/>
-        </label>
+        <label class="control-label col-xs-5">${passportnumber}</label>
         <div class="col-xs-3">
-            <form:input class="form-control" path="passportNumber"/>
+            <input class="form-control" name="passportNumber" placeholder="${passportnumber}" required/>
         </div>
         <br/><br/>
 
