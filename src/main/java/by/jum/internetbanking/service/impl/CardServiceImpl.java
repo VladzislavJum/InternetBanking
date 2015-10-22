@@ -15,21 +15,25 @@ public class CardServiceImpl implements CardService {
     @Autowired
     private CardDAO cardDAO;
 
+    @Override
     @Transactional
     public void createCard(Card card) {
         cardDAO.save(card);
     }
 
+    @Override
     @Transactional
     public void deleteCard(Card card) {
         cardDAO.delete(card);
     }
 
+    @Override
     @Transactional
     public List<Card> getCardList(){
         return cardDAO.getList();
     }
 
+    @Override
     @Transactional
     public Card getCardByID(long cardID) {
         return cardDAO.get(cardID);

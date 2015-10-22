@@ -7,6 +7,8 @@
 <spring:message code="label.surname" var="surname"/>
 <spring:message code="label.secondname" var="secondname"/>
 <spring:message code="label.passportnumber" var="passportnumber"/>
+<spring:message code="label.login" var="login"/>
+<spring:message code="label.password" var="password"/>
 
 
 <html>
@@ -21,7 +23,7 @@
 <a href="?lang=en"><spring:message code="label.lang_en"/></a>
 | <a href="?lang=ru"><spring:message code="label.lang_ru"/></a>
 
-<form:form class="form-horizontal" method="post" action="/signupgood" commandName="userForm">
+<form:form class="form-horizontal" method="post" action="/signupsucces" commandName="userForm">
     <div class="form-group" style="margin-top: 10%;">
 
         <label class="control-label col-xs-5">${firstname}</label>
@@ -45,6 +47,18 @@
         <label class="control-label col-xs-5">${passportnumber}</label>
         <div class="col-xs-3">
             <input class="form-control" name="passportNumber" placeholder="${passportnumber}" required/>
+        </div>
+        <br/><br/>
+
+        <label class="control-label col-xs-5" >${login}</label>
+        <div class="col-xs-3">
+            <input class="form-control" name="login" placeholder="${login}" required/>
+        </div>
+        <br/><br/>
+
+        <label class="control-label col-xs-5">${password}</label>
+        <div class="col-xs-3">
+            <input class="form-control" name="password" placeholder="${password}" required/>
         </div>
         <br/><br/>
 

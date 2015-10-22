@@ -1,27 +1,20 @@
 package by.jum.internetbanking.entity;
 
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class User implements Serializable{
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"passport_number", "login"}))
+public class User implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -37,7 +30,7 @@ public class User implements Serializable{
     @Column(name = "secondname")
     private String secondName;
 
-    @Column(name = "passportNumber", unique = true)
+    @Column(name = "passport_number", unique = true)
     private String passportNumber;
 
     @Column(name = "login", unique = true)
@@ -49,27 +42,28 @@ public class User implements Serializable{
     @Column(name = "enabled")
     private boolean isEnabled = true;
 
+    @OneToOne()
+    @JoinColumn(name = "id")
+    private Role role;
 
-    private Set<Role> userRole = new HashSet<>(0);
-
-    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
-    private List<Card> cardList;
-
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")
-    public List<Card> getCardList() {
-        return cardList;
+    public Role getRole() {
+        return role;
     }
 
-
-    public Set<Role> getUserRole() {
-        return userRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    public void setUserRole(Set<Role> userRole) {
-        this.userRole = userRole;
-    }
+    /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Role> role = new HashSet<>(0);
+*/
+  /*  @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
+    private List<Card> cardList;*/
+
+
+    /*  @OneToMany(fetch = FetchType.LAZY)
+      @JoinColumn(name = "userID")*/
+
 
     public boolean isEnabled() {
         return isEnabled;
@@ -93,10 +87,6 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
     }
 
     public Long getUserID() {

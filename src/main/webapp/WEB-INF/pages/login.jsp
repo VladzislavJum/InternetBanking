@@ -18,8 +18,8 @@
 
     <c:url value="/j_spring_security_check" var="loginUrl"/>
 
-    <form:form method="post" action="${loginUrl}">
-        <input type="text" name="username" value="" class="form-control" placeholder=
+    <form method="post" action="${loginUrl}">
+        <input type="text" name="login" value="" class="form-control" placeholder=
         <spring:message code="label.login"/> required>
 
         <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
@@ -33,7 +33,6 @@
             <spring:message code="label.signin"/>
         </button>
 
-
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form:form>
+    </form>
 </div>

@@ -7,7 +7,6 @@ public class RegistrationUserForm {
     private String passportNumber;
     private String login;
     private String password;
-    private String userRole;
 
 
     public String getLogin() {

@@ -60,7 +60,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/views/error.jsp</location>
+        <location>/WEB-INF/views/403.jsp</location>
     </error-page>
 -->
 

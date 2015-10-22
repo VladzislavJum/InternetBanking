@@ -1,14 +1,10 @@
 package by.jum.internetbanking.entity;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +16,15 @@ public class Role {
     private Long roleID;
 
     @Column(name = "role")
-    private String role;
+    private String roleUser;
 
-    private User user;
+    public String getRoleUser() {
+        return roleUser;
+    }
+
+    public void setRoleUser(String roleUser) {
+        this.roleUser = roleUser;
+    }
 
     public Long getRoleID() {
         return roleID;
@@ -32,19 +34,4 @@ public class Role {
         this.roleID = roleID;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

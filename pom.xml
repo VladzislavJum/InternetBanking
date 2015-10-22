@@ -10,14 +10,18 @@
 
     <properties>
         <junit-version>4.12</junit-version>
+        <spring-test-version>4.2.2.RELEASE</spring-test-version>
         <java-version>1.8</java-version>
         <org.springframework-version>4.2.1.RELEASE</org.springframework-version>
         <spring-security-version>3.2.3.RELEASE</spring-security-version>
         <org.slf4j-version>1.5.8</org.slf4j-version>
         <org.hibernate-version>5.0.2.Final</org.hibernate-version>
+        <hibernate-validator-version>5.2.2.Final</hibernate-validator-version>
+        <validation-api-version>1.1.0.Final</validation-api-version>
         <postgresql-version>9.1-901-1.jdbc4</postgresql-version>
         <javax.servlet-version>3.0.1</javax.servlet-version>
         <jstl-version>1.2</jstl-version>
+        <maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
     </properties>
 
 
@@ -27,6 +31,12 @@
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test-version}</version>
         </dependency>
 
         <dependency>
@@ -91,6 +101,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api-version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql-version}</version>
@@ -111,8 +133,20 @@
 
     </dependencies>
 
+
     <build>
         <finalName>InternetBanking</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <source>${jstl-version}</source>
+                    <target>${jstl-version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
