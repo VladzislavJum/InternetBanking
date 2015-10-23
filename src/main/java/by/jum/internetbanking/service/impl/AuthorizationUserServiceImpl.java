@@ -39,6 +39,4 @@ public class AuthorizationUserServiceImpl implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
     }
 
-
-
 }

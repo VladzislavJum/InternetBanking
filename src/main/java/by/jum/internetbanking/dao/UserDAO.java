@@ -1,5 +1,6 @@
 package by.jum.internetbanking.dao;
 
+import by.jum.internetbanking.entity.Card;
 import by.jum.internetbanking.entity.User;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserDAO {
     void delete(User user);
     User getById(Long id);
     User getByUserName(String login);
+    List<Card> getUserCardList(String login);
 
 }

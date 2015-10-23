@@ -1,6 +1,7 @@
 package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
+import by.jum.internetbanking.entity.Card;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,9 @@ public class UserServiceImpl implements UserService {
         return userDAO.getById(userID);
     }
 
+    @Override
+    @Transactional
+    public List<Card> getUserCardList(String login) {
+        return userDAO.getUserCardList(login);
+    }
 }

@@ -100,11 +100,11 @@
             <version>${org.hibernate-version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate-validator-version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-validator</artifactId>-->
+            <!--<version>${hibernate-validator-version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.validation</groupId>

@@ -1,5 +1,6 @@
 package by.jum.internetbanking.facade;
 
+import by.jum.internetbanking.dto.CardDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.form.RegistrationUserForm;
 
@@ -11,5 +12,9 @@ public interface UserFacade {
     UserDTO getUserByID(long userID);
 
     List<UserDTO> getUserList();
+
+    List<CardDTO> getUserCardList(String login);
+
+    Long getUserIdByLogin(String login);
 
 }

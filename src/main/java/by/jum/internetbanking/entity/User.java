@@ -1,16 +1,20 @@
 package by.jum.internetbanking.entity;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"passport_number", "login"}))
@@ -42,9 +46,14 @@ public class User implements Serializable {
     @Column(name = "enabled")
     private boolean isEnabled = true;
 
-    @OneToOne()
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
     private Role role;
+    /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Role> role = new HashSet<>(0);
+*/
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Card> cardList;
 
     public Role getRole() {
         return role;
@@ -54,16 +63,17 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Role> role = new HashSet<>(0);
-*/
-  /*  @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
-    private List<Card> cardList;*/
-
 
     /*  @OneToMany(fetch = FetchType.LAZY)
       @JoinColumn(name = "userID")*/
 
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
 
     public boolean isEnabled() {
         return isEnabled;

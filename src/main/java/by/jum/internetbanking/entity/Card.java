@@ -26,13 +26,24 @@ public class Card implements Serializable {
     @Column(name = "status")
     private boolean status = true;
 
-   /* @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardID", insertable = false, updatable = false)
-    private BankAccount bankAccount;*/
+    @Column(name = "card_number")
+    private int cardNumber;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id"/*, insertable = false, updatable = false*/)
     private User user;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 
     public Integer getPinCode() {
         return pinCode;

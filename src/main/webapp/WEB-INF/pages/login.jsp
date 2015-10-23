@@ -17,6 +17,8 @@
 <div class="container" style="width: 300px; margin-top: 10%">
 
     <c:url value="/j_spring_security_check" var="loginUrl"/>
+    <h4 style="color: #c12e2a"> ${message}</h4>
+
 
     <form method="post" action="${loginUrl}">
         <input type="text" name="login" value="" class="form-control" placeholder=

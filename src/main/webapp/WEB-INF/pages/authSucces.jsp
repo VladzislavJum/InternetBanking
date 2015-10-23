@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -11,6 +12,8 @@
     <title></title>
 </head>
 <body>
+
+  <a href="/logout">Logout</a>
 <h1>Succes Auth</h1>
 <h1>Message : ${message}</h1>
 </body>

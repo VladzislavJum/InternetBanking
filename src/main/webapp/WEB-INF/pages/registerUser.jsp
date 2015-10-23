@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <spring:message code="label.firstname" var="firstname"/>
 <spring:message code="label.surname" var="surname"/>
@@ -20,6 +21,16 @@
 </head>
 
 <body>
+
+<sec:authorize access="isAnonymous()">
+    <a href="/login">Login</a>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+    <a href="/logout">Logout</a>
+</sec:authorize>
+<br/>
+
+
 <a href="?lang=en"><spring:message code="label.lang_en"/></a>
 | <a href="?lang=ru"><spring:message code="label.lang_ru"/></a>
 

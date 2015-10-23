@@ -4,14 +4,14 @@ public class CardDTO {
     private Long cardID;
     private Integer pinCode;
     private Boolean status;
-    private Long userID;
+    private int cardNumber;
 
-    public Long getUserID() {
-        return userID;
+    public int getCardNumber() {
+        return cardNumber;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public Integer getPinCode() {
