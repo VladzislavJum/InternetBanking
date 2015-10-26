@@ -2,12 +2,16 @@ package by.jum.internetbanking.dao.impl;
 
 import by.jum.internetbanking.dao.CardDAO;
 import by.jum.internetbanking.entity.Card;
+import org.apache.log4j.Logger;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
+
+    private static Logger LOGGER = Logger.getLogger(CardDAOImpl.class);
 
     public void delete(Card card) {
         super.delete(card);
@@ -18,7 +22,11 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
     }
 
     public void save(Card card) {
-        super.save(card);
+        try {
+            super.save(card);
+        } catch (ConstraintViolationException e) {
+            LOGGER.warn(e);
+        }
     }
 
     public List<Card> getList() {
@@ -26,7 +34,6 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
     }
 
     public void lock() {
-//      getSessionFactory().getCurrentSession().createQuery("");
     }
 
     public void unlock() {

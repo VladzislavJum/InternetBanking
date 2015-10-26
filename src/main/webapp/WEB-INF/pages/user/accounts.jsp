@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <title></title>
 
 </head>
@@ -14,8 +15,9 @@
 <header>
 </header>
 
-<div class="container" style="background-color: linen">
-    <%@ include file="common/navUser.jsp" %>
+<div class="container" style="background-color: lightsteelblue">
+    <jsp:include page="common/navUser.jsp"/>
+
 
     <h1><spring:message code="accounts.label.accounts"/></h1>
     <c:if test="${!empty userAccounts}">

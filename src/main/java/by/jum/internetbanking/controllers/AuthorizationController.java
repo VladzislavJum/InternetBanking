@@ -23,7 +23,6 @@ public class AuthorizationController {
             message = "Invalid username or password, try again !";
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        auth.getAuthorities().forEach(grantedAuthority -> LOGGER.warn("1111 " + grantedAuthority.getAuthority()));
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return new ModelAndView("redirect:/welcome");

@@ -5,6 +5,15 @@ public class CreateBankAccountForm {
     private Integer accountNumber;
     private Long amountOfMoney;
     private String userLogin;
+    private Long userID;
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
+    }
 
     public String getUserLogin() {
         return userLogin;

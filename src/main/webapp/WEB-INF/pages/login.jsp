@@ -7,7 +7,6 @@
 <head>
     <title>Login Page</title>
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-    <%--<link href="<c:url value="../../resources/bootstrap/css/signin.css" />" rel="stylesheet">--%>
 </head>
 <body>
 
@@ -23,11 +22,11 @@
 
         <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
         <spring:message code="authorization.label.password"/> required>
-
+<%--
         <label class="checkbox">
             <input type="checkbox" name="_spring_security_remember_me" value="remember-me"> <spring:message
-                code="label.remember"/>
-        </label>
+                code="authorization.label.remember"/>
+        </label>--%>
         <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%" type="submit" value="submit">
             <spring:message code="authorization.label.signin"/>
         </button>

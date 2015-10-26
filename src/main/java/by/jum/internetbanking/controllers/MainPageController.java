@@ -10,17 +10,6 @@ public class MainPageController {
 
     private static Logger LOGGER = Logger.getLogger(MainPageController.class);
 
-    @RequestMapping(value = "/error403", method = RequestMethod.POST)
-    public String printError() {
-        return "403";
-    }
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String printUser() {
-        LOGGER.info("user");
-        return "user/user";
-    }
-
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String printWelcome() {
         return "welcome";

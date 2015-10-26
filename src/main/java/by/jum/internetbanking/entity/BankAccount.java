@@ -2,7 +2,6 @@ package by.jum.internetbanking.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,11 +34,6 @@ public class BankAccount implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-
-
-/*    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
-    private List<Card> cardList;*/
-
 
     public User getUser() {
         return user;
@@ -81,12 +75,4 @@ public class BankAccount implements Serializable {
         this.type = type;
     }
 
-   /* public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-*/
 }

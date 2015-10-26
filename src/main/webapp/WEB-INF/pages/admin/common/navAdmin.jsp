@@ -10,17 +10,16 @@
 
 </head>
 <body>
-
 <nav role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
         <b><a href="#" class="navbar-brand"><spring:message code="label.internetbanking"/> </a></b>
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/user/accounts"><spring:message code="navuser.label.bankaccount"/> </a></li>
-            <li><a href="#"><spring:message code="navuser.label.payment"/> </a></li>
-            <li><a href="#"><spring:message code="navuser.label.moneytransaction"/> </a></li>
-            <li><a href="#"><spring:message code="navuser.label.paymenthistory"/> </a></li>
+            <li><a href="/admin/signup"><spring:message code="navadmin.label.createuser"/> </a></li>
+            <li><a href="/admin/createAccount"><spring:message code="navadmin.label.createaccount"/> </a></li>
+            <li><a href="#"><spring:message code="navadmin.label.deleteuser"/> </a></li>
+            <li><a href="#"><spring:message code="navadmin.label.deleteaccount"/> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

@@ -15,56 +15,54 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <link href="<c:url value="../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
 
     <title></title>
 </head>
 
 <body>
 
-<sec:authorize access="isAnonymous()">
-    <a href="/login">Login</a>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-    <a href="/logout">Logout</a>
-</sec:authorize>
-<br/>
-
-
-<form:form class="form-horizontal" method="post" action="/admin/signupsucces" commandName="userForm">
-    <div class="form-group" style="margin-top: 10%;">
+<div class="container">
+    <jsp:include page="common/navAdmin.jsp"/>
+    <form:form class="form-horizontal" method="post" action="/admin/signupsucces" commandName="userForm">
 
         <label class="control-label col-xs-5">${firstName}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="firstName" placeholder="${firstName}" required/>
         </div>
         <br/><br/>
 
         <label class="control-label col-xs-5">${surname}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="surname" placeholder="${surname}" required/>
         </div>
         <br/><br/>
 
         <label class="control-label col-xs-5">${lastName}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="lastName" placeholder="${lastName}" required/>
         </div>
         <br/><br/>
 
         <label class="control-label col-xs-5">${passportNumber}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="passportNumber" placeholder="${passportNumber}" required/>
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5" >${login}</label>
+        <label class="control-label col-xs-5">${login}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="login" placeholder="${login}" required/>
         </div>
         <br/><br/>
 
         <label class="control-label col-xs-5">${password}</label>
+
         <div class="col-xs-3">
             <input class="form-control" name="password" placeholder="${password}" required/>
         </div>
@@ -72,12 +70,13 @@
 
         <div class="form-group">
             <div class="col-xs-offset-5 col-xs-9">
-                <input type="submit" class="btn btn-primary" value="<spring:message code="registration.label.signup"/>"/>
+                <input type="submit" class="btn btn-primary"
+                       value="<spring:message code="registration.label.signup"/>"/>
 
             </div>
         </div>
-    </div>
-</form:form>
+    </form:form>
+</div>
 
 </body>
 </html>
