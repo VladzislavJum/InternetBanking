@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Iterator<GrantedAuthority> iterator = (Iterator<GrantedAuthority>) auth.getAuthorities().iterator();
         if ("ROLE_ADMIN".equals(iterator.next().getAuthority())) {
-            return "redirect:/admin/signup";
+            return "redirect:/admin/signupform";
         }
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         map.put("userAccounts", userFacade.getUserAccountList(userDetails.getUsername()));

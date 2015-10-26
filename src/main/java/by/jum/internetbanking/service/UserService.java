@@ -15,6 +15,8 @@ public interface UserService {
 
     User getUserByID(long userID);
 
+    User getByUserName(String login);
+
     List<Card> getUserCardList(String login);
 
     List<BankAccount> getUserAccountList(String login);

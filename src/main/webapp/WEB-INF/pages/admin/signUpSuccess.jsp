@@ -22,7 +22,7 @@
 
 <body>
 
-<div class="container" style="align-content: center">
+<div class="container">
     <jsp:include page="common/navAdmin.jsp"/>
 
     <h1><spring:message code="signupsuccess.label.created"/> </h1><br/>

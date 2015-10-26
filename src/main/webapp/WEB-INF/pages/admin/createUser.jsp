@@ -19,12 +19,11 @@
 
     <title></title>
 </head>
-
 <body>
 
 <div class="container">
     <jsp:include page="common/navAdmin.jsp"/>
-    <form:form class="form-horizontal" method="post" action="/admin/signupsucces" commandName="userForm">
+    <form:form class="form-horizontal" method="post" action="/admin/register" commandName="userForm">
 
         <label class="control-label col-xs-5">${firstName}</label>
 
@@ -72,7 +71,6 @@
             <div class="col-xs-offset-5 col-xs-9">
                 <input type="submit" class="btn btn-primary"
                        value="<spring:message code="registration.label.signup"/>"/>
-
             </div>
         </div>
     </form:form>

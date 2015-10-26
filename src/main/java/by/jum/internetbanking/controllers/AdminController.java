@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -26,22 +27,36 @@ public class AdminController {
     @Autowired
     private BankAccountFacade accountFacade;
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signupform", method = RequestMethod.GET)
     public String showRegistrationForm(Map<String, Object> map) {
         map.put("userForm", new RegistrationUserForm());
         return "/admin/createUser";
     }
 
-    @RequestMapping(value = "/createaccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/createaccountform", method = RequestMethod.GET)
     public String showCreatingAccountForm(Map<String, Object> map) {
         map.put("accountForm", new CreateBankAccountForm());
         return "admin/createAccount";
     }
 
-    @RequestMapping(value = "/signupsucces", method = RequestMethod.POST)
-    public ModelAndView registerUser(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String registerUser(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm, HttpServletRequest request) {
         userFacade.registerUser(registrationUserForm);
+        request.getSession().setAttribute("userForm", registrationUserForm);
+        return "redirect:/admin/signupsuccess";
+    }
 
+    @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
+    public String createaccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm, HttpServletRequest request) {
+        accountFacade.createAccount(accountForm);
+        request.getSession().setAttribute("accountForm", accountForm);
+        return "redirect:/admin/createdsuccess";
+    }
+
+    @RequestMapping(value = "/signupsuccess", method = RequestMethod.GET)
+    public ModelAndView showInfUser(HttpServletRequest request) {
+
+        RegistrationUserForm registrationUserForm = (RegistrationUserForm) request.getSession().getAttribute("userForm");
         ModelAndView model = new ModelAndView();
         model.addObject("firstName", registrationUserForm.getFirstName());
         model.addObject("surname", registrationUserForm.getSurname());
@@ -53,12 +68,16 @@ public class AdminController {
         return model;
     }
 
-    @RequestMapping(value = "/createdsucces", method = RequestMethod.POST)
-    public ModelAndView createAccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm) {
-        accountFacade.createAccount(accountForm);
 
+    @RequestMapping(value = "/createdsuccess", method = RequestMethod.GET)
+    public ModelAndView createAccount(HttpServletRequest request) {
+
+        CreateBankAccountForm accountForm = (CreateBankAccountForm) request.getSession().getAttribute("accountForm");
         ModelAndView model = new ModelAndView();
-        model.addObject("message", "Account " + accountForm.getAccountNumber());
+        model.addObject("accountNumber", accountForm.getAccountNumber());
+        model.addObject("amountOfMoney", accountForm.getAmountOfMoney());
+        model.addObject("userLogin", accountForm.getUserLogin());
+
         model.setViewName("admin/createdSuccess");
         return model;
     }

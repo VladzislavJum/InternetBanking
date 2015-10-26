@@ -4,12 +4,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<spring:message code="registration.label.firstname" var="firstName"/>
-<spring:message code="registration.label.surname" var="surname"/>
-<spring:message code="registration.label.lastname" var="lastName"/>
-<spring:message code="registration.label.passportnumber" var="passportNumber"/>
-<spring:message code="registration.label.login" var="login"/>
-<spring:message code="registration.label.password" var="password"/>
+<spring:message code="createaccount.label.accountnumber" var="accountNumber"/>
+<spring:message code="createaccount.label.amountofmoney" var="amountOfMoney"/>
+<spring:message code="createaccount.label.userlogin" var="userLogin"/>
+<spring:message code="createaccount.label.create" var="create"/>
 
 
 <html>
@@ -24,54 +22,33 @@
 
 <div class="container">
   <jsp:include page="common/navAdmin.jsp"/>
-  <form:form class="form-horizontal" method="post" action="/admin/signupsucces" commandName="userForm">
+  <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="userForm">
 
-    <label class="control-label col-xs-5">${firstName}</label>
+    <label class="control-label col-xs-5">${accountNumber}</label>
 
     <div class="col-xs-3">
-      <input class="form-control" name="accountNumber" placeholder="${firstName}" required/>
+      <input class="form-control" name="accountNumber" placeholder="${accountNumber}" required/>
     </div>
     <br/><br/>
 
-    <label class="control-label col-xs-5">${surname}</label>
+    <label class="control-label col-xs-5">${amountOfMoney}</label>
 
     <div class="col-xs-3">
-      <input class="form-control" name="amountOfMoney" placeholder="${surname}" required/>
+      <input class="form-control" name="amountOfMoney" placeholder="${amountOfMoney}" required/>
     </div>
     <br/><br/>
 
-    <label class="control-label col-xs-5">${lastName}</label>
+    <label class="control-label col-xs-5">${userLogin}</label>
 
     <div class="col-xs-3">
-      <input class="form-control" name="lastName" placeholder="${lastName}" required/>
-    </div>
-    <br/><br/>
-
-    <label class="control-label col-xs-5">${passportNumber}</label>
-
-    <div class="col-xs-3">
-      <input class="form-control" name="passportNumber" placeholder="${passportNumber}" required/>
-    </div>
-    <br/><br/>
-
-    <label class="control-label col-xs-5">${login}</label>
-
-    <div class="col-xs-3">
-      <input class="form-control" name="login" placeholder="${login}" required/>
-    </div>
-    <br/><br/>
-
-    <label class="control-label col-xs-5">${password}</label>
-
-    <div class="col-xs-3">
-      <input class="form-control" name="password" placeholder="${password}" required/>
+      <input class="form-control" name="userLogin" placeholder="${userLogin}" required/>
     </div>
     <br/><br/>
 
     <div class="form-group">
       <div class="col-xs-offset-5 col-xs-9">
         <input type="submit" class="btn btn-primary"
-               value="<spring:message code="registration.label.signup"/>"/>
+               value="${create}"/>
 
       </div>
     </div>

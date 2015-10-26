@@ -38,8 +38,7 @@ public class BankAccountConverter {
         BankAccount account = new BankAccount();
         account.setAccountNumber(accountForm.getAccountNumber());
         account.setAmountOfMoney(accountForm.getAmountOfMoney());
-        account.setUser(userService.getUserByID(65));
-//        account.setType();
+        account.setUser(userService.getByUserName(accountForm.getUserLogin()));
         return account;
     }
 

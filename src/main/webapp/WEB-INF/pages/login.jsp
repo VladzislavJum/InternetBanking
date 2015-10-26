@@ -9,28 +9,37 @@
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+    <div class="container" style="width: 300px; margin-top: 10%;">
 
-<div class="container" style="width: 300px; margin-top: 10%">
-
-    <c:url value="/j_spring_security_check" var="loginUrl"/>
-    <h4 style="color: #c12e2a"> ${message}</h4>
+        <c:url value="/j_spring_security_check" var="loginUrl"/>
+        <h4 style="color: #c12e2a"> ${message}</h4>
 
 
-    <form method="post" action="${loginUrl}">
-        <input type="text" name="login" value="" class="form-control" placeholder=
-        <spring:message code="authorization.label.login"/> required>
+        <form method="post" action="${loginUrl}">
+            <input type="text" name="login" value="" class="form-control" placeholder=
+            <spring:message code="authorization.label.login"/> required>
 
-        <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
-        <spring:message code="authorization.label.password"/> required>
-<%--
-        <label class="checkbox">
-            <input type="checkbox" name="_spring_security_remember_me" value="remember-me"> <spring:message
-                code="authorization.label.remember"/>
-        </label>--%>
-        <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%" type="submit" value="submit">
-            <spring:message code="authorization.label.signin"/>
-        </button>
+            <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
+            <spring:message code="authorization.label.password"/> required>
+            <div class="checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox" name="_spring_security_remember_me" value="remember-me"> <spring:message
+                            code="authorization.label.remember"/>
+                    </label>
+                    </div>
+            <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%;" type="submit" value="submit">
+                <spring:message code="authorization.label.signin"/>
+            </button>
 
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
+        <%--<img src="../../resources/images/dollar.jpg" he ight="380" width="596"/>--%>
+    </div>
+
+
+
 </div>
+
+</body>

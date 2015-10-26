@@ -23,7 +23,7 @@
                 />
 
 
-        <logout logout-success-url="/welcome"
+        <logout logout-success-url="/login"
                 logout-url="/logout"
                 invalidate-session="true"
                 />

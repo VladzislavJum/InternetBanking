@@ -14,7 +14,7 @@
         <h3>
             <sec:authorize access="isAnonymous()">
                 <a href="/login" style="color: #c12e2a"><spring:message code="authorization.label.signin"/> </a><br/>
-                <a href="/admin/signup" style="color: #c12e2a"><spring:message code="registration.label.signup"/> </a>
+                <a href="/signupform" style="color: #c12e2a"><spring:message code="registration.label.signup"/> </a>
             </sec:authorize>
 
             <sec:authorize access="isAuthenticated()">

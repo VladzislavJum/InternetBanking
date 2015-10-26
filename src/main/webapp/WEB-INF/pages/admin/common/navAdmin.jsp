@@ -16,8 +16,8 @@
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/admin/signup"><spring:message code="navadmin.label.createuser"/> </a></li>
-            <li><a href="/admin/createAccount"><spring:message code="navadmin.label.createaccount"/> </a></li>
+            <li><a href="/admin/signupform"><spring:message code="navadmin.label.createuser"/> </a></li>
+            <li><a href="/admin/createaccountform"><spring:message code="navadmin.label.createaccount"/> </a></li>
             <li><a href="#"><spring:message code="navadmin.label.deleteuser"/> </a></li>
             <li><a href="#"><spring:message code="navadmin.label.deleteaccount"/> </a></li>
         </ul>
@@ -26,13 +26,13 @@
                 <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.label.language"/> <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="?lang=en"><spring:message code="label.lang_en"/>
+                    <li><a href="?lang=en"><spring:message code="nav.label.lang_en"/>
                     </a></li>
-                    <li><a href="?lang=ru"><spring:message code="label.lang_ru"/>
+                    <li><a href="?lang=ru"><spring:message code="nav.label.lang_ru"/>
                     </a></li>
                 </ul>
             </li>
-            <li><a href="/logout"><spring:message code="navuser.label.logout"/> </a></li>
+            <li><a href="/logout"><spring:message code="nav.label.logout"/> </a></li>
         </ul>
     </div>
 </nav>
