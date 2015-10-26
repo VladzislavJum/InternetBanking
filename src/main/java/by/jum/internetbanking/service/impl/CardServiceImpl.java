@@ -29,13 +29,13 @@ public class CardServiceImpl implements CardService {
 
     @Override
     @Transactional
-    public List<Card> getCardList(){
+    public List<Card> getCardList() {
         return cardDAO.getList();
     }
 
     @Override
     @Transactional
     public Card getCardByID(long cardID) {
-        return cardDAO.get(cardID);
+        return cardDAO.getByID(cardID);
     }
 }

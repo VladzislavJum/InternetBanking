@@ -9,13 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
 @Component
-public class CardConverter{
-    private final Logger logger = Logger.getLogger(getClass());
+public class CardConverter {
+    private final Logger LOGGER = Logger.getLogger(getClass());
 
     @Autowired
     private UserService userService;
@@ -29,26 +28,26 @@ public class CardConverter{
         return cardDTO;
     }
 
-    public Card convertDTOToCard(CardDTO cardDTO){
+    public Card convertDTOToCard(CardDTO cardDTO) {
         Card card = new Card();
         card.setPinCode(cardDTO.getPinCode());
 
         return card;
     }
 
-    public Card convertFormToCard(CreateCardForm createCardForm){
+    public Card convertFormToCard(CreateCardForm createCardForm) {
         Card card = new Card();
         card.setPinCode(createCardForm.getPinCode());
         card.setCardNumber(createCardForm.getCardNumber());
 
         card.setUser(userService.getUserByID(67L));
 
-        logger.warn("user " + card.getUser().getUserID());
+        LOGGER.warn("user " + card.getUser().getUserID());
 
         return card;
     }
 
-    public List<CardDTO> convertCardListToDTOList(List<Card> cardList){
+    public List<CardDTO> convertCardListToDTOList(List<Card> cardList) {
         List<CardDTO> cardDTOList = new ArrayList<>();
         cardList.forEach(card -> cardDTOList.add(convertCardToDTO(card)));
         return cardDTOList;

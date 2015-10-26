@@ -1,7 +1,6 @@
 package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
-import by.jum.internetbanking.entity.Role;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,12 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service("authUserService")
 public class AuthorizationUserServiceImpl implements UserDetailsService {
 
-    private static Logger logger = Logger.getLogger(AuthorizationUserServiceImpl.class);
+    private static Logger LOGGER = Logger.getLogger(AuthorizationUserServiceImpl.class);
 
     @Autowired
     private UserDAO userDao;

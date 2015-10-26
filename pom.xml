@@ -136,17 +136,6 @@
 
     <build>
         <finalName>InternetBanking</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin-version}</version>
-                <configuration>
-                    <source>${jstl-version}</source>
-                    <target>${jstl-version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
 </project>

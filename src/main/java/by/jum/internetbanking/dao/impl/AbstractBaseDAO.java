@@ -1,11 +1,14 @@
 package by.jum.internetbanking.dao.impl;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public abstract class AbstractBaseDAO {
+    private final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -21,6 +24,10 @@ public abstract class AbstractBaseDAO {
         sessionFactory.getCurrentSession().update(object);
     }
 
+    public Object getByID(Class c, Long id){
+        return getSessionFactory().getCurrentSession().load(c, id);
+    }
+
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -28,5 +35,7 @@ public abstract class AbstractBaseDAO {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
+
 
 }

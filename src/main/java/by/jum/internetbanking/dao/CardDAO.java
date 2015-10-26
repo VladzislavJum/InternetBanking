@@ -18,5 +18,5 @@ public interface CardDAO {
 
     void unlock();
 
-    Card get(Long id);
+    Card getByID(Long id);
 }

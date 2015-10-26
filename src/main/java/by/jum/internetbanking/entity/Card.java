@@ -29,8 +29,8 @@ public class Card implements Serializable {
     @Column(name = "card_number")
     private int cardNumber;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id"/*, insertable = false, updatable = false*/)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public boolean isStatus() {

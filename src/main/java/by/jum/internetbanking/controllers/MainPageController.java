@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainPageController {
 
-    private static Logger logger = Logger.getLogger(MainPageController.class);
+    private static Logger LOGGER = Logger.getLogger(MainPageController.class);
 
     @RequestMapping(value = "/error403", method = RequestMethod.POST)
     public String printError() {
@@ -17,8 +17,8 @@ public class MainPageController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String printUser() {
-        logger.info("user");
-        return "user";
+        LOGGER.info("user");
+        return "user/user";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

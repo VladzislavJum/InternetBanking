@@ -33,7 +33,7 @@ public class CardDAOImpl extends AbstractBaseDAO implements CardDAO {
 
     }
 
-    public Card get(Long id) {
-        return getSessionFactory().getCurrentSession().get(Card.class, id);
+    public Card getByID(Long id) {
+        return (Card) super.getByID(Card.class, id);
     }
 }

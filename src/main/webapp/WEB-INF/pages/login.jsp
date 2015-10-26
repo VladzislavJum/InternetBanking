@@ -6,13 +6,10 @@
 <html>
 <head>
     <title>Login Page</title>
-    <link href="<c:url value="../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
     <%--<link href="<c:url value="../../resources/bootstrap/css/signin.css" />" rel="stylesheet">--%>
 </head>
 <body>
-<a href="?lang=en"><spring:message code="label.lang_en"/></a>
-| <a href="?lang=ru"><spring:message code="label.lang_ru"/></a>
-
 
 <div class="container" style="width: 300px; margin-top: 10%">
 
@@ -22,17 +19,17 @@
 
     <form method="post" action="${loginUrl}">
         <input type="text" name="login" value="" class="form-control" placeholder=
-        <spring:message code="label.login"/> required>
+        <spring:message code="authorization.label.login"/> required>
 
         <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
-        <spring:message code="label.password"/> required>
+        <spring:message code="authorization.label.password"/> required>
 
         <label class="checkbox">
             <input type="checkbox" name="_spring_security_remember_me" value="remember-me"> <spring:message
                 code="label.remember"/>
         </label>
         <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%" type="submit" value="submit">
-            <spring:message code="label.signin"/>
+            <spring:message code="authorization.label.signin"/>
         </button>
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

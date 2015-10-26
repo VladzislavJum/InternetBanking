@@ -25,14 +25,14 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
 
-    @Column(name = "username")
+    @Column(name = "name")
     private String firstName;
 
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "secondname")
-    private String secondName;
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "passport_number", unique = true)
     private String passportNumber;
@@ -49,11 +49,20 @@ public class User implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
-    /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Role> role = new HashSet<>(0);
-*/
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Card> cardList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<BankAccount> bankAccountList;
+
+    public List<BankAccount> getBankAccountList() {
+        return bankAccountList;
+    }
+
+    public void setBankAccountList(List<BankAccount> bankAccountList) {
+        this.bankAccountList = bankAccountList;
+    }
 
     public Role getRole() {
         return role;
@@ -64,8 +73,8 @@ public class User implements Serializable {
     }
 
 
-    /*  @OneToMany(fetch = FetchType.LAZY)
-      @JoinColumn(name = "userID")*/
+      @OneToMany(fetch = FetchType.LAZY)
+      @JoinColumn(name = "userID")
 
     public List<Card> getCardList() {
         return cardList;
@@ -123,12 +132,12 @@ public class User implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassportNumber() {

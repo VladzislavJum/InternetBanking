@@ -1,6 +1,8 @@
 package by.jum.internetbanking.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,18 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table
+@Table(name = "bank_account")
 public class BankAccount implements Serializable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bankAccountID;
 
     @Column(name = "account_number", unique = true)
@@ -28,16 +28,26 @@ public class BankAccount implements Serializable {
     @Column(name = "amount_of_money")
     private Long amountOfMoney;
 
-    @OneToOne
-    @JoinColumn(name = "bankAccountID")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id")
     private Type type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bankAccountID", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
-    private List<Card> cardList;
+
+/*    @OneToMany(mappedBy = "cardID", fetch = FetchType.LAZY)
+    private List<Card> cardList;*/
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getBankAccountID() {
         return bankAccountID;
@@ -71,19 +81,12 @@ public class BankAccount implements Serializable {
         this.type = type;
     }
 
-    public User getUser() {
+   /* public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
-
-    public List<Card> getCardList() {
-        return cardList;
-    }
-
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
-    }
+*/
 }

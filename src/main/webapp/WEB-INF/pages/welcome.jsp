@@ -9,22 +9,21 @@
 
 </head>
 <body>
-<a href="?lang=en"><spring:message code="label.lang_en"/></a>
-| <a href="?lang=ru"><spring:message code="label.lang_ru"/></a>
 <div class="container" align="center" style="background-color: #46b8da">
     <b>
         <h3>
             <sec:authorize access="isAnonymous()">
-                <a href="/login" style="color: #c12e2a"><spring:message code="label.signin"/> </a><br/>
-                <a href="/signup" style="color: #c12e2a"><spring:message code="label.signup"/> </a>
+                <a href="/login" style="color: #c12e2a"><spring:message code="authorization.label.signin"/> </a><br/>
+                <a href="/admin/signup" style="color: #c12e2a"><spring:message code="registration.label.signup"/> </a>
             </sec:authorize>
+
             <sec:authorize access="isAuthenticated()">
                 <a href="/logout">Logout</a>
             </sec:authorize>
         </h3>
     </b>
 
-    <h1><spring:message code="label.welcom"/> </h1>
+    <h1><spring:message code="label.welcome"/></h1>
 </div>
 <br/>
 

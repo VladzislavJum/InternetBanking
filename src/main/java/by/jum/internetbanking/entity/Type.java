@@ -1,5 +1,6 @@
 package by.jum.internetbanking.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Type")
+@Table(name = "type_account")
 public class Type implements Serializable{
     @Id
     @Column(name = "id")
@@ -19,26 +20,27 @@ public class Type implements Serializable{
     private Long typeID;
 
     @Column(name = "type", unique = true)
-    private String string;
+    private String type;
 
-    @OneToOne
-    @JoinColumn(name = "typeID")
+/*
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "type")
     private BankAccount bankAccount;
+*/
 
-    public BankAccount getBankAccount() {
+   /* public BankAccount getBankAccount() {
         return bankAccount;
     }
 
     public void setBankAccount(BankAccount bankAccount) {
         this.bankAccount = bankAccount;
     }
-
+*/
     public String getString() {
-        return string;
+        return type;
     }
 
-    public void setString(String string) {
-        this.string = string;
+    public void setString(String type) {
+        this.type = type;
     }
 
     public Long getTypeID() {

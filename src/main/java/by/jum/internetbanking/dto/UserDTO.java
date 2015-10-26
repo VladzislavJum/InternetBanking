@@ -4,7 +4,7 @@ public class UserDTO {
     private Long userID;
     private String firstName;
     private String  surname;
-    private String  secondName;
+    private String lastName;
     private String passportNumber;
     private String password;
     private String login;
@@ -59,12 +59,12 @@ public class UserDTO {
         this.surname = surname;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassportNumber() {

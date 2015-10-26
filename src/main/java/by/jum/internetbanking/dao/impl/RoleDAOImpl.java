@@ -13,7 +13,7 @@ public class RoleDAOImpl extends AbstractBaseDAO implements RoleDAO {
 
     @Override
     public Role getById(Long id) {
-        return getSessionFactory().getCurrentSession().get(Role.class, id);
+        return (Role) super.getByID(Role.class, id);
     }
 
     @Override
