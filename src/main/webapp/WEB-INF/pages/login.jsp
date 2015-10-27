@@ -22,20 +22,13 @@
 
             <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
             <spring:message code="authorization.label.password"/> required>
-            <div class="checkbox">
-                    <label class="checkbox">
-                        <input type="checkbox" name="_spring_security_remember_me" value="remember-me"> <spring:message
-                            code="authorization.label.remember"/>
-                    </label>
-                    </div>
+
             <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%;" type="submit" value="submit">
                 <spring:message code="authorization.label.signin"/>
             </button>
 
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
-        <%--<img src="../../resources/images/dollar.jpg" he ight="380" width="596"/>--%>
     </div>
 
 

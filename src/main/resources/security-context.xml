@@ -11,17 +11,15 @@
     <!--TODO: to add encoder for password-->
 
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/user/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <access-denied-handler error-page="/pages/error403"/>
+        <access-denied-handler error-page="/WEB-INF/pages/errors/403.jsp"/>
         <form-login
                 login-page="/login"
-                default-target-url="/user/accounts"
                 authentication-failure-url="/login?error"
                 username-parameter="login"
                 password-parameter="password"
                 />
-
 
         <logout logout-success-url="/login"
                 logout-url="/logout"
@@ -33,8 +31,7 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider user-service-ref="authUserService" >
-            <!--<password-encoder hash="sha" base64="true"/>-->
+        <authentication-provider user-service-ref="authUserService">
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

@@ -1,5 +1,6 @@
 package by.jum.internetbanking.controllers;
 
+import by.jum.internetbanking.Role;
 import by.jum.internetbanking.facade.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,7 +25,7 @@ public class UserController {
     public String showTypesOfPayments(Map<String, Object> map) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Iterator<GrantedAuthority> iterator = (Iterator<GrantedAuthority>) auth.getAuthorities().iterator();
-        if ("ROLE_ADMIN".equals(iterator.next().getAuthority())) {
+        if (Role.ROLE_ADMIN.getRole().equals(iterator.next().getAuthority())) {
             return "redirect:/admin/signupform";
         }
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

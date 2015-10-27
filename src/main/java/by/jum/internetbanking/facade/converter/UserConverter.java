@@ -12,9 +12,9 @@ public class UserConverter {
         UserDTO userDTO = new UserDTO();
 
         userDTO.setUserID(user.getUserID());
-        userDTO.setFirstName(user.getFirstName());
+        userDTO.setFirstName(user.getFirstname());
         userDTO.setSurname(user.getSurname());
-        userDTO.setLastName(user.getLastName());
+        userDTO.setLastname(user.getLastname());
         userDTO.setPassportNumber(user.getPassportNumber());
         userDTO.setLogin(user.getLogin());
         userDTO.setPassword(user.getPassword());
@@ -26,9 +26,9 @@ public class UserConverter {
     public User convertToUser(UserDTO userDTO) {
         User user = new User();
 
-        user.setFirstName(userDTO.getFirstName());
+        user.setFirstname(userDTO.getFirstName());
         user.setSurname(user.getSurname());
-        user.setLastName(userDTO.getLastName());
+        user.setLastname(userDTO.getLastname());
         user.setPassportNumber(userDTO.getPassportNumber());
         user.setLogin(userDTO.getLogin());
         user.setPassportNumber(userDTO.getPassword());
@@ -39,9 +39,9 @@ public class UserConverter {
 
     public User convertUserFormToUser(RegistrationUserForm registrationUserForm) {
         User user = new User();
-        user.setFirstName(registrationUserForm.getFirstName());
+        user.setFirstname(registrationUserForm.getFirstname());
         user.setSurname(registrationUserForm.getSurname());
-        user.setLastName(registrationUserForm.getLastName());
+        user.setLastname(registrationUserForm.getLastname());
         user.setPassportNumber(registrationUserForm.getPassportNumber());
         user.setPassword(registrationUserForm.getPassword());
         user.setLogin(registrationUserForm.getLogin());

@@ -1,8 +1,8 @@
 package by.jum.internetbanking.facade;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
-import by.jum.internetbanking.dto.CardDTO;
 import by.jum.internetbanking.dto.UserDTO;
+import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.form.RegistrationUserForm;
 
 import java.util.List;
@@ -14,8 +14,9 @@ public interface UserFacade {
 
     List<UserDTO> getUserList();
 
-    List<CardDTO> getUserCardList(String login);
-
     List<BankAccountDTO> getUserAccountList(String login);
+
+    User getUserByUserName(String login);
+
 
 }

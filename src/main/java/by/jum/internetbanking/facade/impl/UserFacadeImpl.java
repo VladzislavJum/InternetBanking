@@ -1,12 +1,10 @@
 package by.jum.internetbanking.facade.impl;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
-import by.jum.internetbanking.dto.CardDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.facade.converter.BankAccountConverter;
-import by.jum.internetbanking.facade.converter.CardConverter;
 import by.jum.internetbanking.facade.converter.UserConverter;
 import by.jum.internetbanking.form.RegistrationUserForm;
 import by.jum.internetbanking.service.RoleService;
@@ -27,9 +25,6 @@ public class UserFacadeImpl implements UserFacade {
 
     @Autowired
     private UserConverter userConverter;
-
-    @Autowired
-    private CardConverter cardConverter;
 
     @Autowired
     private BankAccountConverter accountConverter;
@@ -55,13 +50,13 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public List<CardDTO> getUserCardList(String login) {
-        return cardConverter.convertCardListToDTOList(userService.getUserCardList(login));
+    public List<BankAccountDTO> getUserAccountList(String login) {
+        return accountConverter.convertAccountListToDTOAccountList(userService.getUserAccountList(login));
     }
 
     @Override
-    public List<BankAccountDTO> getUserAccountList(String login) {
-        return accountConverter.convertAccountListToDTOAccountList(userService.getUserAccountList(login));
+    public User getUserByUserName(String login) {
+        return userService.getByUserName(login);
     }
 
 }

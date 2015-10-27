@@ -4,9 +4,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<spring:message code="registration.label.firstname" var="firstName"/>
+<spring:message code="registration.label.firstname" var="firstname"/>
 <spring:message code="registration.label.surname" var="surname"/>
-<spring:message code="registration.label.lastname" var="lastName"/>
+<spring:message code="registration.label.lastname" var="lastname"/>
 <spring:message code="registration.label.passportnumber" var="passportNumber"/>
 <spring:message code="registration.label.login" var="login"/>
 <spring:message code="registration.label.password" var="password"/>
@@ -25,10 +25,10 @@
     <jsp:include page="common/navAdmin.jsp"/>
     <form:form class="form-horizontal" method="post" action="/admin/register" commandName="userForm">
 
-        <label class="control-label col-xs-5">${firstName}</label>
+        <label class="control-label col-xs-5">${firstname}</label>
 
         <div class="col-xs-3">
-            <input class="form-control" name="firstName" placeholder="${firstName}" required/>
+            <input class="form-control" name="firstname" placeholder="${firstname}" required/>
         </div>
         <br/><br/>
 
@@ -39,10 +39,10 @@
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${lastName}</label>
+        <label class="control-label col-xs-5">${lastname}</label>
 
         <div class="col-xs-3">
-            <input class="form-control" name="lastName" placeholder="${lastName}" required/>
+            <input class="form-control" name="lastname" placeholder="${lastname}" required/>
         </div>
         <br/><br/>
 

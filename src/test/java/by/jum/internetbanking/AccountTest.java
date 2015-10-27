@@ -3,6 +3,7 @@ package by.jum.internetbanking;
 
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.form.CreateBankAccountForm;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class AccountTest {
+    private final Logger LOGGER = Logger.getLogger(getClass());
 
     @Autowired
     BankAccountFacade accountFacade;
@@ -21,9 +23,6 @@ public class AccountTest {
 
     @Before
     public void init() {
-        accountForm = new CreateBankAccountForm();
-//        accountForm.setAccountNumber(2522);
-        accountForm.setAmountOfMoney(500L);
 
     }
 
@@ -33,6 +32,6 @@ public class AccountTest {
 }
     @Test
      public void getList(){
-        accountFacade.getAccountList().forEach(accountDTO -> System.out.println(accountDTO.getAmountOfMoney()));
+        accountFacade.getAccountList().forEach(accountDTO -> LOGGER.info(accountDTO.getAmountOfMoney()));
     }
 }

@@ -1,7 +1,6 @@
 package by.jum.internetbanking.dao;
 
 import by.jum.internetbanking.entity.BankAccount;
-import by.jum.internetbanking.entity.Card;
 
 import java.util.List;
 

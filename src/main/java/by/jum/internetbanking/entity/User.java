@@ -1,6 +1,5 @@
 package by.jum.internetbanking.entity;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,18 +25,18 @@ public class User implements Serializable {
     private Long userID;
 
     @Column(name = "name")
-    private String firstName;
+    private String firstname;
 
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "lastname")
+    private String lastname;
 
-    @Column(name = "passport_number", unique = true)
+    @Column(name = "passport_number")
     private String passportNumber;
 
-    @Column(name = "login", unique = true)
+    @Column(name = "login")
     private String login;
 
     @Column(name = "password")
@@ -46,12 +45,9 @@ public class User implements Serializable {
     @Column(name = "enabled")
     private boolean isEnabled = true;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Card> cardList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BankAccount> bankAccountList;
@@ -70,18 +66,6 @@ public class User implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-
-      @OneToMany(fetch = FetchType.LAZY)
-      @JoinColumn(name = "userID")
-
-    public List<Card> getCardList() {
-        return cardList;
-    }
-
-    public void setCardList(List<Card> cardList) {
-        this.cardList = cardList;
     }
 
     public boolean isEnabled() {
@@ -124,20 +108,20 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassportNumber() {

@@ -23,16 +23,7 @@ public class UserTester {
 
     @Before
     public void init() {
-        form = new RegistrationUserForm();
-        form.setPassword("1111111111");
-        form.setFirstName("cfdscdcs");
-        form.setLastName("cd");
-        form.setLogin("7");
-        form.setPassportNumber("123t");
-        form.setSurname("bb");
-
-
-    }
+            }
     @Test
     public void getListUser() {
         userFacade.getUserList().forEach(userDTO -> LOGGER.warn(userDTO.getLogin()));

@@ -1,15 +1,19 @@
 package by.jum.internetbanking.controllers;
 
+import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.CreateBankAccountForm;
 import by.jum.internetbanking.form.RegistrationUserForm;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +24,9 @@ import java.util.Map;
 public class AdminController {
 
     private final Logger LOGGER = Logger.getLogger(getClass());
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private UserFacade userFacade;
@@ -34,9 +41,16 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/createaccountform", method = RequestMethod.GET)
-    public String showCreatingAccountForm(Map<String, Object> map) {
-        map.put("accountForm", new CreateBankAccountForm());
-        return "admin/createAccount";
+    public ModelAndView showCreatingAccountForm(@RequestParam(required = false) String error) {
+        ModelAndView model = new ModelAndView();
+        String message = "";
+        if (error != null) {
+            message = messageSource.getMessage("createaccountform.label.notexist", null, LocaleContextHolder.getLocale());
+        }
+        model.addObject("message", message);
+        model.addObject("accountForm", new CreateBankAccountForm());
+        model.setViewName("admin/createAccount");
+        return model;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -48,9 +62,14 @@ public class AdminController {
 
     @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
     public String createaccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm, HttpServletRequest request) {
-        accountFacade.createAccount(accountForm);
-        request.getSession().setAttribute("accountForm", accountForm);
-        return "redirect:/admin/createdsuccess";
+        User user = userFacade.getUserByUserName(accountForm.getUserLogin());
+        if (null != user) {
+            accountFacade.createAccount(accountForm);
+            request.getSession().setAttribute("accountForm", accountForm);
+            return "redirect:/admin/createdsuccess";
+        } else {
+            return "redirect:/admin/createaccountform?error";
+        }
     }
 
     @RequestMapping(value = "/signupsuccess", method = RequestMethod.GET)
@@ -58,16 +77,15 @@ public class AdminController {
 
         RegistrationUserForm registrationUserForm = (RegistrationUserForm) request.getSession().getAttribute("userForm");
         ModelAndView model = new ModelAndView();
-        model.addObject("firstName", registrationUserForm.getFirstName());
+        model.addObject("firstName", registrationUserForm.getFirstname());
         model.addObject("surname", registrationUserForm.getSurname());
-        model.addObject("lastName", registrationUserForm.getLastName());
+        model.addObject("lastName", registrationUserForm.getLastname());
         model.addObject("passportNumber", registrationUserForm.getPassportNumber());
         model.addObject("login", registrationUserForm.getLogin());
 
         model.setViewName("admin/signUpSuccess");
         return model;
     }
-
 
     @RequestMapping(value = "/createdsuccess", method = RequestMethod.GET)
     public ModelAndView createAccount(HttpServletRequest request) {
@@ -81,5 +99,4 @@ public class AdminController {
         model.setViewName("admin/createdSuccess");
         return model;
     }
-
 }

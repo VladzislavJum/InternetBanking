@@ -1,9 +1,9 @@
 package by.jum.internetbanking.form;
 
 public class RegistrationUserForm {
-    private String firstName;
+    private String firstname;
     private String surname;
-    private String lastName;
+    private String lastname;
     private String passportNumber;
     private String login;
     private String password;
@@ -34,12 +34,12 @@ public class RegistrationUserForm {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getSurname() {
@@ -50,12 +50,12 @@ public class RegistrationUserForm {
         this.surname = surname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassportNumber() {

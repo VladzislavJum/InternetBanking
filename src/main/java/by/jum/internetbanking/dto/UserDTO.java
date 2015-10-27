@@ -3,8 +3,8 @@ package by.jum.internetbanking.dto;
 public class UserDTO {
     private Long userID;
     private String firstName;
-    private String  surname;
-    private String lastName;
+    private String surname;
+    private String lastname;
     private String passportNumber;
     private String password;
     private String login;
@@ -59,12 +59,12 @@ public class UserDTO {
         this.surname = surname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassportNumber() {

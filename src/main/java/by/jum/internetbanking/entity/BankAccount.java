@@ -27,7 +27,7 @@ public class BankAccount implements Serializable {
     @Column(name = "amount_of_money")
     private Long amountOfMoney;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     private Type type;
 

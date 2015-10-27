@@ -24,6 +24,8 @@
   <jsp:include page="common/navAdmin.jsp"/>
   <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="userForm">
 
+    <h1 style="color: red"> ${message} </h1>
+
     <label class="control-label col-xs-5">${accountNumber}</label>
 
     <div class="col-xs-3">
