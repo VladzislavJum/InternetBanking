@@ -18,7 +18,7 @@ import java.util.List;
 @Service("authUserService")
 public class AuthorizationUserServiceImpl implements UserDetailsService {
 
-    private static Logger LOGGER = Logger.getLogger(AuthorizationUserServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationUserServiceImpl.class);
 
     @Autowired
     private UserDAO userDao;

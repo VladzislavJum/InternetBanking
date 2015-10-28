@@ -4,9 +4,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<spring:message code="registration.label.firstname" var="firstNameLabel"/>
+<spring:message code="registration.label.firstname" var="firstnameLabel"/>
 <spring:message code="registration.label.surname" var="surnameLabel"/>
-<spring:message code="registration.label.lastname" var="lastNameLabel"/>
+<spring:message code="registration.label.patronymic" var="patronymicLabel"/>
 <spring:message code="registration.label.passportnumber" var="passportNumberLabel"/>
 <spring:message code="registration.label.login" var="loginLabel"/>
 <spring:message code="registration.label.password" var="passwordLabel"/>
@@ -26,9 +26,9 @@
     <jsp:include page="common/navAdmin.jsp"/>
 
     <h1><spring:message code="signupsuccess.label.created"/> </h1><br/>
-    ${firstNameLabel}: ${firstname}<br/>
+    ${firstnameLabel}: ${firstname}<br/>
     ${surnameLabel}: ${surname}<br/>
-    ${lastNameLabel}: ${lastname}<br/>
+    ${patronymicLabel}: ${patronymic}<br/>
     ${passportNumberLabel}: ${passportNumber}<br/>
     ${loginLabel}: ${login}<br/>
 

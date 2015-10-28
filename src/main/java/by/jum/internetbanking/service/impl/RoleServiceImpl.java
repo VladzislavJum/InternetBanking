@@ -4,8 +4,13 @@ import by.jum.internetbanking.dao.RoleDAO;
 import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Iterator;
 
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
@@ -29,5 +34,13 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public void saveRole(Role role) {
         roleDAO.save(role);
+    }
+
+    @Override
+    @Transactional
+    public String getRoleCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Iterator<GrantedAuthority> iterator = (Iterator<GrantedAuthority>) auth.getAuthorities().iterator();
+        return iterator.next().getAuthority();
     }
 }

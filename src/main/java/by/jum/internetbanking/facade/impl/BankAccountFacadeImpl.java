@@ -4,7 +4,7 @@ import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.converter.BankAccountConverter;
-import by.jum.internetbanking.form.CreateBankAccountForm;
+import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.service.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,6 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
     @Override
     public void createAccount(CreateBankAccountForm accountForm) {
         accountService.createAccount(accountConverter.convertFormToAccount(accountForm));
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package by.jum.internetbanking.form;
+package by.jum.internetbanking.form.user;
 
 public class RegistrationUserForm {
     private String firstname;

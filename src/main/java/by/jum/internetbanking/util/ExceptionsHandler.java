@@ -1,4 +1,4 @@
-package by.jum.internetbanking.controllers;
+package by.jum.internetbanking.util;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,11 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class ExceptionsController {
+public class ExceptionsHandler {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllException(HttpServletRequest httpServletRequest, Exception ex) {
-
         ModelAndView model = new ModelAndView("/error");
         model.addObject("url", httpServletRequest.getRequestURL());
         model.addObject("trace", ex);

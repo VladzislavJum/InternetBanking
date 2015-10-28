@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
-    private final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
-
+    private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
 
     public List<User> getList() {
         return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User").list();

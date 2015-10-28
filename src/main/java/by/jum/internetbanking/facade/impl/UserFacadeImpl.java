@@ -6,7 +6,7 @@ import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.facade.converter.BankAccountConverter;
 import by.jum.internetbanking.facade.converter.UserConverter;
-import by.jum.internetbanking.form.RegistrationUserForm;
+import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.service.RoleService;
 import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,6 @@ public class UserFacadeImpl implements UserFacade {
         User user = userConverter.convertUserFormToUser(registrationUserForm);
         user.setRole(roleService.getRoleById(1L));
         userService.registerUser(user);
-
-
     }
 
     public UserDTO getUserByID(long userID) {

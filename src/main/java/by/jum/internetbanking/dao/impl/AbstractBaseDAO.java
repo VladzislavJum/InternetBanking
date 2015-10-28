@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public abstract class AbstractBaseDAO {
-    private final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
 
     @Autowired
     private SessionFactory sessionFactory;

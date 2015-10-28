@@ -2,18 +2,19 @@ package by.jum.internetbanking.facade.converter;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.entity.BankAccount;
-import by.jum.internetbanking.form.CreateBankAccountForm;
+import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class BankAccountConverter {
-    private final Logger LOGGER = Logger.getLogger(getClass());
+    private static final Logger LOGGER = Logger.getLogger(BankAccountConverter.class);
 
     @Autowired
     private UserService userService;
@@ -36,8 +37,8 @@ public class BankAccountConverter {
 
     public BankAccount convertFormToAccount(CreateBankAccountForm accountForm) {
         BankAccount account = new BankAccount();
-        account.setAccountNumber(accountForm.getAccountNumber());
-        account.setAmountOfMoney(accountForm.getAmountOfMoney());
+        account.setAccountNumber(/*accountForm.getAccountNumber()*/5);
+        account.setAmountOfMoney(/*accountForm.getAmountOfMoney()*/new BigDecimal(5));
         account.setUser(userService.getByUserName(accountForm.getUserLogin()));
         return account;
     }

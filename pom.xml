@@ -22,6 +22,7 @@
         <javax.servlet-version>3.0.1</javax.servlet-version>
         <jstl-version>1.2</jstl-version>
         <maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
+        <tomcat7-maven-plugin-version>2.2</tomcat7-maven-plugin-version>
     </properties>
 
 
@@ -100,17 +101,23 @@
             <version>${org.hibernate-version}</version>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>org.hibernate</groupId>-->
-        <!--<artifactId>hibernate-validator</artifactId>-->
-        <!--<version>${hibernate-validator-version}</version>-->
-        <!--</dependency>-->
-
+    <!--    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate-validator-version}</version>
+        </dependency>
+-->
+       <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+<!--
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>${validation-api-version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>postgresql</groupId>
@@ -129,6 +136,13 @@
             <version>${jstl-version}</version>
             <scope>runtime</scope>
         </dependency>
+<!--
+        <dependency>
+            <groupId>org.springmodules</groupId>
+            <artifactId>spring-modules-validation</artifactId>
+            <version>0.8</version>
+        </dependency>-->
+
 
     </dependencies>
 
@@ -138,16 +152,16 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <version>${tomcat7-maven-plugin-version}</version>
             </plugin>
             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
                 </configuration>
             </plugin>
         </plugins>

@@ -22,7 +22,7 @@ CREATE TABLE users
   id bigserial NOT NULL,
   name character varying(20),
   surname character varying(20),
-  lastname character varying(20),
+  patronymic character varying(20),
   passport_number character varying(20),
   enabled boolean DEFAULT true,
   login character varying(20),
@@ -36,9 +36,9 @@ CREATE TABLE users
   CONSTRAINT users_passport_number_key UNIQUE (passport_number)
 );
 
-INSERT INTO users(name, surname, lastname, passport_number, enabled, login, password, role_id)
+INSERT INTO users(name, surname, patronymic, passport_number, enabled, login, password, role_id)
     VALUES ('James', 'Alan', 'Hetfield', 'hc123566985', true, 'JamesAdmin', 'admin', 2);
-INSERT INTO users(name, surname, lastname, passport_number, enabled, login, password, role_id)
+INSERT INTO users(name, surname, patronymic, passport_number, enabled, login, password, role_id)
     VALUES ('Vladzislav', 'Jum', 'Egorovich', 'fd84846', true, 'user', 'user', 1);
 
 

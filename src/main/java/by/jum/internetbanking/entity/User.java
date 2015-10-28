@@ -30,8 +30,8 @@ public class User implements Serializable {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "patronymic")
+    private String patronymic;
 
     @Column(name = "passport_number")
     private String passportNumber;
@@ -116,12 +116,12 @@ public class User implements Serializable {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getPassportNumber() {

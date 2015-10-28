@@ -1,9 +1,11 @@
 package by.jum.internetbanking.dto;
 
+import java.math.BigDecimal;
+
 public class BankAccountDTO {
     private Long bankAccountID;
     private Integer accountNumber;
-    private Long amountOfMoney;
+    private BigDecimal amountOfMoney;
 
     public Long getBankAccountID() {
         return bankAccountID;
@@ -21,11 +23,11 @@ public class BankAccountDTO {
         this.accountNumber = accountNumber;
     }
 
-    public Long getAmountOfMoney() {
+    public BigDecimal getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
+    public void setAmountOfMoney(BigDecimal amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 }

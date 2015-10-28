@@ -22,7 +22,7 @@
     <h1><spring:message code="accounts.label.accounts"/></h1>
     <c:if test="${!empty userAccounts}">
     <c:forEach items="${userAccounts}" var="userAccounts">
-        ${userAccounts.getAccountNumber()}<br/>
+        ${userAccounts.accountNumber()}<br/>
     </c:forEach>
 </c:if>
 </div>

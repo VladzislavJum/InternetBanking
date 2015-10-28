@@ -6,7 +6,7 @@
 
 <spring:message code="registration.label.firstname" var="firstname"/>
 <spring:message code="registration.label.surname" var="surname"/>
-<spring:message code="registration.label.lastname" var="lastname"/>
+<spring:message code="registration.label.patronymic" var="patronymic"/>
 <spring:message code="registration.label.passportnumber" var="passportNumber"/>
 <spring:message code="registration.label.login" var="login"/>
 <spring:message code="registration.label.password" var="password"/>
@@ -39,10 +39,10 @@
         </div>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${lastname}</label>
+        <label class="control-label col-xs-5">${patronymic}</label>
 
         <div class="col-xs-3">
-            <input class="form-control" name="lastname" placeholder="${lastname}" required/>
+            <input class="form-control" name="patronymic" placeholder="${patronymic}" required/>
         </div>
         <br/><br/>
 

@@ -1,7 +1,7 @@
 package by.jum.internetbanking;
 
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.form.RegistrationUserForm;
+import by.jum.internetbanking.form.user.RegistrationUserForm;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,9 +1,9 @@
-package by.jum.internetbanking.form;
+package by.jum.internetbanking.form.account;
 
 public class CreateBankAccountForm {
     private Long bankAccountID;
-    private Integer accountNumber;
-    private Long amountOfMoney;
+    private String accountNumber;
+    private String amountOfMoney;
     private String userLogin;
 
     public String getUserLogin() {
@@ -22,19 +22,19 @@ public class CreateBankAccountForm {
         this.bankAccountID = bankAccountID;
     }
 
-    public Integer getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(Integer accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public Long getAmountOfMoney() {
+    public String getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
+    public void setAmountOfMoney(String amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 }

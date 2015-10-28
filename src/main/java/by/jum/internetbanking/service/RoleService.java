@@ -8,4 +8,8 @@ public interface RoleService {
     Role getRoleById(Long id);
 
     void saveRole(Role role);
+
+    String getRoleCurrentUser();
+
+
 }

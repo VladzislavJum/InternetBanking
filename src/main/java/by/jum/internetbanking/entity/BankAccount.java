@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "bank_account")
@@ -25,7 +26,7 @@ public class BankAccount implements Serializable {
     private Integer accountNumber;
 
     @Column(name = "amount_of_money")
-    private Long amountOfMoney;
+    private BigDecimal amountOfMoney;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
@@ -59,11 +60,11 @@ public class BankAccount implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public Long getAmountOfMoney() {
+    public BigDecimal getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
+    public void setAmountOfMoney(BigDecimal amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 

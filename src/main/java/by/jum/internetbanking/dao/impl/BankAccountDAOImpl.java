@@ -16,7 +16,6 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
     @Override
     public void save(BankAccount account) {
         super.save(account);
-
     }
 
     @Override

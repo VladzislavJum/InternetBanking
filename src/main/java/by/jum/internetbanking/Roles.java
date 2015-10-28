@@ -1,12 +1,12 @@
 package by.jum.internetbanking;
 
-public enum Role {
+public enum Roles {
     ROLE_USER("ROLE_USER"),
     ROLE_ADMIN("ROLE_ADMIN");
 
     private String role;
 
-    Role(String role) {
+    Roles(String role) {
         this.role = role;
     }
 

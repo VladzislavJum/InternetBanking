@@ -12,49 +12,51 @@
 
 <html>
 <head>
-  <meta charset="UTF-8"/>
-  <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <meta charset="UTF-8"/>
+    <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
 
-  <title></title>
+    <title></title>
 </head>
 
 <body>
 
 <div class="container">
-  <jsp:include page="common/navAdmin.jsp"/>
-  <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="userForm">
+    <jsp:include page="common/navAdmin.jsp"/>
+    <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="accountForm">
 
-    <h1 style="color: red"> ${message} </h1>
+        <h1 style="color: red"> ${message} </h1>
 
-    <label class="control-label col-xs-5">${accountNumber}</label>
+        <form:label path="accountNumber" class="control-label col-xs-5">${accountNumber}</form:label>
+        <form:errors path="accountNumber" cssStyle="color: red"/>
 
-    <div class="col-xs-3">
-      <input class="form-control" name="accountNumber" placeholder="${accountNumber}" required/>
-    </div>
-    <br/><br/>
+        <div class="col-xs-3">
+            <form:input class="form-control" path="accountNumber" placeholder="${accountNumber}"/>
+        </div>
+        <br/><br/>
 
-    <label class="control-label col-xs-5">${amountOfMoney}</label>
+        <form:label path="amountOfMoney" class="control-label col-xs-5">${amountOfMoney}</form:label>
+        <form:errors path="amountOfMoney" cssStyle="color: red"/>
 
-    <div class="col-xs-3">
-      <input class="form-control" name="amountOfMoney" placeholder="${amountOfMoney}" required/>
-    </div>
-    <br/><br/>
+        <div class="col-xs-3">
+            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
+        </div>
+        <br/><br/>
 
-    <label class="control-label col-xs-5">${userLogin}</label>
+        <form:label path="userLogin" class="control-label col-xs-5">${userLogin}</form:label>
 
-    <div class="col-xs-3">
-      <input class="form-control" name="userLogin" placeholder="${userLogin}" required/>
-    </div>
-    <br/><br/>
+        <div class="col-xs-3">
+            <form:input class="form-control" path="userLogin" placeholder="${userLogin}"/>
+        </div>
+        <br/><br/>
 
-    <div class="form-group">
-      <div class="col-xs-offset-5 col-xs-9">
-        <input type="submit" class="btn btn-primary"
-               value="${create}"/>
+        <div class="form-group">
+            <div class="col-xs-offset-5 col-xs-9">
+                <input type="submit" class="btn btn-primary"
+                       value="${create}"/>
 
-      </div>
-    </div>
-  </form:form>
+            </div>
+        </div>
+    </form:form>
 </div>
 
 </body>

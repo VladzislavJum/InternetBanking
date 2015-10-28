@@ -2,7 +2,7 @@ package by.jum.internetbanking.facade.converter;
 
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.User;
-import by.jum.internetbanking.form.RegistrationUserForm;
+import by.jum.internetbanking.form.user.RegistrationUserForm;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,9 +12,9 @@ public class UserConverter {
         UserDTO userDTO = new UserDTO();
 
         userDTO.setUserID(user.getUserID());
-        userDTO.setFirstName(user.getFirstname());
+        userDTO.setFirstname(user.getFirstname());
         userDTO.setSurname(user.getSurname());
-        userDTO.setLastname(user.getLastname());
+        userDTO.setPatronymic(user.getPatronymic());
         userDTO.setPassportNumber(user.getPassportNumber());
         userDTO.setLogin(user.getLogin());
         userDTO.setPassword(user.getPassword());
@@ -26,9 +26,9 @@ public class UserConverter {
     public User convertToUser(UserDTO userDTO) {
         User user = new User();
 
-        user.setFirstname(userDTO.getFirstName());
+        user.setFirstname(userDTO.getFirstname());
         user.setSurname(user.getSurname());
-        user.setLastname(userDTO.getLastname());
+        user.setPatronymic(userDTO.getPatronymic());
         user.setPassportNumber(userDTO.getPassportNumber());
         user.setLogin(userDTO.getLogin());
         user.setPassportNumber(userDTO.getPassword());
@@ -41,7 +41,7 @@ public class UserConverter {
         User user = new User();
         user.setFirstname(registrationUserForm.getFirstname());
         user.setSurname(registrationUserForm.getSurname());
-        user.setLastname(registrationUserForm.getLastname());
+        user.setPatronymic(registrationUserForm.getLastname());
         user.setPassportNumber(registrationUserForm.getPassportNumber());
         user.setPassword(registrationUserForm.getPassword());
         user.setLogin(registrationUserForm.getLogin());
