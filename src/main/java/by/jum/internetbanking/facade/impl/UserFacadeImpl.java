@@ -4,12 +4,12 @@ import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.facade.converter.BankAccountConverter;
 import by.jum.internetbanking.facade.converter.UserConverter;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.service.RoleService;
 import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class UserFacadeImpl implements UserFacade {
     private UserConverter userConverter;
 
     @Autowired
-    private BankAccountConverter accountConverter;
+    private Converter accountListToDTOListConverter;
 
     public void registerUser(RegistrationUserForm registrationUserForm) {
         User user = userConverter.convertUserFormToUser(registrationUserForm);
@@ -49,7 +49,7 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public List<BankAccountDTO> getUserAccountList(String login) {
-        return accountConverter.convertAccountListToDTOAccountList(userService.getUserAccountList(login));
+        return (List<BankAccountDTO>) accountListToDTOListConverter.convert(userService.getUserAccountList(login));
     }
 
     @Override

@@ -6,10 +6,13 @@
     <title></title>
 </head>
 <body>
+
 <spring:message code="error.label.url"/><br/>${url}
 <br/>
 <spring:message code="error.type"/><br/>${trace}
+<!--
 <c:forEach items="${trace.stackTrace}" var="tracemsg"> ${tracemsg}
 </c:forEach>
+-->
 </body>
 </html>

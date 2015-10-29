@@ -14,4 +14,6 @@ public interface BankAccountDAO {
     void delete(BankAccount account);
 
     BankAccount getByID(Long id);
+
+    boolean isExistNumber(Integer accountNumber);
 }

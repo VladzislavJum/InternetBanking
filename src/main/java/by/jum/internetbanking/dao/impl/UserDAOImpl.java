@@ -35,7 +35,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     }
 
     @Override
-    public User getByUserName(String login) {
+     public User getByUserName(String login) {
         User user = (User) getSessionFactory().getCurrentSession().
                 createQuery("from by.jum.internetbanking.entity.User u where u.login=:login").setParameter("login", login).uniqueResult();
         return user;

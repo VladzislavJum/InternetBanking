@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
-
     @Override
     @Transactional
     public void registerUser(User user) {
@@ -29,25 +28,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getUserList() {
         return userDAO.getList();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User getUserByID(long userID) {
         return userDAO.getById(userID);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User getByUserName(String login) {
         return userDAO.getByUserName(login);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<BankAccount> getUserAccountList(String login) {
         return userDAO.getAccountUserList(login);
     }

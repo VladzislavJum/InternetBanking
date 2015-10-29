@@ -12,9 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class UserTester {
+public class UserTest {
 
-    private final Logger LOGGER = Logger.getLogger(UserTester.class);
+    private final static Logger LOGGER = Logger.getLogger(UserTest.class);
 
     @Autowired
     private UserFacade userFacade;
@@ -23,20 +23,16 @@ public class UserTester {
 
     @Before
     public void init() {
-            }
+    }
+
     @Test
     public void getListUser() {
-        userFacade.getUserList().forEach(userDTO -> LOGGER.warn(userDTO.getLogin()));
+        userFacade.getUserList().forEach(userDTO -> LOGGER.info(userDTO.getLogin()));
     }
 
     @Test
     public void addUSer() {
         userFacade.registerUser(form);
-    }
-
-    @Test
-    public void getByID() {
-        LOGGER.warn(userFacade.getUserByID(65));
     }
 
 }

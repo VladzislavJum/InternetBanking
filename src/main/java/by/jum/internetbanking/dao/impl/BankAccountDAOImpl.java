@@ -33,4 +33,11 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
         return (BankAccount) super.getByID(BankAccount.class, id);
     }
 
+    @Override
+    public boolean isExistNumber(Integer accountNumber){
+        Object object = getSessionFactory().getCurrentSession().
+                createQuery("from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber").setParameter("accountNumber", accountNumber).uniqueResult();
+        return object != null;
+    }
+
 }

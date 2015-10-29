@@ -8,7 +8,9 @@ import java.util.List;
 public interface BankAccountFacade {
     void createAccount(CreateBankAccountForm accountForm);
 
-    BankAccountDTO getAccountByID(long accountID);
+    Object getAccountByID(long accountID);
 
     List<BankAccountDTO> getAccountList();
+
+    boolean isExistNumber(Integer accountNumber);
 }

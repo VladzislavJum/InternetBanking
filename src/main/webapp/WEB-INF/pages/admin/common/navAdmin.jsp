@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<nav role="navigation" class="navbar navbar-inverse">
+<header role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
         <b><a href="#" class="navbar-brand"><spring:message code="label.internetbanking"/> </a></b>
     </div>
@@ -35,6 +35,6 @@
             <li><a href="/logout"><spring:message code="nav.label.logout"/> </a></li>
         </ul>
     </div>
-</nav>
+</header>
 </body>
 </html>

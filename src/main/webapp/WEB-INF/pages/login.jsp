@@ -7,11 +7,13 @@
 <head>
     <title>Login Page</title>
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="../../resources/css/base.css" />" rel="stylesheet">
+
 </head>
 <body>
-<div class="container">
-    <div class="container" style="width: 300px; margin-top: 10%;">
+<div class="container" style="height: 100%; background-color: #204d74">
 
+    <div class="col-md-4 col-md-offset-2" style="margin-top: 15%">
         <c:url value="/j_spring_security_check" var="loginUrl"/>
         <h4 style="color: #c12e2a"> ${message}</h4>
 
@@ -20,10 +22,12 @@
             <input type="text" name="login" value="" class="form-control" placeholder=
             <spring:message code="authorization.label.login"/> required>
 
-            <input type="password" name="password" value="" style="margin-top: 5%" class="form-control" placeholder=
-            <spring:message code="authorization.label.password"/> required>
+            <input type="password" name="password" value="" style="margin-top: 5%" class="form-control"
+                   placeholder=
+                   <spring:message code="authorization.label.password"/> required>
 
-            <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%;" type="submit" value="submit">
+            <button class="btn btn-default btn-danger btn-block" style="margin-top: 5%;" type="submit"
+                    value="submit">
                 <spring:message code="authorization.label.signin"/>
             </button>
 
@@ -31,8 +35,9 @@
         </form>
     </div>
 
+    <div class="col-md-2 col-md-offset-0" style="margin-top: 30%">
+        <img src="../../resources/images/dollar.png">
 
-
+    </div>
 </div>
-
 </body>

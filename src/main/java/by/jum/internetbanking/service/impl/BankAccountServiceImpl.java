@@ -27,14 +27,20 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<BankAccount> getAccountList() {
         return accountDAO.getList();
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public BankAccount getAccountByID(long accountID) {
         return accountDAO.getByID(accountID);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean isExistNumber(Integer accountNumber) {
+        return accountDAO.isExistNumber(accountNumber);
     }
 }

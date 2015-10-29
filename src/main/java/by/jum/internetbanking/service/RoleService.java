@@ -10,6 +10,4 @@ public interface RoleService {
     void saveRole(Role role);
 
     String getRoleCurrentUser();
-
-
 }

@@ -30,7 +30,7 @@ public class AuthorizationController {
     private RoleService roleService;
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(required = false) String error) {
+    public ModelAndView authorisationForm(@RequestParam(required = false) String error) {
         String role = roleService.getRoleCurrentUser();
 
         if (Roles.ROLE_ADMIN.getRole().equals(role)) {

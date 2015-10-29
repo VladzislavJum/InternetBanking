@@ -12,4 +12,6 @@ public interface BankAccountService {
     List<BankAccount> getAccountList();
 
     BankAccount getAccountByID(long accountID);
+
+    boolean isExistNumber(Integer accountNumber);
 }

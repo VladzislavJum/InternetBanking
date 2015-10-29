@@ -1,6 +1,5 @@
 package by.jum.internetbanking.controllers;
 
-import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
@@ -8,15 +7,13 @@ import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.form.validator.CreateBankAccountFormValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -26,9 +23,6 @@ import java.util.Map;
 public class AdminController {
 
     private static final Logger LOGGER = Logger.getLogger(AdminController.class);
-
-    @Autowired
-    private MessageSource messageSource;
 
     @Autowired
     private UserFacade userFacade;
@@ -46,16 +40,9 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/createaccountform", method = RequestMethod.GET)
-    public ModelAndView showCreatingAccountForm(@RequestParam(required = false) String error) {
-        ModelAndView model = new ModelAndView();
-        String message = "";
-        if (error != null) {
-            message = messageSource.getMessage("createaccountform.label.notexist", null, LocaleContextHolder.getLocale());
-        }
-        model.addObject("message", message);
-        model.addObject("accountForm", new CreateBankAccountForm());
-        model.setViewName("admin/createAccount");
-        return model;
+    public String showCreatingAccountForm(Map<String, Object> map) {
+        map.put("accountForm", new CreateBankAccountForm());
+        return "admin/createAccount";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -66,24 +53,16 @@ public class AdminController {
         return "redirect:/admin/signupsuccess";
     }
 
-    @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/createaccount", method = {RequestMethod.POST, RequestMethod.GET})
     public String createAccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm,
-                                HttpServletRequest request, final BindingResult result) {
-        User user = userFacade.getUserByUserName(accountForm.getUserLogin());
+                                HttpServletRequest request, final BindingResult result, RedirectAttributes redirectAttributes) {
         accountFormValidator.validate(accountForm, result);
-
         if (result.hasErrors()) {
             return "admin/createAccount";
         }
-
-
-        if (user != null) {
-//            accountFacade.createdSuccess(accountForm);
-            request.getSession().setAttribute("accountForm", accountForm);
-            return "redirect:/admin/createdsuccess";
-        } else {
-            return "redirect:/account/createaccountform?error";
-        }
+        accountFacade.createAccount(accountForm);
+        request.getSession().setAttribute("accountForm", accountForm);
+        return "redirect:/admin/createdsuccess";
     }
 
     @RequestMapping(value = "/signupsuccess", method = RequestMethod.GET)

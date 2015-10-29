@@ -17,12 +17,10 @@
 
 <div class="container" style="background-color: lightsteelblue">
     <jsp:include page="common/navUser.jsp"/>
-
-
     <h1><spring:message code="accounts.label.accounts"/></h1>
     <c:if test="${!empty userAccounts}">
     <c:forEach items="${userAccounts}" var="userAccounts">
-        ${userAccounts.accountNumber()}<br/>
+        ${userAccounts.getAccountNumber()}<br/>
     </c:forEach>
 </c:if>
 </div>
