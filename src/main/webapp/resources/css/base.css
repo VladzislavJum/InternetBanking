@@ -1,3 +1,4 @@
-body{
-    /*background-color: #204d74;*/
+body {
+    background: black url("../images/money1.jpeg") no-repeat fixed top center;
+    background-size: 100% 100%;
 }

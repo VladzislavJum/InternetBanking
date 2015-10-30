@@ -3,7 +3,7 @@ package by.jum.internetbanking.form.user;
 public class RegistrationUserForm {
     private String firstname;
     private String surname;
-    private String lastname;
+    private String patronymic;
     private String passportNumber;
     private String login;
     private String password;
@@ -50,12 +50,12 @@ public class RegistrationUserForm {
         this.surname = surname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getPassportNumber() {

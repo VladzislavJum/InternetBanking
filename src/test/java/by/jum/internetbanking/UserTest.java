@@ -1,7 +1,10 @@
 package by.jum.internetbanking;
 
+import by.jum.internetbanking.dao.UserDAO;
+import by.jum.internetbanking.dao.impl.UserDAOImpl;
+import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.form.user.RegistrationUserForm;
+import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +20,9 @@ public class UserTest {
     private final static Logger LOGGER = Logger.getLogger(UserTest.class);
 
     @Autowired
+    UserService userService;
+    @Autowired
     private UserFacade userFacade;
-
-    private RegistrationUserForm form;
 
     @Before
     public void init() {
@@ -31,8 +34,8 @@ public class UserTest {
     }
 
     @Test
-    public void addUSer() {
-        userFacade.registerUser(form);
+    public void getByID() {
+        User user = userService.getUserByID(99L);
+        LOGGER.info("User " + user);
     }
-
 }

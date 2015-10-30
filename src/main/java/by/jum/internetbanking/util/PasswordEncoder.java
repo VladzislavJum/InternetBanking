@@ -1,8 +1,5 @@
 package by.jum.internetbanking.util;
 
-/**
- * Created by Vlad on 28.10.2015.
- */
 public class PasswordEncoder implements org.springframework.security.crypto.password.PasswordEncoder {
 
     public static final int SALT_LENGTH = 16;

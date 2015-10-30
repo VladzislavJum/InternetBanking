@@ -5,6 +5,7 @@ import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.form.validator.CreateBankAccountFormValidator;
+import by.jum.internetbanking.form.validator.RegistrationUserFormValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -33,6 +33,9 @@ public class AdminController {
     @Autowired
     private CreateBankAccountFormValidator accountFormValidator;
 
+    @Autowired
+    private RegistrationUserFormValidator userFormValidator;
+
     @RequestMapping(value = "/signupform", method = RequestMethod.GET)
     public String showRegistrationForm(Map<String, Object> map) {
         map.put("userForm", new RegistrationUserForm());
@@ -45,9 +48,13 @@ public class AdminController {
         return "admin/createAccount";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = {RequestMethod.POST, RequestMethod.GET})
     public String registerUser(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm,
-                               HttpServletRequest request) {
+                               HttpServletRequest request, final BindingResult result) {
+        userFormValidator.validate(registrationUserForm, result);
+        if (result.hasErrors()) {
+            return "admin/createUser";
+        }
         userFacade.registerUser(registrationUserForm);
         request.getSession().setAttribute("userForm", registrationUserForm);
         return "redirect:/admin/signupsuccess";
@@ -55,7 +62,7 @@ public class AdminController {
 
     @RequestMapping(value = "/createaccount", method = {RequestMethod.POST, RequestMethod.GET})
     public String createAccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm,
-                                HttpServletRequest request, final BindingResult result, RedirectAttributes redirectAttributes) {
+                                HttpServletRequest request, final BindingResult result) {
         accountFormValidator.validate(accountForm, result);
         if (result.hasErrors()) {
             return "admin/createAccount";
@@ -71,7 +78,7 @@ public class AdminController {
         ModelAndView model = new ModelAndView();
         model.addObject("firstname", registrationUserForm.getFirstname());
         model.addObject("surname", registrationUserForm.getSurname());
-        model.addObject("patronymic", registrationUserForm.getLastname());
+        model.addObject("patronymic", registrationUserForm.getPatronymic());
         model.addObject("passportNumber", registrationUserForm.getPassportNumber());
         model.addObject("login", registrationUserForm.getLogin());
 

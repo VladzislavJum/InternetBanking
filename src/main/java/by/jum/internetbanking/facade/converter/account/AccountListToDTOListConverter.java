@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component("accountListToDTOListConverter")
 @Component
 public class AccountListToDTOListConverter implements Converter<List<BankAccount>, List<BankAccountDTO>> {
 

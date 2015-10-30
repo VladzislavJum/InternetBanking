@@ -7,10 +7,9 @@
     <meta charset="UTF-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../../../resources/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-
+    <jsp:include page="../../../common/footer.jsp"/>
 </head>
 <body>
-
 <nav role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
         <b><a href="#" class="navbar-brand"><spring:message code="label.internetbanking"/> </a></b>

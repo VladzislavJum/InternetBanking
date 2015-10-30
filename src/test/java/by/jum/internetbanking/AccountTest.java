@@ -24,4 +24,9 @@ public class AccountTest {
         StringBuilder stringBuilder = new StringBuilder("exist account: ");
         LOGGER.info(stringBuilder.append(accountFacade.isExistNumber(132454)));
     }
+
+    @Test
+    public void getList(){
+        accountFacade.getAccountList().forEach(accountDTO -> LOGGER.info(accountDTO.getAccountNumber()));
+    }
 }

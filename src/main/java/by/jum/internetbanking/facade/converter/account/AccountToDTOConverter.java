@@ -5,7 +5,6 @@ import by.jum.internetbanking.entity.BankAccount;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-//@Component("accountToDTOConverter")
 @Component
 public class AccountToDTOConverter implements Converter<BankAccount, BankAccountDTO> {
     @Override
@@ -14,7 +13,6 @@ public class AccountToDTOConverter implements Converter<BankAccount, BankAccount
         accountDTO.setAccountNumber(account.getAccountNumber());
         accountDTO.setAmountOfMoney(account.getAmountOfMoney());
         accountDTO.setBankAccountID(account.getBankAccountID());
-
         return accountDTO;
     }
 }

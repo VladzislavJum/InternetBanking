@@ -21,50 +21,50 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="height: 100%;">
     <jsp:include page="common/navAdmin.jsp"/>
     <form:form class="form-horizontal" method="post" action="/admin/register" commandName="userForm">
 
-        <label class="control-label col-xs-5">${firstname}</label>
-
+        <form:label class="control-label col-xs-5" path="firstname">${firstname}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="firstname" placeholder="${firstname}" required/>
+            <form:input cssClass="form-control" path="firstname" placeholder="${firstname}"/>
         </div>
+        <form:errors path="firstname" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${surname}</label>
-
+        <form:label cssClass="control-label col-xs-5" path="surname">${surname}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="surname" placeholder="${surname}" required/>
+            <form:input cssClass="form-control" path="surname" placeholder="${surname}"/>
         </div>
+        <form:errors path="surname" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${patronymic}</label>
-
+        <form:label cssClass="control-label col-xs-5" path="patronymic">${patronymic}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="patronymic" placeholder="${patronymic}" required/>
+            <form:input cssClass="form-control" path="patronymic" placeholder="${patronymic}"/>
         </div>
+        <form:errors path="patronymic" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${passportNumber}</label>
-
+        <form:label cssClass="control-label col-xs-5" path="passportNumber">${passportNumber}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="passportNumber" placeholder="${passportNumber}" required/>
+            <form:input cssClass="form-control" path="passportNumber" placeholder="${passportNumber}"/>
         </div>
+        <form:errors path="passportNumber" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${login}</label>
-
+        <form:label cssClass="control-label col-xs-5" path="login">${login}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="login" placeholder="${login}" required/>
+            <form:input class="form-control" path="login" placeholder="${login}"/>
         </div>
+        <form:errors path="login" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
-        <label class="control-label col-xs-5">${password}</label>
-
+        <form:label class="control-label col-xs-5 " path="password">${password}</form:label>
         <div class="col-xs-3">
-            <input class="form-control" name="password" placeholder="${password}" required/>
+            <form:input class="form-control" path="password" placeholder="${password}"/>
         </div>
+        <form:errors path="password" cssStyle="color: red; font-size: 20px;"/>
         <br/><br/>
 
         <div class="form-group">
