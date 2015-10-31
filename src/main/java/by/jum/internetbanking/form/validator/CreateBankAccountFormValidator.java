@@ -45,46 +45,46 @@ public class CreateBankAccountFormValidator implements Validator {
 
     private void checkAccountNumber(String accountNumber, Errors errors) {
         if (!StringUtils.hasText(accountNumber)) {
-            errors.rejectValue("accountNumber", "validation.label.emptyfield");
-        } else if (accountNumber.length() > 15 || accountNumber.length() < 4) {
-            errors.rejectValue("accountNumber", "validation.createaccount.label.accountnumbersize");
+            errors.rejectValue("accountNumber", "common.label.error.emptyfield");
+        } else if (accountNumber.length() > 9 || accountNumber.length() < 4) {
+            errors.rejectValue("accountNumber", "createaccount.label.error.accountnumbersize");
         } else {
             pattern = Pattern.compile(NUMBER_PATTERN);
             matcher = pattern.matcher(accountNumber);
             if (!matcher.matches()) {
-                errors.rejectValue("accountNumber", "validation.label.numeric");
+                errors.rejectValue("accountNumber", "common.label.error.numeric");
             } else if (accountFacade.isExistNumber(Integer.valueOf(accountNumber))) {
-                errors.rejectValue("accountNumber", "validation.createaccount.label.numberexist");
+                errors.rejectValue("accountNumber", "createaccount.label.error.numberexist");
             }
         }
     }
 
     private void checkAmountOfMoney(String amountOfMoney, Errors errors) {
         if (!StringUtils.hasText(amountOfMoney)) {
-            errors.rejectValue("amountOfMoney", "validation.label.emptyfield");
+            errors.rejectValue("amountOfMoney", "common.label.error.emptyfield");
         } else if (amountOfMoney.length() > 13 || amountOfMoney.length() < 3) {
-            errors.rejectValue("amountOfMoney", "validation.createaccount.label.amounofmoneysize");
+            errors.rejectValue("amountOfMoney", "createaccount.label.error.amounofmoneysize");
         } else {
             pattern = Pattern.compile(NUMBER_PATTERN);
             matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
-                errors.rejectValue("amountOfMoney", "validation.label.numeric");
+                errors.rejectValue("amountOfMoney", "common.label.error.numeric");
             }
         }
     }
 
     private void checkUserLogin(String userLogin, Errors errors) {
         if (!StringUtils.hasText(userLogin)) {
-            errors.rejectValue("userLogin", "validation.label.emptyfield");
+            errors.rejectValue("userLogin", "common.label.error.emptyfield");
         } else if (userLogin.length() > 15 || userLogin.length() < 4) {
-            errors.rejectValue("userLogin", "validation.createaccount.label.loginsize");
+            errors.rejectValue("userLogin", "createaccount.label.error.loginsize");
         } else {
             pattern = Pattern.compile(LOGIN_PATTERN);
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
-                errors.rejectValue("userLogin", "validation.createaccount.loginnumericletters");
+                errors.rejectValue("userLogin", "createaccount.label.error.loginnumericletters");
             } else if (userFacade.getUserByUserName(userLogin) == null) {
-                errors.rejectValue("userLogin", "validation.createaccount.label.usernotexist");
+                errors.rejectValue("userLogin", "createaccount.label.error.usernotexist");
             }
         }
 

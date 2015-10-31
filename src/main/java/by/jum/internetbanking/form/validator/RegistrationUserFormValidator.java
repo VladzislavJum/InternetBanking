@@ -35,17 +35,15 @@ public class RegistrationUserFormValidator implements Validator {
 
     private void checkName(String name, Errors errors, String param) {
         if (!StringUtils.hasText(name)) {
-            errors.rejectValue(param, "validation.label.emptyfield");
+            errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (name.length() > 20 || name.length() < 2) {
-            errors.rejectValue(param, "validation.registration.namesize");
+            errors.rejectValue(param, "registration.label.error.namesize");
         } else {
             pattern = Pattern.compile(NAME_PATTERN);
             matcher = pattern.matcher(name);
             if (!matcher.matches()) {
-                errors.rejectValue(param, "validation.registration.letters");
+                errors.rejectValue(param, "registration.label.error.letters");
             }
         }
     }
-
-
 }

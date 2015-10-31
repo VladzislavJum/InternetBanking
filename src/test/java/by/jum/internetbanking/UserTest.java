@@ -1,7 +1,5 @@
 package by.jum.internetbanking;
 
-import by.jum.internetbanking.dao.UserDAO;
-import by.jum.internetbanking.dao.impl.UserDAOImpl;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.service.UserService;
@@ -20,9 +18,11 @@ public class UserTest {
     private final static Logger LOGGER = Logger.getLogger(UserTest.class);
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
     @Autowired
     private UserFacade userFacade;
+
 
     @Before
     public void init() {

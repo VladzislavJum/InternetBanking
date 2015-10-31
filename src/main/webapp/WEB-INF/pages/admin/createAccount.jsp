@@ -7,7 +7,7 @@
 <spring:message code="createaccount.label.accountnumber" var="accountNumber"/>
 <spring:message code="createaccount.label.amountofmoney" var="amountOfMoney"/>
 <spring:message code="createaccount.label.userlogin" var="userLogin"/>
-<spring:message code="createaccount.label.create" var="create"/>
+<spring:message code="createaccount.button.create" var="create"/>
 
 
 <html>
@@ -20,34 +20,34 @@
 
 <body>
 
-<div class="container" style="background-color: #245580; height: 100%;">
+<div class="container" style="height: 100%;>
     <jsp:include page="common/navAdmin.jsp"/>
     <div style="margin-top: 10%">
         <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="accountForm">
 
-            <form:label path="accountNumber" cssClass="control-label col-xs-5"
-                        cssStyle="color:#f9f9f9">${accountNumber}</form:label>
+            <form:label path="accountNumber" cssClass="control-label col-xs-4"
+                        cssStyle="color:#9d9d9d">${accountNumber}</form:label>
             <form:errors path="accountNumber" cssStyle="color: red; font-size: 20px;"/>
 
-            <div class="col-xs-2">
+            <div class="col-xs-3">
                 <form:input class="form-control" path="accountNumber" placeholder="${accountNumber}"/>
             </div>
             <br/><br/>
 
-            <form:label path="amountOfMoney" cssClass="control-label col-xs-5"
-                        cssStyle="color:#f9f9f9">${amountOfMoney}</form:label>
+            <form:label path="amountOfMoney" cssClass="control-label col-xs-4"
+                        cssStyle="color:#9d9d9d">${amountOfMoney}</form:label>
             <form:errors path="amountOfMoney" cssStyle="color: red; font-size: 20px;"/>
 
-            <div class="col-xs-2">
+            <div class="col-xs-3">
                 <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
             </div>
             <br/><br/>
 
-            <form:label path="userLogin" cssClass="control-label col-xs-5"
-                        cssStyle="color:#f9f9f9">${userLogin}</form:label>
+            <form:label path="userLogin" cssClass="control-label col-xs-4"
+                        cssStyle="color:#9d9d9d">${userLogin}</form:label>
             <form:errors path="userLogin" cssStyle="color: red; font-size: 20px;"/>
 
-            <div class="col-xs-2">
+            <div class="col-xs-3">
                 <form:input class="form-control" path="userLogin" placeholder="${userLogin}"/>
             </div>
             <br/><br/>
@@ -58,6 +58,8 @@
                            value="${create}"/>
                 </div>
             </div>
+
+
         </form:form>
     </div>
 </div>

@@ -13,9 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -36,6 +34,7 @@ public class AdminController {
     @Autowired
     private RegistrationUserFormValidator userFormValidator;
 
+
     @RequestMapping(value = "/signupform", method = RequestMethod.GET)
     public String showRegistrationForm(Map<String, Object> map) {
         map.put("userForm", new RegistrationUserForm());
@@ -50,51 +49,23 @@ public class AdminController {
 
     @RequestMapping(value = "/register", method = {RequestMethod.POST, RequestMethod.GET})
     public String registerUser(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm,
-                               HttpServletRequest request, final BindingResult result) {
+                               final BindingResult result) {
         userFormValidator.validate(registrationUserForm, result);
         if (result.hasErrors()) {
             return "admin/createUser";
         }
         userFacade.registerUser(registrationUserForm);
-        request.getSession().setAttribute("userForm", registrationUserForm);
-        return "redirect:/admin/signupsuccess";
+        return "admin/signUpSuccess";
     }
 
     @RequestMapping(value = "/createaccount", method = {RequestMethod.POST, RequestMethod.GET})
     public String createAccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm,
-                                HttpServletRequest request, final BindingResult result) {
+                                final BindingResult result) {
         accountFormValidator.validate(accountForm, result);
         if (result.hasErrors()) {
             return "admin/createAccount";
         }
         accountFacade.createAccount(accountForm);
-        request.getSession().setAttribute("accountForm", accountForm);
-        return "redirect:/admin/createdsuccess";
-    }
-
-    @RequestMapping(value = "/signupsuccess", method = RequestMethod.GET)
-    public ModelAndView showInfUser(HttpServletRequest request) {
-        RegistrationUserForm registrationUserForm = (RegistrationUserForm) request.getSession().getAttribute("userForm");
-        ModelAndView model = new ModelAndView();
-        model.addObject("firstname", registrationUserForm.getFirstname());
-        model.addObject("surname", registrationUserForm.getSurname());
-        model.addObject("patronymic", registrationUserForm.getPatronymic());
-        model.addObject("passportNumber", registrationUserForm.getPassportNumber());
-        model.addObject("login", registrationUserForm.getLogin());
-
-        model.setViewName("admin/signUpSuccess");
-        return model;
-    }
-
-    @RequestMapping(value = "/createdsuccess", method = RequestMethod.GET)
-    public ModelAndView createdSuccess(HttpServletRequest request) {
-        CreateBankAccountForm accountForm = (CreateBankAccountForm) request.getSession().getAttribute("accountForm");
-        ModelAndView model = new ModelAndView();
-        model.addObject("accountNumber", accountForm.getAccountNumber());
-        model.addObject("amountOfMoney", accountForm.getAmountOfMoney());
-        model.addObject("userLogin", accountForm.getUserLogin());
-
-        model.setViewName("admin/createdSuccess");
-        return model;
+        return "admin/createdSuccess";
     }
 }

@@ -26,11 +26,6 @@
     <jsp:include page="common/navAdmin.jsp"/>
 
     <h1><spring:message code="signupsuccess.label.created"/> </h1><br/>
-    ${firstnameLabel}: ${firstname}<br/>
-    ${surnameLabel}: ${surname}<br/>
-    ${patronymicLabel}: ${patronymic}<br/>
-    ${passportNumberLabel}: ${passportNumber}<br/>
-    ${loginLabel}: ${login}<br/>
 
 </div>
 

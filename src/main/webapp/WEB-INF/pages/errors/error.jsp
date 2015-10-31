@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<spring:message code="error.label.url"/><br/>${url}
+<spring:message code="label.error.url"/><br/>${url}
 <br/>
-<spring:message code="error.type"/><br/>${trace}
+<spring:message code="label.error.type"/><br/>${trace}
 <!--
 <c:forEach items="${trace.stackTrace}" var="tracemsg"> ${tracemsg}
 </c:forEach>

@@ -16,15 +16,7 @@ public class ExceptionsHandler {
         ModelAndView model = new ModelAndView("/error");
         model.addObject("url", httpServletRequest.getRequestURL());
         model.addObject("trace", ex);
-
         model.setViewName("errors/error");
-
         return model;
     }
-
-    @RequestMapping(value = "/error403", method = RequestMethod.POST)
-    public String printError() {
-        return "403";
-    }
-
 }

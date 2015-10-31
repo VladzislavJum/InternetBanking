@@ -15,7 +15,7 @@
 <header>
 </header>
 
-<div class="container" style="background-color: lightsteelblue">
+<div class="container" style="color: #9d9d9d">
     <jsp:include page="common/navUser.jsp"/>
     <h1><spring:message code="accounts.label.accounts"/></h1>
     <c:if test="${!empty userAccounts}">

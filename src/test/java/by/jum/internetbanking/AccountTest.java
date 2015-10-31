@@ -1,6 +1,5 @@
 package by.jum.internetbanking;
 
-
 import by.jum.internetbanking.facade.BankAccountFacade;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -16,17 +15,17 @@ public class AccountTest {
     private final static Logger LOGGER = Logger.getLogger(AccountTest.class);
 
     @Autowired
-    BankAccountFacade accountFacade;
+    private BankAccountFacade accountFacade;
 
 
     @Test
-    public void isExist(){
+    public void isExist() {
         StringBuilder stringBuilder = new StringBuilder("exist account: ");
         LOGGER.info(stringBuilder.append(accountFacade.isExistNumber(132454)));
     }
 
     @Test
-    public void getList(){
+    public void getList() {
         accountFacade.getAccountList().forEach(accountDTO -> LOGGER.info(accountDTO.getAccountNumber()));
     }
 }

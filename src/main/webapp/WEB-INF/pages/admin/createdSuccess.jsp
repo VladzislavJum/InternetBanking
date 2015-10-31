@@ -23,9 +23,6 @@
     <jsp:include page="common/navAdmin.jsp"/>
 
     <h1><spring:message code="createdsuccess.label.created"/> </h1><br/>
-    ${userLoginLabel}: ${userLogin}<br/>
-    ${accountNumberLabel}: ${accountNumber}<br/>
-    ${amountOfMoneyLabel}: ${amountOfMoney}<br/>
 
 </div>
 

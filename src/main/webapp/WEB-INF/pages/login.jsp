@@ -7,8 +7,8 @@
 <head>
     <title>Login Page</title>
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-    <link href="<c:url value="../../resources/css/base.css" />" rel="stylesheet">
-    <jsp:include page="../common/footer.jsp"/>
+    <link href="<c:url value="../../resources/css/baseForLogin.css" />" rel="stylesheet">
+    <jsp:include page="footer.jsp"/>
 
 </head>
 <body>
@@ -20,16 +20,16 @@
         <h4 style="color: #c12e2a; text-align: center"> ${message}</h4>
 
         <form method="post" action="${loginUrl}">
-            <input type="text" name="login" value="" class="form-control" placeholder=
-            <spring:message code="authorization.label.login"/> required>
+            <input type="text" name="login"  class="form-control" placeholder=
+            <spring:message code="authorization.label.login"/>>
 
-            <input type="password" name="password" value="" style="margin-top: 5%" class="form-control"
+            <input type="password" name="password" style="margin-top: 5%" class="form-control"
                    placeholder=
-                   <spring:message code="authorization.label.password"/> required>
+                   <spring:message code="authorization.label.password"/>>
 
             <button class="btn btn-default btn-primary btn-block" style="margin-top: 5%;" type="submit"
                     value="submit">
-                <spring:message code="authorization.label.signin"/>
+                <spring:message code="authorization.button.signin"/>
             </button>
 
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

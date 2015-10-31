@@ -7,7 +7,8 @@
     <meta charset="UTF-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../../../resources/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <jsp:include page="../../../common/footer.jsp"/>
+    <jsp:include page="../../footer.jsp"/>
+    <link href="<c:url value="../../../../resources/css/baseForNav.css" />" rel="stylesheet">
 
 </head>
 <body>
@@ -17,23 +18,23 @@
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/admin/signupform"><spring:message code="navadmin.label.createuser"/> </a></li>
-            <li><a href="/admin/createaccountform"><spring:message code="navadmin.label.createaccount"/> </a></li>
-            <li><a href="#"><spring:message code="navadmin.label.deleteuser"/> </a></li>
-            <li><a href="#"><spring:message code="navadmin.label.deleteaccount"/> </a></li>
+            <li><a href="/admin/signupform"><spring:message code="navadmin.button.createuser"/> </a></li>
+            <li><a href="/admin/createaccountform"><spring:message code="navadmin.button.createaccount"/> </a></li>
+            <li><a href="#"><spring:message code="navadmin.button.deleteuser"/> </a></li>
+            <li><a href="#"><spring:message code="navadmin.button.deleteaccount"/> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.label.language"/> <b
+                <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/> <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="?lang=en"><spring:message code="nav.label.lang_en"/>
+                    <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
                     </a></li>
-                    <li><a href="?lang=ru"><spring:message code="nav.label.lang_ru"/>
+                    <li><a href="?lang=ru"><spring:message code="nav.button.lang_ru"/>
                     </a></li>
                 </ul>
             </li>
-            <li><a href="/logout"><spring:message code="nav.label.logout"/> </a></li>
+            <li><a href="/logout"><spring:message code="nav.button.logout"/> </a></li>
         </ul>
     </div>
 </header>
