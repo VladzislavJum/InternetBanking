@@ -3,6 +3,7 @@ package by.jum.internetbanking.controllers;
 import by.jum.internetbanking.Roles;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.service.RoleService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationController.class);
 
     @Autowired
     private UserFacade userFacade;
@@ -29,6 +31,7 @@ public class UserController {
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
     public String showTypesOfPayments(Map<String, Object> map) {
         if (Roles.ROLE_ADMIN.getRole().equals(roleService.getRoleCurrentUser())) {
+            LOGGER.info("Admin Redirect to signupform");
             return "redirect:/admin/signupform";
         }
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

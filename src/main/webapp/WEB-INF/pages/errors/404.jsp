@@ -7,6 +7,6 @@
   <title></title>
 </head>
 <body>
-<h1 style="text-align: center"><spring:message code="404.label.error"/></h1>
+<h1 style="text-align: center"><spring:message code="label.error.404"/></h1>
 </body>
 </html>

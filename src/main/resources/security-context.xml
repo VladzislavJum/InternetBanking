@@ -7,12 +7,9 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
-
-    <!--TODO: to add encoder for password-->
-
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
-        <!--<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>-->
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <access-denied-handler error-page="/WEB-INF/pages/errors/403.jsp"/>
         <form-login
                 login-page="/login"
@@ -24,9 +21,10 @@
         <logout logout-success-url="/login"
                 logout-url="/logout"
                 invalidate-session="true"
-                />
-        <!--<csrf/>-->
-        <remember-me key="myAppKey"/>
+                delete-cookies="session"/>
+
+        <remember-me key="session"
+                     remember-me-parameter="remember-me"/>
 
     </http>
 
@@ -35,5 +33,6 @@
             <password-encoder ref="passwordEncoder"/>
         </authentication-provider>
     </authentication-manager>
+
 </beans:beans>
 

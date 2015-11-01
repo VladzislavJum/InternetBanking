@@ -8,7 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../../../resources/bootstrap/js/bootstrap.js" type="text/javascript"></script>
     <jsp:include page="../../footer.jsp"/>
-    <link href="<c:url value="../../../../resources/css/baseForNav.css" />" rel="stylesheet">
 
 </head>
 <body>

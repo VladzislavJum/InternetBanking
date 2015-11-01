@@ -3,8 +3,6 @@
 <html>
 <head>
     <title></title>
-    <link href="<c:url value="/resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-
 </head>
 <body>
 <div class="navbar-fixed-bottom row-fluid">

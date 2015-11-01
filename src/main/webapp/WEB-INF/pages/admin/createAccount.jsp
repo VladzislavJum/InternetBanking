@@ -13,39 +13,39 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="../../../resources/css/mystyle.css" />" rel="stylesheet">
 
     <title></title>
 </head>
 
 <body>
 
-<div class="container" style="height: 100%;>
+<div class="container" style="height: 100%;">
     <jsp:include page="common/navAdmin.jsp"/>
     <div style="margin-top: 10%">
         <form:form class="form-horizontal" method="post" action="/admin/createaccount" commandName="accountForm">
 
-            <form:label path="accountNumber" cssClass="control-label col-xs-4"
+            <form:label path="accountNumber" cssClass="control-label col-xs-5"
                         cssStyle="color:#9d9d9d">${accountNumber}</form:label>
-            <form:errors path="accountNumber" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="accountNumber" cssClass="error-text"/>
 
             <div class="col-xs-3">
                 <form:input class="form-control" path="accountNumber" placeholder="${accountNumber}"/>
             </div>
             <br/><br/>
 
-            <form:label path="amountOfMoney" cssClass="control-label col-xs-4"
+            <form:label path="amountOfMoney" cssClass="control-label col-xs-5"
                         cssStyle="color:#9d9d9d">${amountOfMoney}</form:label>
-            <form:errors path="amountOfMoney" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="amountOfMoney" cssClass="error-text"/>
 
             <div class="col-xs-3">
                 <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
             </div>
             <br/><br/>
 
-            <form:label path="userLogin" cssClass="control-label col-xs-4"
+            <form:label path="userLogin" cssClass="control-label col-xs-5"
                         cssStyle="color:#9d9d9d">${userLogin}</form:label>
-            <form:errors path="userLogin" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="userLogin" cssClass="error-text"/>
 
             <div class="col-xs-3">
                 <form:input class="form-control" path="userLogin" placeholder="${userLogin}"/>
@@ -58,8 +58,6 @@
                            value="${create}"/>
                 </div>
             </div>
-
-
         </form:form>
     </div>
 </div>

@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public abstract class AbstractBaseDAO {
-    private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
-
     @Autowired
     private SessionFactory sessionFactory;
 

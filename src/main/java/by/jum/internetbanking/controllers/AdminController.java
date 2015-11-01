@@ -20,8 +20,6 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private static final Logger LOGGER = Logger.getLogger(AdminController.class);
-
     @Autowired
     private UserFacade userFacade;
 

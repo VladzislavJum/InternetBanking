@@ -27,6 +27,9 @@ public class AuthorizationController {
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView authorisationForm(@RequestParam(required = false) String error) {
         String role = roleService.getRoleCurrentUser();
+
+        LOGGER.info("User with role" + role + "authorized");
+
         if (Roles.ROLE_ADMIN.getRole().equals(role)) {
             return new ModelAndView("redirect:/admin/signupform");
         } else if (Roles.ROLE_USER.getRole().equals(role)) {
@@ -35,6 +38,7 @@ public class AuthorizationController {
         String message = "";
         if (error != null) {
             message = messageSource.getMessage("authorization.label.error.passlogin", null, LocaleContextHolder.getLocale());
+            LOGGER.info(message);
         }
         return new ModelAndView("login", "message", message);
     }

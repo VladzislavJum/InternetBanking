@@ -13,7 +13,7 @@ import org.springframework.validation.Validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component("accountFormValidator")
+@Component
 public class CreateBankAccountFormValidator implements Validator {
 
     private static final Logger LOGGER = Logger.getLogger(CreateBankAccountFormValidator.class);
@@ -77,12 +77,12 @@ public class CreateBankAccountFormValidator implements Validator {
         if (!StringUtils.hasText(userLogin)) {
             errors.rejectValue("userLogin", "common.label.error.emptyfield");
         } else if (userLogin.length() > 15 || userLogin.length() < 4) {
-            errors.rejectValue("userLogin", "createaccount.label.error.loginsize");
+            errors.rejectValue("userLogin", "common.label.error.loginsize");
         } else {
             pattern = Pattern.compile(LOGIN_PATTERN);
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
-                errors.rejectValue("userLogin", "createaccount.label.error.loginnumericletters");
+                errors.rejectValue("userLogin", "common.label.error.numericletters");
             } else if (userFacade.getUserByUserName(userLogin) == null) {
                 errors.rejectValue("userLogin", "createaccount.label.error.usernotexist");
             }

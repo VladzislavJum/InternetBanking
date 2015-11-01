@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,13 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../../../resources/bootstrap/js/bootstrap.js" type="text/javascript"></script>
     <jsp:include page="../../footer.jsp"/>
-    <link href="<c:url value="../../../../resources/css/baseForNav.css" />" rel="stylesheet">
-
 </head>
 <body>
 <header role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
-        <b><a href="#" class="navbar-brand"><spring:message code="label.internetbanking"/> </a></b>
+        <b class="navbar-brand"><spring:message code="label.internetbanking"/></b>
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

@@ -15,8 +15,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <link href="<c:url value="../../../resources/bootstrap/css/bootstrap.css" />" rel="stylesheet">
-
+    <link href="<c:url value="../../../resources/css/mystyle.css" />" rel="stylesheet">
     <title></title>
 </head>
 <body>
@@ -27,51 +26,51 @@
 
         <form:form class="form-horizontal" method="post" action="/admin/register" commandName="userForm">
 
-            <form:label class="control-label col-xs-4" cssStyle="color: #9d9d9d;"
+            <form:label class="control-label col-xs-5" cssStyle="color: #9d9d9d;"
                         path="firstname">${firstname}</form:label>
             <div class="col-xs-3">
                 <form:input cssClass="form-control" path="firstname" placeholder="${firstname}"/>
             </div>
-            <form:errors path="firstname" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="firstname" cssClass="error-text"/>
             <br/><br/>
 
-            <form:label cssClass="control-label col-xs-4" cssStyle="color:#9d9d9d"
+            <form:label cssClass="control-label col-xs-5" cssStyle="color:#9d9d9d"
                         path="surname">${surname}</form:label>
             <div class="col-xs-3">
                 <form:input cssClass="form-control" path="surname" placeholder="${surname}"/>
             </div>
-            <form:errors path="surname" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="surname" cssClass="error-text"/>
             <br/><br/>
 
-            <form:label cssClass="control-label v col-xs-4" cssStyle="color:#9d9d9d"
+            <form:label cssClass="control-label v col-xs-5" cssStyle="color:#9d9d9d"
                         path="patronymic">${patronymic}</form:label>
             <div class="col-xs-3">
                 <form:input cssClass="form-control" path="patronymic" placeholder="${patronymic}"/>
             </div>
-            <form:errors path="patronymic" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="patronymic" cssClass="error-text"/>
             <br/><br/>
 
-            <form:label cssClass="control-label col-xs-4" cssStyle="color:#9d9d9d"
+            <form:label cssClass="control-label col-xs-5" cssStyle="color:#9d9d9d"
                         path="passportNumber">${passportNumber}</form:label>
             <div class="col-xs-3">
                 <form:input cssClass="form-control" path="passportNumber" placeholder="${passportNumber}"/>
             </div>
-            <form:errors path="passportNumber" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="passportNumber" cssClass="error-text"/>
             <br/><br/>
 
-            <form:label cssClass="control-label col-xs-4" cssStyle="color:#9d9d9d" path="login">${login}</form:label>
+            <form:label cssClass="control-label col-xs-5" cssStyle="color:#9d9d9d" path="login">${login}</form:label>
             <div class="col-xs-3">
                 <form:input class="form-control" path="login" placeholder="${login}"/>
             </div>
-            <form:errors path="login" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="login" cssClass="error-text"/>
             <br/><br/>
 
-            <form:label class="control-label col-xs-4" cssStyle="color:#9d9d9d"
+            <form:label class="control-label col-xs-5" cssStyle="color:#9d9d9d"
                         path="password">${password}</form:label>
             <div class="col-xs-3">
                 <form:input class="form-control" path="password" placeholder="${password}"/>
             </div>
-            <form:errors path="password" cssStyle="color: red; font-size: 20px;"/>
+            <form:errors path="password" cssClass="error-text"/>
             <br/><br/>
 
             <div class="form-group">

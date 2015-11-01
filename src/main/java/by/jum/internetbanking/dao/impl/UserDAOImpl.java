@@ -20,6 +20,8 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     public void delete(User user) {
         super.save(user);
+        LOGGER.info("User deleted: Login " + user.getLogin());
+
     }
 
     public void update(User user) {
@@ -28,16 +30,33 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     public void save(User user) {
         super.save(user);
+        LOGGER.info("User created: Login " + user.getLogin());
+
     }
 
     public User getById(Long id) {
-        return (User)super.getByID(User.class, id);
+        User user = (User)super.getByID(User.class, id);
+
+        StringBuilder builder = new StringBuilder("User with id ");
+        builder.append(id);
+        builder.append(": ");
+        builder.append(user);
+        LOGGER.info(builder);
+
+        return user;
     }
 
     @Override
      public User getByUserName(String login) {
         User user = (User) getSessionFactory().getCurrentSession().
                 createQuery("from by.jum.internetbanking.entity.User u where u.login=:login").setParameter("login", login).uniqueResult();
+
+        StringBuilder builder = new StringBuilder("User with login: ");
+        builder.append(login);
+        builder.append(" exist: ");
+        builder.append(user != null);
+        LOGGER.info(builder);
+
         return user;
     }
 
