@@ -6,7 +6,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserToDTOConverter implements Converter<User, UserDTO>{
+public class UserToDTOConverter implements Converter<User, UserDTO> {
     @Override
     public UserDTO convert(User user) {
         UserDTO userDTO = new UserDTO();
@@ -17,6 +17,7 @@ public class UserToDTOConverter implements Converter<User, UserDTO>{
         userDTO.setPassportNumber(user.getPassportNumber());
         userDTO.setLogin(user.getLogin());
         userDTO.setPassword(user.getPassword());
+        userDTO.setUserRole(user.getRole().getRoleUser());
         return userDTO;
     }
 }

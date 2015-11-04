@@ -8,7 +8,6 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:annotation-config/>
-
     <context:component-scan base-package="by.jum.internetbanking"/>
 
     <mvc:annotation-driven/>
@@ -21,16 +20,13 @@
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>classpath:messages</value>
-                <value>classpath:error</value>
+                <value>classpath:properties/messages</value>
+                <value>classpath:properties/error</value>
+                <value>classpath:properties/printlog</value>
+                <value>classpath:properties/title</value>
             </list>
         </property>
         <property name="defaultEncoding" value="UTF-8"/>
-    </bean>
-
-    <bean id="localeChangeInterceptor"
-          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-        <property name="paramName" value="lang"/>
     </bean>
 
     <bean id="localeResolver"

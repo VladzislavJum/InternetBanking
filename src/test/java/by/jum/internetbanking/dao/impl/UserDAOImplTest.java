@@ -53,12 +53,12 @@ public class UserDAOImplTest {
 
     @Test
     public void testGetByUserName() throws Exception {
-        LOGGER.info("Get By UserName(vjum): Firstname" + userDAO.getByUserName("vjum").getFirstname());
+        LOGGER.info("Get By UserName(vjum): Firstname " + userDAO.getByUserName("vjum").getFirstname());
     }
 
     @Test
     public void testGetAccountUserList() throws Exception {
         LOGGER.info("NumberAccounts: ");
-        userDAO.getAccountUserList("vjum").forEach(account -> LOGGER.info(account.getAccountNumber()));
+        userDAO.getAccountUserList(2L).forEach(account -> LOGGER.info(account.getAccountNumber()));
     }
     }

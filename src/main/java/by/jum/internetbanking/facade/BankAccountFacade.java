@@ -12,5 +12,7 @@ public interface BankAccountFacade {
 
     List<BankAccountDTO> getAccountList();
 
-    boolean isExistNumber(Integer accountNumber);
+    void deleteAccountByID(long id);
+
+    BankAccountDTO getAccountByNumber(String searchStr);
 }

@@ -1,16 +1,21 @@
 package by.jum.internetbanking.controllers;
 
 import by.jum.internetbanking.Roles;
-import by.jum.internetbanking.service.RoleService;
+import by.jum.internetbanking.facade.RoleFacade;
+import by.jum.internetbanking.facade.UserFacade;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -22,17 +27,21 @@ public class AuthorizationController {
     private MessageSource messageSource;
 
     @Autowired
-    private RoleService roleService;
+    private RoleFacade roleFacade;
+
+    @Autowired
+    private UserFacade userFacade;
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView authorisationForm(@RequestParam(required = false) String error) {
-        String role = roleService.getRoleCurrentUser();
-
-        LOGGER.info("User with role" + role + "authorized");
-
+    public ModelAndView authorisationForm(@RequestParam(required = false) String error, HttpSession session) {
+        String role = roleFacade.getRoleCurrentUser();
         if (Roles.ROLE_ADMIN.getRole().equals(role)) {
-            return new ModelAndView("redirect:/admin/signupform");
+            session.setAttribute("currentUserID", userFacade.getIDCurrentUser());
+            LOGGER.info("User with role " + role + " authorized");
+            return new ModelAndView("redirect:/admin/users");
         } else if (Roles.ROLE_USER.getRole().equals(role)) {
+            session.setAttribute("currentUserID", userFacade.getIDCurrentUser());
+            LOGGER.info("User with role " + role + " authorized");
             return new ModelAndView("redirect:/user/accounts");
         }
         String message = "";

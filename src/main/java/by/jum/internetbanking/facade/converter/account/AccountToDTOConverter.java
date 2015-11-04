@@ -13,6 +13,7 @@ public class AccountToDTOConverter implements Converter<BankAccount, BankAccount
         accountDTO.setAccountNumber(account.getAccountNumber());
         accountDTO.setAmountOfMoney(account.getAmountOfMoney());
         accountDTO.setBankAccountID(account.getBankAccountID());
+        accountDTO.setUserID(account.getUser().getUserID());
         return accountDTO;
     }
 }

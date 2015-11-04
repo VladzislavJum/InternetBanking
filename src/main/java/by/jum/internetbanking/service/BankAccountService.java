@@ -13,5 +13,7 @@ public interface BankAccountService {
 
     BankAccount getAccountByID(long accountID);
 
-    boolean isExistNumber(Integer accountNumber);
+    void deleteById(long id);
+
+    BankAccount getAccountByNumber(String number);
 }

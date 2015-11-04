@@ -14,9 +14,13 @@ public interface UserFacade {
 
     List<UserDTO> getUserList();
 
-    List<BankAccountDTO> getUserAccountList(String login);
+    List<BankAccountDTO> getUserAccountList(long userID);
 
-    User getUserByUserName(String login);
+    UserDTO getUserByUserName(String login);
 
+    void deleteUserByID(long id);
 
+    boolean isExistUserWithPassportNumber(String passportNumber);
+
+    long getIDCurrentUser();
 }

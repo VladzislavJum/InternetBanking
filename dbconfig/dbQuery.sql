@@ -34,19 +34,19 @@ INSERT INTO users(name, surname, patronymic, passport_number, enabled, login, pa
 
 CREATE TABLE bank_account
 (
-  account_number integer,
   amount_of_money numeric,
   user_id integer,
   id bigserial NOT NULL,
+  account_number character varying(15),
   CONSTRAINT bank_account_pkey PRIMARY KEY (id),
   CONSTRAINT bank_account_user_id_fkey FOREIGN KEY (user_id)
       REFERENCES users (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT bank_account_account_number_key UNIQUE (account_number)
 );
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (556425, 1000000, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (856425, 3200000, 2);
 
-INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (87654, 3265400, 1);
-INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (112325, 8765400, 1);
+INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (87654, 3265400, 2);
+INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (112325, 8765400, 2);
 

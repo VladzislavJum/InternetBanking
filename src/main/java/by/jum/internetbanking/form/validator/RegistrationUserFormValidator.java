@@ -18,7 +18,7 @@ public class RegistrationUserFormValidator implements Validator {
     private UserFacade userFacade;
 
     private static final String NAME_PATTERN = "[a-zA-Z]+";
-    private static final String PASSPORT_NUMBER_LOGIN_PATTERN = "[a-zA-Z0-9]+";
+    private static final String PASSPORT_NUMBER_LOGIN_PASS_PATTERN = "[a-zA-Z0-9]+";
 
     private Pattern pattern;
     private Matcher matcher;
@@ -36,10 +36,11 @@ public class RegistrationUserFormValidator implements Validator {
         checkName(userForm.getPatronymic(), errors, "patronymic");
         checkPassportNumber(userForm.getPassportNumber(), errors, "passportNumber");
         checkUserLogin(userForm.getLogin(), errors, "login");
+        checkPassword(userForm.getPassword(), errors, "password");
     }
 
     private void checkName(String name, Errors errors, String param) {
-        if (!StringUtils.hasText(name)) {
+        if (StringUtils.isEmpty(name)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (name.length() > 20 || name.length() < 2) {
             errors.rejectValue(param, "registration.label.error.namesize");
@@ -53,34 +54,50 @@ public class RegistrationUserFormValidator implements Validator {
     }
 
     private void checkPassportNumber(String passportNumber, Errors errors, String param) {
-        if (!StringUtils.hasText(passportNumber)) {
+        if (StringUtils.isEmpty(passportNumber)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (passportNumber.length() > 15 || passportNumber.length() < 8) {
             errors.rejectValue(param, "registration.label.error.passportnumbersize");
         } else {
-            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PATTERN);
+            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
             matcher = pattern.matcher(passportNumber);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
+            } else if(userFacade.isExistUserWithPassportNumber(passportNumber)){
+                errors.rejectValue(param, "registration.label.error.passportnumberexist");
+
             }
         }
     }
 
-    private void checkUserLogin(String userLogin, Errors errors, String parap) {
-        if (!StringUtils.hasText(userLogin)) {
-            errors.rejectValue(parap, "common.label.error.emptyfield");
+    private void checkUserLogin(String userLogin, Errors errors, String param) {
+        if (StringUtils.isEmpty(userLogin)) {
+            errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (userLogin.length() > 15 || userLogin.length() < 4) {
-            errors.rejectValue(parap, "common.label.error.loginsize");
+            errors.rejectValue(param, "common.label.error.loginsize");
         } else {
-            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PATTERN);
+            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
-                errors.rejectValue(parap, "common.label.error.numericletters");
+                errors.rejectValue(param, "common.label.error.numericletters");
             } else if (userFacade.getUserByUserName(userLogin) != null) {
-                errors.rejectValue(parap, "registration.label.error.userexist");
+                errors.rejectValue(param, "registration.label.error.loginexist");
             }
         }
+    }
 
+    private void checkPassword(String password, Errors errors, String param) {
+        if (StringUtils.isEmpty(password)) {
+            errors.rejectValue(param, "common.label.error.emptyfield");
+        } else if (password.length() > 10 || password.length() < 4) {
+            errors.rejectValue(param, "registration.label.error.passwordsize");
+        } else {
+            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
+            matcher = pattern.matcher(password);
+            if (!matcher.matches()) {
+                errors.rejectValue(param, "common.label.error.numericletters");
+            }
+        }
     }
 
 

@@ -22,7 +22,7 @@ public class BankAccount implements Serializable {
     private Long bankAccountID;
 
     @Column(name = "account_number", unique = true)
-    private Integer accountNumber;
+    private String accountNumber;
 
     @Column(name = "amount_of_money")
     private BigDecimal amountOfMoney;
@@ -47,11 +47,11 @@ public class BankAccount implements Serializable {
         this.bankAccountID = bankAccountID;
     }
 
-    public Integer getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(Integer accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 

@@ -16,6 +16,11 @@ public interface UserService {
 
     User getByUserName(String login);
 
-    List<BankAccount> getUserAccountList(String login);
+    List<BankAccount> getUserAccountList(long id);
 
+    void deleteById(long id);
+
+    boolean isExistUserWithPassportNumber(String passportNumber);
+
+    long getIDCurrentUser();
 }

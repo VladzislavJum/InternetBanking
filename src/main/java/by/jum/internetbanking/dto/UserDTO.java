@@ -1,7 +1,7 @@
 package by.jum.internetbanking.dto;
 
 public class UserDTO {
-    private Long userID;
+    private long userID;
     private String firstname;
     private String surname;
     private String patronymic;
@@ -35,7 +35,7 @@ public class UserDTO {
         this.password = password;
     }
 
-    public Long getUserID() {
+    public long getUserID() {
         return userID;
     }
 

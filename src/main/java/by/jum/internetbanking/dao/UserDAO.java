@@ -20,6 +20,10 @@ public interface UserDAO {
 
     User getByUserName(String login);
 
-    List<BankAccount> getAccountUserList(String login);
+    List<BankAccount> getAccountUserList(long id);
+
+    void deleteByID(long id);
+
+    boolean isExistUserWithPassportNumber(String passportNumber);
 
 }

@@ -38,9 +38,16 @@ public class BankAccountServiceImpl implements BankAccountService {
         return accountDAO.getByID(accountID);
     }
 
+
     @Override
-    @Transactional(readOnly = true)
-    public boolean isExistNumber(Integer accountNumber) {
-        return accountDAO.isExistNumber(accountNumber);
+    @Transactional
+    public void deleteById(long id) {
+        accountDAO.deleteByID(id);
+    }
+
+    @Override
+    @Transactional
+    public BankAccount getAccountByNumber(String number) {
+        return accountDAO.getByNumber(number);
     }
 }

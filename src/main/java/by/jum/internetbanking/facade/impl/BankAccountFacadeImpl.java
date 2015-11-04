@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("accountFacade")
+@Component
 public class BankAccountFacadeImpl implements BankAccountFacade {
 
     @Autowired
@@ -42,8 +42,19 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
         return accountDTOList;
     }
 
+
     @Override
-    public boolean isExistNumber(Integer accountNumber) {
-        return accountService.isExistNumber(accountNumber);
+    public void deleteAccountByID(long id) {
+        accountService.deleteById(id);
+    }
+
+    @Override
+    public BankAccountDTO getAccountByNumber(String number) {
+        BankAccount account = accountService.getAccountByNumber(number);
+        if (account != null) {
+            return accountToDTOConverter.convert(account);
+        } else {
+            return null;
+        }
     }
 }

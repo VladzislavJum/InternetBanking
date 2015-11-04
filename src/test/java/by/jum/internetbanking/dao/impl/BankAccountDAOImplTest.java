@@ -1,7 +1,6 @@
 package by.jum.internetbanking.dao.impl;
 
 import by.jum.internetbanking.dao.BankAccountDAO;
-import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -12,8 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -33,7 +30,7 @@ public class BankAccountDAOImplTest {
     @Test
     public void testSave() throws Exception {
         BankAccount account = new BankAccount();
-        account.setAccountNumber(7777);
+        account.setAccountNumber("7777");
         account.setBankAccountID(7894L);
         accountDAO.save(account);
         LOGGER.info("Created Account with Nummber 7777");
@@ -57,14 +54,7 @@ public class BankAccountDAOImplTest {
 
     @Test
     public void testGetByID() throws Exception {
-        LOGGER.info("Gey by id 1: AccountNumber " + accountDAO.getByID(1L).getAccountNumber());
+        LOGGER.info("Get by id 1: AccountNumber " + accountDAO.getByID(1L).getAccountNumber());
     }
 
-    @Test
-    public void testIsExistNumber() throws Exception {
-        BankAccount account = new BankAccount();
-        accountDAO.save(account);
-        account.setAccountNumber(9999);
-        LOGGER.info("Account with number 9999 exist: "+ accountDAO.isExistNumber(9999));
-    }
 }

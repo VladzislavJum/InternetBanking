@@ -18,7 +18,7 @@ public class AccountFormToAccountConverter implements Converter<CreateBankAccoun
     @Override
     public BankAccount convert(CreateBankAccountForm accountForm) {
         BankAccount account = new BankAccount();
-        account.setAccountNumber(Integer.valueOf(accountForm.getAccountNumber()));
+        account.setAccountNumber(accountForm.getAccountNumber());
         account.setAmountOfMoney(new BigDecimal(accountForm.getAmountOfMoney()));
         account.setUser(userService.getByUserName(accountForm.getUserLogin()));
         return account;

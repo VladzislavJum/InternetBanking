@@ -9,4 +9,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--<import resource="classpath:applicationContext.xml"/>-->
+
 </beans>
