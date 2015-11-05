@@ -9,7 +9,20 @@ public class UserDTO {
     private String password;
     private String login;
     private String userRole;
+    private boolean unlocked;
 
+
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
+
+    public boolean isUnlocked() {
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
+    }
 
     public String getUserRole() {
         return userRole;

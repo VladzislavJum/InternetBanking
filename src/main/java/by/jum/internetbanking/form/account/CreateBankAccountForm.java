@@ -2,7 +2,6 @@ package by.jum.internetbanking.form.account;
 
 public class CreateBankAccountForm {
     private Long bankAccountID;
-
     private String accountNumber;
     private String amountOfMoney;
     private String userLogin;

@@ -1,7 +1,6 @@
 package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,7 +31,7 @@ public class AuthorizationUserServiceImpl implements UserDetailsService {
 
 
     private User buildUserForAuthentication(by.jum.internetbanking.entity.User user, List<GrantedAuthority> authorities) {
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
+        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), user.isUnlocked(), true, true, true, authorities);
     }
 
 }

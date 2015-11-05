@@ -14,7 +14,7 @@ CREATE TABLE users
   surname character varying(20),
   patronymic character varying(20),
   passport_number character varying(20),
-  enabled boolean DEFAULT true,
+  unlocked boolean DEFAULT false,
   login character varying(20),
   password character varying(80),
   role_id integer,

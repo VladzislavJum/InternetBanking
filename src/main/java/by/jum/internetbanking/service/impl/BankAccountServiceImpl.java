@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service("accountService")
 public class BankAccountServiceImpl implements BankAccountService {
+
     @Autowired
     private BankAccountDAO accountDAO;
 

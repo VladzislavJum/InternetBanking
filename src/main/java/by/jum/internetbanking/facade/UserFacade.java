@@ -23,4 +23,6 @@ public interface UserFacade {
     boolean isExistUserWithPassportNumber(String passportNumber);
 
     long getIDCurrentUser();
+
+    void lockOrUnlockUser(long id);
 }

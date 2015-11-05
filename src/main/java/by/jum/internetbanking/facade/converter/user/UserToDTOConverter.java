@@ -18,6 +18,7 @@ public class UserToDTOConverter implements Converter<User, UserDTO> {
         userDTO.setLogin(user.getLogin());
         userDTO.setPassword(user.getPassword());
         userDTO.setUserRole(user.getRole().getRoleUser());
+        userDTO.setUnlocked(user.isUnlocked());
         return userDTO;
     }
 }

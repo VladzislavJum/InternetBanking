@@ -16,15 +16,21 @@ import java.util.List;
 
 @Component
 public class UserFacadeImpl implements UserFacade {
+
     private final static long ID_USER_ROLE = 1L;
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private Converter<RegistrationUserForm, User> formToUserConverter;
+
     @Autowired
     private Converter<List<BankAccount>, List<BankAccountDTO>> accountListToDTOListConverter;
+
     @Autowired
     private Converter<User, UserDTO> userToDTOConverter;
+
     @Autowired
     private Converter<List<User>, List<UserDTO>> userListToDTOListConverter;
 
@@ -75,4 +81,8 @@ public class UserFacadeImpl implements UserFacade {
         return userService.getIDCurrentUser();
     }
 
+    @Override
+    public void lockOrUnlockUser(long id) {
+        userService.lockOrUnlockUser(id);
+    }
 }

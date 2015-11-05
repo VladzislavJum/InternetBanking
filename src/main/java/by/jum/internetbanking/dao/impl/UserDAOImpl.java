@@ -25,6 +25,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public List<User> getList() {
         Role role = new Role();
         role.setRoleID(ADMIN_ROLE_ID);
+        LOGGER.info("Get UserList");
         return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User u " +
                 "where u.role != :role").setParameter("role",  role).list();
     }
@@ -79,5 +80,13 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         boolean exist = object != null;
         LOGGER.info(messageSource.getMessage("print.isexistuserwithpassport", new Object[]{passportNumber, exist}, Locale.ENGLISH));
         return exist;
+    }
+
+    @Override
+    public void lockOrUnlock(long id) {
+        User user = getById(id);
+        user.setIsEnabled(!user.isUnlocked());
+        update(user);
+        LOGGER.info("User is unlocked: " + user.isUnlocked());
     }
 }

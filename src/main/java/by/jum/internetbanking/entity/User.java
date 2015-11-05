@@ -1,7 +1,5 @@
 package by.jum.internetbanking.entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.io.Serializable;
@@ -45,8 +42,8 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "enabled")
-    private boolean isEnabled = true;
+    @Column(name = "unlocked")
+    private boolean isUnlocked = true;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
@@ -71,12 +68,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
+    public boolean isUnlocked() {
+        return isUnlocked;
     }
 
     public void setIsEnabled(boolean isEnabled) {
-        this.isEnabled = isEnabled;
+        this.isUnlocked = isEnabled;
     }
 
     public String getLogin() {

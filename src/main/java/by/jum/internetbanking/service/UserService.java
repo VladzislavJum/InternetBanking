@@ -23,4 +23,6 @@ public interface UserService {
     boolean isExistUserWithPassportNumber(String passportNumber);
 
     long getIDCurrentUser();
+
+    void lockOrUnlockUser(long id);
 }

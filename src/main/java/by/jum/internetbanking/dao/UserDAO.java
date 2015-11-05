@@ -26,4 +26,5 @@ public interface UserDAO {
 
     boolean isExistUserWithPassportNumber(String passportNumber);
 
+    void lockOrUnlock(long id);
 }

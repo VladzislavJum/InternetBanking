@@ -12,6 +12,8 @@
 <spring:message code="showusersoraccounts.label.action" var="actonLable"/>
 <spring:message code="action.button.delete" var="deleteButton"/>
 <spring:message code="action.button.accounts" var="accountsButton"/>
+<spring:message code="action.button.unlocked" var="lockButton"/>
+<spring:message code="action.button.unlock" var="unlockButton"/>
 <spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
 
 <html>
@@ -54,15 +56,25 @@
                     <td>
                         <spring:url value="${path}/admin/users/${user.userID}/accounts" var="accountsUrl"/>
                         <spring:url value="${path}/admin/users/${user.userID}/delete" var="deleteUrl"/>
+                        <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
 
                         <button class="btn btn-info" onclick="location.href='${accountsUrl}'">${accountsButton}</button>
                         <button class="btn btn-danger"
                                 onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
+
+                        <c:choose>
+                            <c:when test="${user.unlocked}">
+                                <button class="btn btn-warning"
+                                        onclick="location.href=('${lockOrUnlockUrl}')">${lockButton}</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-success"
+                                        onclick="location.href=('${lockOrUnlockUrl}')">${unlockButton}</button>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>
-
-
         </table>
     </c:if>
 

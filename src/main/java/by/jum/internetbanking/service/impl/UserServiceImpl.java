@@ -67,11 +67,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public long getIDCurrentUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = userDetails.getUsername();
         return getByUserName(username).getUserID();
     }
 
-
+    @Override
+    @Transactional
+    public void lockOrUnlockUser(long id) {
+        userDAO.lockOrUnlock(id);
+    }
 }
