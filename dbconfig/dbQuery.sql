@@ -26,11 +26,10 @@ CREATE TABLE users
   CONSTRAINT users_passport_number_key UNIQUE (passport_number)
 );
 
-INSERT INTO users(name, surname, patronymic, passport_number, enabled, login, password, role_id)
+INSERT INTO users(name, surname, patronymic, passport_number, unlocked, login, password, role_id)
     VALUES ('James', 'Alan', 'Hetfield', 'hc1235685', true, 'JamesAdmin', '$2a$10$KvTXTKxIvR.JVSs2GZ5YeOrYxnzwR0m2X9Spl1n7V6oDoMCK.eU5u', 2);
-INSERT INTO users(name, surname, patronymic, passport_number, enabled, login, password, role_id)
+INSERT INTO users(name, surname, patronymic, passport_number, unlocked, login, password, role_id)
     VALUES ('Vladzislav', 'Jum', 'Egorovich', 'HB2469876', true, 'vjum', '$2a$10$tDWYYZshaDtaFIcnhUIsg.5PeOETaAIUrF9Eg.yQx6rioCfMzVwgy', 1);
-
 
 CREATE TABLE bank_account
 (
@@ -46,7 +45,6 @@ CREATE TABLE bank_account
 );
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (556425, 1000000, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (856425, 3200000, 2);
-
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (87654, 3265400, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (112325, 8765400, 2);
 

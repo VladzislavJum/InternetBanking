@@ -35,7 +35,7 @@ public class CreatingController {
     private UserFacade userFacade;
 
     @RequestMapping(value = "/signupform", method = RequestMethod.GET)
-    public String showRegistrationForm(Model model) {
+        public String showRegistrationForm(Model model) {
         model.addAttribute("userForm", new RegistrationUserForm());
         return "/admin/createUser";
     }

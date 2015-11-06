@@ -22,7 +22,7 @@
             <list>
                 <value>classpath:properties/messages</value>
                 <value>classpath:properties/error</value>
-                <value>classpath:properties/printlog</value>
+                <value>classpath:properties/consolelog</value>
                 <value>classpath:properties/title</value>
             </list>
         </property>

@@ -61,4 +61,4 @@ public class UserDAOImplTest {
         LOGGER.info("NumberAccounts: ");
         userDAO.getAccountUserList(2L).forEach(account -> LOGGER.info(account.getAccountNumber()));
     }
-    }
+}

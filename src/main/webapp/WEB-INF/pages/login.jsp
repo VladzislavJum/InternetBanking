@@ -22,8 +22,8 @@
         onclick="location.href=('${path}?lang=en')">${en}</button>
 <button class="btn btn-primary"
         onclick="location.href=('${path}?lang=ru')">${ru}</button>
-<div class="container full-height">
 
+<div class="container full-height">
     <div class="col-md-4 col-md-offset-4 margin-top10">
         <c:url value="${path}/j_spring_security_check" var="loginUrl"/>
         <h4 class="error-login"> ${message}</h4>

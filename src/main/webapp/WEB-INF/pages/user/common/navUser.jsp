@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>"></script>
+    <script src="<c:url value="../../../../resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="../../../../resources/bootstrap/js/bootstrap.js"/>"></script>
     <jsp:include page="../../footer.jsp"/>
 </head>
@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav">
             <li><a href="${path}/user/accounts"><spring:message code="navuser.button.bankaccount"/> </a></li>
             <li><a href="${path}/"><spring:message code="navuser.button.payment"/> </a></li>
-            <li><a href="${path}/"><spring:message code="navuser.button.moneytransaction"/> </a></li>
+            <li><a href="${path}/user/transaction"><spring:message code="navuser.button.moneytransaction"/> </a></li>
             <li><a href="${path}/"><spring:message code="navuser.button.paymenthistory"/> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
