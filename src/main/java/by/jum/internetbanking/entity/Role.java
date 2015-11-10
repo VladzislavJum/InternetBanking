@@ -48,6 +48,4 @@ public class Role {
     public void setRoleID(Long roleID) {
         this.roleID = roleID;
     }
-
-
 }

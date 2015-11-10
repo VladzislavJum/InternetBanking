@@ -8,14 +8,19 @@ import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
 public class UserFacadeImpl implements UserFacade {
+
+    private static final Logger LOGGER = Logger.getLogger(UserFacadeImpl.class);
 
     private final static long ID_USER_ROLE = 1L;
 
@@ -23,19 +28,11 @@ public class UserFacadeImpl implements UserFacade {
     private UserService userService;
 
     @Autowired
-    private Converter<RegistrationUserForm, User> formToUserConverter;
-
-    @Autowired
-    private Converter<List<BankAccount>, List<BankAccountDTO>> accountListToDTOListConverter;
-
-    @Autowired
-    private Converter<User, UserDTO> userToDTOConverter;
-
-    @Autowired
-    private Converter<List<User>, List<UserDTO>> userListToDTOListConverter;
+    private ConversionService conversionService;
 
     public void registerUser(RegistrationUserForm registrationUserForm) {
-        User user = formToUserConverter.convert(registrationUserForm);
+        LOGGER.info("Facade: Registration User");
+        User user = conversionService.convert(registrationUserForm, User.class);
         Role role = new Role();
         role.setRoleID(ID_USER_ROLE);
         user.setRole(role);
@@ -43,24 +40,34 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     public UserDTO getUserByID(long userID) {
-        return userToDTOConverter.convert(userService.getUserByID(userID));
+        LOGGER.info("Facade: getUser by ID");
+        return conversionService.convert(userService.getUserByID(userID), UserDTO.class);
     }
 
     public List<UserDTO> getUserList() {
-        List<User> userList = userService.getUserList();
-        return userListToDTOListConverter.convert(userList);
+        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(User.class));
+        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserDTO.class));
+        List<UserDTO> userDTOList = (List<UserDTO>) conversionService.convert(userService.getUserList(), sourceType, targetType);
+        Collections.reverse(userDTOList);
+        return userDTOList;
     }
 
     @Override
     public List<BankAccountDTO> getUserAccountList(long userID) {
-        return accountListToDTOListConverter.convert(userService.getUserAccountList(userID));
+        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccount.class));
+        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccountDTO.class));
+        List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.convert(userService.getUserAccountList(userID), sourceType, targetType);
+        Collections.sort(accountDTOList, (o1, o2) -> o1.getBankAccountID().compareTo(o2.getBankAccountID()));
+        return accountDTOList;
+
     }
 
     @Override
     public UserDTO getUserByUserName(String login) {
+        LOGGER.info("Facade: getUser by Username");
         User user = userService.getByUserName(login);
         if (user != null) {
-            return userToDTOConverter.convert(user);
+            return conversionService.convert(user, UserDTO.class);
         } else {
             return null;
         }
@@ -68,6 +75,7 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public void deleteUserByID(long userID) {
+        LOGGER.info("Facade: Deleting User");
         userService.deleteById(userID);
     }
 
@@ -78,11 +86,13 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public long getIDCurrentUser() {
+        LOGGER.info("Facade: getID Current User");
         return userService.getIDCurrentUser();
     }
 
     @Override
     public void lockOrUnlockUser(long id) {
+        LOGGER.info("Facade: LockOrUnlock User");
         userService.lockOrUnlockUser(id);
     }
 }

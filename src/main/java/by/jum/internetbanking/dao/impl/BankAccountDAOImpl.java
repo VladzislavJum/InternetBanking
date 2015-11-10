@@ -3,6 +3,7 @@ package by.jum.internetbanking.dao.impl;
 import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Repository;
@@ -20,13 +21,14 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     @Override
     public List<BankAccount> getList() {
-        return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.BankAccount").list();
+        Query query = getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.BankAccount");
+        return query.list();
     }
 
     @Override
     public void save(BankAccount account) {
         super.save(account);
-        LOGGER.info("Account created: Number " + account.getAccountNumber());
+        LOGGER.info("DAO: Account created: Number " + account.getAccountNumber());
     }
 
     @Override
@@ -37,14 +39,14 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
     @Override
     public void delete(BankAccount account) {
         super.delete(account);
-        LOGGER.info("Account deleted: Number " + account.getAccountNumber());
+        LOGGER.info("DAO: Account deleted: Number " + account.getAccountNumber());
     }
 
     @Override
     public void deleteByID(long id) {
         getSessionFactory().getCurrentSession().createQuery("delete from by.jum.internetbanking.entity.BankAccount b " +
                 "where b.id = :id").setParameter("id", id).executeUpdate();
-        LOGGER.info("Account Deleted: id " + id);
+        LOGGER.info("DAO: Account Deleted: id " + id);
     }
 
     @Override
@@ -63,5 +65,4 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
         return account;
     }
-
 }

@@ -10,7 +10,6 @@
 <spring:message code="createaccount.button.create" var="create"/>
 <spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
 
-
 <html>
 <head>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
@@ -22,6 +21,7 @@
 <div class="container full-height">
     <jsp:include page="common/navAdmin.jsp"/>
     <h1 class="head-inf"><spring:message code="createaccount.label.newaccount"/></h1>
+
     <div style="margin-top: 10%">
         <form:form class="form-horizontal" method="post" action="${path}/admin/createaccount" commandName="accountForm">
 

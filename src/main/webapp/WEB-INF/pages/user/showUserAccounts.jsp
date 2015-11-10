@@ -16,16 +16,20 @@
 <div class="container full-height">
     <jsp:include page="common/navUser.jsp"/>
     <h1 class="head-inf"><spring:message code="showaccounts.label.accounts"/></h1>
-    <c:if test="${!empty accountList}">
+
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 head-column">${number}</div>
+        <div class="col-sm-3 head-column">${money}</div>
+    </div>
+
+    <c:forEach items="${accountList}" var="account">
         <div class="row">
-            <div class="col-sm-3 col-sm-offset-2 head-column">${number}</div>
-            <div class="col-sm-3 col-sm-offset-2 head-column">${money}</div>
-            <c:forEach items="${accountList}" var="account">
-                <div class="col-sm-3 col-sm-offset-2 account-inf">${account.accountNumber}</div>
-                <div class="col-sm-3 col-sm-offset-2 account-inf">${account.amountOfMoney}</div>
-            </c:forEach>
+            <div class="account-inf col-sm-3 col-sm-offset-3">${account.accountNumber}</div>
+            <div class="account-inf col-sm-3">${account.amountOfMoney}</div>
         </div>
-    </c:if>
+    </c:forEach>
+
+
 </div>
 </body>
 </html>

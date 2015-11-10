@@ -11,7 +11,6 @@ public class UserDTO {
     private String userRole;
     private boolean unlocked;
 
-
     public void setUserID(long userID) {
         this.userID = userID;
     }

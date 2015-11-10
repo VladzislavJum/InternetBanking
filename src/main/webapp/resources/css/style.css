@@ -1,21 +1,27 @@
 @import "../bootstrap/css/bootstrap.css";
 
 body {
-    background-color: #222222;
+    background-color: #122b40;
 }
 
 .error-text {
     font-family: serif;
-    font-size: 20px;
+    font-size: 15px;
+    color: red;
+}
+
+.error-text-trans {
+    font-family: serif;
+    font-size: 30px;
     color: red;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #398439;
+    color: #f5e79e;
 }
 
 .navbar-inverse {
-    background-color: #122b40;
+    background-color: #398439;
     border-color: #f9f9f9;
     border-width: 5px;
 }
@@ -61,6 +67,13 @@ body {
     line-height: 50px;
 }
 
+.button-actions-text {
+    font-family: serif;
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold;
+}
+
 .user-inf {
     font-family: serif;
     font-size: 25px;
@@ -69,6 +82,15 @@ body {
 }
 
 .account-inf {
+    font-family: serif;
+    font-size: 25px;
+    color: #2e6da4;
+    border-bottom: #888888 5px solid;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.account-radio {
     font-family: serif;
     font-size: 35px;
     color: #2e6da4;
@@ -117,9 +139,97 @@ body {
     font-family: serif;
 }
 
-.checkbox-text{
-    font-family: serif;
+.form-control-moresize{
+    height: 50px;
+    font-size: 30px;
+}
+
+.btn-transfer {
+    margin-top: 5%;
     font-size: 25px;
-    color: #2e6da4;
-    line-height: 50px;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+    display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+    position: relative;
+    line-height: 2.5em;
+    margin-top: 15px;
+    margin-bottom: -25px;
+    cursor: pointer;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 2.5em;
+    height: 2.5em;
+    background: #b92c28;
+    border-radius: 5px 5px 5px 5px;
+}
+
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before,
+.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+    color: #e5e5e5;
+    background-color: #255625;
+    content: '\2714';
+    text-indent: .9em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#wrap{
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(1, 1, 2, 0.725);
+}
+
+#window{
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    display: none;
+    background: #fff;
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 16px;
+}
+
+.close{
+    margin-left: 364px;
+    margin-top: 4px;
+    cursor: pointer;
 }

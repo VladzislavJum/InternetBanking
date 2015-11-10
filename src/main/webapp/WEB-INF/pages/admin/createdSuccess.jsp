@@ -6,13 +6,14 @@
 <html>
 <head>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
-    <title><spring:message code="createasuccess.label.success"/> </title>
+    <title><spring:message code="createasuccess.label.success"/></title>
 </head>
 
 <body>
 <div class="container full-height">
     <jsp:include page="common/navAdmin.jsp"/>
-    <div class="head-inf"><spring:message code="createdsuccess.label.created"/></div><br/>
+    <div class="head-inf"><spring:message code="createdsuccess.label.created"/></div>
+    <br/>
 </div>
 </body>
 </html>

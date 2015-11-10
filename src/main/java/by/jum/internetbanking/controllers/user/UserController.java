@@ -1,5 +1,6 @@
-package by.jum.internetbanking.controllers;
+package by.jum.internetbanking.controllers.user;
 
+import by.jum.internetbanking.controllers.AuthorizationController;
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.facade.UserFacade;
 import org.apache.log4j.Logger;
@@ -28,5 +29,4 @@ public class UserController {
         model.addAttribute("accountList", accountDTOList);
         return "user/showUserAccounts";
     }
-
 }

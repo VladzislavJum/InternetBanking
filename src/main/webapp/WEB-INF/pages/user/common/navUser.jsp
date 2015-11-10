@@ -18,7 +18,7 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li><a href="${path}/user/accounts"><spring:message code="navuser.button.bankaccount"/> </a></li>
-            <li><a href="${path}/"><spring:message code="navuser.button.payment"/> </a></li>
+            <li><a href="${path}/user/payment"><spring:message code="navuser.button.payment"/> </a></li>
             <li><a href="${path}/user/transaction"><spring:message code="navuser.button.moneytransaction"/> </a></li>
             <li><a href="${path}/"><spring:message code="navuser.button.paymenthistory"/> </a></li>
         </ul>
@@ -27,9 +27,9 @@
                 <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/> <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="${path}/?lang=en"><spring:message code="nav.button.lang_en"/>
+                    <li><a href="${path}?lang=en"><spring:message code="nav.button.lang_en"/>
                     </a></li>
-                    <li><a href="${path}/?lang=ru"><spring:message code="nav.button.lang_ru"/>
+                    <li><a href="${path}?lang=ru"><spring:message code="nav.button.lang_ru"/>
                     </a></li>
                 </ul>
             </li>

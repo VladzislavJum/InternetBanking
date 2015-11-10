@@ -3,13 +3,15 @@ package by.jum.internetbanking.service.impl;
 import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.service.BankAccountService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-@Service("accountService")
+@Service
 public class BankAccountServiceImpl implements BankAccountService {
 
     @Autowired
@@ -39,7 +41,6 @@ public class BankAccountServiceImpl implements BankAccountService {
         return accountDAO.getByID(accountID);
     }
 
-
     @Override
     @Transactional
     public void deleteById(long id) {
@@ -47,8 +48,17 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public BankAccount getAccountByNumber(String number) {
         return accountDAO.getByNumber(number);
+    }
+
+    @Override
+    @Transactional
+    public void transferMoney(BankAccount accountFrom, BankAccount accountTo, BigDecimal amountOfTransferredMoney) {
+        accountFrom.setAmountOfMoney(accountFrom.getAmountOfMoney().subtract(amountOfTransferredMoney));
+        accountTo.setAmountOfMoney(accountTo.getAmountOfMoney().add(amountOfTransferredMoney));
+        accountDAO.update(accountFrom);
+        accountDAO.update(accountTo);
     }
 }

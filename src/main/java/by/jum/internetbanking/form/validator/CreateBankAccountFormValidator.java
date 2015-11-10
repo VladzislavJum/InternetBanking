@@ -40,10 +40,10 @@ public class CreateBankAccountFormValidator implements Validator {
         checkUserLogin(accountForm.getUserLogin(), errors, "userLogin");
     }
 
-    private void checkAccountNumber(String accountNumber, Errors errors, String param) {
+    public void checkAccountNumber(String accountNumber, Errors errors, String param) {
         if (StringUtils.isEmpty(accountNumber)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
-        } else if (accountNumber.length() > 9 || accountNumber.length() < 4) {
+        } else if (accountNumber.length() > 10 || accountNumber.length() < 4) {
             errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
         } else {
             pattern = Pattern.compile(LOGIN_NUMBER_PATTERN);
@@ -59,7 +59,7 @@ public class CreateBankAccountFormValidator implements Validator {
     private void checkAmountOfMoney(String amountOfMoney, Errors errors, String param) {
         if (StringUtils.isEmpty(amountOfMoney)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
-        } else if (amountOfMoney.length() > 13 || amountOfMoney.length() < 3) {
+        } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {
             errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
         } else {
             pattern = Pattern.compile(MONEY_PATTERN);

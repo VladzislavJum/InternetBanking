@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 
-@Service("roleService")
+@Service
 public class RoleServiceImpl implements RoleService {
 
     @Autowired

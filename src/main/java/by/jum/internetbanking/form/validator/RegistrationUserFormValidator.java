@@ -14,11 +14,11 @@ import java.util.regex.Pattern;
 @Component
 public class RegistrationUserFormValidator implements Validator {
 
-    @Autowired
-    private UserFacade userFacade;
-
     private static final String NAME_PATTERN = "[a-zA-Z]+";
     private static final String PASSPORT_NUMBER_LOGIN_PASS_PATTERN = "[a-zA-Z0-9]+";
+
+    @Autowired
+    private UserFacade userFacade;
 
     private Pattern pattern;
     private Matcher matcher;
@@ -63,7 +63,7 @@ public class RegistrationUserFormValidator implements Validator {
             matcher = pattern.matcher(passportNumber);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
-            } else if(userFacade.isExistUserWithPassportNumber(passportNumber)){
+            } else if (userFacade.isExistUserWithPassportNumber(passportNumber)) {
                 errors.rejectValue(param, "registration.label.error.passportnumberexist");
 
             }
@@ -99,7 +99,4 @@ public class RegistrationUserFormValidator implements Validator {
             }
         }
     }
-
-
-
 }

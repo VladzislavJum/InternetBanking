@@ -9,7 +9,6 @@ public class RegistrationUserForm {
     private String password;
     private long userID;
 
-
     public long getUserID() {
         return userID;
     }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class FormToUserConverter implements Converter<RegistrationUserForm, User> {
 
-
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 

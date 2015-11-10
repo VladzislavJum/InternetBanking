@@ -16,7 +16,7 @@
 <html>
 <head>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
-    <title><spring:message code="createuser.label.create"/> </title>
+    <title><spring:message code="createuser.label.create"/></title>
 </head>
 <body>
 

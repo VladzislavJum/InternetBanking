@@ -29,9 +29,7 @@ public class AuthorizationUserServiceImpl implements UserDetailsService {
         return buildUserForAuthentication(user, authorities);
     }
 
-
     private User buildUserForAuthentication(by.jum.internetbanking.entity.User user, List<GrantedAuthority> authorities) {
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), user.isUnlocked(), true, true, true, authorities);
     }
-
 }

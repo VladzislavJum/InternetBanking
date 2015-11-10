@@ -42,4 +42,17 @@
 
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="by.jum.internetbanking.facade.converter.account.AccountFormToAccountConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.account.AccountToDTOConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.account.DTOToAccountConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.user.FormToUserConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.user.UserDTOToUserConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.user.UserToDTOConverter"/>
+            </set>
+        </property>
+    </bean>
 </beans>

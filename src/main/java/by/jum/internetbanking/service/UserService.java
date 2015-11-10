@@ -3,6 +3,7 @@ package by.jum.internetbanking.service;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.entity.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface UserService {

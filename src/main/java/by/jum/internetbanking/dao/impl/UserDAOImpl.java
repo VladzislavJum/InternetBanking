@@ -5,6 +5,7 @@ import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Repository;
@@ -25,14 +26,15 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public List<User> getList() {
         Role role = new Role();
         role.setRoleID(ADMIN_ROLE_ID);
-        LOGGER.info("Get UserList");
-        return getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User u " +
-                "where u.role != :role").setParameter("role",  role).list();
+        LOGGER.info("DAO: Get UserList");
+        Query query = getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User u " +
+                "where u.role != :role").setParameter("role", role);
+        return query.list();
     }
 
     public void delete(User user) {
         super.delete(user);
-        LOGGER.info("User deleted: Login " + user.getLogin());
+        LOGGER.info("DAO: User deleted: Login " + user.getLogin());
 
     }
 
@@ -42,7 +44,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     public void save(User user) {
         super.save(user);
-        LOGGER.info("User created: Login " + user.getLogin());
+        LOGGER.info("DAO: User created: Login " + user.getLogin());
 
     }
 
@@ -70,7 +72,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public void deleteByID(long id) {
         getSessionFactory().getCurrentSession().createQuery("delete from by.jum.internetbanking.entity.User u " +
                 "where u.id = :id").setParameter("id", id).executeUpdate();
-        LOGGER.info("User Deleted: id " + id);
+        LOGGER.info("DAO: User Deleted: id " + id);
     }
 
     public boolean isExistUserWithPassportNumber(String passportNumber) {
@@ -87,6 +89,6 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         User user = getById(id);
         user.setIsEnabled(!user.isUnlocked());
         update(user);
-        LOGGER.info("User is unlocked: " + user.isUnlocked());
+        LOGGER.info("DAO: User is unlocked: " + user.isUnlocked());
     }
 }

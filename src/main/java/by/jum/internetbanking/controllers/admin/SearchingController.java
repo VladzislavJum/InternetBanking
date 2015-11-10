@@ -33,7 +33,7 @@ public class SearchingController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "users/search", method = RequestMethod.POST)
+    @RequestMapping(value = "users/search", method = {RequestMethod.POST, RequestMethod.GET})
     public String searchUser(@ModelAttribute("searchUserForm") SearchForm searchForm, Model model) {
         LOGGER.info("Search user" + searchForm.getSearchStr());
         UserDTO userDTO = userFacade.getUserByUserName(searchForm.getSearchStr());
@@ -48,7 +48,7 @@ public class SearchingController {
         return "admin/showUsers";
     }
 
-    @RequestMapping(value = "account/search", method = RequestMethod.POST)
+    @RequestMapping(value = "account/search", method = {RequestMethod.POST, RequestMethod.GET})
     public String searchAccount(@ModelAttribute("searchAccountForm") SearchForm searchForm, Model model) {
         LOGGER.info("Search account " + searchForm.getSearchStr());
         BankAccountDTO accountDTO = accountFacade.getAccountByNumber(searchForm.getSearchStr());

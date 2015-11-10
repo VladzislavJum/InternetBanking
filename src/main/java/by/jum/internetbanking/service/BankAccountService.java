@@ -2,6 +2,7 @@ package by.jum.internetbanking.service;
 
 import by.jum.internetbanking.entity.BankAccount;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface BankAccountService {
@@ -16,4 +17,6 @@ public interface BankAccountService {
     void deleteById(long id);
 
     BankAccount getAccountByNumber(String number);
+
+    void transferMoney(BankAccount accountFrom, BankAccount accountTo, BigDecimal amountOfTransferredMoney);
 }

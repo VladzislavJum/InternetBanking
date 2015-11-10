@@ -58,20 +58,22 @@
                         <spring:url value="${path}/admin/users/${user.userID}/delete" var="deleteUrl"/>
                         <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
 
-                        <button class="btn btn-info" onclick="location.href='${accountsUrl}'">${accountsButton}</button>
-                        <button class="btn btn-danger"
-                                onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
-
-                        <c:choose>
-                            <c:when test="${user.unlocked}">
-                                <button class="btn btn-warning"
-                                        onclick="location.href=('${lockOrUnlockUrl}')">${lockButton}</button>
-                            </c:when>
-                            <c:otherwise>
-                                <button class="btn btn-success"
-                                        onclick="location.href=('${lockOrUnlockUrl}')">${unlockButton}</button>
-                            </c:otherwise>
-                        </c:choose>
+                        <div class="row">
+                            <button class="btn btn-info col-sm-4 button-actions-text"
+                                    onclick="location.href='${accountsUrl}'">${accountsButton}</button>
+                            <c:choose>
+                                <c:when test="${user.unlocked}">
+                                    <button class="btn btn-warning col-sm-4 col-sm-offset-0 button-actions-text"
+                                            onclick="location.href=('${lockOrUnlockUrl}')">${lockButton}</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn btn-success col-sm-4 col-sm-offset-0 button-actions-text"
+                                            onclick="location.href=('${lockOrUnlockUrl}')">${unlockButton}</button>
+                                </c:otherwise>
+                            </c:choose>
+                            <button class="btn btn-danger col-sm-4 col-sm-offset-0 button-actions-text
+                                    onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

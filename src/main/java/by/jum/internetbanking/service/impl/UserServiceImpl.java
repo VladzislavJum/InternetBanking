@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -61,13 +61,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public boolean isExistUserWithPassportNumber(String passportNumber) {
         return userDAO.isExistUserWithPassportNumber(passportNumber);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public long getIDCurrentUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = userDetails.getUsername();

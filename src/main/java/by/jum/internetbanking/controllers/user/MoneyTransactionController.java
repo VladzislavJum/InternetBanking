@@ -1,6 +1,7 @@
 package by.jum.internetbanking.controllers.user;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
+import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import by.jum.internetbanking.form.validator.MoneyTransactionValidator;
@@ -28,27 +29,30 @@ public class MoneyTransactionController {
     @Autowired
     private UserFacade userFacade;
 
+    @Autowired
+    private BankAccountFacade accountFacade;
+
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
     public String selectAccount(Model model, HttpSession session) {
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList((Long) session.getAttribute("currentUserID"));
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("transactionForm", new MoneyTransactionForm());
-        return "user/MoneyTransaction";
+        return "user/moneyTransaction";
     }
 
-    @RequestMapping(value = "/transfer", method = RequestMethod.POST)
-    public String transaction(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm, final BindingResult result, Model model, HttpSession session) {
+    @RequestMapping(value = "/transfer", method = {RequestMethod.POST, RequestMethod.GET})
+    public String transact(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm, final BindingResult result, Model model, HttpSession session) {
         MoneyTransactionValidator.validate(transactionForm, result);
         if (result.hasErrors()) {
-            LOGGER.info("Validation moneyTransaction error");   
+            LOGGER.info("Validation moneyTransaction error");
             List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList((Long) session.getAttribute("currentUserID"));
             model.addAttribute("accountList", accountDTOList);
             model.addAttribute("transactionForm", transactionForm);
-            return "user/MoneyTransaction";
+            return "user/moneyTransaction";
         }
 
+        accountFacade.transferMoney(transactionForm);
 
-        return "";
+        return "redirect:/user/accounts";
     }
-
 }

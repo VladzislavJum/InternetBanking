@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"passport_number", "login"}))
 public class User implements Serializable {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +50,21 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
     private List<BankAccount> bankAccountList;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<PaymentHistory> paymentHistoryList;
+
+    public void setIsUnlocked(boolean isUnlocked) {
+        this.isUnlocked = isUnlocked;
+    }
+
+    public List<PaymentHistory> getPaymentHistoryList() {
+        return paymentHistoryList;
+    }
+
+    public void setPaymentHistoryList(List<PaymentHistory> paymentHistoryList) {
+        this.paymentHistoryList = paymentHistoryList;
+    }
 
     public List<BankAccount> getBankAccountList() {
         return bankAccountList;
@@ -131,5 +145,4 @@ public class User implements Serializable {
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
     }
-
 }
