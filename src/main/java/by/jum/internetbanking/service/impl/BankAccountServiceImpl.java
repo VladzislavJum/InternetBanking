@@ -3,7 +3,6 @@ package by.jum.internetbanking.service.impl;
 import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.service.BankAccountService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,5 +59,12 @@ public class BankAccountServiceImpl implements BankAccountService {
         accountTo.setAmountOfMoney(accountTo.getAmountOfMoney().add(amountOfTransferredMoney));
         accountDAO.update(accountFrom);
         accountDAO.update(accountTo);
+    }
+
+    @Override
+    @Transactional
+    public void refillMoney(BigDecimal amountRefillMoney, BankAccount account) {
+        account.setAmountOfMoney(account.getAmountOfMoney().add(amountRefillMoney));
+        accountDAO.update(account);
     }
 }

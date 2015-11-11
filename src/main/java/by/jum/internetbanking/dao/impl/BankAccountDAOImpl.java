@@ -14,7 +14,7 @@ import java.util.Locale;
 @Repository
 public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDAO {
 
-    private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
     @Autowired
     private MessageSource messageSource;

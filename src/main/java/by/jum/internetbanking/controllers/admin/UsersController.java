@@ -4,6 +4,7 @@ import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.history.PaymentHistoryForm;
+import by.jum.internetbanking.form.money.RefillMoneyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class UsersController {
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("userID", id);
-        model.addAttribute("historyForm", new PaymentHistoryForm());
+        model.addAttribute("refillForm", new RefillMoneyForm());
         return "admin/showAccounts";
     }
 

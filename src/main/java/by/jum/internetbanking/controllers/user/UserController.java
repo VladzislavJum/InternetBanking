@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private static final Logger LOGGER = Logger.getLogger(AuthorizationController.class);
+    private static final Logger LOGGER = Logger.getLogger(UserController.class);
 
     @Autowired
     private UserFacade userFacade;

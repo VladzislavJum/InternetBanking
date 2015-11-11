@@ -59,6 +59,7 @@
             <li><a href="${path}/logout"><spring:message code="nav.button.logout"/> </a></li>
         </ul>
     </div>
+
 </header>
 </body>
 </html>

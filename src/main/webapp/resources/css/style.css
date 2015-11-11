@@ -1,5 +1,10 @@
 @import "../bootstrap/css/bootstrap.css";
 
+/*body {
+    background: #ffffff url("../images/fallingMoney.jpg") no-repeat fixed top center;
+    background-size: 80% 100%;
+}*/
+
 body {
     background-color: #122b40;
 }
@@ -17,11 +22,11 @@ body {
 }
 
 .navbar-inverse .navbar-brand {
-    color: #f5e79e;
+    color: #449d44;
 }
 
 .navbar-inverse {
-    background-color: #398439;
+    background-color: #122b40;
     border-color: #f9f9f9;
     border-width: 5px;
 }
@@ -109,11 +114,6 @@ body {
     text-align: center;
 }
 
-.error-login {
-    color: #c12e2a;
-    text-align: center
-}
-
 .full-height {
     height: 95%;
 }
@@ -185,51 +185,3 @@ body {
     text-indent: .9em;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#wrap{
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(1, 1, 2, 0.725);
-}
-
-#window{
-    width: 400px;
-    height: 400px;
-    margin: 50px auto;
-    display: none;
-    background: #fff;
-    z-index: 200;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 16px;
-}
-
-.close{
-    margin-left: 364px;
-    margin-top: 4px;
-    cursor: pointer;
-}

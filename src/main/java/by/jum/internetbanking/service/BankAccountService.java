@@ -19,4 +19,6 @@ public interface BankAccountService {
     BankAccount getAccountByNumber(String number);
 
     void transferMoney(BankAccount accountFrom, BankAccount accountTo, BigDecimal amountOfTransferredMoney);
+
+    void refillMoney(BigDecimal amountRefillMoney, BankAccount account);
 }

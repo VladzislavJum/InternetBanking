@@ -1,0 +1,30 @@
+#wrap{
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 10, 0.7);
+}
+
+#refillwindow{
+    width: 400px;
+    height: 400px;
+    margin: 10% auto;
+    display: none;
+    background: #fff;
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 16px;
+}
+
+.close{
+    margin-left: 200px;
+    cursor: pointer;
+}

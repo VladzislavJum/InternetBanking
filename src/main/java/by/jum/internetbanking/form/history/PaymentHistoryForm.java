@@ -1,12 +1,10 @@
 package by.jum.internetbanking.form.history;
 
-import java.math.BigDecimal;
-
 public class PaymentHistoryForm {
     private long paymentHistoryID;
     private String accountNumberFrom;
     private String accountNumberTo;
-    private BigDecimal amountOfMoney;
+    private String amountOfMoney;
 
     public long getPaymentHistoryID() {
         return paymentHistoryID;
@@ -32,11 +30,11 @@ public class PaymentHistoryForm {
         this.accountNumberTo = accountNumberTo;
     }
 
-    public BigDecimal getAmountOfMoney() {
+    public String getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(BigDecimal amountOfMoney) {
+    public void setAmountOfMoney(String amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 }

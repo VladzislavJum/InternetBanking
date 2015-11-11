@@ -5,6 +5,7 @@ import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
+import by.jum.internetbanking.form.money.RefillMoneyForm;
 import by.jum.internetbanking.service.BankAccountService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,15 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
         LOGGER.info(messageSource.getMessage("print.transfer", new Object[]{amountOfTransferredMoney,
                 numberAccountFrom, numberAccountTo}, Locale.ENGLISH));
         accountService.transferMoney(accountFrom, accountTo, transferredMoney);
+    }
+
+    @Override
+    public void refillMoney(RefillMoneyForm refillMoneyForm, long accountID) {
+        String refillMoney = refillMoneyForm.getAmountOfMoney();
+        BankAccount account = accountService.getAccountByID(accountID);
+        LOGGER.info("Facade: Amount of Refilling money: " + refillMoney);
+
+        BigDecimal amountRefillMoney = new BigDecimal(refillMoney);
+        accountService.refillMoney(amountRefillMoney, account);
     }
 }

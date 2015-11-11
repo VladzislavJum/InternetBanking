@@ -51,7 +51,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
     private List<BankAccount> bankAccountList;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "user")
     private List<PaymentHistory> paymentHistoryList;
 
     public void setIsUnlocked(boolean isUnlocked) {

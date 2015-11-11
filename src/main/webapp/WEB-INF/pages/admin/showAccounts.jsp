@@ -14,9 +14,8 @@
 <html>
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
+    <link href="<c:url value="../../../resources/css/popupwindow.css" />" rel="stylesheet">
     <script src="<c:url value="../../../resources/js/window.js"/>"></script>
-
 </head>
 <body>
 <div class="container full-height">
@@ -42,11 +41,12 @@
                         <spring:url value="${path}/admin/users/${userID}/accounts/${account.bankAccountID}/delete"
                                     var="deleteUrl"/>
 
-                        <spring:url value="${path}/admin/users/${userID}/accounts/${account.bankAccountID}/delete"
-                                    var="deleteUrl"/>
+                        <spring:url value="${path}/admin/users/${userID}/accounts/${account.bankAccountID}/refill"
+                                    var="refillUrl"/>
+
                         <div class="row">
-                            <button class="btn btn-success col-sm-3 col-sm-offset-1"
-                                    onclick="show('block')">${refillButton}</button>
+                            <button class="btn btn-success col-sm-3 col-sm-offset-1" id="${refillUrl}"
+                                    onclick="setDetails(this); show('block', 'refillwindow'); getDetails()">${refillButton}</button>
 
                             <button class="btn btn-danger col-sm-3"
                                     onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
@@ -58,21 +58,28 @@
 
         </table>
 
-        <div onclick="show('none')" id="wrap"></div>
+        <div onclick="show('none', 'refillwindow')" id="wrap"></div>
 
-        <div id="window" class="row">
+        <div id="refillwindow" class="row">
+            <img class="close" onclick="show('none', 'refillwindow')"
+                 src=<c:url value="../../../resources/images/exit.jpg"/>/>
 
-            <img class="close" onclick="show('none')" src="http://sergey-oganesyan.ru/wp-content/uploads/2014/01/close.png">
+            <form:form id="form" class="form-horizontal" method="post" action="${refillUrl}"
+                       commandName="refillForm">
 
-            <form:form class="form-horizontal" method="post" action="${path}/admin/createaccount" commandName="historyForm">
+                <form:errors path="amountOfMoney" cssClass="error-text"/>
 
-            <form:label path="amountOfMoney" cssClass="control-label col-xs-5"
-                        cssStyle="color:#9d9d9d">${amountOfMoney}</form:label>
-            <form:errors path="amountOfMoney" cssClass="error-text"/>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
+                </div>
 
-            <div class="col-xs-3 margin-top10" >
-                <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
-            </div>
+                <img style="height: 250px; width: 400px" src=
+                        <c:url value="../../../resources/images/dollar.png"/>/>
+
+                <button class="btn btn-primary col-sm-4 col-sm-offset-4 margin-top5"
+                        type="submit">${refillButton}</button>
+
+
             </form:form>
 
         </div>

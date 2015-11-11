@@ -17,7 +17,7 @@ CREATE TABLE users
   unlocked boolean DEFAULT true,
   login character varying(20),
   password character varying(80),
-  role_id integer,
+  role_id bigint,
   CONSTRAINT users_pkey PRIMARY KEY (id),
   CONSTRAINT users_role_id_fkey FOREIGN KEY (role_id)
       REFERENCES role (id) MATCH SIMPLE
@@ -34,7 +34,7 @@ INSERT INTO users(name, surname, patronymic, passport_number, unlocked, login, p
 CREATE TABLE bank_account
 (
   amount_of_money numeric,
-  user_id integer,
+  user_id bigint,
   id bigserial NOT NULL,
   account_number character varying(15),
   CONSTRAINT bank_account_pkey PRIMARY KEY (id),
@@ -43,8 +43,14 @@ CREATE TABLE bank_account
       ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT bank_account_account_number_key UNIQUE (account_number)
 );
+
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (556425, 1000000, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (856425, 3200000, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (87654, 3265400, 2);
 INSERT INTO bank_account(account_number, amount_of_money, user_id) VALUES (112325, 8765400, 2);
+
+INSERT INTO bank_account(account_number, amount_of_money) VALUES (1111, 1000000);
+INSERT INTO bank_account(account_number, amount_of_money) VALUES (2222, 1000000);
+INSERT INTO bank_account(account_number, amount_of_money) VALUES (3333, 1000000);
+INSERT INTO bank_account(account_number, amount_of_money) VALUES (4444, 1000000);
 

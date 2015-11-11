@@ -1,6 +1,5 @@
 package by.jum.internetbanking.controllers.user;
 
-import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.form.history.PaymentHistoryForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

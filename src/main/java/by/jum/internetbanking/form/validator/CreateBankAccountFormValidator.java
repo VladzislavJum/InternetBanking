@@ -40,7 +40,7 @@ public class CreateBankAccountFormValidator implements Validator {
         checkUserLogin(accountForm.getUserLogin(), errors, "userLogin");
     }
 
-    public void checkAccountNumber(String accountNumber, Errors errors, String param) {
+    private void checkAccountNumber(String accountNumber, Errors errors, String param) {
         if (StringUtils.isEmpty(accountNumber)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (accountNumber.length() > 10 || accountNumber.length() < 4) {
@@ -56,7 +56,7 @@ public class CreateBankAccountFormValidator implements Validator {
         }
     }
 
-    private void checkAmountOfMoney(String amountOfMoney, Errors errors, String param) {
+    public void checkAmountOfMoney(String amountOfMoney, Errors errors, String param) {
         if (StringUtils.isEmpty(amountOfMoney)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
         } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {

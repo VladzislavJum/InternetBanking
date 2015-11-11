@@ -10,7 +10,16 @@
 <div class="container full-height">
     <jsp:include page="common/navUser.jsp"/>
 
+    <div class="row">
+        <button class="btn btn-success col-sm-4 button-actions-text onclick=" location.href=('${deleteUrl}')"
+                style="height: 100px">dsfdff</button>
+        <button class="btn btn-success col-sm-4 button-actions-text onclick=" location.href=('${deleteUrl}')"
+                style="height: 100px">${deleteButton}</button>
+        <button class="btn btn-success col-sm-4 button-actions-text onclick=" location.href=('${deleteUrl}')"
+                style="height: 100px">${deleteButton}</button>
 
+
+    </div>
 
 </div>
 </body>
