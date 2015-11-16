@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 });
 
 function deleteViaAjax(button) {
-    var userAccID = {}
+    var userAccID = {};
     userAccID["userID"] = $(button).attr("userID");
     userAccID["accountID"] = $(button).attr("accID");
 
@@ -40,4 +40,6 @@ function display(data) {
     }
 
     $('#rowDivForEach').html(body);
+    clickDelete();
+    clickRefill();
 }

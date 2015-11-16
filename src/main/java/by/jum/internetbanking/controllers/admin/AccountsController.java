@@ -27,7 +27,6 @@ import java.util.Locale;
 @Controller
 @RequestMapping("/admin")
 public class AccountsController {
-
     private static final Logger LOGGER = Logger.getLogger(AccountsController.class);
 
     @Autowired
@@ -62,7 +61,7 @@ public class AccountsController {
     public
     @ResponseBody
     AccountListResponseBody deleteAcc(@RequestBody UserAndAccountID userAndAccountID) {
-        accountFacade.deleteAccountByID(userAndAccountID.getAccountID());
+            accountFacade.deleteAccountByID(userAndAccountID.getAccountID());
         AccountListResponseBody accountResponseBody = new AccountListResponseBody();
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userAndAccountID.getUserID());
         accountResponseBody.setAccountDTOList(accountDTOList);
