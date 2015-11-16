@@ -11,15 +11,17 @@
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
+
 </head>
 <body>
-<div class="container full-height">
+<div class="container full-height-border">
     <jsp:include page="common/navUser.jsp"/>
-    <h1 class="head-inf"><spring:message code="showaccounts.label.accounts"/></h1>
-
+    <div class="row head-color-green">
+        <h1 class="head-inf"><spring:message code="showaccounts.label.accounts"/></h1>
+    </div>
     <div class="row">
-        <div class="col-sm-3 col-sm-offset-3 head-column">${number}</div>
-        <div class="col-sm-3 head-column">${money}</div>
+        <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
+        <div class="col-sm-3 head-users-accounts">${money}</div>
     </div>
 
     <c:forEach items="${accountList}" var="account">

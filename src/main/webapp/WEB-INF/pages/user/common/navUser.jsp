@@ -20,7 +20,7 @@
             <li><a href="${path}/user/accounts"><spring:message code="navuser.button.bankaccount"/> </a></li>
             <li><a href="${path}/user/payment"><spring:message code="navuser.button.payment"/> </a></li>
             <li><a href="${path}/user/transaction"><spring:message code="navuser.button.moneytransaction"/> </a></li>
-            <li><a href="${path}/"><spring:message code="navuser.button.paymenthistory"/> </a></li>
+            <li><a href="${path}/user/history"><spring:message code="navuser.button.paymenthistory"/> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

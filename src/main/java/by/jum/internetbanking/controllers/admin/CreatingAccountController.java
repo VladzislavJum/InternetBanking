@@ -2,7 +2,6 @@ package by.jum.internetbanking.controllers.admin;
 
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
-import by.jum.internetbanking.form.history.PaymentHistoryForm;
 import by.jum.internetbanking.form.validator.CreateBankAccountFormValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

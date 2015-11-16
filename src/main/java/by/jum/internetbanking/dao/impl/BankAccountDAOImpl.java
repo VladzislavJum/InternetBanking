@@ -16,12 +16,16 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
+    private static final String DELETE_BY_ID = "delete from by.jum.internetbanking.entity.BankAccount b where b.id = :id";
+    private static final String GET_BY_NUMBER = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
+    private static final String GET_LIST = "from by.jum.internetbanking.entity.BankAccount";
+
     @Autowired
     private MessageSource messageSource;
 
     @Override
     public List<BankAccount> getList() {
-        Query query = getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.BankAccount");
+        Query query = getSessionFactory().getCurrentSession().createQuery(GET_LIST);
         return query.list();
     }
 
@@ -44,22 +48,21 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     @Override
     public void deleteByID(long id) {
-        getSessionFactory().getCurrentSession().createQuery("delete from by.jum.internetbanking.entity.BankAccount b " +
-                "where b.id = :id").setParameter("id", id).executeUpdate();
+        getSessionFactory().getCurrentSession().createQuery(DELETE_BY_ID).setParameter("id", id).executeUpdate();
         LOGGER.info("DAO: Account Deleted: id " + id);
     }
 
     @Override
     public BankAccount getByID(Long id) {
         BankAccount account = (BankAccount) super.getByID(BankAccount.class, id);
-        LOGGER.info(messageSource.getMessage("print.getaccountbyid", new Object[]{id, account.getAccountNumber()}, Locale.ENGLISH));
+        LOGGER.info(messageSource.getMessage("print.getaccountbyid", new Object[]{id, account}, Locale.ENGLISH));
         return account;
     }
 
     @Override
     public BankAccount getByNumber(String number) {
         BankAccount account = (BankAccount) getSessionFactory().getCurrentSession().
-                createQuery("from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber").
+                createQuery(GET_BY_NUMBER).
                 setParameter("accountNumber", number).uniqueResult();
         LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
 

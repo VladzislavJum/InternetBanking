@@ -3,7 +3,6 @@ package by.jum.internetbanking.controllers.admin;
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.form.history.PaymentHistoryForm;
 import by.jum.internetbanking.form.money.RefillMoneyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -49,4 +47,5 @@ public class UsersController {
         userFacade.lockOrUnlockUser(id);
         return "redirect:/admin/users";
     }
+
 }

@@ -1,8 +1,10 @@
 package by.jum.internetbanking.facade.impl;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
+import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.BankAccount;
+import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
@@ -60,6 +62,14 @@ public class UserFacadeImpl implements UserFacade {
         Collections.sort(accountDTOList, (o1, o2) -> o1.getBankAccountID().compareTo(o2.getBankAccountID()));
         return accountDTOList;
 
+    }
+
+    @Override
+    public List<PaymentHistoryDTO> getHistoryUserList(long userID) {
+        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistory.class));
+        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistoryDTO.class));
+        List<PaymentHistoryDTO> historyDTOList = (List<PaymentHistoryDTO>) conversionService.convert(userService.getHistoryUserList(userID), sourceType, targetType);
+        return historyDTOList;
     }
 
     @Override

@@ -20,10 +20,12 @@
 </head>
 <body>
 
-<div class="container full-height">
+<div class="container full-height-border">
     <jsp:include page="common/navAdmin.jsp"/>
-    <h1 class="head-inf"><spring:message code="registration.label.registration"/></h1>
-    <form:form class="form-horizontal" method="post" action="${path}/admin/register" commandName="userForm">
+    <div class="row head-color-green">
+        <h1 class="head-inf"><spring:message code="registration.label.registration"/></h1>
+    </div>
+    <form:form class="margin-top5 form-horizontal" method="post" action="${path}/admin/register" commandName="userForm">
 
         <form:label class="control-label col-xs-5" cssStyle="color: #9d9d9d;"
                     path="firstname">${firstname}</form:label>

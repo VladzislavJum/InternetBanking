@@ -52,6 +52,8 @@
                 <bean class="by.jum.internetbanking.facade.converter.user.FormToUserConverter"/>
                 <bean class="by.jum.internetbanking.facade.converter.user.UserDTOToUserConverter"/>
                 <bean class="by.jum.internetbanking.facade.converter.user.UserToDTOConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.history.TransactionFormToHistoryConverter"/>
+                <bean class="by.jum.internetbanking.facade.converter.history.HistoryToHistoryDTOConverter"/>
             </set>
         </property>
     </bean>

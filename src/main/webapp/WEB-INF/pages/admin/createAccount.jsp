@@ -18,11 +18,12 @@
 
 <body>
 
-<div class="container full-height">
+<div class="container full-height-border">
     <jsp:include page="common/navAdmin.jsp"/>
-    <h1 class="head-inf"><spring:message code="createaccount.label.newaccount"/></h1>
-
-    <div style="margin-top: 10%">
+    <div class="row head-color-green">
+        <h1 class="head-inf"><spring:message code="createaccount.label.newaccount"/></h1>
+    </div>
+    <div class="margin-top5">
         <form:form class="form-horizontal" method="post" action="${path}/admin/createaccount" commandName="accountForm">
 
             <form:label path="accountNumber" cssClass="control-label col-xs-5"

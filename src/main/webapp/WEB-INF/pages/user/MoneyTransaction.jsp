@@ -11,16 +11,22 @@
 <head>
     <title><spring:message code="moneytrans.label.transaction"/></title>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
+    <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
 </head>
 <body>
-<div class="container full-height">
+<div class="container full-height-border">
     <jsp:include page="common/navUser.jsp"/>
+    <div class="row head-color-green">
+        <img style="height: 100px; width: 150px;" class="col-sm-2"
+             src="<c:url value="../../../resources/images/transfer1.jpg"/> ">
+        <h1 class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></h1>
 
-    <form:form commandName="transactionForm" method="post" action="${path}/user/transfer">
+    </div>
+    <form:form commandName="transactionForm" method="post" action="${path}/user/transfer" id="trans">
         <c:if test="${!empty accountList}">
-            <div class="row margin-top5">
-                <div class="col-sm-3 col-sm-offset-3 head-column">${number}</div>
-                <div class="col-sm-3 head-column">${money}</div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
+                <div class="col-sm-3 head-users-accounts">${money}</div>
             </div>
 
             <c:forEach items="${accountList}" var="account">
@@ -52,6 +58,7 @@
 
             </div>
 
+
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3">
                     <form:errors path="numberAccountTo" cssClass="error-text"/>
@@ -62,18 +69,20 @@
             </div>
 
             <div class="row">
-                <input type="submit" class="btn btn-primary btn-transfer col-sm-offset-5 col-sm-2"
+                <input type="submit" class="btn btn-success btn-transfer col-sm-offset-5 col-sm-2"
                        value="${transfer}"/>
             </div>
-            <div class="row">
-                <form:errors path="numberAccountFrom" cssClass="col-sm-offset-5 error-text-trans"/>
-            </div>
 
+            <div class="error-text-trans">
+                <form:errors path="numberAccountFrom"/>
+            </div>
         </c:if>
 
     </form:form>
 
-
 </div>
+<script>
+    $("#trans").trigger('remem');
+</script>
 </body>
 </html>

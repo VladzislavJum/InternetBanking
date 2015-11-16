@@ -1,11 +1,10 @@
 package by.jum.internetbanking.facade;
 
-import by.jum.internetbanking.entity.PaymentHistory;
+import by.jum.internetbanking.dto.PaymentHistoryDTO;
+import by.jum.internetbanking.form.money.MoneyTransactionForm;
 
 public interface PaymentHistoryFacade {
-    void deleteHistory(PaymentHistory history);
+    PaymentHistoryDTO getHistoryById(Long id);
 
-    PaymentHistory getHistoryById(Long id);
-
-    void saveHistory(PaymentHistory history);
+    void saveHistory(MoneyTransactionForm transactionForm);
 }

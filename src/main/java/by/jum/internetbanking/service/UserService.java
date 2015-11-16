@@ -1,9 +1,9 @@
 package by.jum.internetbanking.service;
 
 import by.jum.internetbanking.entity.BankAccount;
+import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.entity.User;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface UserService {
@@ -18,6 +18,8 @@ public interface UserService {
     User getByUserName(String login);
 
     List<BankAccount> getUserAccountList(long id);
+
+    List<PaymentHistory> getHistoryUserList(long id);
 
     void deleteById(long id);
 

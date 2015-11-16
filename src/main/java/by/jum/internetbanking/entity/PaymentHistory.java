@@ -21,18 +21,29 @@ public class PaymentHistory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long historyID;
 
-    @JoinColumn(name = "account_from_id")
-    private BankAccount accountFrom;
+    @Column(name = "number_account_from")
+    private String numberAccountFrom;
 
-    @JoinColumn(name = "account_to_id")
-    private BankAccount accountTo;
+    @Column(name = "number_account_to")
+    private String numberAccountTo;
 
     @Column(name = "amount_of_money")
     private BigDecimal amountOfMoney;
 
+    @Column(name = "data_time")
+    private String dataTime;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public String getDataTime() {
+        return dataTime;
+    }
+
+    public void setDataTime(String dataTime) {
+        this.dataTime = dataTime;
+    }
 
     public Long getHistoryID() {
         return historyID;
@@ -42,20 +53,28 @@ public class PaymentHistory implements Serializable {
         this.historyID = historyID;
     }
 
-    public BankAccount getAccountFrom() {
-        return accountFrom;
+    public String getNumberAccountFrom() {
+        return numberAccountFrom;
     }
 
-    public void setAccountFrom(BankAccount accountFrom) {
-        this.accountFrom = accountFrom;
+    public void setNumberAccountFrom(String numberAccountFrom) {
+        this.numberAccountFrom = numberAccountFrom;
     }
 
-    public BankAccount getAccountTo() {
-        return accountTo;
+    public String getNumberAccountTo() {
+        return numberAccountTo;
     }
 
-    public void setAccountTo(BankAccount accountTo) {
-        this.accountTo = accountTo;
+    public void setNumberAccountTo(String numberAccountTo) {
+        this.numberAccountTo = numberAccountTo;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public BigDecimal getAmountOfMoney() {

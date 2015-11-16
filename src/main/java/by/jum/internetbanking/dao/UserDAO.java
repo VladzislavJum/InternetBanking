@@ -1,6 +1,7 @@
 package by.jum.internetbanking.dao;
 
 import by.jum.internetbanking.entity.BankAccount;
+import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.entity.User;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface UserDAO {
     User getByUserName(String login);
 
     List<BankAccount> getAccountUserList(long id);
+
+    List<PaymentHistory> getHistoryUserList(long id);
 
     void deleteByID(long id);
 

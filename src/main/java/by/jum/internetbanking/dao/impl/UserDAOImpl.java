@@ -2,6 +2,7 @@ package by.jum.internetbanking.dao.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.BankAccount;
+import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import org.apache.log4j.Logger;
@@ -18,6 +19,11 @@ import java.util.Locale;
 public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
+    private static final String GET_LIST = "from by.jum.internetbanking.entity.User u where u.role != :role";
+    private static final String GET_BY_USERNAME = "from by.jum.internetbanking.entity.User u where u.login = :login";
+    private static final String DELETE_BY_ID = "delete from by.jum.internetbanking.entity.User u where u.id = :id";
+    private static final String IS_EXIST_WITH_PASSPORT = "from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber";
+
     private static final long ADMIN_ROLE_ID = 2L;
 
     @Autowired
@@ -27,8 +33,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         Role role = new Role();
         role.setRoleID(ADMIN_ROLE_ID);
         LOGGER.info("DAO: Get UserList");
-        Query query = getSessionFactory().getCurrentSession().createQuery("from by.jum.internetbanking.entity.User u " +
-                "where u.role != :role").setParameter("role", role);
+        Query query = getSessionFactory().getCurrentSession().createQuery(GET_LIST).setParameter("role", role);
         return query.list();
     }
 
@@ -57,7 +62,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     @Override
     public User getByUserName(String login) {
         User user = (User) getSessionFactory().getCurrentSession().
-                createQuery("from by.jum.internetbanking.entity.User u where u.login = :login").
+                createQuery(GET_BY_USERNAME).
                 setParameter("login", login).uniqueResult();
         LOGGER.info(messageSource.getMessage("print.getbyusername", new Object[]{login, user != null}, Locale.ENGLISH));
         return user;
@@ -69,15 +74,19 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     }
 
     @Override
+    public List<PaymentHistory> getHistoryUserList(long id) {
+        return getById(id).getPaymentHistoryList();
+    }
+
+    @Override
     public void deleteByID(long id) {
-        getSessionFactory().getCurrentSession().createQuery("delete from by.jum.internetbanking.entity.User u " +
-                "where u.id = :id").setParameter("id", id).executeUpdate();
+        getSessionFactory().getCurrentSession().createQuery(DELETE_BY_ID).setParameter("id", id).executeUpdate();
         LOGGER.info("DAO: User Deleted: id " + id);
     }
 
     public boolean isExistUserWithPassportNumber(String passportNumber) {
         Object object = getSessionFactory().getCurrentSession().
-                createQuery("from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber").
+                createQuery(IS_EXIST_WITH_PASSPORT).
                 setParameter("passportNumber", passportNumber).uniqueResult();
         boolean exist = object != null;
         LOGGER.info(messageSource.getMessage("print.isexistuserwithpassport", new Object[]{passportNumber, exist}, Locale.ENGLISH));

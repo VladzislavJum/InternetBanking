@@ -3,8 +3,8 @@ package by.jum.internetbanking.form.money;
 public class MoneyTransactionForm {
     private String numberAccountFrom;
     private String numberAccountTo;
-
     private String amountOfTransferredMoney;
+    private long userID;
 
     public String getAmountOfTransferredMoney() {
         return amountOfTransferredMoney;
@@ -28,5 +28,13 @@ public class MoneyTransactionForm {
 
     public void setNumberAccountTo(String numberAccountTo) {
         this.numberAccountTo = numberAccountTo;
+    }
+
+    public long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 }

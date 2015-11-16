@@ -1,6 +1,7 @@
 package by.jum.internetbanking.form.validator;
 
 import by.jum.internetbanking.facade.BankAccountFacade;
+import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,9 @@ public class MoneyTransactionValidator implements Validator {
     @Autowired
     private BankAccountFacade accountFacade;
 
+    @Autowired
+    private UserFacade userFacade;
+
     @Override
     public boolean supports(Class<?> clazz) {
         return MoneyTransactionForm.class.isAssignableFrom(clazz);
@@ -38,6 +42,8 @@ public class MoneyTransactionValidator implements Validator {
         } else {
             checkAccountNumber(transactionForm, errors, "numberAccountTo");
         }
+
+
     }
 
     private void checkAmountOfMoney(MoneyTransactionForm transactionForm, Errors errors, String param) {
@@ -59,7 +65,15 @@ public class MoneyTransactionValidator implements Validator {
 
             if (amountOfMoneyFrom.compareTo(amountOfTransferredMoney) == LESS_VALUE) {
                 errors.rejectValue(param, "moneytrans.label.error.moneyless");
+            } else {
+                checkBelongUser(transactionForm, errors);
             }
+        }
+    }
+
+    private void checkBelongUser(MoneyTransactionForm transactionForm, Errors errors) {
+        if (accountFacade.getAccountByNumber(transactionForm.getNumberAccountFrom()).getUserID() != userFacade.getIDCurrentUser()) {
+            errors.rejectValue("numberAccountFrom", "moneytrans.label.error.belong");
         }
     }
 

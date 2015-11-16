@@ -8,6 +8,7 @@
 <spring:message code="login.button.language.en" var="en"/>
 <spring:message code="login.button.language.ru" var="ru"/>
 <spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
+<c:set value="${pageContext.response.locale}" var="localeCode"/>
 
 <html>
 <head>
@@ -18,19 +19,31 @@
 
 </head>
 <body>
-<button class="btn btn-success"
-        onclick="location.href=('${path}?lang=en')">${en}</button>
-<button class="btn btn-primary"
-        onclick="location.href=('${path}?lang=ru')">${ru}</button>
-
+<c:choose>
+    <c:when test="${localeCode=='ru'}">
+        <button class="btn btn-success"
+                onclick="location.href=('${path}?lang=en')">${en}</button>
+        <button class="btn btn-primary"
+                onclick="location.href=('${path}?lang=ru')">${ru}</button>
+    </c:when>
+    <c:otherwise>
+        <button class="btn btn-primary"
+                onclick="location.href=('${path}?lang=en')">${en}</button>
+        <button class="btn btn-success"
+                onclick="location.href=('${path}?lang=ru')">${ru}</button>
+    </c:otherwise>
+</c:choose>
 
 <div class="container full-height">
 
-    <div class="welcome-text">
-        <spring:message code="login.label.welcome"/>
+    <div class="welcome-text"><spring:message code="login.label.welcome"/></div>
+
+    <div class="col-md-4 margin-top10">
+        <img style="height: 150px; width: 350px; transform: rotate(-40deg);"
+             src="<c:url value="../../resources/images/welcome.png"/> ">
     </div>
 
-    <div class="col-md-4 col-md-offset-4 margin-top10">
+    <div class="col-md-4 margin-top10">
         <c:url value="${path}/j_spring_security_check" var="loginUrl"/>
         <h4 class="error-login"> ${message}</h4>
 
@@ -50,5 +63,7 @@
             </button>
         </form:form>
     </div>
+
+
 </div>
 </body>

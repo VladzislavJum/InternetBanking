@@ -9,7 +9,7 @@
 <spring:message code="registration.label.surname" var="surnameLabel"/>
 <spring:message code="registration.label.patronymic" var="patronymicLabel"/>
 <spring:message code="registration.label.passportnumber" var="passportnumberLabel"/>
-<spring:message code="showusersoraccounts.label.action" var="actonLable"/>
+<spring:message code="showusersoraccounts.label.action" var="actonLabel"/>
 <spring:message code="action.button.delete" var="deleteButton"/>
 <spring:message code="action.button.accounts" var="accountsButton"/>
 <spring:message code="action.button.unlocked" var="lockButton"/>
@@ -20,65 +20,94 @@
 <head>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
     <title><spring:message code="showusers.label.show"/></title>
+
 </head>
 <body>
-<header>
-</header>
 
-<div class="container full-height">
+<div class="container full-height-border">
     <jsp:include page="common/navAdmin.jsp"/>
-
-    <h1 class="head-inf"><spring:message code="showusers.label.listusers"/></h1>
+    <div class="row head-color-green">
+        <h1 class="head-inf"><spring:message code="showusers.label.listusers"/></h1>
+    </div>
     <h4 class="error-search"> ${message}</h4>
 
     <c:if test="${!empty userList}">
+        <div class="row">
+            <div class="col-sm-2 head-users">${firstnameLabel}</div>
+            <div class="col-sm-2 head-users">${surnameLabel}</div>
+            <div class="col-sm-2 head-users">${patronymicLabel}</div>
+            <div class="col-sm-2 head-users">${passportnumberLabel}</div>
+            <div class="col-sm-2 head-users">${loginLabel}</div>
+            <div class="col-sm-2 head-users">${actonLabel}</div>
+        </div>
 
-        <table class="table">
-            <thead>
-            <tr class="thead-text">
-                <th>${firstnameLabel}</th>
-                <th>${surnameLabel}</th>
-                <th>${patronymicLabel}</th>
-                <th>${passportnumberLabel}</th>
-                <th>${loginLabel}</th>
-                <th>${actonLable}</th>
-            </tr>
-            </thead>
+        <c:forEach items="${userList}" var="user">
 
-            <c:forEach items="${userList}" var="user">
-                <tr class="user-inf">
-                    <td>${user.firstname}</td>
-                    <td>${user.surname}</td>
-                    <td>${user.patronymic}</td>
-                    <td>${user.passportNumber}</td>
-                    <td>${user.login}</td>
+            <spring:url value="${path}/admin/users/${user.userID}/accounts" var="accountsUrl"/>
+            <spring:url value="${path}/admin/users/${user.userID}/delete" var="deleteUrl"/>
+            <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
 
-                    <td>
-                        <spring:url value="${path}/admin/users/${user.userID}/accounts" var="accountsUrl"/>
-                        <spring:url value="${path}/admin/users/${user.userID}/delete" var="deleteUrl"/>
-                        <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
 
-                        <div class="row">
-                            <button class="btn btn-info col-sm-4 button-actions-text"
-                                    onclick="location.href='${accountsUrl}'">${accountsButton}</button>
-                            <c:choose>
-                                <c:when test="${user.unlocked}">
-                                    <button class="btn btn-warning col-sm-4 col-sm-offset-0 button-actions-text"
-                                            onclick="location.href=('${lockOrUnlockUrl}')">${lockButton}</button>
-                                </c:when>
-                                <c:otherwise>
-                                    <button class="btn btn-success col-sm-4 col-sm-offset-0 button-actions-text"
-                                            onclick="location.href=('${lockOrUnlockUrl}')">${unlockButton}</button>
-                                </c:otherwise>
-                            </c:choose>
-                            <button class="btn btn-danger col-sm-4 col-sm-offset-0 button-actions-text
-                                    onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
+            <div class="row">
+                <div class="user-inf col-sm-2">${user.firstname}</div>
+                <div class="user-inf col-sm-2">${user.surname}</div>
+                <div class="user-inf col-sm-2">${user.patronymic}</div>
+                <div class="user-inf col-sm-2">${user.passportNumber}</div>
+                <div class="user-inf col-sm-2">${user.login}</div>
+                <div class="user-inf col-sm-2">
+                    <div class="row">
+                        <button class="btn btn-info col-sm-4 button-actions-text"
+                                onclick="location.href='${accountsUrl}'"><img
+                                src="<c:url value="../../../resources/images/button/accounts.png"/>"
+                                title="${accountsButton}"></button>
+                        <c:choose>
+                            <c:when test="${user.unlocked}">
+                                <button class="btn btn-warning col-sm-4 button-actions-text"
+                                        onclick="location.href=('${lockOrUnlockUrl}')"><img
+                                        src="<c:url value="../../../resources/images/button/lock.png"/>"
+                                        title="${lockButton}"></button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn btn-success col-sm-4 button-actions-text"
+                                        onclick="location.href=('${lockOrUnlockUrl}')"><img
+                                        src="<c:url value="../../../resources/images/button/unlock.png"/>"
+                                        title="${unlockButton}"></button>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <button class="btn btn-danger col-sm-4 button-actions-text" id="${deleteUrl}"
+                                data-toggle="modal" data-target="#${user.userID}"><img
+                                src="<c:url value="../../../resources/images/button/delete.png"/>"
+                                title="${deleteButton}"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div id="${user.userID}" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title delete-text"><spring:message
+                                        code="showusers.label.titledelete"/>: ${user.login}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p><spring:message code="showusers.label.deletingdialog"/></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger"
+                                        onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                        code="showusers.buttondialog.cancel"/></button>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
     </c:if>
+
 </div>
 
 </body>

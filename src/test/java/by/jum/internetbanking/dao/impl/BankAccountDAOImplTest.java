@@ -3,6 +3,7 @@ package by.jum.internetbanking.dao.impl;
 import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import org.apache.log4j.Logger;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,17 @@ public class BankAccountDAOImplTest {
     @Autowired
     private BankAccountDAO accountDAO;
 
+    private BankAccount account;
+
+    @Before
+    public void init() {
+        LOGGER.info("init Test");
+        account = new BankAccount();
+        account.setAccountNumber("7777");
+        account.setBankAccountID(7894L);
+        account.setAmountOfMoney(new BigDecimal(999999));
+    }
+
     @Test
     public void testGetList() throws Exception {
         LOGGER.info("ListAccounts: ");
@@ -29,32 +41,28 @@ public class BankAccountDAOImplTest {
 
     @Test
     public void testSave() throws Exception {
-        BankAccount account = new BankAccount();
-        account.setAccountNumber("7777");
-        account.setBankAccountID(7894L);
         accountDAO.save(account);
-        LOGGER.info("Created Account with Nummber 7777");
-        accountDAO.getList().forEach(account1 -> LOGGER.info("Number:" +  account.getAccountNumber()));
+        LOGGER.info("Created Account with number 7777: " + accountDAO.getByNumber("7777"));
     }
 
     @Test
     public void testUpdate() throws Exception {
-        BankAccount account = accountDAO.getByID(1L);
         LOGGER.info("Money Before: " + account.getAmountOfMoney());
         account.setAmountOfMoney(new BigDecimal(1234));
         accountDAO.update(account);
-        LOGGER.info("Money After: " + accountDAO.getByID(1L).getAmountOfMoney());
+        LOGGER.info("Money After: " + accountDAO.getByID(7894L).getAmountOfMoney());
     }
 
     @Test
     public void testDelete() throws Exception {
-        accountDAO.delete(accountDAO.getByID(1L));
-        LOGGER.info("Deleted Account");
+        accountDAO.save(account);
+        accountDAO.delete(account);
+        LOGGER.info("Deleted Account with number 7777: " + accountDAO.getByNumber("7777"));
     }
 
     @Test
     public void testGetByID() throws Exception {
-        LOGGER.info("Get by id 1: AccountNumber " + accountDAO.getByID(1L).getAccountNumber());
+        accountDAO.update(account);
+        LOGGER.info("Get by id 789456L: " + accountDAO.getByID(7894L));
     }
-
 }

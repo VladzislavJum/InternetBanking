@@ -7,6 +7,24 @@ public class PaymentHistoryDTO {
     private String accountNumberFrom;
     private String accountNumberTo;
     private BigDecimal amountOfMoney;
+    private long userID;
+    private String dataTime;
+
+    public String getDataTime() {
+        return dataTime;
+    }
+
+    public void setDataTime(String dataTime) {
+        this.dataTime = dataTime;
+    }
+
+    public long getUserID() {
+        return userID;
+    }
+
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
 
     public long getPaymentHistoryID() {
         return paymentHistoryID;
