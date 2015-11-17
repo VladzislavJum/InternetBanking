@@ -20,6 +20,10 @@
 <head>
     <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
     <title><spring:message code="showusers.label.show"/></title>
+    <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="../../../resources/js/usersAjax.js"/>"></script>
+    <script src="<c:url value="../../../resources/js/clickForUser.js"/>"></script>
+
 
 </head>
 <body>
@@ -48,7 +52,7 @@
             <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
 
 
-            <div class="row">
+            <div class="row" id="user${user.userID}">
                 <div class="user-inf col-sm-2">${user.firstname}</div>
                 <div class="user-inf col-sm-2">${user.surname}</div>
                 <div class="user-inf col-sm-2">${user.patronymic}</div>
@@ -63,50 +67,60 @@
                         <c:choose>
                             <c:when test="${user.unlocked}">
                                 <button class="btn btn-warning col-sm-4 button-actions-text"
-                                        onclick="location.href=('${lockOrUnlockUrl}')"><img
+                                        userID="${user.userID}"
+                                        unlock="${user.unlocked}"
+                                        onclick="lockOrUnlockViaAjax(this);"><img
                                         src="<c:url value="../../../resources/images/button/lock.png"/>"
-                                        title="${lockButton}"></button>
+                                        title="<spring:message code="action.button.lockorunlock"/>">
+                                </button>
                             </c:when>
                             <c:otherwise>
                                 <button class="btn btn-success col-sm-4 button-actions-text"
-                                        onclick="location.href=('${lockOrUnlockUrl}')"><img
-                                        src="<c:url value="../../../resources/images/button/unlock.png"/>"
-                                        title="${unlockButton}"></button>
+                                        userID="${user.userID}"
+                                        unlock="${user.unlocked}"
+                                        onclick="lockOrUnlockViaAjax(this);"><img
+                                        src="<c:url value="../../../resources/images/button/lock.png"/>"
+                                        title="<spring:message code="action.button.lockorunlock"/>">
+                                </button>
                             </c:otherwise>
                         </c:choose>
 
-                        <button class="btn btn-danger col-sm-4 button-actions-text" id="${deleteUrl}"
-                                data-toggle="modal" data-target="#${user.userID}"><img
+                        <button class="btn btn-danger col-sm-4 button-actions-text" id="delete${user.userID}"
+                                userID="${user.userID}"
+                                data-toggle="modal" data-target="#delPopup"><img
                                 src="<c:url value="../../../resources/images/button/delete.png"/>"
                                 title="${deleteButton}"></button>
                     </div>
                 </div>
             </div>
+        </c:forEach>
 
-            <div>
-                <div id="${user.userID}" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title delete-text"><spring:message
-                                        code="showusers.label.titledelete"/>: ${user.login}</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p><spring:message code="showusers.label.deletingdialog"/></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger"
-                                        onclick="location.href=('${deleteUrl}')">${deleteButton}</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
-                                        code="showusers.buttondialog.cancel"/></button>
-                            </div>
+        <div>
+            <div id="delPopup" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title delete-text"><spring:message
+                                    code="showusers.label.titledelete"/>: ${user.login}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p><spring:message code="showusers.label.deletingdialog"/></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="delUserButton"
+                                    data-dismiss="modal">${deleteButton}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                    code="showusers.buttondialog.cancel"/></button>
                         </div>
                     </div>
                 </div>
             </div>
-        </c:forEach>
+        </div>
+
+
     </c:if>
+
 
 </div>
 

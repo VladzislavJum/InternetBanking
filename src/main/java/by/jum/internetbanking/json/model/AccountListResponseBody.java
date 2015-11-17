@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.util.List;
 
 public class AccountListResponseBody {
-
     @JsonView(Views.Public.class)
     List<BankAccountDTO> accountDTOList;
 

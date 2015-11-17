@@ -61,7 +61,7 @@ public class AccountsController {
     public
     @ResponseBody
     AccountListResponseBody deleteAcc(@RequestBody UserAndAccountID userAndAccountID) {
-            accountFacade.deleteAccountByID(userAndAccountID.getAccountID());
+        accountFacade.deleteAccountByID(userAndAccountID.getAccountID());
         AccountListResponseBody accountResponseBody = new AccountListResponseBody();
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userAndAccountID.getUserID());
         accountResponseBody.setAccountDTOList(accountDTOList);

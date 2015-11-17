@@ -15,7 +15,7 @@
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
     <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="../../../resources/js/click.js"/>"></script>
+    <script src="<c:url value="../../../resources/js/clickForAccount.js"/>"></script>
     <script src="<c:url value="../../../resources/js/accountsAjax.js"/>"></script>
 
 </head>
@@ -42,7 +42,10 @@
                     <div class="account-inf col-sm-4">${account.amountOfMoney}</div>
                     <div class="account-inf col-sm-4">
                         <button class="btn btn-success col-sm-3 col-sm-offset-2" id="refill${account.bankAccountID}"
-                                data-toggle="modal" data-target="#refPoppup">${refillButton}</button>
+                                data-toggle="modal" data-target="#refPopup" accID="${account.bankAccountID}"
+                                userID="${userID}">${refillButton}
+
+                        </button>
                         <a class="col-sm-3">|</a>
                         <button class="btn btn-danger col-sm-3" id="delete${account.bankAccountID}"
                                 accID="${account.bankAccountID}"
@@ -52,58 +55,57 @@
                 </div>
             </c:forEach>
         </div>
-            <div id="target" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                            </button>
-                            <h4 class="modal-title delete-text">
-                                <spring:message
-                                        code="showusers.label.titledelete"/>?</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p><spring:message code="showusersaccounts.label.deletingdialog"/></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" userID="${userID}"
-                                    accID="${account.bankAccountID}"
-                                    id="delAccButton${account.bankAccountID}"
-                                    data-dismiss="modal">${deleteButton}</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
-                                    code="showusers.buttondialog.cancel"/></button>
-                        </div>
+        <div id="target" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title delete-text">
+                            <spring:message
+                                    code="showusers.label.titledelete"/>?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><spring:message code="showusersaccounts.label.deletingdialog"/></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" userID="${userID}"
+                                id="delAccButton${account.bankAccountID}"
+                                data-dismiss="modal">${deleteButton}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                code="showusers.buttondialog.cancel"/></button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="modal fade" id="refPoppup" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm" style="width: 400px">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><spring:message code="showusersaccounts.label.titlerefill"/></h4>
-                        </div>
-                        <div class="modal-body">
-                            <form:form id="form" class="form-horizontal" method="post" action="${refillUrl}"
-                                       commandName="refillForm">
-                            <form:errors path="amountOfMoney" cssClass="error-text"/>
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
-                            </div>
-                            <img style="height: 300px; width: 380px;"
-                                 src="<c:url value="../../../resources/images/fallingMoney.jpg"/> ">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary  col-sm-7"
-                                    type="submit">${refillButton}</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
-                                    code="showusers.buttondialog.cancel"/></button>
-                        </div>
-                        </form:form>
+        <div class="modal fade" id="refPopup" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" style="width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><spring:message code="showusersaccounts.label.titlerefill"/></h4>
                     </div>
+                    <div class="modal-body">
+                        <form:form id="formID" class="form-horizontal" method="post"
+                                   commandName="refillForm">
+                        <form:errors path="amountOfMoney" cssClass="error-text"/>
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
+                        </div>
+                        <img style="height: 300px; width: 380px;"
+                             src="<c:url value="../../../resources/images/fallingMoney.jpg"/> ">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary col-sm-7"
+                                type="submit">${refillButton}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                code="showusers.buttondialog.cancel"/></button>
+                    </div>
+                    </form:form>
                 </div>
             </div>
+        </div>
     </c:if>
 
 </div>
