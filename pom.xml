@@ -142,6 +142,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${com.fasterxml.jackson.core-version}</version>
         </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.msgpack</groupId>-->
+            <!--<artifactId>jackson-dataformat-msgpack</artifactId>-->
+            <!--<version>0.7.0-p5</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>

@@ -11,7 +11,7 @@ package by.jum.internetbanking.facade;
 public interface BankAccountFacade {
     void createAccount(CreateBankAccountForm accountForm);
 
-    Object getAccountByID(long accountID);
+    BankAccountDTO getAccountByID(long accountID);
 
     List<BankAccountDTO> getAccountList();
 

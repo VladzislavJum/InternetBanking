@@ -37,14 +37,13 @@
 
         <div id="rowDivForEach">
             <c:forEach items="${accountList}" var="account">
-                <div class="row" id="rowAcc${account.bankAccountID}">
+                <div class="row" id="account${account.bankAccountID}">
                     <div class="account-inf col-sm-4">${account.accountNumber}</div>
                     <div class="account-inf col-sm-4">${account.amountOfMoney}</div>
                     <div class="account-inf col-sm-4">
                         <button class="btn btn-success col-sm-3 col-sm-offset-2" id="refill${account.bankAccountID}"
-                                data-toggle="modal" data-target="#refPopup" accID="${account.bankAccountID}"
-                                userID="${userID}">${refillButton}
-
+                                data-toggle="modal" data-target="#refPopup"
+                                accID="${account.bankAccountID}" userID="${userID}">${refillButton}
                         </button>
                         <a class="col-sm-3">|</a>
                         <button class="btn btn-danger col-sm-3" id="delete${account.bankAccountID}"
@@ -70,7 +69,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" userID="${userID}"
-                                id="delAccButton${account.bankAccountID}"
+                                id="delAccButton"
                                 data-dismiss="modal">${deleteButton}</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
                                 code="showusers.buttondialog.cancel"/></button>
@@ -87,17 +86,17 @@
                         <h4 class="modal-title"><spring:message code="showusersaccounts.label.titlerefill"/></h4>
                     </div>
                     <div class="modal-body">
-                        <form:form id="formID" class="form-horizontal" method="post"
+                        <form:form id="formID" class="form-horizontal" method="post" action=""
                                    commandName="refillForm">
                         <form:errors path="amountOfMoney" cssClass="error-text"/>
                         <div class="col-sm-8 col-sm-offset-2">
-                            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"/>
+                            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}" id="inputMoney"/>
                         </div>
                         <img style="height: 300px; width: 380px;"
                              src="<c:url value="../../../resources/images/fallingMoney.jpg"/> ">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary col-sm-7"
+                        <button class="btn btn-primary col-sm-7" id="refAccButton"
                                 type="submit">${refillButton}</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
                                 code="showusers.buttondialog.cancel"/></button>

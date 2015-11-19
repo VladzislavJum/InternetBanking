@@ -44,6 +44,14 @@ body {
     margin-bottom: 2%;
 }
 
+.head-history-inf {
+    font-family: serif;
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    /*margin-bottom: 2%;*/
+}
+
 .head-color-green{
     background-color: #398439;
 }

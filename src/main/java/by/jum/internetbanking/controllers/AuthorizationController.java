@@ -1,8 +1,8 @@
 package by.jum.internetbanking.controllers;
 
-import by.jum.internetbanking.Roles;
 import by.jum.internetbanking.facade.RoleFacade;
 import by.jum.internetbanking.facade.UserFacade;
+import by.jum.internetbanking.util.Roles;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

@@ -5,7 +5,6 @@ import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.RefillMoneyForm;
 import by.jum.internetbanking.json.jsonview.Views;
-import by.jum.internetbanking.json.model.UserListResponseBody;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +55,8 @@ public class UsersController {
     @JsonView(Views.Public.class)
     public
     @ResponseBody
-    UserListResponseBody deleteAcc(@RequestBody long userID) {
+    void deleteAcc(@RequestBody long userID) {
         userFacade.deleteUserByID(userID);
-        UserListResponseBody userListResponseBody = new UserListResponseBody();
-        userListResponseBody.setUserDTOList(userFacade.getUserList());
-        return userListResponseBody;
     }
-
 
 }

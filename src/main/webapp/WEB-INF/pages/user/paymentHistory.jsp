@@ -13,12 +13,20 @@
   <div class="row head-color-green">
     <h1 class="head-inf"><spring:message code="payment.label.history"/></h1>
   </div>
+
+  <div class="row">
+    <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.sender"/></div>
+    <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.recipient"/></div>
+    <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.amountofmoney"/></div>
+    <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.datetime"/></div>
+  </div>
+
   <c:forEach items="${historyList}" var="history">
     <div class="row">
       <div class="account-inf col-sm-3">${history.accountNumberFrom}</div>
       <div class="account-inf col-sm-3">${history.accountNumberTo}</div>
       <div class="account-inf col-sm-3">${history.amountOfMoney}</div>
-      <div class="account-inf col-sm-3">${history.dataTime}</div>
+      <div class="account-inf col-sm-3">${history.dateTime}</div>
     </div>
   </c:forEach>
 

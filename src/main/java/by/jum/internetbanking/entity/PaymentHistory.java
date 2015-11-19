@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "payment_history")
@@ -30,19 +31,19 @@ public class PaymentHistory implements Serializable {
     @Column(name = "amount_of_money")
     private BigDecimal amountOfMoney;
 
-    @Column(name = "data_time")
-    private String dataTime;
+    @Column(name = "date_time")
+    private Timestamp dateTime;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public String getDataTime() {
-        return dataTime;
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
-    public void setDataTime(String dataTime) {
-        this.dataTime = dataTime;
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Long getHistoryID() {

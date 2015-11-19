@@ -25,9 +25,9 @@ public class RefillMoneyValidator implements Validator {
         String amountOfMoney = refillMoneyForm.getAmountOfMoney();
 
         if (StringUtils.isEmpty(amountOfMoney)) {
-            errors.rejectValue("accountAjax", "common.label.error.emptyfield");
+            errors.rejectValue("amountOfMoney", "common.label.error.emptyfield");
         } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {
-            errors.rejectValue("accountAjax", "createaccount.label.error.amounofmoneysize");
+            errors.rejectValue("amountOfMoney", "createaccount.label.error.amounofmoneysize");
         } else {
             Pattern pattern = Pattern.compile(MONEY_PATTERN);
             Matcher matcher = pattern.matcher(amountOfMoney);

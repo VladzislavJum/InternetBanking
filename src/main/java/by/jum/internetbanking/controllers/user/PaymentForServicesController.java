@@ -11,7 +11,6 @@ public class PaymentForServicesController {
 
     @RequestMapping(value = "payment", method = RequestMethod.GET)
     public String pay(Model model) {
-//        model.addAttribute("historyForm", new PaymentHistoryForm());
         return "user/paymentForServices";
     }
 

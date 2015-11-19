@@ -36,7 +36,7 @@ public class CreateBankAccountFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         CreateBankAccountForm accountForm = (CreateBankAccountForm) target;
         checkAccountNumber(accountForm.getAccountNumber(), errors, "accountNumber");
-        checkAmountOfMoney(accountForm.getAmountOfMoney(), errors, "accountAjax");
+        checkAmountOfMoney(accountForm.getAmountOfMoney(), errors, "amountOfMoney");
         checkUserLogin(accountForm.getUserLogin(), errors, "userLogin");
     }
 

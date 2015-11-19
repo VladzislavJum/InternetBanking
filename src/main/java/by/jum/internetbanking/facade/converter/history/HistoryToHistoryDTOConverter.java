@@ -5,8 +5,14 @@ import by.jum.internetbanking.entity.PaymentHistory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 @Component
 public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, PaymentHistoryDTO>{
+
+    private static final String DATA_FORMAT = "dd.MM.yyyy HH:mm";
+
     @Override
     public PaymentHistoryDTO convert(PaymentHistory history) {
         PaymentHistoryDTO historyDTO = new PaymentHistoryDTO();
@@ -15,7 +21,9 @@ public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, P
         historyDTO.setAccountNumberFrom(history.getNumberAccountFrom());
         historyDTO.setAccountNumberTo(history.getNumberAccountTo());
         historyDTO.setPaymentHistoryID(history.getHistoryID());
-        historyDTO.setDataTime(history.getDataTime());
+        DateFormat dateFormat = new SimpleDateFormat(DATA_FORMAT);
+
+        historyDTO.setDateTime(dateFormat.format(history.getDateTime()));
         return historyDTO;
     }
 }

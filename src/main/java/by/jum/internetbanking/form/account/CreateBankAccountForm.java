@@ -6,14 +6,6 @@ public class CreateBankAccountForm {
     private String amountOfMoney;
     private String userLogin;
 
-    public String getUserLogin() {
-        return userLogin;
-    }
-
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
-    }
-
     public Long getBankAccountID() {
         return bankAccountID;
     }
@@ -36,5 +28,13 @@ public class CreateBankAccountForm {
 
     public void setAmountOfMoney(String amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 }

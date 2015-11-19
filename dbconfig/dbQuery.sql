@@ -54,3 +54,16 @@ INSERT INTO bank_account(account_number, amount_of_money) VALUES (2222, 1000000)
 INSERT INTO bank_account(account_number, amount_of_money) VALUES (3333, 1000000);
 INSERT INTO bank_account(account_number, amount_of_money) VALUES (4444, 1000000);
 
+CREATE TABLE payment_history
+(
+  amount_of_money numeric,
+  id bigserial NOT NULL,
+  user_id bigint,
+  number_account_from character varying(15),
+  number_account_to character varying(15),
+  date_time timestamp without time zone,
+  CONSTRAINT payment_history_pkey PRIMARY KEY (id),
+  CONSTRAINT payment_history_user_id_fkey FOREIGN KEY (user_id)
+      REFERENCES users (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE SET NULL
+);

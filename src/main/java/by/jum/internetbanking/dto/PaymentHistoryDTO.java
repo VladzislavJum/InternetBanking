@@ -8,14 +8,14 @@ public class PaymentHistoryDTO {
     private String accountNumberTo;
     private BigDecimal amountOfMoney;
     private long userID;
-    private String dataTime;
+    private String dateTime;
 
-    public String getDataTime() {
-        return dataTime;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDataTime(String dataTime) {
-        this.dataTime = dataTime;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public long getUserID() {

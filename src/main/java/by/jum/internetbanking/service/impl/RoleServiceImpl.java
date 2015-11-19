@@ -3,6 +3,7 @@ package by.jum.internetbanking.service.impl;
 import by.jum.internetbanking.dao.RoleDAO;
 import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.service.RoleService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +15,8 @@ import java.util.Iterator;
 
 @Service
 public class RoleServiceImpl implements RoleService {
+
+    private static final Logger LOGGER = Logger.getLogger(RoleServiceImpl.class);
 
     @Autowired
     private RoleDAO roleDAO;
@@ -41,6 +44,8 @@ public class RoleServiceImpl implements RoleService {
     public String getRoleCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Iterator<GrantedAuthority> iterator = (Iterator<GrantedAuthority>) auth.getAuthorities().iterator();
-        return iterator.next().getAuthority();
+        String role = iterator.next().getAuthority();
+        LOGGER.info("Role Service: getRoleCurrentUser:" + role);
+        return role;
     }
 }

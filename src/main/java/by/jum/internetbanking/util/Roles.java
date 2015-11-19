@@ -1,4 +1,4 @@
-package by.jum.internetbanking;
+package by.jum.internetbanking.util;
 
 public enum Roles {
     ROLE_USER("ROLE_USER"),

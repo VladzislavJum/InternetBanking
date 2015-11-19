@@ -1,14 +1,12 @@
 jQuery(document).ready(function () {
     $('[id*=delUserButton]').click(function () {
-        deleteViaAjax(this);
+        deleteUserViaAjax(this);
     });
 
 });
 
-function deleteViaAjax(button) {
-    var userIDBody = {};
+function deleteUserViaAjax(button) {
     var userID = $(button).attr("userID");
-    userIDBody["userID"] = userID;
 
     $.ajax({
         type: "POST",
@@ -17,8 +15,7 @@ function deleteViaAjax(button) {
         data: userID,
         dataType: 'json',
         timeout: 100000,
-        success: function (data) {
-            console.log("Transfer SUCCESS: ", data);
+        success: function () {
             removeUserFromJSP(userID)
         }
     });

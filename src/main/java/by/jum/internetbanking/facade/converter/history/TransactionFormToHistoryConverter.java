@@ -9,10 +9,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.Date;
-import java.util.TimeZone;
 
 @Component
 public class TransactionFormToHistoryConverter implements Converter<MoneyTransactionForm, PaymentHistory> {
@@ -29,11 +27,7 @@ public class TransactionFormToHistoryConverter implements Converter<MoneyTransac
         history.setAmountOfMoney(new BigDecimal(transactionForm.getAmountOfTransferredMoney()));
         history.setNumberAccountFrom(transactionForm.getNumberAccountFrom());
         history.setNumberAccountTo(transactionForm.getNumberAccountTo());
-
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm");
-        Date date = new Date();
-
-        history.setDataTime(dateFormat.format(date));
+        history.setDateTime(new Timestamp(new Date().getTime()));
 
         return history;
     }
