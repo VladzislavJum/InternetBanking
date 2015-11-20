@@ -26,7 +26,7 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/> <b
                         class="caret"></b></a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu nav-lang-menu">
                     <li><a href="${path}?lang=en"><spring:message code="nav.button.lang_en"/>
                     </a></li>
                     <li><a href="${path}?lang=ru"><spring:message code="nav.button.lang_ru"/>

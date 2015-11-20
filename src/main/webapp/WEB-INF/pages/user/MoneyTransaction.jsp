@@ -19,7 +19,7 @@
     <div class="row head-color-green">
         <img style="height: 100px; width: 150px;" class="col-sm-2"
              src="<c:url value="../../../resources/images/transfer1.jpg"/> ">
-        <h1 class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></h1>
+        <span class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></span>
 
     </div>
     <form:form commandName="transactionForm" method="post" action="${path}/user/transfer" id="trans">
@@ -81,8 +81,5 @@
     </form:form>
 
 </div>
-<script>
-    $("#trans").trigger('remem');
-</script>
 </body>
 </html>

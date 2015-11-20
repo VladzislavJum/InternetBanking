@@ -49,7 +49,7 @@ body {
     font-size: 30px;
     color: #ffffff;
     text-align: center;
-    /*margin-bottom: 2%;*/
+    border-bottom: 5px solid #398439;
 }
 
 .head-color-green{
@@ -208,4 +208,54 @@ body {
 
 .delete-text{
     color: #2e6da4;
+}
+
+.service-button{
+    height: 100px;
+    font-size: 35px;
+}
+
+.dropdown-menu {
+
+}
+
+.menu-1{
+    top: 100%;
+    min-width: 390px;
+    padding: 30px 0;
+    margin: 100px 0 0;
+
+    font-size: 45px;
+    font-family: serif;
+
+    text-align: center;
+    background-color: #fff;
+}
+
+.menu-2{
+    top: 100%;
+    min-width: 390px;
+    padding: 30px 0;
+    margin: 100px 0 0;
+
+    font-size: 45px;
+    font-family: serif;
+
+    text-align: center;
+    background-color: #fff;
+    margin: 100px 390px 0;
+}
+
+.menu-3{
+    top: 100%;
+    min-width: 390px;
+    padding: 30px 0;
+    margin: 100px 0 0;
+
+    font-size: 45px;
+    font-family: serif;
+
+    text-align: center;
+    background-color: #fff;
+    margin: 100px 780px 0;
 }
