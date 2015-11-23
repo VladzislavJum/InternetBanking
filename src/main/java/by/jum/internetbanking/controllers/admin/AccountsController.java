@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/account/")
 public class AccountsController {
     private static final Logger LOGGER = Logger.getLogger(AccountsController.class);
 

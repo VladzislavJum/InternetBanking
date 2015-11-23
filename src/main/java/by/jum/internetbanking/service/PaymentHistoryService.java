@@ -1,7 +1,8 @@
 package by.jum.internetbanking.service;
 
 import by.jum.internetbanking.entity.PaymentHistory;
-import by.jum.internetbanking.entity.Role;
+
+import java.util.List;
 
 public interface PaymentHistoryService {
     void delete(PaymentHistory history);
@@ -9,4 +10,6 @@ public interface PaymentHistoryService {
     PaymentHistory getById(Long id);
 
     void save(PaymentHistory history);
+
+    List<PaymentHistory> getPaymentHistoryByUserId(long userId);
 }

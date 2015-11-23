@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 
@@ -29,5 +31,10 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
     @Transactional
     public void save(PaymentHistory history) {
         historyDAO.save(history);
+    }
+
+    @Override
+    public List<PaymentHistory> getPaymentHistoryByUserId(long userId) {
+        return historyDAO.getPaymentHistoryByUserId(userId);
     }
 }

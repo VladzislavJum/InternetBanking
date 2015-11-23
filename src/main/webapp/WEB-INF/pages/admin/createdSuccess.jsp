@@ -5,7 +5,6 @@
 
 <html>
 <head>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
     <title><spring:message code="createasuccess.label.success"/></title>
 </head>
 

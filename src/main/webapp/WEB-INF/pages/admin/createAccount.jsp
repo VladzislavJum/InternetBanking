@@ -12,7 +12,6 @@
 
 <html>
 <head>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
     <title><spring:message code="createaccount.label.create"/></title>
 </head>
 

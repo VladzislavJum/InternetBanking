@@ -4,17 +4,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:message code="createaccount.label.amountofmoney" var="money"/>
 <spring:message code="createaccount.label.accountnumber" var="number"/>
+<spring:message code="paymentserv.button.pay" var="pay"/>
 <html>
 <head>
     <title><spring:message code="payment.label.payservices"/></title>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
-    <
+    <script src="<c:url value="../../../resources/js/service.js"/>"></script>
+
 </head>
 <body>
 <div class="container full-height-border">
     <jsp:include page="common/navUser.jsp"/>
     <div class="row">
-
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle col-sm-4 button-actions-text service-button" type="button"
                     data-toggle="dropdown"><spring:message code="paymentserv.button.mobile"/>
@@ -54,7 +54,7 @@
             </button>
             <ul class="dropdown-menu menu-3 ">
                 <b>
-                    <li><a onclick="a('fly')">FlyNet</a></li>
+                    <li><a onclick="internetService('asd')">FlyNet</a></li>
                     <li><a>Infolan.by</a></li>
                     <li><a>TCM</a></li>
                     <li><a>QLINE</a></li>
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div class="margin-top10">
+    <div class="margin-top5 ">
     <%--<form:form commandName="transactionForm" method="post" action="${path}/user/transfer" id="trans">--%>
         <c:if test="${!empty accountList}">
             <div class="row">
@@ -103,27 +103,33 @@
             </div>
 
 
-            <div class="row">
+           <%-- <div class="row">
                 <div class="col-sm-3 col-sm-offset-3">
                     <form:errors path="numberAccountTo" cssClass="error-text"/>
                 </div>
                 <div class="col-sm-3">
                     <form:errors path="amountOfTransferredMoney" cssClass="error-text"/>
                 </div>
-            </div>
+            </div>--%>
 
             <div class="row">
                 <input type="submit" class="btn btn-success btn-transfer col-sm-offset-5 col-sm-2"
-                       value="${transfer}"/>
+                       value="${pay}"/>
             </div>
 
-            <div class="error-text-trans">
+          <%--  <div class="error-text-trans">
                 <form:errors path="numberAccountFrom"/>
-            </div>
+            </div>--%>
         </c:if>
 
     <%--</form:form>--%>
     </div>
+
+    <div class="col-sm-3">
+        <input class="form-control form-control-moresize" name="amountOfTransferredMoney"
+                    placeholder="${money}" id="form" style="display: none"/>
+    </div>
+
 </div>
 </body>
 </html>

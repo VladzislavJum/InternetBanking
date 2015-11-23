@@ -18,7 +18,6 @@
 
 <html>
 <head>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
     <title><spring:message code="showusers.label.show"/></title>
     <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="../../../resources/js/usersAjax.js"/>"></script>
@@ -66,19 +65,19 @@
                                 title="${accountsButton}"></button>
                         <c:choose>
                             <c:when test="${user.unlocked}">
-                                <button class="btn btn-warning col-sm-4 button-actions-text"
+                                <button class="btn btn-success col-sm-4 button-actions-text"
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
-                                        onclick="lockOrUnlockViaAjax(this);"><img
-                                        src="<c:url value="../../../resources/images/button/lock.png"/>"
+                                        onclick="lockOrUnlockViaAjax(this);"><img id="unlockimg"
+                                        src="<c:url value="../../../resources/images/button/unlock.png"/>"
                                         title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>
                             </c:when>
                             <c:otherwise>
-                                <button class="btn btn-success col-sm-4 button-actions-text"
+                                <button class="btn btn-warning col-sm-4 button-actions-text"
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
-                                        onclick="lockOrUnlockViaAjax(this);"><img
+                                        onclick="lockOrUnlockViaAjax(this);"><img id="unlockimg"
                                         src="<c:url value="../../../resources/images/button/lock.png"/>"
                                         title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>

@@ -67,4 +67,10 @@ public class BankAccountServiceImpl implements BankAccountService {
         account.setAmountOfMoney(account.getAmountOfMoney().add(amountRefillMoney));
         accountDAO.update(account);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BankAccount> getAccountsByUserId(long userID) {
+        return accountDAO.getAccountsByUserId(userID);
+    }
 }

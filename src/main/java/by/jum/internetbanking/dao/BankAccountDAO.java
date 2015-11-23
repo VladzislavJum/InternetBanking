@@ -18,4 +18,6 @@ public interface BankAccountDAO {
     BankAccount getByID(Long id);
 
     BankAccount getByNumber(String number);
+
+    List<BankAccount> getAccountsByUserId(long userID);
 }

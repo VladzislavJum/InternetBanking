@@ -4,7 +4,6 @@
 <html>
 <head>
   <title><spring:message code="history.label.paymenthistory"/></title>
-  <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
 
 </head>
 <body>

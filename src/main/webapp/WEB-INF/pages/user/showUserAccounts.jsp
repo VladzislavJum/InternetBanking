@@ -10,7 +10,6 @@
 <html>
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
 
 </head>
 <body>

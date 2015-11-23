@@ -21,4 +21,6 @@ public interface BankAccountService {
     void transferMoney(BankAccount accountFrom, BankAccount accountTo, BigDecimal amountOfTransferredMoney);
 
     void refillMoney(BigDecimal amountRefillMoney, BankAccount account);
+
+    List<BankAccount> getAccountsByUserId(long userID);
 }

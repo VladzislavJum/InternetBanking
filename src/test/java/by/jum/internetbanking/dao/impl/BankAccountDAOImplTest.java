@@ -57,12 +57,12 @@ public class BankAccountDAOImplTest {
     public void testDelete() throws Exception {
         accountDAO.save(account);
         accountDAO.delete(account);
-        LOGGER.info("Deleted Account with number 7777: " + accountDAO.getByNumber("7777"));
+        LOGGER.info("Test: Deleted Account with number 7777: " + accountDAO.getByID(account.getBankAccountID()));
     }
 
     @Test
     public void testGetByID() throws Exception {
-        accountDAO.update(account);
-        LOGGER.info("Get by id 789456L: " + accountDAO.getByID(7894L));
+        accountDAO.save(account);
+        LOGGER.info("Test: Get Account by id: " + accountDAO.getByID(account.getBankAccountID()));
     }
 }

@@ -6,6 +6,7 @@
 
 <html>
 <head>
+    <link href="<c:url value="../../../../resources/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="../../../../resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="../../../../resources/bootstrap/js/bootstrap.js"/>"></script>
     <jsp:include page="../../footer.jsp"/>

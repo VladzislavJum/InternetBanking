@@ -1,8 +1,6 @@
 package by.jum.internetbanking.service.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
-import by.jum.internetbanking.entity.BankAccount;
-import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +45,6 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public User getByUserName(String login) {
         return userDAO.getByUserName(login);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<BankAccount> getUserAccountList(long id) {
-        return userDAO.getAccountUserList(id);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<PaymentHistory> getHistoryUserList(long id) {
-        return userDAO.getHistoryUserList(id);
     }
 
     @Override

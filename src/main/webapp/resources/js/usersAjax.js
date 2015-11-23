@@ -46,11 +46,13 @@ function lockOrUnlockUserOnJSP(button) {
 
     if ($(button).attr("unlock") == 'true') {
         $(button).attr("unlock", 'false');
-        $(button).removeClass('btn-warning');
-        $(button).addClass('btn-success');
-    } else {
-        $(button).attr("unlock", 'true');
         $(button).removeClass('btn-success');
         $(button).addClass('btn-warning');
+        $("#unlockimg").attr("src", "../../../resources/images/button/lock.png");
+    } else {
+        $(button).attr("unlock", 'true');
+        $(button).removeClass('btn-warning');
+        $(button).addClass('btn-success');
+        $("#unlockimg").attr("src", "../../../resources/images/button/unlock.png");
     }
 }

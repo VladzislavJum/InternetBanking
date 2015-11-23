@@ -1,9 +1,6 @@
 package by.jum.internetbanking.dao.impl;
 
 import by.jum.internetbanking.dao.UserDAO;
-import by.jum.internetbanking.entity.BankAccount;
-import by.jum.internetbanking.entity.PaymentHistory;
-import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -19,21 +16,20 @@ import java.util.Locale;
 public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     private static final Logger LOGGER = Logger.getLogger(UserDAOImpl.class);
-    private static final String GET_LIST = "from by.jum.internetbanking.entity.User u where u.role != :role";
-    private static final String GET_BY_USERNAME = "from by.jum.internetbanking.entity.User u where u.login = :login";
-    private static final String DELETE_BY_ID = "delete from by.jum.internetbanking.entity.User u where u.id = :id";
-    private static final String IS_EXIST_WITH_PASSPORT = "from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber";
 
-    private static final long ADMIN_ROLE_ID = 2L;
+    private static final long USER_ROLE_ID = 1L;
+
+    private static final String GET_USERS_WITH_USER_ROLE_QUERY = "from by.jum.internetbanking.entity.User u where u.role = " + USER_ROLE_ID;
+    private static final String GET_USER_BY_USERNAME_QUERY = "from by.jum.internetbanking.entity.User u where u.login = :login";
+
+    private static final String IS_EXIST_WITH_PASSPORT = "from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber";
 
     @Autowired
     private MessageSource messageSource;
 
     public List<User> getList() {
-        Role role = new Role();
-        role.setRoleID(ADMIN_ROLE_ID);
         LOGGER.info("DAO: Get UserList");
-        Query query = getSessionFactory().getCurrentSession().createQuery(GET_LIST).setParameter("role", role);
+        Query query = getSessionFactory().getCurrentSession().createQuery(GET_USERS_WITH_USER_ROLE_QUERY);
         return query.list();
     }
 
@@ -62,25 +58,17 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     @Override
     public User getByUserName(String login) {
         User user = (User) getSessionFactory().getCurrentSession().
-                createQuery(GET_BY_USERNAME).
+                createQuery(GET_USER_BY_USERNAME_QUERY).
                 setParameter("login", login).uniqueResult();
         LOGGER.info(messageSource.getMessage("print.getbyusername", new Object[]{login, user != null}, Locale.ENGLISH));
         return user;
     }
 
     @Override
-    public List<BankAccount> getAccountUserList(long id) {
-        return getById(id).getBankAccountList();
-    }
-
-    @Override
-    public List<PaymentHistory> getHistoryUserList(long id) {
-        return getById(id).getPaymentHistoryList();
-    }
-
-    @Override
     public void deleteByID(long id) {
-        getSessionFactory().getCurrentSession().createQuery(DELETE_BY_ID).setParameter("id", id).executeUpdate();
+        User user = new User();
+        user.setUserID(id);
+        delete((User) getSessionFactory().getCurrentSession().merge(user));
         LOGGER.info("DAO: User Deleted: id " + id);
     }
 

@@ -9,6 +9,8 @@ import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
+import by.jum.internetbanking.service.BankAccountService;
+import by.jum.internetbanking.service.PaymentHistoryService;
 import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,12 @@ public class UserFacadeImpl implements UserFacade {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BankAccountService accountService;
+
+    @Autowired
+    private PaymentHistoryService historyService;
 
     @Autowired
     private ConversionService conversionService;
@@ -58,7 +66,7 @@ public class UserFacadeImpl implements UserFacade {
     public List<BankAccountDTO> getUserAccountList(long userID) {
         TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccount.class));
         TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccountDTO.class));
-        List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.convert(userService.getUserAccountList(userID), sourceType, targetType);
+        List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.convert(accountService.getAccountsByUserId(userID), sourceType, targetType);
         Collections.sort(accountDTOList, (o1, o2) -> o1.getBankAccountID().compareTo(o2.getBankAccountID()));
         return accountDTOList;
 
@@ -68,7 +76,7 @@ public class UserFacadeImpl implements UserFacade {
     public List<PaymentHistoryDTO> getHistoryUserList(long userID) {
         TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistory.class));
         TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistoryDTO.class));
-        List<PaymentHistoryDTO> historyDTOList = (List<PaymentHistoryDTO>) conversionService.convert(userService.getHistoryUserList(userID), sourceType, targetType);
+        List<PaymentHistoryDTO> historyDTOList = (List<PaymentHistoryDTO>) conversionService.convert(historyService.getPaymentHistoryByUserId(userID), sourceType, targetType);
         return historyDTOList;
     }
 

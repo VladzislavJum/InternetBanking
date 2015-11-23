@@ -1,6 +1,7 @@
 package by.jum.internetbanking.dao.impl;
 
 import by.jum.internetbanking.dao.BankAccountDAO;
+import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -16,16 +17,19 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
-    private static final String DELETE_BY_ID = "delete from by.jum.internetbanking.entity.BankAccount b where b.id = :id";
-    private static final String GET_BY_NUMBER = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
-    private static final String GET_LIST = "from by.jum.internetbanking.entity.BankAccount";
+    private static final String DELETE_ACCOUNT_BY_ID_QUERY = "delete from by.jum.internetbanking.entity.BankAccount b where b.id = :id";
+    private static final String GET_ACCOUNT_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
+    private static final String GET_ALL_ACCOUNTS_QUERY = "from by.jum.internetbanking.entity.BankAccount";
 
     @Autowired
     private MessageSource messageSource;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public List<BankAccount> getList() {
-        Query query = getSessionFactory().getCurrentSession().createQuery(GET_LIST);
+        Query query = getSessionFactory().getCurrentSession().createQuery(GET_ALL_ACCOUNTS_QUERY);
         return query.list();
     }
 
@@ -48,7 +52,9 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     @Override
     public void deleteByID(long id) {
-        getSessionFactory().getCurrentSession().createQuery(DELETE_BY_ID).setParameter("id", id).executeUpdate();
+        BankAccount account = new BankAccount();
+        account.setBankAccountID(id);
+        delete(account);
         LOGGER.info("DAO: Account Deleted: id " + id);
     }
 
@@ -62,10 +68,15 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
     @Override
     public BankAccount getByNumber(String number) {
         BankAccount account = (BankAccount) getSessionFactory().getCurrentSession().
-                createQuery(GET_BY_NUMBER).
+                createQuery(GET_ACCOUNT_BY_NUMBER_QUERY).
                 setParameter("accountNumber", number).uniqueResult();
         LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
 
         return account;
+    }
+
+    @Override
+    public List<BankAccount> getAccountsByUserId(long userID) {
+        return userDAO.getById(userID).getBankAccountList();
     }
 }

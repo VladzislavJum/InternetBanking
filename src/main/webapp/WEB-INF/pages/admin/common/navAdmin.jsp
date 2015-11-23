@@ -8,9 +8,9 @@
 <spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
 <html>
 <head>
+    <link href="<c:url value="../../../../resources/css/style.css"/>" rel="stylesheet">
     <script src="<c:url value="../../../../resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="../../../../resources/bootstrap/js/bootstrap.js"/>"></script>
-    <link href="<c:url value="../../../../resources/css/style.css"/>" rel="stylesheet">
     <jsp:include page="../../footer.jsp"/>
 </head>
 <body>

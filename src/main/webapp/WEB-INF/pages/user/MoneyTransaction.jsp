@@ -10,8 +10,6 @@
 <html>
 <head>
     <title><spring:message code="moneytrans.label.transaction"/></title>
-    <link href="<c:url value="../../../resources/css/style.css" />" rel="stylesheet">
-    <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
 </head>
 <body>
 <div class="container full-height-border">

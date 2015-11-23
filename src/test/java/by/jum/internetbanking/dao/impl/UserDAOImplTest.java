@@ -1,5 +1,6 @@
 package by.jum.internetbanking.dao.impl;
 
+import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.entity.User;
@@ -22,6 +23,9 @@ public class UserDAOImplTest {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    BankAccountDAO accountDAO;
 
     private User user;
 
@@ -52,7 +56,7 @@ public class UserDAOImplTest {
         LOGGER.info("PassportNumber before: " + user.getPassportNumber());
         user.setPassportNumber("1234567");
         userDAO.update(user);
-        LOGGER.info("Updating passportNumber " + userDAO.getById(321L).getPassportNumber());
+        LOGGER.info("Updating passportNumber " + userDAO.getById(user.getUserID()).getPassportNumber());
     }
 
     @Test
@@ -63,8 +67,8 @@ public class UserDAOImplTest {
 
     @Test
     public void testGetById() throws Exception {
-        userDAO.update(user);
-        LOGGER.info("Get by ID = 111111: Login " + userDAO.getById(321L).getLogin());
+        userDAO.save(user);
+        LOGGER.info("Get by ID = 111111: Login " + userDAO.getById(user.getUserID()).getLogin());
     }
 
     @Test
@@ -75,13 +79,20 @@ public class UserDAOImplTest {
 
     @Test
     public void testGetAccountUserList() throws Exception {
-        userDAO.update(user);
+        userDAO.save(user);
         LOGGER.info("NumberAccounts: ");
-        List<BankAccount> accountList = userDAO.getAccountUserList(321L);
+        List<BankAccount> accountList = accountDAO.getAccountsByUserId(user.getUserID());
         if (accountList != null){
             accountList.forEach(account -> LOGGER.info(account));
         } else {
             LOGGER.info("List is null");
         }
+    }
+
+    @Test
+    public void testDeleteByID() throws Exception {
+        userDAO.save(user);
+        userDAO.deleteByID(user.getUserID());
+        LOGGER.info("Test: deleteByID: user is " + userDAO.getById(user.getUserID()));
     }
 }
