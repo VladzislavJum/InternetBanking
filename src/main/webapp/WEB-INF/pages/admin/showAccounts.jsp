@@ -9,14 +9,15 @@
 <spring:message code="action.button.refill" var="refillButton"/>
 <spring:message code="showusersoraccounts.label.action" var="action"/>
 <spring:message code="createaccount.label.amountofmoney" var="amountOfMoney"/>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
+<spring:url value="/admin/users/" var="accUrljs"/>
+
 
 <html>
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
-    <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="../../../resources/js/clickForAccount.js"/>"></script>
-    <script src="<c:url value="../../../resources/js/accountsAjax.js"/>"></script>
+    <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/clickForAccount.js"/>"></script>
+    <script src="<c:url value="/resources/js/accountsAjax.js"/>"></script>
 
 </head>
 <body>
@@ -42,13 +43,12 @@
                     <div class="account-inf col-sm-4">${account.amountOfMoney}</div>
                     <div class="account-inf col-sm-4">
                         <button class="btn btn-success col-sm-3 col-sm-offset-2" id="refill${account.bankAccountID}"
-                                data-toggle="modal" data-target="#refPopup"
+                                data-toggle="modal" data-target="#refPopup" url="${accUrljs}"
                                 accID="${account.bankAccountID}" userID="${userID}">${refillButton}
                         </button>
                         <a class="col-sm-3">|</a>
                         <button class="btn btn-danger col-sm-3" id="delete${account.bankAccountID}"
-                                accID="${account.bankAccountID}"
-                                data-toggle="modal"
+                                accID="${account.bankAccountID}" data-toggle="modal"
                                 data-target="#target">${deleteButton}</button>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" userID="${userID}"
-                                id="delAccButton"
+                                id="delAccButton" url="${accUrljs}deleteuseracc"
                                 data-dismiss="modal">${deleteButton}</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
                                 code="showusers.buttondialog.cancel"/></button>
@@ -90,10 +90,11 @@
                                    commandName="refillForm">
                         <form:errors path="amountOfMoney" cssClass="error-text"/>
                         <div class="col-sm-8 col-sm-offset-2">
-                            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}" id="inputMoney"/>
+                            <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"
+                                        id="inputMoney"/>
                         </div>
                         <img style="height: 300px; width: 380px;"
-                             src="<c:url value="../../../resources/images/fallingMoney.jpg"/> ">
+                             src="<c:url value="/resources/images/fallingMoney.jpg"/>">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary col-sm-7" id="refAccButton"

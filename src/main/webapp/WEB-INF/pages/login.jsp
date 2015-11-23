@@ -13,7 +13,7 @@
 <html>
 <head>
     <title><spring:message code="login.label.auth"/></title>
-    <link href="<c:url value="../../resources/css/login.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <jsp:include page="footer.jsp"/>
 
@@ -22,15 +22,15 @@
 <c:choose>
     <c:when test="${localeCode=='ru'}">
         <button class="btn btn-success"
-                onclick="location.href=('${path}?lang=en')">${en}</button>
+                onclick="location.href=('?lang=en')">${en}</button>
         <button class="btn btn-primary"
-                onclick="location.href=('${path}?lang=ru')">${ru}</button>
+                onclick="location.href=('?lang=ru')">${ru}</button>
     </c:when>
     <c:otherwise>
         <button class="btn btn-primary"
-                onclick="location.href=('${path}?lang=en')">${en}</button>
+                onclick="location.href=('?lang=en')">${en}</button>
         <button class="btn btn-success"
-                onclick="location.href=('${path}?lang=ru')">${ru}</button>
+                onclick="location.href=('?lang=ru')">${ru}</button>
     </c:otherwise>
 </c:choose>
 
@@ -40,7 +40,7 @@
 
     <div class="col-md-4 margin-top10">
         <img style="height: 150px; width: 350px; transform: rotate(-40deg);"
-             src="<c:url value="../../resources/images/welcome.png"/> ">
+             src="<c:url value="/resources/images/welcome.png"/> ">
     </div>
 
     <div class="col-md-4 margin-top10">

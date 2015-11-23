@@ -5,12 +5,20 @@
 
 <spring:message code="navadmin.label.searchuser" var="searchUserLabel"/>
 <spring:message code="navadmin.label.searcaccount" var="searchAccountLabel"/>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
+<spring:url value="/admin/users" var="users"/>
+<spring:url value="/admin/createaccountform" var="createaccountform"/>
+<spring:url value="/admin/signupform" var="signupform"/>
+<spring:url value="/admin/signupform" var="signupform"/>
+<spring:url value="/admin/signupform" var="signupform"/>
+<spring:url value="/admin/account/search" var="accountSearch"/>
+<spring:url value="/admin/users/search" var="userSearch"/>
+<spring:url value="/logout" var="logout"/>
+
 <html>
 <head>
-    <link href="<c:url value="../../../../resources/css/style.css"/>" rel="stylesheet">
-    <script src="<c:url value="../../../../resources/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="../../../../resources/bootstrap/js/bootstrap.js"/>"></script>
+    <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
     <jsp:include page="../../footer.jsp"/>
 </head>
 <body>
@@ -20,14 +28,14 @@
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="${path}/admin/users"><spring:message code="navadmin.button.users"/> </a></li>
-            <li><a href="${path}/admin/signupform"><spring:message code="navadmin.button.createuser"/> </a></li>
-            <li><a href="${path}/admin/createaccountform"><spring:message code="navadmin.button.createaccount"/> </a>
+            <li><a href="${users}"><spring:message code="navadmin.button.users"/> </a></li>
+            <li><a href="${signupform}"><spring:message code="navadmin.button.createuser"/> </a></li>
+            <li><a href="${createaccountform}"><spring:message code="navadmin.button.createaccount"/> </a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <form:form class="navbar-form" method="post" action="${path}/admin/account/search"
+                <form:form class="navbar-form" method="post" action="${accountSearch}"
                            commandName="searchAccountForm">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="searchStr" placeholder="${searchAccountLabel}">
@@ -37,7 +45,7 @@
             </li>
 
             <li>
-                <form:form class="navbar-form" method="post" action="${path}/admin/users/search"
+                <form:form class="navbar-form" method="post" action="${userSearch}  "
                            commandName="searchUserForm">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="searchStr" placeholder="${searchUserLabel}">
@@ -50,13 +58,13 @@
                 <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/> <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="${path}?lang=en"><spring:message code="nav.button.lang_en"/>
+                    <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
                     </a></li>
-                    <li><a href="${path}?lang=ru"><spring:message code="nav.button.lang_ru"/>
+                    <li><a href="?lang=ru"><spring:message code="nav.button.lang_ru"/>
                     </a></li>
                 </ul>
             </li>
-            <li><a href="${path}/logout"><spring:message code="nav.button.logout"/> </a></li>
+            <li><a href="${logout}"><spring:message code="nav.button.logout"/> </a></li>
         </ul>
     </div>
 

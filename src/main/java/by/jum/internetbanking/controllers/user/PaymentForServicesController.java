@@ -2,6 +2,7 @@ package by.jum.internetbanking.controllers.user;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.facade.UserFacade;
+import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,4 +28,11 @@ public class PaymentForServicesController {
         return "user/paymentForServices";
     }
 
+    @RequestMapping(value = "payment/internet", method = RequestMethod.GET)
+    public String internetPay(Model model, @ModelAttribute("currentUserID") long currentUserID) {
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
+        model.addAttribute("accountList", accountDTOList);
+        model.addAttribute("transactionForm", new MoneyTransactionForm());
+        return "user/internetPayment";
+    }
 }

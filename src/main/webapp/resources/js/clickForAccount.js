@@ -11,7 +11,6 @@ function clickDelete() {
 
 function clickRefill() {
     $('[id*=refill]').filter(':button').click(function () {
-        $("#formID").attr('action', '/admin/users/' + $(this).attr("userID") + '/accounts/'+$(this).attr("accID")+'/refill');
-        //$('#refAccButton').attr('accID', $(this).attr("accID"));
+        $("#formID").attr('action', $(this).attr("url") + $(this).attr("userID") + '/accounts/'+$(this).attr("accID")+'/refill');
     });
 }

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/admin/account/")
+@RequestMapping("/admin/users/")
 public class AccountsController {
     private static final Logger LOGGER = Logger.getLogger(AccountsController.class);
 
@@ -34,7 +34,7 @@ public class AccountsController {
     private BankAccountFacade accountFacade;
 
     //    TODO: add display error if validation is bad
-    @RequestMapping(value = "users/{id}/accounts/{acoountid}/refill")
+    @RequestMapping(value = "{id}/accounts/{acoountid}/refill")
     public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
         moneyValidator.validate(refillMoneyForm, result);
@@ -46,7 +46,7 @@ public class AccountsController {
         return messageSource.getMessage("controller.label.redirectshowusersaccounts", new Object[]{id}, Locale.ENGLISH);
     }
 
-    @RequestMapping(value = "users/deleteuseracc", method = RequestMethod.POST)
+    @RequestMapping(value = "deleteuseracc", method = RequestMethod.POST)
     @JsonView(Views.Public.class)
     public
     @ResponseBody

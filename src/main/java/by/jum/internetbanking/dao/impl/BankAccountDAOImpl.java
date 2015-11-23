@@ -17,7 +17,6 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
-    private static final String DELETE_ACCOUNT_BY_ID_QUERY = "delete from by.jum.internetbanking.entity.BankAccount b where b.id = :id";
     private static final String GET_ACCOUNT_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
     private static final String GET_ALL_ACCOUNTS_QUERY = "from by.jum.internetbanking.entity.BankAccount";
 
@@ -54,7 +53,7 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
     public void deleteByID(long id) {
         BankAccount account = new BankAccount();
         account.setBankAccountID(id);
-        delete(account);
+        delete(getSessionFactory().getCurrentSession().merge(account));
         LOGGER.info("DAO: Account Deleted: id " + id);
     }
 

@@ -8,7 +8,7 @@
 <spring:message code="createaccount.label.amountofmoney" var="amountOfMoney"/>
 <spring:message code="createaccount.label.userlogin" var="userLogin"/>
 <spring:message code="createaccount.button.create" var="create"/>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
+<spring:url value="/admin/createaccount" var="createaccount"/>
 
 <html>
 <head>
@@ -23,7 +23,7 @@
         <h1 class="head-inf"><spring:message code="createaccount.label.newaccount"/></h1>
     </div>
     <div class="margin-top5">
-        <form:form class="form-horizontal" method="post" action="${path}/admin/createaccount" commandName="accountForm">
+        <form:form class="form-horizontal" method="post" action="${createaccount}" commandName="accountForm">
 
             <form:label path="accountNumber" cssClass="control-label col-xs-5"
                         cssStyle="color:#9d9d9d">${accountNumber}</form:label>

@@ -9,7 +9,7 @@ function deleteAccountViaAjax(button) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/admin/users/deleteuseracc",
+        url: $(button).attr("url"),
         data: accountID,
         dataType: 'text',
         timeout: 100000,

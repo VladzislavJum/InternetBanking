@@ -7,11 +7,10 @@ jQuery(document).ready(function () {
 
 function deleteUserViaAjax(button) {
     var userID = $(button).attr("userID");
-
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/admin/users/deleteuser",
+        url: $(button).attr("url"),
         data: userID,
         dataType: 'json',
         timeout: 100000,
@@ -21,19 +20,19 @@ function deleteUserViaAjax(button) {
     });
 }
 
-function lockOrUnlockViaAjax(button) {
+function lockOrUnlockViaAjax(button, url, imgUrl) {
     var userIDBody = {};
     var userID = $(button).attr("userID");
     userIDBody["userID"] = userID;
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/admin/users/lockorunlock",
+        url: url,
         data: userID,
         dataType: 'text',
         timeout: 100000,
         success: function () {
-            lockOrUnlockUserOnJSP(button);
+            lockOrUnlockUserOnJSP(button, imgUrl);
         }
     });
 }
@@ -42,17 +41,17 @@ function removeUserFromJSP(userID) {
     $("#user" + userID).remove();
 }
 
-function lockOrUnlockUserOnJSP(button) {
+function lockOrUnlockUserOnJSP(button, imgUrl) {
 
     if ($(button).attr("unlock") == 'true') {
         $(button).attr("unlock", 'false');
         $(button).removeClass('btn-success');
         $(button).addClass('btn-warning');
-        $("#unlockimg").attr("src", "../../../resources/images/button/lock.png");
+        $("#unlockimg").attr("src", imgUrl + "lock.png");
     } else {
         $(button).attr("unlock", 'true');
         $(button).removeClass('btn-warning');
         $(button).addClass('btn-success');
-        $("#unlockimg").attr("src", "../../../resources/images/button/unlock.png");
+        $("#unlockimg").attr("src", imgUrl + "unlock.png");
     }
 }

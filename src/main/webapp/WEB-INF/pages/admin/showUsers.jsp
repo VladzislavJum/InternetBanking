@@ -14,14 +14,14 @@
 <spring:message code="action.button.accounts" var="accountsButton"/>
 <spring:message code="action.button.unlocked" var="lockButton"/>
 <spring:message code="action.button.unlock" var="unlockButton"/>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
-
+<spring:url value="/resources/images/button/" var="lockUnlockUrlImg"/>
+<spring:url value="/admin/users/deleteuser" var="deleteUrljs"/>
 <html>
 <head>
     <title><spring:message code="showusers.label.show"/></title>
-    <script src="<c:url value="../../../resources/js/jquery.min.js"/>"></script>
-    <script src="<c:url value="../../../resources/js/usersAjax.js"/>"></script>
-    <script src="<c:url value="../../../resources/js/clickForUser.js"/>"></script>
+    <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/usersAjax.js"/>"></script>
+    <script src="<c:url value="/resources/js/clickForUser.js"/>"></script>
 
 
 </head>
@@ -29,6 +29,7 @@
 
 <div class="container full-height-border">
     <jsp:include page="common/navAdmin.jsp"/>
+
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="showusers.label.listusers"/></h1>
     </div>
@@ -46,9 +47,9 @@
 
         <c:forEach items="${userList}" var="user">
 
-            <spring:url value="${path}/admin/users/${user.userID}/accounts" var="accountsUrl"/>
-            <spring:url value="${path}/admin/users/${user.userID}/delete" var="deleteUrl"/>
-            <spring:url value="${path}/admin/users/${user.userID}/lockorunlock" var="lockOrUnlockUrl"/>
+            <spring:url value="/admin/users/${user.userID}/accounts" var="accountsUrl"/>
+            <spring:url value="/admin/users/${user.userID}/delete" var="deleteUrl"/>
+            <spring:url value="/admin/users/lockorunlock" var="lockOrUnlockUrl"/>
 
 
             <div class="row" id="user${user.userID}">
@@ -61,25 +62,27 @@
                     <div class="row">
                         <button class="btn btn-info col-sm-4 button-actions-text"
                                 onclick="location.href='${accountsUrl}'"><img
-                                src="<c:url value="../../../resources/images/button/accounts.png"/>"
+                                src="<c:url value="/resources/images/button/accounts.png"/>"
                                 title="${accountsButton}"></button>
                         <c:choose>
                             <c:when test="${user.unlocked}">
                                 <button class="btn btn-success col-sm-4 button-actions-text"
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
-                                        onclick="lockOrUnlockViaAjax(this);"><img id="unlockimg"
-                                        src="<c:url value="../../../resources/images/button/unlock.png"/>"
-                                        title="<spring:message code="action.button.lockorunlock"/>">
+                                        onclick="lockOrUnlockViaAjax(this, '${lockOrUnlockUrl}', '${lockUnlockUrlImg}');">
+                                    <img id="unlockimg"
+                                         src="<c:url value="/resources/images/button/unlock.png"/>"
+                                         title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>
                             </c:when>
                             <c:otherwise>
                                 <button class="btn btn-warning col-sm-4 button-actions-text"
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
-                                        onclick="lockOrUnlockViaAjax(this);"><img id="unlockimg"
-                                        src="<c:url value="../../../resources/images/button/lock.png"/>"
-                                        title="<spring:message code="action.button.lockorunlock"/>">
+                                        onclick="lockOrUnlockViaAjax(this, '${lockOrUnlockUrl}', '${lockUnlockUrlImg}');">
+                                    <img id="unlockimg"
+                                         src="<c:url value="/resources/images/button/lock.png"/>"
+                                         title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>
                             </c:otherwise>
                         </c:choose>
@@ -87,7 +90,7 @@
                         <button class="btn btn-danger col-sm-4 button-actions-text" id="delete${user.userID}"
                                 userID="${user.userID}"
                                 data-toggle="modal" data-target="#delPopup"><img
-                                src="<c:url value="../../../resources/images/button/delete.png"/>"
+                                src="<c:url value="/resources/images/button/delete.png"/>"
                                 title="${deleteButton}"></button>
                     </div>
                 </div>
@@ -108,6 +111,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="delUserButton"
+                                    url="${deleteUrljs}"
                                     data-dismiss="modal">${deleteButton}</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
                                     code="showusers.buttondialog.cancel"/></button>

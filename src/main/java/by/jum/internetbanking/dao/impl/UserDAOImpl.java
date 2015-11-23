@@ -68,7 +68,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public void deleteByID(long id) {
         User user = new User();
         user.setUserID(id);
-        delete((User) getSessionFactory().getCurrentSession().merge(user));
+        delete(getSessionFactory().getCurrentSession().merge(user));
         LOGGER.info("DAO: User Deleted: id " + id);
     }
 
