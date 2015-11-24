@@ -13,7 +13,7 @@
     <h1 class="head-inf"><spring:message code="payment.label.history"/></h1>
   </div>
 
-  <div class="row">
+  <div class="row margin-top5">
     <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.sender"/></div>
     <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.recipient"/></div>
     <div class="head-history-inf col-sm-3"><spring:message code="paymenthist.label.amountofmoney"/></div>

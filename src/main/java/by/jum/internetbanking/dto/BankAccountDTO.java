@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.math.BigDecimal;
 
 public class BankAccountDTO {
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Account.class)
     private long bankAccountID;
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Account.class)
     private String accountNumber;
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Account.class)
     private BigDecimal amountOfMoney;
     private long userID;
 

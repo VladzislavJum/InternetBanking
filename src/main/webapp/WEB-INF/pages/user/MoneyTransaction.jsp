@@ -20,7 +20,7 @@
              src="<c:url value="/resources/images/transfer1.jpg"/> ">
         <span class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></span>
     </div>
-    <form:form commandName="transactionForm" method="post" action="${transferUrl}" id="trans">
+    <form:form commandName="transactionForm" method="post" action="${transferUrl}" cssClass="margin-top5" id="trans">
         <c:if test="${!empty accountList}">
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>

@@ -11,7 +11,6 @@
 <spring:message code="createaccount.label.amountofmoney" var="amountOfMoney"/>
 <spring:url value="/admin/users/" var="accUrljs"/>
 
-
 <html>
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>

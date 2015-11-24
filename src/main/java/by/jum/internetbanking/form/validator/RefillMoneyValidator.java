@@ -32,7 +32,7 @@ public class RefillMoneyValidator implements Validator {
             Pattern pattern = Pattern.compile(MONEY_PATTERN);
             Matcher matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
-                errors.rejectValue("accountAjax", "common.label.error.numeric");
+                errors.rejectValue("amountOfMoney", "common.label.error.numeric");
             }
         }
     }

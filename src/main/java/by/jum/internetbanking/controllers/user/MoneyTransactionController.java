@@ -48,7 +48,8 @@ public class MoneyTransactionController {
     }
 
     @RequestMapping(value = "/transfer", method = {RequestMethod.POST, RequestMethod.GET})
-    public String transact(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm, final BindingResult result, Model model, @ModelAttribute("currentUserID") long currentUserID) {
+    public String transact(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm,
+                           final BindingResult result, Model model, @ModelAttribute("currentUserID") long currentUserID) {
         MoneyTransactionValidator.validate(transactionForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation moneyTransaction error");

@@ -52,7 +52,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "users/deleteuser", method = RequestMethod.POST)
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Account.class)
     public
     @ResponseBody
     void deleteAcc(@RequestBody long userID) {

@@ -12,4 +12,6 @@ public interface PaymentHistoryDAO {
     void save(PaymentHistory history);
 
     List<PaymentHistory> getPaymentHistoryByUserId(long userId);
+
+    void update(PaymentHistory history);
 }

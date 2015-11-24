@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="/user/payment/internet" var="internet"/>
+<spring:url value="/user/payment/internet/" var="internet"/>
 <html>
 <head>
     <title><spring:message code="payment.label.payservices"/></title>
@@ -48,12 +48,12 @@
             </button>
             <ul class="dropdown-menu menu-3 ">
                 <b>
-                    <li><a href="${internet}">FlyNet</a></li>
-                    <li><a href="${internet}">Infolan.by</a></li>
-                    <li><a href="${internet}">TCM</a></li>
-                    <li><a href="${internet}">QLINE</a></li>
-                    <li><a href="${internet}">NetBerry</a></li>
-                    <li><a href="${internet}">UNET.BY</a></li>
+                    <li><a href="${internet}FlyNet">FlyNet</a></li>
+                    <li><a href="${internet}Infolan">Infolan</a></li>
+                    <li><a href="${internet}TCM">TCM</a></li>
+                    <li><a href="${internet}QLINE">QLINE</a></li>
+                    <li><a href="${internet}NetBerry">NetBerry</a></li>
+                    <li><a href="${internet}UNET">UNET</a></li>
                 </b>
             </ul>
         </div>

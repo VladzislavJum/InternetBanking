@@ -4,10 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
 <spring:message code="createaccount.label.amountofmoney" var="money"/>
-<spring:message code="createaccount.label.accountnumber" var="accNumber"/>
-<spring:message code="internetpey.label.phonenumber" var="phoneNumber"/>
+<spring:message code="internetpay.label.accountnumber" var="accountNumber"/>
 <spring:message code="moneytrans.button.transfer" var="transfer"/>
 <spring:message code="paymentserv.button.pay" var="pay"/>
+<spring:url value="/user/payment/internet/pay" var="payUrl"/>
 
 
 <html>
@@ -17,10 +17,15 @@
 <body>
 <div class="container full-height-border">
     <jsp:include page="common/navUser.jsp"/>
-    <form:form commandName="transactionForm" method="post" action="${path}/user/transfer" id="trans">
+
+    <div class="row head-color-green">
+        <h1 class="head-inf">${name}</h1>
+    </div>
+
+    <form:form commandName="servicesForm" method="post" action="${payUrl}">
         <c:if test="${!empty accountList}">
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${accNumber}</div>
+                <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${accountNumber}</div>
                 <div class="col-sm-3 head-users-accounts">${money}</div>
             </div>
 
@@ -28,7 +33,7 @@
 
                 <div class="funkyradio col-sm-offset-9">
                     <div class="funkyradio-primary">
-                        <input type="radio" name="numberAccountFrom" id="${account.accountNumber}"
+                        <input type="radio" name="accountNumberFrom" id="${account.accountNumber}"
                                value="${account.accountNumber}"/>
                         <label for="${account.accountNumber}">.</label>
                     </div>
@@ -39,27 +44,25 @@
                 </div>
             </c:forEach>
 
+            <form:hidden path="nameCorp"/>
             <div class="row margin-top5">
+                <%--<div class="col-sm-3 col-sm-offset-3">
+                    <form:input class="form-control form-control-moresize" path="number "
+                                placeholder="Блаблабла"/>
+                </div>--%>
 
-                <div class="col-sm-3 col-sm-offset-3">
-                    <form:input class="form-control form-control-moresize" path="numberAccountTo"
-                                placeholder="${phoneNumber}"/>
-                </div>
-
-                <div class="col-sm-3">
-                    <form:input class="form-control form-control-moresize" path="amountOfTransferredMoney"
+                <div class="col-sm-4 col-sm-offset-4">
+                    <form:input class="form-control form-control-moresize" path="amountOfMoney"
                                 placeholder="${money}"/>
                 </div>
-
             </div>
-
 
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3">
-                    <form:errors path="numberAccountTo" cssClass="error-text"/>
+                    <form:errors path="nameCorp" cssClass="error-text"/>
                 </div>
                 <div class="col-sm-3">
-                    <form:errors path="amountOfTransferredMoney" cssClass="error-text"/>
+                    <form:errors path="amountOfMoney" cssClass="error-text"/>
                 </div>
             </div>
 
@@ -69,12 +72,10 @@
             </div>
 
             <div class="error-text-trans">
-                <form:errors path="numberAccountFrom"/>
+                <form:errors path="accountNumberFrom"/>
             </div>
         </c:if>
-
     </form:form>
-
 </div>
 </body>
 </html>
