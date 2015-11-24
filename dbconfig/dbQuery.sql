@@ -67,3 +67,12 @@ CREATE TABLE payment_history
       REFERENCES users (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE SET NULL
 );
+
+CREATE TABLE corporation
+(
+  id bigserial NOT NULL,
+  name character varying(15),
+  account_number character varying(15),
+  amount_of_money numeric,
+  CONSTRAINT corporation_pkey PRIMARY KEY (id)
+);
