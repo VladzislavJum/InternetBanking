@@ -24,7 +24,7 @@ public class CorporationDAOImplTest {
     public void setUp() throws Exception {
         corporation = new Corporation();
         corporation.setName("TestCorp");
-        corporation.setAccountNumber("789456");
+//        corporation.setAccountNumber("789456");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class CorporationDAOImplTest {
     @Test
     public void testUpdate() throws Exception {
         dao.save(corporation);
-        corporation.setAccountNumber("new");
+//        corporation.setAccountNumber("new");
         dao.update(corporation);
     }
 

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class PaymentHistoryDTO {
     private long paymentHistoryID;
     private String accountNumberFrom;
-    private String accountNumberTo;
+    private String objectTo;
     private BigDecimal amountOfMoney;
     private long userID;
     private String dateTime;
@@ -42,12 +42,12 @@ public class PaymentHistoryDTO {
         this.accountNumberFrom = accountNumberFrom;
     }
 
-    public String getAccountNumberTo() {
-        return accountNumberTo;
+    public String getObjectTo() {
+        return objectTo;
     }
 
-    public void setAccountNumberTo(String accountNumberTo) {
-        this.accountNumberTo = accountNumberTo;
+    public void setObjectTo(String objectTo) {
+        this.objectTo = objectTo;
     }
 
     public BigDecimal getAmountOfMoney() {

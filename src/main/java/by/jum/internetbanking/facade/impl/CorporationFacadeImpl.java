@@ -41,10 +41,10 @@ public class CorporationFacadeImpl implements CorporationFacade {
 
         BigDecimal transferredMoney = new BigDecimal(amountOfTransferredMoney);
         BankAccount accountFrom = accountService.getAccountByNumber(numberAccountFrom);
-        Corporation corporation = corporationService.getByName(name);
+        BankAccount accountTo = corporationService.getByName(name).getAccount();
 
-        LOGGER.info(messageSource.getMessage("print.services.transfer", new Object[]{amountOfTransferredMoney,
-                numberAccountFrom, corporation}, Locale.ENGLISH));
-        corporationService.transferMoney(accountFrom, corporation, transferredMoney);
+        LOGGER.info(messageSource.getMessage("print.transfer", new Object[]{amountOfTransferredMoney,
+                numberAccountFrom, accountTo}, Locale.ENGLISH));
+        accountService.transferMoney(accountFrom, accountTo, transferredMoney);
     }
 }

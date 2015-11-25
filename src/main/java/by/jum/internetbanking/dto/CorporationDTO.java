@@ -2,9 +2,8 @@ package by.jum.internetbanking.dto;
 
 public class CorporationDTO {
     private long corporationID;
-    private String amountOfMoney;
     private String name;
-    private String accountNumber;
+    private long accountID;
 
     public long getCorporationID() {
         return corporationID;
@@ -12,14 +11,6 @@ public class CorporationDTO {
 
     public void setCorporationID(long corporationID) {
         this.corporationID = corporationID;
-    }
-
-    public String getAmountOfMoney() {
-        return amountOfMoney;
-    }
-
-    public void setAmountOfMoney(String amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
     }
 
     public String getName() {
@@ -30,11 +21,11 @@ public class CorporationDTO {
         this.name = name;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
+    public long getAccountID() {
+        return accountID;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccountID(long accountID) {
+        this.accountID = accountID;
     }
 }

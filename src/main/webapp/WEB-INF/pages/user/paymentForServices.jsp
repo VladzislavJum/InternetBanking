@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="/user/payment/internet/" var="internet"/>
+<spring:url value="/user/payment/service/" var="service"/>
+<spring:message code="paymentserv.label.electricity" var="electricity"/>
+<spring:message code="paymentserv.label.gas" var="gas"/>
+<spring:message code="paymentserv.label.water" var="water"/>
 <html>
 <head>
     <title><spring:message code="payment.label.payservices"/></title>
@@ -17,13 +20,12 @@
             </button>
             <ul class="dropdown-menu menu-1">
                 <b>
-                    <li><a href="#">MTC</a></li>
-                    <li><a href="#">VELCOM</a></li>
-                    <li><a href="#">LIFE</a></li>
+                    <li><a href="${service}MTC">MTC</a></li>
+                    <li><a href="${service}VELCOM">VELCOM</a></li>
+                    <li><a href="${service}LIFE">LIFE</a></li>
                 </b>
             </ul>
         </div>
-
 
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle col-sm-4 button-actions-text service-button" type="button"
@@ -31,16 +33,12 @@
             </button>
             <ul class="dropdown-menu menu-2">
                 <b>
-                    <li><a href="#">111</a></li>
-                    <li><a href="#">2222</a></li>
-                    <li><a href="#">333</a></li>
-                    <li><a href="#">444</a></li>
-                    <li><a href="#">55555</a></li>
-                    <li><a href="#">5555.BY</a></li>
+                    <li><a href="${service}Water">${water}</a></li>
+                    <li><a href="${service}Gas">${gas}</a></li>
+                    <li><a href="${service}Electricity">${electricity}</a></li>
                 </b>
             </ul>
         </div>
-
 
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle col-sm-4 button-actions-text service-button" type="button"
@@ -48,12 +46,12 @@
             </button>
             <ul class="dropdown-menu menu-3 ">
                 <b>
-                    <li><a href="${internet}FlyNet">FlyNet</a></li>
-                    <li><a href="${internet}Infolan">Infolan</a></li>
-                    <li><a href="${internet}TCM">TCM</a></li>
-                    <li><a href="${internet}QLINE">QLINE</a></li>
-                    <li><a href="${internet}NetBerry">NetBerry</a></li>
-                    <li><a href="${internet}UNET">UNET</a></li>
+                    <li><a href="${service}FlyNet">FlyNet</a></li>
+                    <li><a href="${service}Infolan">Infolan</a></li>
+                    <li><a href="${service}TCM">TCM</a></li>
+                    <li><a href="${service}QLINE">QLINE</a></li>
+                    <li><a href="${service}NetBerry">NetBerry</a></li>
+                    <li><a href="${service}UNET">UNET</a></li>
                 </b>
             </ul>
         </div>

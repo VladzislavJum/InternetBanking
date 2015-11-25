@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -30,6 +31,17 @@ public class BankAccount implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
+    private Corporation corporation;
+
+    public Corporation getCorporation() {
+        return corporation;
+    }
+
+    public void setCorporation(Corporation corporation) {
+        this.corporation = corporation;
+    }
 
     public User getUser() {
         return user;

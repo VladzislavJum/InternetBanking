@@ -1,9 +1,8 @@
 package by.jum.internetbanking.facade.converter.history;
 
 import by.jum.internetbanking.entity.PaymentHistory;
-import by.jum.internetbanking.form.money.MoneyTransactionForm;
+import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.UserService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -13,19 +12,19 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Component
-public class TransactionFormToHistoryConverter implements Converter<MoneyTransactionForm, PaymentHistory> {
+public class PaymentForServicesFormToHistoryConverter implements Converter<PaymentForServicesForm, PaymentHistory> {
 
     @Autowired
     private UserService userService;
 
     @Override
-    public PaymentHistory convert(MoneyTransactionForm transactionForm) {
+    public PaymentHistory convert(PaymentForServicesForm paymentForServicesForm) {
         PaymentHistory history = new PaymentHistory();
-        history.setUser(userService.getUserByID(transactionForm.getUserID()));
-        history.setAmountOfMoney(new BigDecimal(transactionForm.getAmountOfTransferredMoney()));
-        history.setNumberAccountFrom(transactionForm.getNumberAccountFrom());
-        history.setObjectTo(transactionForm.getObjectTo());
+        history.setUser(userService.getUserByID(paymentForServicesForm.getUserID()));
+        history.setObjectTo(paymentForServicesForm.getNameCorp());
+        history.setNumberAccountFrom(paymentForServicesForm.getAccountNumberFrom());
         history.setDateTime(new Timestamp(new Date().getTime()));
+        history.setAmountOfMoney(new BigDecimal(paymentForServicesForm.getAmountOfMoney()));
         return history;
     }
 }

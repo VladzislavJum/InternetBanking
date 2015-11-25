@@ -23,7 +23,7 @@
   <c:forEach items="${historyList}" var="history">
     <div class="row">
       <div class="account-inf col-sm-3">${history.accountNumberFrom}</div>
-      <div class="account-inf col-sm-3">${history.accountNumberTo}</div>
+      <div class="account-inf col-sm-3">${history.objectTo}</div>
       <div class="account-inf col-sm-3">${history.amountOfMoney}</div>
       <div class="account-inf col-sm-3">${history.dateTime}</div>
     </div>

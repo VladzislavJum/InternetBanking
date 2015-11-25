@@ -2,7 +2,7 @@ package by.jum.internetbanking.form.money;
 
 public class MoneyTransactionForm {
     private String numberAccountFrom;
-    private String numberAccountTo;
+    private String objectTo;
     private String amountOfTransferredMoney;
     private long userID;
 
@@ -22,12 +22,12 @@ public class MoneyTransactionForm {
         this.numberAccountFrom = numberAccountFrom;
     }
 
-    public String getNumberAccountTo() {
-        return numberAccountTo;
+    public String getObjectTo() {
+        return objectTo;
     }
 
-    public void setNumberAccountTo(String numberAccountTo) {
-        this.numberAccountTo = numberAccountTo;
+    public void setObjectTo(String objectTo) {
+        this.objectTo = objectTo;
     }
 
     public long getUserID() {

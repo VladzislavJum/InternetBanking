@@ -43,7 +43,7 @@
 
             <div class="row margin-top5">
                 <div class="col-sm-3 col-sm-offset-3">
-                    <form:input class="form-control form-control-moresize" path="numberAccountTo"
+                    <form:input class="form-control form-control-moresize" path="objectTo"
                                 placeholder="${number}"/>
                 </div>
                 <div class="col-sm-3">
@@ -54,7 +54,7 @@
 
             <div class="row">
                 <div class="col-sm-3 col-sm-offset-3">
-                    <form:errors path="numberAccountTo" cssClass="error-text"/>
+                    <form:errors path="objectTo" cssClass="error-text"/>
                 </div>
                 <div class="col-sm-3">
                     <form:errors path="amountOfTransferredMoney" cssClass="error-text"/>

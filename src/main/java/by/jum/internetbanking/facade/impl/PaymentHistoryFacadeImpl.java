@@ -4,6 +4,7 @@ import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.facade.PaymentHistoryFacade;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
+import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.PaymentHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -25,7 +26,12 @@ public class PaymentHistoryFacadeImpl implements PaymentHistoryFacade {
     }
 
     @Override
-    public void saveHistory(MoneyTransactionForm transactionForm) {
+    public void saveTransactionHistory(MoneyTransactionForm transactionForm) {
         historyService.save(conversionService.convert(transactionForm, PaymentHistory.class));
+    }
+
+    @Override
+    public void savePaymentHistory(PaymentForServicesForm paymentForServicesForm) {
+        historyService.save(conversionService.convert(paymentForServicesForm, PaymentHistory.class));
     }
 }

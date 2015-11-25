@@ -73,15 +73,15 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
     @Override
     public void transferMoney(MoneyTransactionForm moneyTransactionForm) {
         String numberAccountFrom = moneyTransactionForm.getNumberAccountFrom();
-        String numberAccountTo = moneyTransactionForm.getNumberAccountTo();
+        String objectTo = moneyTransactionForm.getObjectTo();
         String amountOfTransferredMoney = moneyTransactionForm.getAmountOfTransferredMoney();
 
         BigDecimal transferredMoney = new BigDecimal(amountOfTransferredMoney);
         BankAccount accountFrom = accountService.getAccountByNumber(numberAccountFrom);
-        BankAccount accountTo = accountService.getAccountByNumber(numberAccountTo);
+        BankAccount accountTo = accountService.getAccountByNumber(objectTo);
 
         LOGGER.info(messageSource.getMessage("print.transfer", new Object[]{amountOfTransferredMoney,
-                numberAccountFrom, numberAccountTo}, Locale.ENGLISH));
+                numberAccountFrom, objectTo}, Locale.ENGLISH));
         accountService.transferMoney(accountFrom, accountTo, transferredMoney);
     }
 

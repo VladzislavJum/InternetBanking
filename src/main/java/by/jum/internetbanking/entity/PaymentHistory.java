@@ -26,7 +26,7 @@ public class PaymentHistory implements Serializable {
     private String numberAccountFrom;
 
     @Column(name = "number_account_to")
-    private String numberAccountTo;
+    private String objectTo;
 
     @Column(name = "amount_of_money")
     private BigDecimal amountOfMoney;
@@ -62,12 +62,12 @@ public class PaymentHistory implements Serializable {
         this.numberAccountFrom = numberAccountFrom;
     }
 
-    public String getNumberAccountTo() {
-        return numberAccountTo;
+    public String getObjectTo() {
+        return objectTo;
     }
 
-    public void setNumberAccountTo(String numberAccountTo) {
-        this.numberAccountTo = numberAccountTo;
+    public void setObjectTo(String objectTo) {
+        this.objectTo = objectTo;
     }
 
     public User getUser() {

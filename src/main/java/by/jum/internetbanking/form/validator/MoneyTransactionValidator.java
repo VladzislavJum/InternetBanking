@@ -18,8 +18,8 @@ public class MoneyTransactionValidator implements Validator {
 
     private static final String NUMBER_PATTERN = "[0-9]+";
     private static final String NUMBER_ACCOUNT_PATTERN = "[a-zA-Z0-9]+";
-    private static final int LESS_VALUE = -1;
-    private static final int MIN_VALUE = 100;
+        private static final int LESS_VALUE = -1;
+        private static final int MIN_VALUE = 100;
 
     private Pattern pattern;
     private Matcher matcher;
@@ -41,45 +41,20 @@ public class MoneyTransactionValidator implements Validator {
         if (StringUtils.isEmpty(transactionForm.getNumberAccountFrom())) {
             errors.rejectValue("numberAccountFrom", "moneytrans.label.error.requiredaccount");
         } else {
-            checkAccountNumber(transactionForm, errors, "numberAccountTo");
+            checkAccountNumber(transactionForm, errors, "objectTo");
         }
 
 
     }
 
-    private void checkAmountOfMoney(MoneyTransactionForm transactionForm, Errors errors, String param) {
-        String amountOfMoney = transactionForm.getAmountOfTransferredMoney();
-        String numberAccountFrom = transactionForm.getNumberAccountFrom();
-        if (StringUtils.isEmpty(amountOfMoney)) {
-            errors.rejectValue(param, "common.label.error.emptyfield");
-        } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {
-            errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
-        } else {
-            pattern = Pattern.compile(NUMBER_PATTERN);
-            matcher = pattern.matcher(amountOfMoney);
-            if (!matcher.matches()) {
-                errors.rejectValue(param, "common.label.error.numeric");
-            } else {
-                BigDecimal amountOfMoneyFrom = accountFacade.getAccountByNumber(numberAccountFrom).getAmountOfMoney();
-                BigDecimal amountOfTransferredMoney = new BigDecimal(amountOfMoney);
-                if (amountOfMoneyFrom.compareTo(amountOfTransferredMoney) == LESS_VALUE ||
-                        amountOfTransferredMoney.compareTo(new BigDecimal(MIN_VALUE)) == LESS_VALUE) {
-                    errors.rejectValue(param, "moneytrans.label.error.moneyless");
-                } else {
-                    checkBelongUser(transactionForm, errors);
-                }
-            }
-        }
-    }
-
-    private void checkBelongUser(MoneyTransactionForm transactionForm, Errors errors) {
-        if (accountFacade.getAccountByNumber(transactionForm.getNumberAccountFrom()).getUserID() != userFacade.getIDCurrentUser()) {
+    private void checkBelongUser(String numberAccountFrom, Errors errors) {
+        if (accountFacade.getAccountByNumber(numberAccountFrom).getUserID() != userFacade.getIDCurrentUser()) {
             errors.rejectValue("numberAccountFrom", "moneytrans.label.error.belong");
         }
     }
 
-    public void checkAccountNumber(MoneyTransactionForm transactionForm, Errors errors, String param) {
-        String accountNumberTo = transactionForm.getNumberAccountTo();
+    private void checkAccountNumber(MoneyTransactionForm transactionForm, Errors errors, String param) {
+        String accountNumberTo = transactionForm.getObjectTo();
         String accountNumberFrom = transactionForm.getNumberAccountFrom();
 
         if (accountNumberTo.equals(accountNumberFrom)) {
@@ -97,7 +72,30 @@ public class MoneyTransactionValidator implements Validator {
                 } else if (accountFacade.getAccountByNumber(accountNumberTo) == null) {
                     errors.rejectValue(param, "searchaccount.label.error.accountnotexist");
                 } else {
-                    checkAmountOfMoney(transactionForm, errors, "amountOfTransferredMoney");
+                    checkAmountOfMoney(transactionForm.getAmountOfTransferredMoney(), accountNumberFrom, errors, "amountOfTransferredMoney");
+                }
+            }
+        }
+    }
+
+    public void checkAmountOfMoney(String amountOfMoney, String numberAccountFrom, Errors errors, String param) {
+        if (StringUtils.isEmpty(amountOfMoney)) {
+            errors.rejectValue(param, "common.label.error.emptyfield");
+        } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {
+            errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
+        } else {
+            pattern = Pattern.compile(NUMBER_PATTERN);
+            matcher = pattern.matcher(amountOfMoney);
+            if (!matcher.matches()) {
+                errors.rejectValue(param, "common.label.error.numeric");
+            } else {
+                BigDecimal amountOfMoneyFrom = accountFacade.getAccountByNumber(numberAccountFrom).getAmountOfMoney();
+                BigDecimal amountOfTransferredMoney = new BigDecimal(amountOfMoney);
+                if (amountOfMoneyFrom.compareTo(amountOfTransferredMoney) == LESS_VALUE ||
+                        amountOfTransferredMoney.compareTo(new BigDecimal(MIN_VALUE)) == LESS_VALUE) {
+                    errors.rejectValue(param, "moneytrans.label.error.moneyless");
+                } else {
+                    checkBelongUser(numberAccountFrom, errors);
                 }
             }
         }

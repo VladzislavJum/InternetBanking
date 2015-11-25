@@ -19,7 +19,7 @@ public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, P
         historyDTO.setUserID(history.getUser().getUserID());
         historyDTO.setAmountOfMoney(history.getAmountOfMoney());
         historyDTO.setAccountNumberFrom(history.getNumberAccountFrom());
-        historyDTO.setAccountNumberTo(history.getNumberAccountTo());
+        historyDTO.setObjectTo(history.getObjectTo());
         historyDTO.setPaymentHistoryID(history.getHistoryID());
         DateFormat dateFormat = new SimpleDateFormat(DATA_FORMAT);
 

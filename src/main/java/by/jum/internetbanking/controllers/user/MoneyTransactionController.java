@@ -1,7 +1,6 @@
 package by.jum.internetbanking.controllers.user;
 
 import by.jum.internetbanking.dto.BankAccountDTO;
-import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.PaymentHistoryFacade;
 import by.jum.internetbanking.facade.UserFacade;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -28,7 +26,7 @@ public class MoneyTransactionController {
     private static final Logger LOGGER = Logger.getLogger(MoneyTransactionController.class);
 
     @Autowired
-    private MoneyTransactionValidator MoneyTransactionValidator;
+    private MoneyTransactionValidator moneyTransactionValidator;
 
     @Autowired
     private UserFacade userFacade;
@@ -50,7 +48,7 @@ public class MoneyTransactionController {
     @RequestMapping(value = "/transfer", method = {RequestMethod.POST, RequestMethod.GET})
     public String transact(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm,
                            final BindingResult result, Model model, @ModelAttribute("currentUserID") long currentUserID) {
-        MoneyTransactionValidator.validate(transactionForm, result);
+        moneyTransactionValidator.validate(transactionForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation moneyTransaction error");
             List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
@@ -61,7 +59,7 @@ public class MoneyTransactionController {
 
         transactionForm.setUserID(currentUserID);
         accountFacade.transferMoney(transactionForm);
-        historyFacade.saveHistory(transactionForm);
+        historyFacade.saveTransactionHistory(transactionForm);
 
         return "redirect:/user/accounts";
     }

@@ -11,5 +11,5 @@ public interface CorporationService {
 
     Corporation getByName(String name);
 
-    void transferMoney(BankAccount accountFrom, Corporation corporation, BigDecimal amountOfTransferredMoney);
+//    void transferMoney(BankAccount accountFrom, Corporation corporation, BigDecimal amountOfTransferredMoney);
 }
