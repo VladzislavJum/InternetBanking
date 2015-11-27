@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-@SessionAttributes("currentUserID")
 public class PaymentForServicesController {
 
     private static final Logger LOGGER = Logger.getLogger(PaymentForServicesController.class);
@@ -39,20 +37,20 @@ public class PaymentForServicesController {
     private PaymentHistoryFacade historyFacade;
 
     @RequestMapping(value = "payment", method = RequestMethod.GET)
-    public String pay(Model model, @ModelAttribute("currentUserID") long currentUserID) {
-        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
+    public String pay(Model model) {
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         return "user/paymentForServices";
     }
 
     @RequestMapping(value = "payment/service/{name}", method = RequestMethod.GET)
-    public String internet(Model model, @ModelAttribute("currentUserID") long currentUserID, @PathVariable("name") String name) {
+    public String internet(Model model, @PathVariable("name") String name) {
         PaymentForServicesForm servicesForm = new PaymentForServicesForm();
         servicesForm.setNameCorp(name);
-        if (corporationFacade.getByName(name) == null){
+        if (corporationFacade.getByName(name) == null) {
             return "redirect:/user/payment";
         }
-        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("name", name);
         model.addAttribute("servicesForm", servicesForm);
@@ -61,7 +59,8 @@ public class PaymentForServicesController {
 
     @RequestMapping(value = "payment/service/pay", method = RequestMethod.POST)
     public String internetPay(@ModelAttribute("servicesForm") PaymentForServicesForm servicesForm,
-                              final BindingResult result, Model model, @ModelAttribute("currentUserID") long currentUserID) {
+                              final BindingResult result, Model model) {
+        long currentUserID = userFacade.getIDCurrentUser();
         paymentForServicesValidator.validate(servicesForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation paymentForServices error");

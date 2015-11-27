@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.List;
 
 @Controller
-@SessionAttributes("currentUserID")
 @RequestMapping("/user")
 public class MoneyTransactionController {
 
@@ -38,8 +37,8 @@ public class MoneyTransactionController {
     private PaymentHistoryFacade historyFacade;
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
-    public String selectAccount(Model model, @ModelAttribute("currentUserID") long currentUserID) {
-        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
+    public String selectAccount(Model model) {
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("transactionForm", new MoneyTransactionForm());
         return "user/moneyTransaction";
@@ -47,7 +46,8 @@ public class MoneyTransactionController {
 
     @RequestMapping(value = "/transfer", method = {RequestMethod.POST, RequestMethod.GET})
     public String transact(@ModelAttribute("transactionForm") MoneyTransactionForm transactionForm,
-                           final BindingResult result, Model model, @ModelAttribute("currentUserID") long currentUserID) {
+                           final BindingResult result, Model model) {
+        long currentUserID = userFacade.getIDCurrentUser();
         moneyTransactionValidator.validate(transactionForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation moneyTransaction error");

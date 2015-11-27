@@ -26,8 +26,6 @@ public class UserFacadeImpl implements UserFacade {
 
     private static final Logger LOGGER = Logger.getLogger(UserFacadeImpl.class);
 
-    private final static long ID_USER_ROLE = 1L;
-
     @Autowired
     private UserService userService;
 
@@ -41,12 +39,10 @@ public class UserFacadeImpl implements UserFacade {
     private ConversionService conversionService;
 
     public void registerUser(RegistrationUserForm registrationUserForm) {
-        LOGGER.info("Facade: Registration User");
         User user = conversionService.convert(registrationUserForm, User.class);
-        Role role = new Role();
-        role.setRoleID(ID_USER_ROLE);
-        user.setRole(role);
+
         userService.registerUser(user);
+        LOGGER.info("Facade: Registration User");
     }
 
     public UserDTO getUserByID(long userID) {
@@ -77,6 +73,7 @@ public class UserFacadeImpl implements UserFacade {
         TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistory.class));
         TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PaymentHistoryDTO.class));
         List<PaymentHistoryDTO> historyDTOList = (List<PaymentHistoryDTO>) conversionService.convert(historyService.getPaymentHistoryByUserId(userID), sourceType, targetType);
+        Collections.reverse(historyDTOList);
         return historyDTOList;
     }
 

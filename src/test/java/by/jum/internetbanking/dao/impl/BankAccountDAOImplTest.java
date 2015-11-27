@@ -71,6 +71,5 @@ public class BankAccountDAOImplTest {
         accountDAO.save(account);
         accountDAO.deleteByID(account.getBankAccountID());
         LOGGER.info("Test: deleteByID: account is " + accountDAO.getByID(account.getBankAccountID()));
-
     }
 }

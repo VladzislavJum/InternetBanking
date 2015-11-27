@@ -81,13 +81,14 @@
             <div class="modal-dialog modal-sm" style="width: 400px">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
                         <h4 class="modal-title"><spring:message code="showusersaccounts.label.titlerefill"/></h4>
                     </div>
                     <div class="modal-body">
                         <form:form id="formID" class="form-horizontal" method="post" action=""
                                    commandName="refillForm">
-                        <form:errors path="amountOfMoney" cssClass="error-text"/>
+                        <div class="text-center"><form:errors path="amountOfMoney" cssClass="error-text"/></div>
                         <div class="col-sm-8 col-sm-offset-2">
                             <form:input class="form-control" path="amountOfMoney" placeholder="${amountOfMoney}"
                                         id="inputMoney"/>

@@ -24,6 +24,7 @@
         <com.fasterxml.jackson.core-version>2.6.3</com.fasterxml.jackson.core-version>
         <maven-compiler-plugin-version>3.3</maven-compiler-plugin-version>
         <tomcat7-maven-plugin-version>2.2</tomcat7-maven-plugin-version>
+        <com.h2database-version>1.4.190</com.h2database-version>
     </properties>
 
     <dependencies>
@@ -143,12 +144,11 @@
             <version>${com.fasterxml.jackson.core-version}</version>
         </dependency>
 
-
-        <!--<dependency>-->
-            <!--<groupId>org.msgpack</groupId>-->
-            <!--<artifactId>jackson-dataformat-msgpack</artifactId>-->
-            <!--<version>0.7.0-p5</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${com.h2database-version}</version>
+        </dependency>
     </dependencies>
 
     <build>

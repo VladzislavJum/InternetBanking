@@ -1,6 +1,8 @@
 package by.jum.internetbanking.controllers.admin;
 
+import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.facade.BankAccountFacade;
+import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.RefillMoneyForm;
 import by.jum.internetbanking.form.validator.RefillMoneyValidator;
 import by.jum.internetbanking.json.jsonview.Views;
@@ -9,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -33,17 +37,33 @@ public class AccountsController {
     @Autowired
     private BankAccountFacade accountFacade;
 
+    @Autowired
+    private UserFacade userFacade;
+
     //    TODO: add display error if validation is bad
     @RequestMapping(value = "{id}/accounts/{acoountid}/refill")
-    public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm,
+    public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm, Model model,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
         moneyValidator.validate(refillMoneyForm, result);
-        if (!result.hasErrors()) {
-            accountFacade.refillMoney(refillMoneyForm, accountID);
-        } else {
-            LOGGER.info("Validation refill Money error");
+        if (result.hasErrors()) {
+            LOGGER.info("Validation refillMoney error");
+            List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
+            model.addAttribute("accountList", accountDTOList);
+            model.addAttribute("userID", id);
+            model.addAttribute("refillForm", refillMoneyForm);
+            return "admin/showAccounts";
         }
+        accountFacade.refillMoney(refillMoneyForm, accountID);
         return messageSource.getMessage("controller.label.redirectshowusersaccounts", new Object[]{id}, Locale.ENGLISH);
+    }
+
+    @RequestMapping(value = "{id}/accounts", method = RequestMethod.GET)
+    public String showUserAccounts(@PathVariable("id") long id, Model model) {
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
+        model.addAttribute("accountList", accountDTOList);
+        model.addAttribute("userID", id);
+        model.addAttribute("refillForm", new RefillMoneyForm());
+        return "admin/showAccounts";
     }
 
     @RequestMapping(value = "deleteuseracc", method = RequestMethod.POST)

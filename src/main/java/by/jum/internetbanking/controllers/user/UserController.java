@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.List;
 
 @Controller
-@SessionAttributes("currentUserID")
 @RequestMapping("/user")
 public class UserController {
 
@@ -24,9 +23,9 @@ public class UserController {
     private UserFacade userFacade;
 
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
-    public String showUserAccounts(Model model, @ModelAttribute("currentUserID") long currentUserID) {
+    public String showUserAccounts(Model model) {
         LOGGER.info("Show userAccounts");
-        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
+        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         return "user/showUserAccounts";
     }

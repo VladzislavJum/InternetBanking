@@ -9,6 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,9 +31,16 @@ public class UserDAOImplTest {
     BankAccountDAO accountDAO;
 
     private User user;
+    private EmbeddedDatabase db;
 
     @Before
     public void init() {
+
+//        db = new EmbeddedDatabaseBuilder()
+//                .setType(EmbeddedDatabaseType.H2)
+//                .addScript("src/create-db.sql")
+//                .build();
+
         user = new User();
         LOGGER.info("init Test");
         user.setUserID(321L);
@@ -53,6 +63,7 @@ public class UserDAOImplTest {
 
     @Test
     public void testUpdate() throws Exception {
+        userDAO.save(user);
         LOGGER.info("PassportNumber before: " + user.getPassportNumber());
         user.setPassportNumber("1234567");
         userDAO.update(user);
