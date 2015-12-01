@@ -3,7 +3,7 @@ package by.jum.internetbanking.form.money;
 public class PaymentForServicesForm {
     private String amountOfMoney;
     private String nameCorp;
-    private String accountNumberFrom;
+    private String numberAccountFrom;
     private long userID;
 
     public long getUserID() {
@@ -30,11 +30,11 @@ public class PaymentForServicesForm {
         this.nameCorp = nameCorp;
     }
 
-    public String getAccountNumberFrom() {
-        return accountNumberFrom;
+    public String getNumberAccountFrom() {
+        return numberAccountFrom;
     }
 
-    public void setAccountNumberFrom(String accountNumberFrom) {
-        this.accountNumberFrom = accountNumberFrom;
+    public void setNumberAccountFrom(String numberAccountFrom) {
+        this.numberAccountFrom = numberAccountFrom;
     }
 }

@@ -7,6 +7,11 @@
     <title><spring:message code="error.label.404"/></title>
 </head>
 <body>
-<h1 style="text-align: center"><spring:message code="label.error.404"/></h1>
+<div class="container full-height-border">
+    <jsp:include page="common/navError.jsp"/>
+    <div class="row head-color-green">
+        <h1 class="head-inf"><spring:message code="label.error.404"/></h1>
+    </div>
+</div>
 </body>
 </html>

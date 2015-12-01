@@ -21,6 +21,8 @@ public interface UserFacade {
 
     UserDTO getUserByUserName(String login);
 
+    List<UserDTO> findListUsersByLogin(String login);
+
     void deleteUserByID(long id);
 
     boolean isExistUserWithPassportNumber(String passportNumber);

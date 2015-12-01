@@ -40,7 +40,6 @@ public class AccountsController {
     @Autowired
     private UserFacade userFacade;
 
-    //    TODO: add display error if validation is bad
     @RequestMapping(value = "{id}/accounts/{acoountid}/refill")
     public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm, Model model,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
@@ -51,6 +50,8 @@ public class AccountsController {
             model.addAttribute("accountList", accountDTOList);
             model.addAttribute("userID", id);
             model.addAttribute("refillForm", refillMoneyForm);
+            model.addAttribute("accID", accountID);
+            LOGGER.info("ACC_ID " + accountID);
             return "admin/showAccounts";
         }
         accountFacade.refillMoney(refillMoneyForm, accountID);

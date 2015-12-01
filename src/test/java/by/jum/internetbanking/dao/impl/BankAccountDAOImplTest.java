@@ -29,20 +29,13 @@ public class BankAccountDAOImplTest {
         LOGGER.info("init Test");
         account = new BankAccount();
         account.setAccountNumber("7777");
-        account.setBankAccountID(7894L);
         account.setAmountOfMoney(new BigDecimal(999999));
-    }
-
-    @Test
-    public void testGetList() throws Exception {
-        LOGGER.info("ListAccounts: ");
-        accountDAO.getList().forEach(account -> LOGGER.info("AccountNumber " + account.getAccountNumber()));
+        accountDAO.save(account);
     }
 
     @Test
     public void testSave() throws Exception {
-        accountDAO.save(account);
-        LOGGER.info("Created Account with number 7777: " + accountDAO.getByNumber("7777"));
+        LOGGER.info("Created Account with number 7777 is " + accountDAO.getByNumber("7777"));
     }
 
     @Test
@@ -50,25 +43,22 @@ public class BankAccountDAOImplTest {
         LOGGER.info("Money Before: " + account.getAmountOfMoney());
         account.setAmountOfMoney(new BigDecimal(1234));
         accountDAO.update(account);
-        LOGGER.info("Money After: " + accountDAO.getByID(7894L).getAmountOfMoney());
+        LOGGER.info("Money After: " + accountDAO.getByID(account.getBankAccountID()).getAmountOfMoney());
     }
 
     @Test
     public void testDelete() throws Exception {
-        accountDAO.save(account);
         accountDAO.delete(account);
-        LOGGER.info("Test: Deleted Account with number 7777: " + accountDAO.getByID(account.getBankAccountID()));
+        LOGGER.info("Test: Deleted Account with number 7777 is " + accountDAO.getByID(account.getBankAccountID()));
     }
 
     @Test
     public void testGetByID() throws Exception {
-        accountDAO.save(account);
         LOGGER.info("Test: Get Account by id: " + accountDAO.getByID(account.getBankAccountID()));
     }
 
     @Test
     public void testDeleteByID() throws Exception {
-        accountDAO.save(account);
         accountDAO.deleteByID(account.getBankAccountID());
         LOGGER.info("Test: deleteByID: account is " + accountDAO.getByID(account.getBankAccountID()));
     }

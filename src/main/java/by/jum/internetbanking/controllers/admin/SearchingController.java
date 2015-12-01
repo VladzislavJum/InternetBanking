@@ -4,16 +4,20 @@ import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.form.user.SearchForm;
+import by.jum.internetbanking.json.jsonview.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +37,10 @@ public class SearchingController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "users/search", method = {RequestMethod.POST, RequestMethod.GET})
-    public String searchUser(@ModelAttribute("searchUserForm") SearchForm searchForm, Model model) {
-        LOGGER.info("Search user" + searchForm.getSearchStr());
-        UserDTO userDTO = userFacade.getUserByUserName(searchForm.getSearchStr());
+    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    public String searchUser(Model model, @PathVariable("id") long userID) {
+        LOGGER.info("Search user");
+        UserDTO userDTO = userFacade.getUserByID(userID);
         if (userDTO != null) {
             List<UserDTO> userDTOList = new ArrayList<>();
             userDTOList.add(userDTO);
@@ -48,10 +52,10 @@ public class SearchingController {
         return "admin/showUsers";
     }
 
-    @RequestMapping(value = "account/search", method = {RequestMethod.POST, RequestMethod.GET})
-    public String searchAccount(@ModelAttribute("searchAccountForm") SearchForm searchForm, Model model) {
-        LOGGER.info("Search account " + searchForm.getSearchStr());
-        BankAccountDTO accountDTO = accountFacade.getAccountByNumber(searchForm.getSearchStr());
+    @RequestMapping(value = "account/{id}", method = RequestMethod.GET)
+    public String searchAccount(Model model, @PathVariable("id") long accountID) {
+        LOGGER.info("Search Acc");
+        BankAccountDTO accountDTO = accountFacade.getAccountByID(accountID);
         if (accountDTO != null) {
             List<BankAccountDTO> bankAccountDTOList = new ArrayList<>();
             bankAccountDTOList.add(accountDTO);
@@ -62,5 +66,37 @@ public class SearchingController {
             model.addAttribute("notExist", message);
         }
         return "admin/showAccounts";
+    }
+
+    @JsonView(Views.Account.class)
+    @RequestMapping(value = "account/searchAcc", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<BankAccountDTO> getAccountsByNumbers(@RequestBody BankAccountDTO accountDTO) {
+        String number = accountDTO.getAccountNumber();
+        if (StringUtils.isEmpty(number)) {
+            LOGGER.info("Not value");
+            return new ArrayList<>();
+        } else {
+            LOGGER.info("Search Acc Value " + number);
+            List<BankAccountDTO> accountDTOList = accountFacade.findListAccountsByNumber(number);
+            return accountDTOList;
+        }
+    }
+
+    @JsonView(Views.User.class)
+    @RequestMapping(value = "users/searchUsers", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<UserDTO> getUsersByLogin(@RequestBody UserDTO userDTO) {
+        String login = userDTO.getLogin();
+        if (StringUtils.isEmpty(login)) {
+            LOGGER.info("Not value");
+            return new ArrayList<>();
+        } else {
+            LOGGER.info("Search User Value " + login);
+            List<UserDTO> userDTOList = userFacade.findListUsersByLogin(login);
+            return userDTOList;
+        }
     }
 }

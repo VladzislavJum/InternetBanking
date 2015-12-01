@@ -22,8 +22,6 @@
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/js/usersAjax.js"/>"></script>
     <script src="<c:url value="/resources/js/clickForUser.js"/>"></script>
-
-
 </head>
 <body>
 
@@ -36,7 +34,7 @@
     <h4 class="error-search"> ${message}</h4>
 
     <c:if test="${!empty userList}">
-        <div class="row">
+        <div class="row margin-top5">
             <div class="col-sm-2 head-users">${firstnameLabel}</div>
             <div class="col-sm-2 head-users">${surnameLabel}</div>
             <div class="col-sm-2 head-users">${patronymicLabel}</div>
@@ -70,7 +68,7 @@
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
                                         onclick="lockOrUnlockViaAjax(this, '${lockOrUnlockUrl}', '${lockUnlockUrlImg}');">
-                                    <img id="unlockimg"
+                                    <img id="unlockimg${user.userID}"
                                          src="<c:url value="/resources/images/button/unlock.png"/>"
                                          title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>
@@ -80,7 +78,7 @@
                                         userID="${user.userID}"
                                         unlock="${user.unlocked}"
                                         onclick="lockOrUnlockViaAjax(this, '${lockOrUnlockUrl}', '${lockUnlockUrlImg}');">
-                                    <img id="unlockimg"
+                                    <img id="unlockimg${user.userID}"
                                          src="<c:url value="/resources/images/button/lock.png"/>"
                                          title="<spring:message code="action.button.lockorunlock"/>">
                                 </button>

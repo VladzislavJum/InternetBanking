@@ -1,5 +1,6 @@
 package by.jum.internetbanking.facade.impl;
 
+import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.dto.UserDTO;
@@ -86,6 +87,15 @@ public class UserFacadeImpl implements UserFacade {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<UserDTO> findListUsersByLogin(String login) {
+        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(User.class));
+        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserDTO.class));
+        List<UserDTO> userDTOList = (List<UserDTO>) conversionService.
+                convert(userService.findListUsersByLogin(login), sourceType, targetType);
+        return userDTOList;
     }
 
     @Override

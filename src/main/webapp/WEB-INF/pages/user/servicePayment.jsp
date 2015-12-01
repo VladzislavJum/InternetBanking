@@ -8,8 +8,6 @@
 <spring:message code="moneytrans.button.transfer" var="transfer"/>
 <spring:message code="paymentserv.button.pay" var="pay"/>
 <spring:url value="/user/payment/service/pay" var="payUrl"/>
-
-
 <html>
 <head>
     <title><spring:message code="servicepay.label.services"/></title>
@@ -22,7 +20,7 @@
         <h1 class="head-inf">${name}</h1>
     </div>
 
-    <form:form commandName="servicesForm" method="post" action="${payUrl}">
+    <form:form commandName="servicesForm" method="post" action="${payUrl}" cssClass="margin-top5">
         <c:if test="${!empty accountList}">
 
             <div class="text-center"><form:errors path="nameCorp" cssClass="error-text"/></div>
@@ -36,7 +34,7 @@
 
                 <div class="funkyradio col-sm-offset-9">
                     <div class="funkyradio-primary">
-                        <input type="radio" name="accountNumberFrom" id="${account.accountNumber}"
+                        <input type="radio" name="numberAccountFrom" id="${account.accountNumber}"
                                value="${account.accountNumber}"/>
                         <label for="${account.accountNumber}">.</label>
                     </div>
@@ -67,7 +65,7 @@
             </div>
 
             <div class="error-text-trans">
-                <form:errors path="accountNumberFrom"/>
+                <form:errors path="numberAccountFrom"/>
             </div>
         </c:if>
     </form:form>

@@ -35,7 +35,7 @@ public class CorporationFacadeImpl implements CorporationFacade {
 
     @Override
     public void transferMoney(PaymentForServicesForm servicesForm) {
-        String numberAccountFrom = servicesForm.getAccountNumberFrom();
+        String numberAccountFrom = servicesForm.getNumberAccountFrom();
         String name = servicesForm.getNameCorp();
         String amountOfTransferredMoney = servicesForm.getAmountOfMoney();
 

@@ -15,6 +15,8 @@ public interface UserService {
 
     User getByUserName(String login);
 
+    List<User> findListUsersByLogin(String login);
+
     void deleteById(long id);
 
     boolean isExistUserWithPassportNumber(String passportNumber);

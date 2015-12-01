@@ -1,9 +1,10 @@
 $(document).ready(function () {
-    clickRefill();
     clickDelete();
-    if ($('[id*=amountOfMoney]').html() != null) {
-        //$("#formID").attr('formID', $('[id*=amountOfMoney]').attr('idForm'));
-        $('[id*=refill]').click();
+    if ($('[id*=amountOfMoney]').html() == null) {
+        clickRefill();
+    } else {
+        $("#"+$('[id*=refill]').attr('id')).click();
+        clickRefill();
     }
 });
 
@@ -16,6 +17,5 @@ function clickDelete() {
 function clickRefill() {
     $('[id*=refill]').filter(':button').click(function () {
         $("#formID").attr('action', $(this).attr("url") + $(this).attr("userID") + '/accounts/' + $(this).attr("accID") + '/refill');
-        //$('[id*=amountOfMoney]').attr('idForm', $(this).attr("url") + $(this).attr("userID") + '/accounts/' + $(this).attr("accID") + '/refill');
     });
 }

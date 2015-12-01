@@ -19,6 +19,8 @@ public interface UserDAO {
 
     User getByUserName(String login);
 
+    List<User> findListByLogin(String login);
+
     void deleteByID(long id);
 
     boolean isExistUserWithPassportNumber(String passportNumber);

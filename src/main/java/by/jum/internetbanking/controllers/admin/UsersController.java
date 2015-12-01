@@ -43,8 +43,12 @@ public class UsersController {
     @JsonView(Views.Account.class)
     public
     @ResponseBody
-    void deleteAcc(@RequestBody long userID) {
-        userFacade.deleteUserByID(userID);
+    boolean deleteAcc(@RequestBody long userID) {
+        if (userFacade.getIDCurrentUser() != userID) {
+            userFacade.deleteUserByID(userID);
+            return true;
+        }
+        return false;
     }
 
 }

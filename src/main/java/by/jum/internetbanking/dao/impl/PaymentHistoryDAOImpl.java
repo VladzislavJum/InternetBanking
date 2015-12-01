@@ -25,7 +25,7 @@ public class PaymentHistoryDAOImpl extends AbstractBaseDAO implements PaymentHis
     @Override
     public void delete(PaymentHistory history) {
         super.delete(history);
-        LOGGER.info("DAO: history deleted");
+        LOGGER.info("PaymentHistoryDAO: history deleted");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class PaymentHistoryDAOImpl extends AbstractBaseDAO implements PaymentHis
     @Override
     public void save(PaymentHistory history) {
         super.save(history);
-        LOGGER.info("DAO: history saved");
+        LOGGER.info("PaymentHistoryDAO: history saved");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class PaymentHistoryDAOImpl extends AbstractBaseDAO implements PaymentHis
     @Override
     public void update(PaymentHistory history) {
         super.update(history);
-        LOGGER.info("DAO: history updated");
+        LOGGER.info("PaymentHistoryDAO: history updated");
     }
 
 }

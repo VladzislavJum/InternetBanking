@@ -71,6 +71,16 @@ public class BankAccountFacadeImpl implements BankAccountFacade {
     }
 
     @Override
+    public List<BankAccountDTO> findListAccountsByNumber(String number) {
+        List<BankAccount> accountList = accountService.findListAccountsByNumber(number);
+        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccount.class));
+        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccountDTO.class));
+        List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.
+                convert(accountList, sourceType, targetType);
+        return accountDTOList;
+    }
+
+    @Override
     public void transferMoney(MoneyTransactionForm moneyTransactionForm) {
         String numberAccountFrom = moneyTransactionForm.getNumberAccountFrom();
         String objectTo = moneyTransactionForm.getObjectTo();

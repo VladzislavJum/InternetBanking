@@ -18,6 +18,7 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
     private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
     private static final String GET_ACCOUNT_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
+    private static final String FIND_LIST_ACCOUNTS_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where UPPER(b.accountNumber) like upper(:number)";
     private static final String GET_ALL_ACCOUNTS_QUERY = "from by.jum.internetbanking.entity.BankAccount";
 
     @Autowired
@@ -73,6 +74,17 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
         return account;
     }
+
+    @Override
+    public List<BankAccount> findListByNumber(String number) {
+        LOGGER.error("findListByNumber");
+        Query query = getSessionFactory().getCurrentSession().createQuery(FIND_LIST_ACCOUNTS_BY_NUMBER_QUERY);
+        query.setString("number", number + "%");
+        List<BankAccount> accounts = query.list();
+//        LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
+        return accounts;
+    }
+
 
     @Override
     public List<BankAccount> getAccountsByUserId(long userID) {

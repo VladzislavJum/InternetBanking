@@ -1,15 +1,25 @@
 package by.jum.internetbanking.dto;
 
+import by.jum.internetbanking.json.jsonview.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class UserDTO {
+    @JsonView(Views.User.class)
     private long userID;
     private String firstname;
     private String surname;
     private String patronymic;
     private String passportNumber;
     private String password;
+    @JsonView(Views.User.class)
     private String login;
     private String userRole;
     private boolean unlocked;
+
+
+    public long getUserID() {
+        return userID;
+    }
 
     public void setUserID(long userID) {
         this.userID = userID;
@@ -45,14 +55,6 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Long userID) {
-        this.userID = userID;
     }
 
     public String getFirstname() {

@@ -2,7 +2,6 @@ jQuery(document).ready(function () {
     $('[id*=delUserButton]').click(function () {
         deleteUserViaAjax(this);
     });
-
 });
 
 function deleteUserViaAjax(button) {
@@ -14,8 +13,10 @@ function deleteUserViaAjax(button) {
         data: userID,
         dataType: 'json',
         timeout: 100000,
-        success: function () {
-            removeUserFromJSP(userID)
+        success: function (isDeleted) {
+            if (isDeleted == true) {
+                removeUserFromJSP(userID)
+            }
         }
     });
 }
@@ -42,16 +43,15 @@ function removeUserFromJSP(userID) {
 }
 
 function lockOrUnlockUserOnJSP(button, imgUrl) {
-
     if ($(button).attr("unlock") == 'true') {
         $(button).attr("unlock", 'false');
         $(button).removeClass('btn-success');
         $(button).addClass('btn-warning');
-        $("#unlockimg").attr("src", imgUrl + "lock.png");
+        $("#unlockimg" + $(button).attr("userID")).attr("src", imgUrl + "lock.png");
     } else {
         $(button).attr("unlock", 'true');
         $(button).removeClass('btn-warning');
         $(button).addClass('btn-success');
-        $("#unlockimg").attr("src", imgUrl + "unlock.png");
+        $("#unlockimg" + $(button).attr("userID")).attr("src", imgUrl + "unlock.png");
     }
 }

@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findListUsersByLogin(String login) {
+        return userDAO.findListByLogin(login);
+    }
+
+    @Override
     @Transactional
     public void deleteById(long id) {
         userDAO.deleteByID(id);

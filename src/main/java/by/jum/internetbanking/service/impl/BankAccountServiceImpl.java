@@ -53,6 +53,11 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
+    public List<BankAccount> findListAccountsByNumber(String number) {
+        return accountDAO.findListByNumber(number);
+    }
+
+    @Override
     @Transactional
     public void transferMoney(BankAccount accountFrom, BankAccount accountTo, BigDecimal amountOfTransferredMoney) {
         accountFrom.setAmountOfMoney(accountFrom.getAmountOfMoney().subtract(amountOfTransferredMoney));

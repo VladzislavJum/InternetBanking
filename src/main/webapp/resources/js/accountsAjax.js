@@ -17,7 +17,6 @@ function deleteAccountViaAjax(button) {
             removeAccFromJSP(accountID);
         }
     });
-
 }
 
 function removeAccFromJSP(accountID) {

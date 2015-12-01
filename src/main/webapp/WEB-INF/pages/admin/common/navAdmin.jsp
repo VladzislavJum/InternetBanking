@@ -8,17 +8,20 @@
 <spring:url value="/admin/users" var="users"/>
 <spring:url value="/admin/createaccountform" var="createaccountform"/>
 <spring:url value="/admin/signupform" var="signupform"/>
-<spring:url value="/admin/signupform" var="signupform"/>
-<spring:url value="/admin/signupform" var="signupform"/>
-<spring:url value="/admin/account/search" var="accountSearch"/>
-<spring:url value="/admin/users/search" var="userSearch"/>
+<spring:url value="/admin/account/" var="accountSearchUrl"/>
+<spring:url value="/admin/user/" var="userSearchUrl"/>
 <spring:url value="/logout" var="logout"/>
+<spring:message code="locale.label.lang" var="lang"/>
 
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/select2/css/select2.css"/>" rel="stylesheet">
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
+    <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
+    <script src="<c:url value="/resources/js/navAdminAjax.js"/>"></script>
+    <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
     <jsp:include page="../../footer.jsp"/>
 </head>
 <body>
@@ -35,23 +38,24 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <form:form class="navbar-form" method="post" action="${accountSearch}"
-                           commandName="searchAccountForm">
+                <div class="navbar-form" method="post" role="search">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="searchStr" placeholder="${searchAccountLabel}">
+                        <select multiple id="selectAccID" data-placeholder="${searchAccountLabel}" class="form-control"
+                                onchange="window.location.href='${accountSearchUrl}'+this.value;">
+                        </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
-                </form:form>
+                </div>
             </li>
-
             <li>
-                <form:form class="navbar-form" method="post" action="${userSearch}  "
-                           commandName="searchUserForm">
+                <div class="navbar-form" method="post" role="search">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="searchStr" placeholder="${searchUserLabel}">
+                        <select multiple id="selectUserID" data-placeholder="${searchUserLabel}" class="form-control"
+                                onchange="window.location.href='${userSearchUrl}'+this.value;">
+                        </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
-                </form:form>
+                </div>
             </li>
 
             <li class="dropdown">
@@ -69,5 +73,6 @@
     </div>
 
 </header>
+
 </body>
 </html>

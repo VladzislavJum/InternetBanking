@@ -27,14 +27,14 @@ public class PaymentForServicesValidator implements Validator {
     public void validate(Object target, Errors errors) {
         PaymentForServicesForm servicesForm = (PaymentForServicesForm) target;
 
-        if(corporationService.getByName(servicesForm.getNameCorp()) == null){
+        if (corporationService.getByName(servicesForm.getNameCorp()) == null) {
             errors.rejectValue("nameCorp", "paymentserv.label.namecorp");
-        }else {
-
-            if (StringUtils.isEmpty(servicesForm.getAccountNumberFrom())) {
+        } else {
+            if (StringUtils.isEmpty(servicesForm.getNumberAccountFrom())) {
                 errors.rejectValue("accountNumberFrom", "moneytrans.label.error.requiredaccount");
+            } else {
+                moneyTransactionValidator.checkAmountOfMoney(servicesForm.getAmountOfMoney(), servicesForm.getNumberAccountFrom(), errors, "amountOfMoney");
             }
-            moneyTransactionValidator.checkAmountOfMoney(servicesForm.getAmountOfMoney(), servicesForm.getAccountNumberFrom(), errors, "amountOfMoney");
         }
     }
 }

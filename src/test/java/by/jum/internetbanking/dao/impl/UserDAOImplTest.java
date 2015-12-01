@@ -10,8 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,47 +21,30 @@ import java.util.List;
 @Transactional
 public class UserDAOImplTest {
     private final static Logger LOGGER = Logger.getLogger(UserDAOImplTest.class);
-
-    @Autowired
-    private UserDAO userDAO;
-
     @Autowired
     BankAccountDAO accountDAO;
-
+    @Autowired
+    private UserDAO userDAO;
     private User user;
     private EmbeddedDatabase db;
 
     @Before
     public void init() {
-
-//        db = new EmbeddedDatabaseBuilder()
-//                .setType(EmbeddedDatabaseType.H2)
-//                .addScript("src/create-db.sql")
-//                .build();
-
-        user = new User();
         LOGGER.info("init Test");
-        user.setUserID(321L);
+        user = new User();
         user.setLogin("testUser");
         user.setPassportNumber("testNumber");
-    }
-
-    @Test
-    public void testGetList() throws Exception {
-        LOGGER.info("ListUsers: ");
-        userDAO.getList().forEach(user -> LOGGER.info("Login" + user.getLogin()));
+        userDAO.save(user);
     }
 
     @Test
     public void testDelete() throws Exception {
-        userDAO.save(user);
         userDAO.delete(user);
-        LOGGER.info("Delete user, exist: " + userDAO.getByUserName("testUser"));
+        LOGGER.info("Delete user: " + userDAO.getById(user.getUserID()));
     }
 
     @Test
     public void testUpdate() throws Exception {
-        userDAO.save(user);
         LOGGER.info("PassportNumber before: " + user.getPassportNumber());
         user.setPassportNumber("1234567");
         userDAO.update(user);
@@ -72,28 +53,24 @@ public class UserDAOImplTest {
 
     @Test
     public void testSave() throws Exception {
-        userDAO.save(user);
-        LOGGER.info("Created User: " + userDAO.getByUserName("testUser").getLogin());
+        LOGGER.info("Created User: " + userDAO.getById(user.getUserID()));
     }
 
     @Test
     public void testGetById() throws Exception {
-        userDAO.save(user);
-        LOGGER.info("Get by ID = 111111: Login " + userDAO.getById(user.getUserID()).getLogin());
+        LOGGER.info("GetByID: Login " + userDAO.getById(user.getUserID()));
     }
 
     @Test
     public void testGetByUserName() throws Exception {
-        userDAO.save(user);
-        LOGGER.info("Get By UserName(testUser): PassportNumber " + userDAO.getByUserName("testUser").getPassportNumber());
+        LOGGER.info("Get By UserName(testUser): " + userDAO.getByUserName("testUser"));
     }
 
     @Test
     public void testGetAccountUserList() throws Exception {
-        userDAO.save(user);
         LOGGER.info("NumberAccounts: ");
         List<BankAccount> accountList = accountDAO.getAccountsByUserId(user.getUserID());
-        if (accountList != null){
+        if (accountList != null) {
             accountList.forEach(account -> LOGGER.info(account));
         } else {
             LOGGER.info("List is null");
@@ -102,7 +79,6 @@ public class UserDAOImplTest {
 
     @Test
     public void testDeleteByID() throws Exception {
-        userDAO.save(user);
         userDAO.deleteByID(user.getUserID());
         LOGGER.info("Test: deleteByID: user is " + userDAO.getById(user.getUserID()));
     }

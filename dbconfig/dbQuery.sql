@@ -4,8 +4,8 @@
   role character varying(20) DEFAULT 'ROLE_USER'::character varying,
   CONSTRAINT role_pkey PRIMARY KEY (id)
 );
-INSERT INTO role(id, role) VALUES (1, 'ROLE_USER');
-INSERT INTO role(id, role) VALUES (2, 'ROLE_ADMIN');
+INSERT INTO role(role) VALUES ('ROLE_USER');
+INSERT INTO role(role) VALUES ('ROLE_ADMIN');
 
 CREATE TABLE users
 (

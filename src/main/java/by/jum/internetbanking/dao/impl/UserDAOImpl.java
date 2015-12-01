@@ -21,6 +21,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     private static final String GET_USERS_WITH_USER_ROLE_QUERY = "from by.jum.internetbanking.entity.User u where u.role = " + USER_ROLE_ID;
     private static final String GET_USER_BY_USERNAME_QUERY = "from by.jum.internetbanking.entity.User u where u.login = :login";
+    private static final String FIND_LIST_USERS_BY_LOGIN_QUERY = "from by.jum.internetbanking.entity.User u where UPPER(u.login) like upper(:login)";
 
     private static final String IS_EXIST_WITH_PASSPORT = "from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber";
 
@@ -28,14 +29,14 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     private MessageSource messageSource;
 
     public List<User> getList() {
-        LOGGER.info("DAO: Get UserList");
+        LOGGER.info("UserDAO: Get UserList");
         Query query = getSessionFactory().getCurrentSession().createQuery(GET_USERS_WITH_USER_ROLE_QUERY);
         return query.list();
     }
 
     public void delete(User user) {
         super.delete(user);
-        LOGGER.info("DAO: User deleted: Login " + user.getLogin());
+        LOGGER.info("UserDAO: User deleted: Login " + user.getLogin());
 
     }
 
@@ -45,7 +46,7 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
 
     public void save(User user) {
         super.save(user);
-        LOGGER.info("DAO: User created: Login " + user.getLogin());
+        LOGGER.info("UserDAO: User created: Login " + user.getLogin());
 
     }
 
@@ -65,11 +66,21 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     }
 
     @Override
+    public List<User> findListByLogin(String login) {
+        LOGGER.error("findListByNumber");
+        Query query = getSessionFactory().getCurrentSession().createQuery(FIND_LIST_USERS_BY_LOGIN_QUERY);
+        query.setString("login", login + "%");
+        List<User> users = query.list();
+//        LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
+        return users;
+    }
+
+    @Override
     public void deleteByID(long id) {
         User user = new User();
         user.setUserID(id);
         delete(getSessionFactory().getCurrentSession().merge(user));
-        LOGGER.info("DAO: User Deleted: id " + id);
+        LOGGER.info("UserDAO: User Deleted: id " + id);
     }
 
     public boolean isExistUserWithPassportNumber(String passportNumber) {
