@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FormToUserConverter implements Converter<RegistrationUserForm, User> {
 
-    private final static long ID_USER_ROLE = 1L;
+    private static final long ID_USER_ROLE = 1L;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;

@@ -3,6 +3,7 @@ package by.jum.internetbanking.dao.impl;
 import by.jum.internetbanking.dao.BankAccountDAO;
 import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.entity.BankAccount;
+import by.jum.internetbanking.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
 
     private static final Logger LOGGER = Logger.getLogger(BankAccountDAOImpl.class);
 
-    private static final String GET_ACCOUNT_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
-    private static final String FIND_LIST_ACCOUNTS_BY_NUMBER_QUERY = "from by.jum.internetbanking.entity.BankAccount b where UPPER(b.accountNumber) like upper(:number)";
+    private static final String GET_ACCOUNT_BY_NUMBER_QUERY =
+            "from by.jum.internetbanking.entity.BankAccount b where b.accountNumber=:accountNumber";
+    private static final String FIND_LIST_ACCOUNTS_BY_NUMBER_QUERY =
+            "from by.jum.internetbanking.entity.BankAccount b where upper(b.accountNumber) like upper(:number) and b.user!=null";
     private static final String GET_ALL_ACCOUNTS_QUERY = "from by.jum.internetbanking.entity.BankAccount";
 
     @Autowired
@@ -71,7 +74,6 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
                 createQuery(GET_ACCOUNT_BY_NUMBER_QUERY).
                 setParameter("accountNumber", number).uniqueResult();
         LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
-
         return account;
     }
 
@@ -81,13 +83,16 @@ public class BankAccountDAOImpl extends AbstractBaseDAO implements BankAccountDA
         Query query = getSessionFactory().getCurrentSession().createQuery(FIND_LIST_ACCOUNTS_BY_NUMBER_QUERY);
         query.setString("number", number + "%");
         List<BankAccount> accounts = query.list();
-//        LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
         return accounts;
     }
 
 
     @Override
     public List<BankAccount> getAccountsByUserId(long userID) {
-        return userDAO.getById(userID).getBankAccountList();
+        User user = userDAO.getById(userID);
+        if (user != null) {
+            return user.getBankAccountList();
+        }
+        return null;
     }
 }

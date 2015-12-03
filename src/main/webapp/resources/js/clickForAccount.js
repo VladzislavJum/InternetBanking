@@ -1,11 +1,10 @@
 $(document).ready(function () {
     clickDelete();
-    if ($('[id*=amountOfMoney]').html() == null) {
-        clickRefill();
-    } else {
-        $("#"+$('[id*=refill]').attr('id')).click();
-        clickRefill();
+    if ($('[id*=amountOfMoney]').html() != null) {
+        $("#" + $('[id*=refill]').attr('id')).click();
     }
+    clickRefill();
+
 });
 
 function clickDelete() {

@@ -34,8 +34,5 @@
             </props>
         </property>
     </bean>
-    <!--<jdbc:embedded-database id="dataSource" type="H2">-->
-    <!--<jdbc:script location="classpath:sql/testDB.sql"/>-->
-    <!--</jdbc:embedded-database>-->
 
 </beans>

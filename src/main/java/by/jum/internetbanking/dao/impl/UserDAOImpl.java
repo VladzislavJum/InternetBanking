@@ -22,7 +22,6 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     private static final String GET_USERS_WITH_USER_ROLE_QUERY = "from by.jum.internetbanking.entity.User u where u.role = " + USER_ROLE_ID;
     private static final String GET_USER_BY_USERNAME_QUERY = "from by.jum.internetbanking.entity.User u where u.login = :login";
     private static final String FIND_LIST_USERS_BY_LOGIN_QUERY = "from by.jum.internetbanking.entity.User u where UPPER(u.login) like upper(:login)";
-
     private static final String IS_EXIST_WITH_PASSPORT = "from by.jum.internetbanking.entity.User u where u.passportNumber = :passportNumber";
 
     @Autowired
@@ -71,7 +70,6 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
         Query query = getSessionFactory().getCurrentSession().createQuery(FIND_LIST_USERS_BY_LOGIN_QUERY);
         query.setString("login", login + "%");
         List<User> users = query.list();
-//        LOGGER.info(messageSource.getMessage("print.getaccountbynumber", new Object[]{number, account}, Locale.ENGLISH));
         return users;
     }
 

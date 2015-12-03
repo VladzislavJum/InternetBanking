@@ -1,12 +1,10 @@
 package by.jum.internetbanking.facade.impl;
 
-import by.jum.internetbanking.dao.UserDAO;
 import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.entity.PaymentHistory;
-import by.jum.internetbanking.entity.Role;
 import by.jum.internetbanking.entity.User;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
@@ -61,12 +59,15 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public List<BankAccountDTO> getUserAccountList(long userID) {
-        TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccount.class));
-        TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccountDTO.class));
-        List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.convert(accountService.getAccountsByUserId(userID), sourceType, targetType);
-        Collections.sort(accountDTOList, (o1, o2) -> o1.getBankAccountID().compareTo(o2.getBankAccountID()));
-        return accountDTOList;
-
+        if (userService.getUserByID(userID) != null) {
+            TypeDescriptor sourceType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccount.class));
+            TypeDescriptor targetType = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(BankAccountDTO.class));
+            List<BankAccountDTO> accountDTOList = (List<BankAccountDTO>) conversionService.convert(accountService.getAccountsByUserId(userID), sourceType, targetType);
+            Collections.sort(accountDTOList, (o1, o2) -> o1.getBankAccountID().compareTo(o2.getBankAccountID()));
+            return accountDTOList;
+        } else {
+            return null;
+        }
     }
 
     @Override

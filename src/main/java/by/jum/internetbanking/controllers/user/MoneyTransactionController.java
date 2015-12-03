@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
@@ -56,11 +55,9 @@ public class MoneyTransactionController {
             model.addAttribute("transactionForm", transactionForm);
             return "user/moneyTransaction";
         }
-
         transactionForm.setUserID(currentUserID);
         accountFacade.transferMoney(transactionForm);
         historyFacade.saveTransactionHistory(transactionForm);
-
         return "redirect:/user/accounts";
     }
 }

@@ -51,5 +51,4 @@ public class PaymentHistoryDAOImpl extends AbstractBaseDAO implements PaymentHis
         super.update(history);
         LOGGER.info("PaymentHistoryDAO: history updated");
     }
-
 }

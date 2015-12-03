@@ -40,7 +40,7 @@ public class AccountsController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "{id}/accounts/{acoountid}/refill")
+    @RequestMapping(value = "{id}/accounts/{acoountid}/refill", method = RequestMethod.POST)
     public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm, Model model,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
         moneyValidator.validate(refillMoneyForm, result);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AccessInterceptor extends HandlerInterceptorAdapter {
+
     private static final Logger LOGGER = Logger.getLogger(AccessInterceptor.class);
 
     @Autowired

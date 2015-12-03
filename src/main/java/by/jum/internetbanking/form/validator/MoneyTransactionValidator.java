@@ -18,8 +18,8 @@ public class MoneyTransactionValidator implements Validator {
 
     private static final String NUMBER_PATTERN = "[0-9]+";
     private static final String NUMBER_ACCOUNT_PATTERN = "[a-zA-Z0-9]+";
-        private static final int LESS_VALUE = -1;
-        private static final int MIN_VALUE = 100;
+    private static final int LESS_VALUE = -1;
+    private static final int MIN_VALUE = 100;
 
     private Pattern pattern;
     private Matcher matcher;

@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 @Component
-public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, PaymentHistoryDTO>{
+public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, PaymentHistoryDTO> {
 
     private static final String DATA_FORMAT = "dd.MM.yyyy HH:mm";
 

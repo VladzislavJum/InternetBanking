@@ -9,7 +9,9 @@
 <spring:url value="/admin/createaccountform" var="createaccountform"/>
 <spring:url value="/admin/signupform" var="signupform"/>
 <spring:url value="/admin/account/" var="accountSearchUrl"/>
+<spring:url value="/admin/account/searchAcc" var="searchAccUrlAjax"/>
 <spring:url value="/admin/user/" var="userSearchUrl"/>
+<spring:url value="/admin/users/searchUsers" var="searchUserUrlAjax"/>
 <spring:url value="/logout" var="logout"/>
 <spring:message code="locale.label.lang" var="lang"/>
 
@@ -41,7 +43,8 @@
                 <div class="navbar-form" method="post" role="search">
                     <div class="form-group has-feedback">
                         <select multiple id="selectAccID" data-placeholder="${searchAccountLabel}" class="form-control"
-                                onchange="window.location.href='${accountSearchUrl}'+this.value;">
+                                onchange="window.location.href='${accountSearchUrl}'+this.value;"
+                                url="${searchAccUrlAjax}">
                         </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
@@ -51,7 +54,8 @@
                 <div class="navbar-form" method="post" role="search">
                     <div class="form-group has-feedback">
                         <select multiple id="selectUserID" data-placeholder="${searchUserLabel}" class="form-control"
-                                onchange="window.location.href='${userSearchUrl}'+this.value;">
+                                onchange="window.location.href='${userSearchUrl}'+this.value;"
+                                url="${searchUserUrlAjax}">
                         </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>

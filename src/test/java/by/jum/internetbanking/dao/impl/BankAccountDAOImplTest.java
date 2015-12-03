@@ -14,9 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:testDatabase.xml"})
 @Transactional
 public class BankAccountDAOImplTest {
+
     private final static Logger LOGGER = Logger.getLogger(UserDAOImplTest.class);
 
     @Autowired

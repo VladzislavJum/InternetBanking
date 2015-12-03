@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class BankAccountDTO implements Serializable {
+
     @JsonView(Views.Account.class)
     private Long bankAccountID;
     @JsonView(Views.Account.class)

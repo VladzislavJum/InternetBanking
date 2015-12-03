@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,16 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml", "classpath:testDatabase.xml"})
 @Transactional
 public class UserDAOImplTest {
+
     private final static Logger LOGGER = Logger.getLogger(UserDAOImplTest.class);
+
     @Autowired
-    BankAccountDAO accountDAO;
+    private BankAccountDAO accountDAO;
+
     @Autowired
     private UserDAO userDAO;
+
     private User user;
-    private EmbeddedDatabase db;
 
     @Before
     public void init() {

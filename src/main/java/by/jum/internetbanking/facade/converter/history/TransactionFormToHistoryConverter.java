@@ -3,7 +3,6 @@ package by.jum.internetbanking.facade.converter.history;
 import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import by.jum.internetbanking.service.UserService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
