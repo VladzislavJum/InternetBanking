@@ -23,7 +23,7 @@ public class AuthorizationController {
         String message = "";
         if (error != null) {
             message = messageSource.getMessage("authorization.label.error.passlogin", null, LocaleContextHolder.getLocale());
-            LOGGER.info(message);
+            LOGGER.info("Invalid username or password");
         }
         return new ModelAndView("login", "message", message);
     }

@@ -14,5 +14,6 @@
     <div class="head-inf"><spring:message code="createdsuccess.label.created"/></div>
     <br/>
 </div>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

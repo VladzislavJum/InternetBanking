@@ -20,7 +20,7 @@ CREATE TABLE users
   role_id bigint,
   CONSTRAINT users_pkey PRIMARY KEY (id),
   CONSTRAINT users_role_id_fkey FOREIGN KEY (role_id)
-      REFERENCES role (id) MATCH SIMPLE
+      REFERENCES role (id)
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT users_login_key UNIQUE (login),
   CONSTRAINT users_passport_number_key UNIQUE (passport_number)

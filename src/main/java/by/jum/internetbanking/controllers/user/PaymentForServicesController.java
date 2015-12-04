@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class PaymentForServicesController {
 
     private static final Logger LOGGER = Logger.getLogger(PaymentForServicesController.class);
@@ -36,14 +36,14 @@ public class PaymentForServicesController {
     @Autowired
     private PaymentHistoryFacade historyFacade;
 
-    @RequestMapping(value = "payment", method = RequestMethod.GET)
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
     public String pay(Model model) {
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         return "user/paymentForServices";
     }
 
-    @RequestMapping(value = "payment/service/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/payment/service/{name}", method = RequestMethod.GET)
     public String internet(Model model, @PathVariable("name") String name) {
         PaymentForServicesForm servicesForm = new PaymentForServicesForm();
         servicesForm.setNameCorp(name);
@@ -57,7 +57,7 @@ public class PaymentForServicesController {
         return "user/servicePayment";
     }
 
-    @RequestMapping(value = "payment/service/pay", method = RequestMethod.POST)
+    @RequestMapping(value = "/payment/service/pay", method = RequestMethod.POST)
     public String internetPay(@ModelAttribute("servicesForm") PaymentForServicesForm servicesForm,
                               final BindingResult result, Model model) {
         long currentUserID = userFacade.getIDCurrentUser();

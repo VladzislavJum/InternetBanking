@@ -10,13 +10,9 @@
 <div class="container full-height-border">
     <jsp:include page="common/navError.jsp"/>
     <div class="row head-color-green">
-        <h1 class="head-inf"><spring:message code="label.error.type"/><br/>${trace}</h1>
+        <h1 class="head-inf"><spring:message code="label.error.type"/><br/></h1>
     </div>
-
-    <!--
-<c:forEach items="${trace.stackTrace}" var="tracemsg"> ${tracemsg}
-</c:forEach>
--->
 </div>
 </body>
+<jsp:include page="../footer.jsp"/>
 </html>

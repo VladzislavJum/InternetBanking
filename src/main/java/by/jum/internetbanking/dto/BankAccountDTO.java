@@ -12,7 +12,7 @@ public class BankAccountDTO implements Serializable {
     private Long bankAccountID;
     @JsonView(Views.Account.class)
     private String accountNumber;
-    private BigDecimal amountOfMoney;
+    private String amountOfMoney;
     private long userID;
 
     public Long getBankAccountID() {
@@ -31,11 +31,11 @@ public class BankAccountDTO implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public BigDecimal getAmountOfMoney() {
+    public String getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(BigDecimal amountOfMoney) {
+    public void setAmountOfMoney(String amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 

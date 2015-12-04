@@ -3,6 +3,7 @@ package by.jum.internetbanking.form.validator;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -14,6 +15,8 @@ import java.util.regex.Pattern;
 
 @Component
 public class CreateBankAccountFormValidator implements Validator {
+
+    private static final Logger LOGGER = Logger.getLogger(CreateBankAccountFormValidator.class);
 
     private static final String MONEY_PATTERN = "[0-9]+";
     private static final String LOGIN_NUMBER_PATTERN = "[a-zA-Z0-9]+";
@@ -43,15 +46,19 @@ public class CreateBankAccountFormValidator implements Validator {
     private void checkAccountNumber(String accountNumber, Errors errors, String param) {
         if (StringUtils.isEmpty(accountNumber)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
+            LOGGER.info(param + " empty error");
         } else if (accountNumber.length() > 10 || accountNumber.length() < 4) {
             errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
+            LOGGER.info(param + " size error");
         } else {
             pattern = Pattern.compile(LOGIN_NUMBER_PATTERN);
             matcher = pattern.matcher(accountNumber);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
+                LOGGER.info(param + " content error");
             } else if (accountFacade.getAccountByNumber(accountNumber) != null) {
                 errors.rejectValue(param, "createaccount.label.error.numberexist");
+                LOGGER.info(param + " already exist error");
             }
         }
     }
@@ -59,13 +66,16 @@ public class CreateBankAccountFormValidator implements Validator {
     public void checkAmountOfMoney(String amountOfMoney, Errors errors, String param) {
         if (StringUtils.isEmpty(amountOfMoney)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
+            LOGGER.info(param + " empty error");
         } else if (amountOfMoney.length() > 10 || amountOfMoney.length() < 3) {
             errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
+            LOGGER.info(param + " size amountOfMoney error");
         } else {
             pattern = Pattern.compile(MONEY_PATTERN);
             matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numeric");
+                LOGGER.info(param + " content error");
             }
         }
     }
@@ -73,6 +83,7 @@ public class CreateBankAccountFormValidator implements Validator {
     private void checkUserLogin(String userLogin, Errors errors, String param) {
         if (StringUtils.isEmpty(userLogin)) {
             errors.rejectValue(param, "common.label.error.emptyfield");
+            LOGGER.info(param + " empty error");
         } else if (userLogin.length() > 15 || userLogin.length() < 4) {
             errors.rejectValue(param, "common.label.error.loginsize");
         } else {
@@ -80,8 +91,10 @@ public class CreateBankAccountFormValidator implements Validator {
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
+                LOGGER.info(param + " content error");
             } else if (userFacade.getUserByUserName(userLogin) == null) {
                 errors.rejectValue(param, "createaccount.label.error.usernotexist");
+                LOGGER.info(param + " not exist error");
             }
         }
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class CreatingAccountController {
 
     private static final Logger LOGGER = Logger.getLogger(CreatingAccountController.class);

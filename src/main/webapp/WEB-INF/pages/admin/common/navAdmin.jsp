@@ -13,6 +13,7 @@
 <spring:url value="/admin/user/" var="userSearchUrl"/>
 <spring:url value="/admin/users/searchUsers" var="searchUserUrlAjax"/>
 <spring:url value="/logout" var="logout"/>
+<spring:url value="/" var="firstUrl"/>
 <spring:message code="locale.label.lang" var="lang"/>
 
 <html>
@@ -22,14 +23,13 @@
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
     <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
-    <script src="<c:url value="/resources/js/navAdminAjax.js"/>"></script>
     <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
-    <jsp:include page="../../footer.jsp"/>
+    <script src="<c:url value="/resources/js/navAjax.js"/>"></script>
 </head>
 <body>
 <header role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
-        <b class="navbar-brand"><spring:message code="label.internetbanking"/></b>
+        <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -41,24 +41,20 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <div class="navbar-form" method="post" role="search">
-                    <div class="form-group has-feedback">
                         <select multiple id="selectAccID" data-placeholder="${searchAccountLabel}" class="form-control"
                                 onchange="window.location.href='${accountSearchUrl}'+this.value;"
                                 url="${searchAccUrlAjax}">
                         </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
                 </div>
             </li>
             <li>
                 <div class="navbar-form" method="post" role="search">
-                    <div class="form-group has-feedback">
                         <select multiple id="selectUserID" data-placeholder="${searchUserLabel}" class="form-control"
                                 onchange="window.location.href='${userSearchUrl}'+this.value;"
                                 url="${searchUserUrlAjax}">
                         </select>
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
                 </div>
             </li>
 

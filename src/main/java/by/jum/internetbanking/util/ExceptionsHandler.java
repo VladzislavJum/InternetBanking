@@ -15,14 +15,12 @@ public class ExceptionsHandler {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllException(HttpServletRequest httpServletRequest, Exception ex) {
-        ModelAndView model = new ModelAndView("/error");
-        model.addObject("url", httpServletRequest.getRequestURL());
-        model.addObject("trace", ex);
-        model.setViewName("errors/error");
+        ModelAndView modelAndView = new ModelAndView("/error");
+        modelAndView.addObject("url", httpServletRequest.getRequestURL());
+        modelAndView.addObject("trace", ex);
+        modelAndView.setViewName("errors/error");
+        LOGGER.error("Exception!!!" + ex);
 
-        LOGGER.error("Exception!!!");
-        ex.printStackTrace();
-
-        return model;
+        return modelAndView;
     }
 }

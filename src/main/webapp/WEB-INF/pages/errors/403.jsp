@@ -9,4 +9,5 @@
 <body>
 <h1 style="text-align: center"><spring:message code="label.error.403"/></h1>
 </body>
+<jsp:include page="../footer.jsp"/>
 </html>

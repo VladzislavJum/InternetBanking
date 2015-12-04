@@ -28,8 +28,7 @@
       <div class="account-inf col-sm-3">${history.dateTime}</div>
     </div>
   </c:forEach>
-
-
 </div>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

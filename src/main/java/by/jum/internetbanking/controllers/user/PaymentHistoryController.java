@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class PaymentHistoryController {
 
     @Autowired

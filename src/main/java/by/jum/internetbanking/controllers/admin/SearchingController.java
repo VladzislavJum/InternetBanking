@@ -37,7 +37,7 @@ public class SearchingController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public String searchUser(Model model, @PathVariable("id") long userID) {
         LOGGER.info("Search user");
         UserDTO userDTO = userFacade.getUserByID(userID);
@@ -52,7 +52,7 @@ public class SearchingController {
         return "admin/showUsers";
     }
 
-    @RequestMapping(value = "account/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/{id}", method = RequestMethod.GET)
     public String searchAccount(Model model, @PathVariable("id") long accountID) {
         LOGGER.info("Search Acc");
         BankAccountDTO accountDTO = accountFacade.getAccountByID(accountID);
@@ -69,7 +69,7 @@ public class SearchingController {
     }
 
     @JsonView(Views.Account.class)
-    @RequestMapping(value = "account/searchAcc", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/searchAcc", method = RequestMethod.POST)
     public
     @ResponseBody
     List<BankAccountDTO> getAccountsByNumbers(@RequestBody BankAccountDTO accountDTO) {
@@ -85,7 +85,7 @@ public class SearchingController {
     }
 
     @JsonView(Views.User.class)
-    @RequestMapping(value = "users/searchUsers", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/searchUsers", method = RequestMethod.POST)
     public
     @ResponseBody
     List<UserDTO> getUsersByLogin(@RequestBody UserDTO userDTO) {

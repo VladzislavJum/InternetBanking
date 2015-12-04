@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/admin/users/")
+@RequestMapping("admin/users")
 public class AccountsController {
     private static final Logger LOGGER = Logger.getLogger(AccountsController.class);
 
@@ -40,7 +40,7 @@ public class AccountsController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "{id}/accounts/{acoountid}/refill", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/accounts/{acoountid}/refill", method = RequestMethod.POST)
     public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm, Model model,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
         moneyValidator.validate(refillMoneyForm, result);
@@ -58,7 +58,7 @@ public class AccountsController {
         return messageSource.getMessage("controller.label.redirectshowusersaccounts", new Object[]{id}, Locale.ENGLISH);
     }
 
-    @RequestMapping(value = "{id}/accounts", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/accounts", method = RequestMethod.GET)
     public String showUserAccounts(@PathVariable("id") long id, Model model) {
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
         model.addAttribute("accountList", accountDTOList);
@@ -67,7 +67,7 @@ public class AccountsController {
         return "admin/showAccounts";
     }
 
-    @RequestMapping(value = "deleteuseracc", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteuseracc", method = RequestMethod.POST)
     @JsonView(Views.Account.class)
     public
     @ResponseBody

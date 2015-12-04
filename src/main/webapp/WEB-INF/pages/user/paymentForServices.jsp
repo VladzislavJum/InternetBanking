@@ -59,7 +59,7 @@
 
     <img class="col-sm-offset-4 margin-top5" style="width: 400px; height: 400px;"
          src="<c:url value="/resources/images/services.png"/>"/>
-
 </div>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

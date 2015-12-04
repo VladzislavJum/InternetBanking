@@ -7,18 +7,23 @@
 <spring:url value="/user/transaction" var="transaction"/>
 <spring:url value="/user/history" var="history"/>
 <spring:url value="/logout" var="logout"/>
+<spring:url value="/" var="firstUrl"/>
+<spring:message code="locale.label.lang" var="lang"/>
 
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
-    <jsp:include page="../../footer.jsp"/>
+    <link href="<c:url value="/resources/select2/css/select2.css"/>" rel="stylesheet">
+    <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
+    <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
+    <script src="<c:url value="/resources/js/navAjax.js"/>"></script>
 </head>
 <body>
 <nav role="navigation" class="navbar navbar-inverse">
     <div class="navbar-header">
-        <b class="navbar-brand"><spring:message code="label.internetbanking"/></b>
+        <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
     </div>
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class UsersController {
 
     private static final Logger LOGGER = Logger.getLogger(UsersController.class);
@@ -31,7 +31,7 @@ public class UsersController {
         return "admin/showUsers";
     }
 
-    @RequestMapping(value = "users/lockorunlock", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/lockorunlock", method = RequestMethod.POST)
     public
     @ResponseBody
     void lockOrUnlockUser(@RequestBody long userID) {
@@ -39,7 +39,7 @@ public class UsersController {
         userFacade.lockOrUnlockUser(userID);
     }
 
-    @RequestMapping(value = "users/deleteuser", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/deleteuser", method = RequestMethod.POST)
     @JsonView(Views.Account.class)
     public
     @ResponseBody

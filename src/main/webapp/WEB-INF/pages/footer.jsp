@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-<div class="navbar-fixed-bottom">
+<div class="container" style="background-color: #398439">
     <div class="navbar-inner">
         <div class="text-center">
             <b class="footer-text"><spring:message code="footer.label.inf"/> </b>

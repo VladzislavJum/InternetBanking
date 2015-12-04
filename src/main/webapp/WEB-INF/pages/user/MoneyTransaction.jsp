@@ -2,12 +2,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
+<%--<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>--%>
 <spring:message code="createaccount.label.amountofmoney" var="money"/>
 <spring:message code="createaccount.label.accountnumber" var="number"/>
 <spring:message code="moneytrans.button.transfer" var="transfer"/>
 <spring:url value="/user/transfer" var="transferUrl"/>
-
+<spring:url value="/user/account/searchAcc" var="searchAccUrlAjax"/>
 <html>
 <head>
     <title><spring:message code="moneytrans.label.transaction"/></title>
@@ -21,56 +21,63 @@
         <span class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></span>
     </div>
     <form:form commandName="transactionForm" method="post" action="${transferUrl}" cssClass="margin-top5" id="trans">
-        <c:if test="${!empty accountList}">
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
-                <div class="col-sm-3 head-users-accounts">${money}</div>
-            </div>
+    <c:if test="${!empty accountList}">
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
+        <div class="col-sm-3 head-users-accounts">${money}</div>
+    </div>
 
-            <c:forEach items="${accountList}" var="account">
-                <div class="funkyradio col-sm-offset-9">
-                    <div class="funkyradio-primary">
-                        <input type="radio" name="numberAccountFrom" id="${account.accountNumber}"
-                               value="${account.accountNumber}"/>
-                        <label for="${account.accountNumber}">.</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="account-inf col-sm-3 col-sm-offset-3">${account.accountNumber}</div>
-                    <div class="account-inf col-sm-3">${account.amountOfMoney}</div>
-                </div>
-            </c:forEach>
+    <c:forEach items="${accountList}" var="account">
+    <div class="funkyradio col-sm-offset-9">
+        <div class="funkyradio-primary">
+            <input type="radio" name="numberAccountFrom" id="${account.accountNumber}"
+                   value="${account.accountNumber}"/>
+            <label for="${account.accountNumber}">.</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="account-inf col-sm-3 col-sm-offset-3">${account.accountNumber}</div>
+        <div class="account-inf col-sm-3">${account.amountOfMoney}</div>
+    </div>
+    </c:forEach>
+    <div class="navbar-form" method="post" role="search">
+            <select multiple id="selectAccID" data-placeholder="dddd" class="form-control"
+                    onchange="window.location.href='${accountSearchUrl}'+this.value;"
+                    url="${searchAccUrlAjax}">
+            </select>
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
 
-            <div class="row margin-top5">
-                <div class="col-sm-3 col-sm-offset-3">
-                    <form:input class="form-control form-control-moresize" path="objectTo"
-                                placeholder="${number}"/>
-                </div>
-                <div class="col-sm-3">
-                    <form:input class="form-control form-control-moresize" path="amountOfTransferredMoney"
-                                placeholder="${money}"/>
-                </div>
-            </div>
+    <div class="row margin-top5">
+        <div class="col-sm-3 col-sm-offset-3">
+            <form:input class="form-control form-control-moresize" path="amountOfTransferredMoney"
+                        placeholder="${money}"/>
+        </div>
+        <div class="col-sm-3">
+            <form:input class="form-control form-control-moresize" path="objectTo"
+                        placeholder="${number}"/>
+        </div>
 
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-3">
-                    <form:errors path="objectTo" cssClass="error-text"/>
-                </div>
-                <div class="col-sm-3">
-                    <form:errors path="amountOfTransferredMoney" cssClass="error-text"/>
-                </div>
+
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-3">
+                <form:errors path="objectTo" cssClass="error-text"/>
             </div>
-            <div class="row">
-                <input type="submit" class="btn btn-success btn-transfer col-sm-offset-5 col-sm-2"
-                       value="${transfer}"/>
+            <div class="col-sm-3">
+                <form:errors path="amountOfTransferredMoney" cssClass="error-text"/>
             </div>
-            <div class="error-text-trans">
-                <form:errors path="numberAccountFrom"/>
-            </div>
+        </div>
+        <div class="row">
+            <input type="submit" class="btn btn-success btn-transfer col-sm-offset-5 col-sm-2"
+                   value="${transfer}"/>
+        </div>
+        <div class="error-text-trans">
+            <form:errors path="numberAccountFrom"/>
+        </div>
         </c:if>
 
-    </form:form>
-
-</div>
+        </form:form>
+    </div>
+    <jsp:include page="../footer.jsp"/>
 </body>
 </html>

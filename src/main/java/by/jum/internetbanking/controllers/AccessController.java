@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AccessController {
 
-    private final Logger LOGGER = Logger.getLogger(AccessController.class);
+    private static final Logger LOGGER = Logger.getLogger(AccessController.class);
 
     @RequestMapping("/403error")
-    public String page403() {
+    public String error403() {
         LOGGER.warn("ACCESS DENIED");
         return "errors/403";
     }
