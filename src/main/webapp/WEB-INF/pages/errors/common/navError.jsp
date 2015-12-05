@@ -13,15 +13,12 @@
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
 </head>
 <body>
-<nav role="navigation" class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
-    </div>
-    <div id="navbarCollapse" class="collapse navbar-collapse">
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="${login}"><spring:message code="nav.button.logout"/> </a></li>
-        </ul>
-    </div>
-</nav>
+<div class="container" style="border: 1px solid #ffffff; border-bottom: none; border-top: none;">
+    <nav role="navigation" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

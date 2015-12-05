@@ -10,11 +10,10 @@
 <html>
 <head>
     <title><spring:message code="showaccounts.label.show"/></title>
-
+    <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
 <div class="container full-height-border">
-    <jsp:include page="common/navUser.jsp"/>
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="showaccounts.label.accounts"/></h1>
     </div>

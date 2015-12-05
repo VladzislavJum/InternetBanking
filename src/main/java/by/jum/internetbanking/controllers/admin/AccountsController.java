@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +49,7 @@ public class AccountsController {
             LOGGER.info("Validation refillMoney error");
             List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
             model.addAttribute("accountList", accountDTOList);
-            model.addAttribute("userID", id);
+            model.addAttribute("user", userFacade.getUserByID(id));
             model.addAttribute("refillForm", refillMoneyForm);
             model.addAttribute("accID", accountID);
             LOGGER.info("ACC_ID " + accountID);
@@ -60,10 +61,12 @@ public class AccountsController {
 
     @RequestMapping(value = "/{id}/accounts", method = RequestMethod.GET)
     public String showUserAccounts(@PathVariable("id") long id, Model model) {
-        List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(id);
+        List<BankAccountDTO> accountDTOList =    userFacade.getUserAccountList(id);
         model.addAttribute("accountList", accountDTOList);
-        model.addAttribute("userID", id);
+        model.addAttribute("user", userFacade.getUserByID(id));
         model.addAttribute("refillForm", new RefillMoneyForm());
+        String message = messageSource.getMessage("searchaccount.label.error.usernotexist", null, LocaleContextHolder.getLocale());
+        model.addAttribute("notExist", message);
         return "admin/showAccounts";
     }
 

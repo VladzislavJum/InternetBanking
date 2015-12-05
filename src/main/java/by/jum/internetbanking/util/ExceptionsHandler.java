@@ -19,8 +19,11 @@ public class ExceptionsHandler {
         modelAndView.addObject("url", httpServletRequest.getRequestURL());
         modelAndView.addObject("trace", ex);
         modelAndView.setViewName("errors/error");
-        LOGGER.error("Exception!!!" + ex);
-
+        StackTraceElement stackTraceElements[] = ex.getStackTrace();
+        LOGGER.error("Exception!!!");
+        for (StackTraceElement trace: stackTraceElements){
+            LOGGER.error(trace);
+        }
         return modelAndView;
     }
 }

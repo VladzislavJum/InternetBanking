@@ -1,8 +1,13 @@
 @import "../bootstrap/css/bootstrap.css";
+@import "../select2/css/select2.css";
 
 body {
     background-color: #122b40;
 }
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #398439;
+    color: white; }
 
 .error-text {
     font-family: serif;
@@ -81,6 +86,14 @@ body {
     line-height: 50px;
 }
 
+.user-acc-text {
+    font-family: serif;
+    font-size: 15px;
+    color: #4cae4c;
+    line-height: 50px;
+}
+
+
 .thead-text {
     font-family: serif;
     font-size: 20px;
@@ -136,7 +149,7 @@ body {
 }
 
 .full-height-border {
-    min-height: 97%;
+    min-height: 86%;
     border: 1px solid #ffffff;
     border-bottom: none;
     border-top: none;

@@ -4,13 +4,12 @@
 <html>
 <head>
     <title><spring:message code="error.label.error"/></title>
+    <jsp:include page="common/navError.jsp"/>
 </head>
 <body>
-
 <div class="container full-height-border">
-    <jsp:include page="common/navError.jsp"/>
     <div class="row head-color-green">
-        <h1 class="head-inf"><spring:message code="label.error.type"/><br/></h1>
+        <h1 class="head-inf"><spring:message code="label.error.error"/><br/></h1>
     </div>
 </div>
 </body>

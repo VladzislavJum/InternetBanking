@@ -6,11 +6,12 @@
 <html>
 <head>
     <title><spring:message code="createasuccess.label.success"/></title>
+    <jsp:include page="common/navAdmin.jsp"/>
+
 </head>
 
 <body>
 <div class="container full-height-border">
-    <jsp:include page="common/navAdmin.jsp"/>
     <div class="head-inf"><spring:message code="createdsuccess.label.created"/></div>
     <br/>
 </div>

@@ -11,15 +11,13 @@
 <html>
 <head>
     <title><spring:message code="servicepay.label.services"/></title>
+    <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
 <div class="container full-height-border">
-    <jsp:include page="common/navUser.jsp"/>
-
     <div class="row head-color-green">
         <h1 class="head-inf">${name}</h1>
     </div>
-
     <form:form commandName="servicesForm" method="post" action="${payUrl}" cssClass="margin-top5">
         <c:if test="${!empty accountList}">
 

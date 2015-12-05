@@ -9,10 +9,10 @@
 <html>
 <head>
     <title><spring:message code="payment.label.payservices"/></title>
+    <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
 <div class="container full-height-border">
-    <jsp:include page="common/navUser.jsp"/>
     <div class="row">
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle col-sm-4 button-actions-text service-button" type="button"

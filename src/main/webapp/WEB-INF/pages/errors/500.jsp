@@ -4,14 +4,14 @@
 
 <html>
 <head>
-    <title><spring:message code="error.label.404"/></title>
-    <jsp:include page="common/navError.jsp"/>
+  <title><spring:message code="error.label.404"/></title>
+  <jsp:include page="common/navError.jsp"/>
 </head>
 <body>
 <div class="container full-height-border">
-    <div class="row head-color-green">
-        <h1 class="head-inf"><spring:message code="label.error.404"/></h1>
-    </div>
+  <div class="row head-color-green">
+    <h1 class="head-inf"><spring:message code="label.error.500"/></h1>
+  </div>
 </div>
 </body>
 <jsp:include page="../footer.jsp"/>

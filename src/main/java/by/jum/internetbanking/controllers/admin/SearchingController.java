@@ -56,14 +56,16 @@ public class SearchingController {
     public String searchAccount(Model model, @PathVariable("id") long accountID) {
         LOGGER.info("Search Acc");
         BankAccountDTO accountDTO = accountFacade.getAccountByID(accountID);
+        UserDTO userDTO = userFacade.getUserByID(accountDTO.getUserID());
         if (accountDTO != null) {
             List<BankAccountDTO> bankAccountDTOList = new ArrayList<>();
             bankAccountDTOList.add(accountDTO);
             model.addAttribute("accountList", bankAccountDTOList);
-            model.addAttribute("userID", accountDTO.getUserID());
+            model.addAttribute("user", userDTO);
         } else {
             String message = messageSource.getMessage("searchaccount.label.error.accountnotexist", null, LocaleContextHolder.getLocale());
             model.addAttribute("notExist", message);
+            model.addAttribute("user", userDTO);
         }
         return "admin/showAccounts";
     }

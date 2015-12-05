@@ -5,6 +5,7 @@
 <html>
 <head>
     <title><spring:message code="error.label.403"/></title>
+    <jsp:include page="common/navError.jsp"/>
 </head>
 <body>
 <h1 style="text-align: center"><spring:message code="label.error.403"/></h1>

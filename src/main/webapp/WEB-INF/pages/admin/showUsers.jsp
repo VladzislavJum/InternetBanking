@@ -19,21 +19,27 @@
 <html>
 <head>
     <title><spring:message code="showusers.label.show"/></title>
-    <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <jsp:include page="common/navAdmin.jsp"/>
     <script src="<c:url value="/resources/js/usersAjax.js"/>"></script>
     <script src="<c:url value="/resources/js/clickForUser.js"/>"></script>
 </head>
 <body>
 
 <div class="container full-height-border">
-    <jsp:include page="common/navAdmin.jsp"/>
-
-    <div class="row head-color-green">
-        <h1 class="head-inf"><spring:message code="showusers.label.listusers"/></h1>
-    </div>
     <h4 class="error-search"> ${message}</h4>
-
     <c:if test="${!empty userList}">
+        <c:choose>
+        <c:when test="${userList.size() == 1}">
+            <div class="row head-color-green">
+                <h1 class="head-inf"><spring:message code="showusers.label.user"/></h1>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="row head-color-green">
+                <h1 class="head-inf"><spring:message code="showusers.label.listusers"/></h1>
+            </div>
+        </c:otherwise>
+    </c:choose>
         <div class="row margin-top5">
             <div class="col-sm-2 head-users">${firstnameLabel}</div>
             <div class="col-sm-2 head-users">${surnameLabel}</div>
@@ -42,7 +48,6 @@
             <div class="col-sm-2 head-users">${loginLabel}</div>
             <div class="col-sm-2 head-users">${actonLabel}</div>
         </div>
-
         <c:forEach items="${userList}" var="user">
 
             <spring:url value="/admin/users/${user.userID}/accounts" var="accountsUrl"/>

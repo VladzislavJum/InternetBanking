@@ -15,37 +15,38 @@
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
-    <link href="<c:url value="/resources/select2/css/select2.css"/>" rel="stylesheet">
-    <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
-    <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
-    <script src="<c:url value="/resources/js/navAjax.js"/>"></script>
 </head>
 <body>
-<nav role="navigation" class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
-    </div>
-    <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="${accounts}"><spring:message code="navuser.button.bankaccount"/> </a></li>
-            <li><a href="${payment}"><spring:message code="navuser.button.payment"/> </a></li>
-            <li><a href="${transaction}"><spring:message code="navuser.button.moneytransaction"/> </a></li>
-            <li><a href="${history}"><spring:message code="navuser.button.paymenthistory"/> </a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/> <b
-                        class="caret"></b></a>
-                <ul class="dropdown-menu nav-lang-menu">
-                    <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
-                    </a></li>
-                    <li><a href="?lang=ru"><spring:message code="nav.button.lang_ru"/>
-                    </a></li>
-                </ul>
-            </li>
-            <li><a href="${logout}"><spring:message code="nav.button.logout"/> </a></li>
-        </ul>
-    </div>
-</nav>
+<div class="container" style="border: 1px solid #ffffff;
+    border-bottom: none;
+    border-top: none;">
+    <nav role="navigation" class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
+        </div>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="${accounts}"><spring:message code="navuser.button.bankaccount"/> </a></li>
+                <li><a href="${payment}"><spring:message code="navuser.button.payment"/> </a></li>
+                <li><a href="${transaction}"><spring:message code="navuser.button.moneytransaction"/> </a></li>
+                <li><a href="${history}"><spring:message code="navuser.button.paymenthistory"/> </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/>
+                        <b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu nav-lang-menu">
+                        <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
+                        </a></li>
+                        <li><a href="?lang=ru"><spring:message code="nav.button.lang_ru"/>
+                        </a></li>
+                    </ul>
+                </li>
+                <li><a href="${logout}"><spring:message code="nav.button.logout"/> </a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

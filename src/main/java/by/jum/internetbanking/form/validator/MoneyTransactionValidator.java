@@ -1,8 +1,8 @@
 package by.jum.internetbanking.form.validator;
 
-import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
+import by.jum.internetbanking.service.BankAccountService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class MoneyTransactionValidator implements Validator {
     private Matcher matcher;
 
     @Autowired
-    private BankAccountFacade accountFacade;
+    private BankAccountService accountService;
 
     @Autowired
     private UserFacade userFacade;
@@ -50,7 +50,7 @@ public class MoneyTransactionValidator implements Validator {
     }
 
     private void checkBelongUser(String numberAccountFrom, Errors errors) {
-        if (accountFacade.getAccountByNumber(numberAccountFrom).getUserID() != userFacade.getIDCurrentUser()) {
+        if (accountService.getAccountByNumber(numberAccountFrom).getUser().getUserID() != userFacade.getIDCurrentUser()) {
             errors.rejectValue("numberAccountFrom", "moneytrans.label.error.belong");
             LOGGER.info("not belong user error");
         }
@@ -60,28 +60,26 @@ public class MoneyTransactionValidator implements Validator {
         String accountNumberTo = transactionForm.getObjectTo();
         String accountNumberFrom = transactionForm.getNumberAccountFrom();
 
-        if (accountNumberTo.equals(accountNumberFrom)) {
-            errors.rejectValue(param, "moneytrans.label.error.equalsacc");
-            LOGGER.info("equals accounts error");
+        if (StringUtils.isEmpty(accountNumberTo)) {
+            errors.rejectValue(param, "common.label.error.emptyfield");
+            LOGGER.info("empty objectTo error");
+        } else if (accountNumberTo.length() > 10 || accountNumberTo.length() < 4) {
+            errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
+            LOGGER.info("size objectTo error");
         } else {
-            if (StringUtils.isEmpty(accountNumberTo)) {
-                errors.rejectValue(param, "common.label.error.emptyfield");
-                LOGGER.info("empty objectTo error");
-            } else if (accountNumberTo.length() > 10 || accountNumberTo.length() < 4) {
-                errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
-                LOGGER.info("size objectTo error");
+            pattern = Pattern.compile(NUMBER_ACCOUNT_PATTERN);
+            matcher = pattern.matcher(accountNumberTo);
+            if (!matcher.matches()) {
+                errors.rejectValue(param, "common.label.error.numericletters");
+                LOGGER.info("content objectTo error");
+            } else if (accountService.getAccountByNumber(accountNumberTo) == null) {
+                errors.rejectValue(param, "searchaccount.label.error.accountnotexist");
+                LOGGER.info("objectTo not exist error");
+            } else if (accountNumberTo.equals(accountNumberFrom)) {
+                errors.rejectValue(param, "moneytrans.label.error.equalsacc");
+                LOGGER.info("equals accounts error");
             } else {
-                pattern = Pattern.compile(NUMBER_ACCOUNT_PATTERN);
-                matcher = pattern.matcher(accountNumberTo);
-                if (!matcher.matches()) {
-                    errors.rejectValue(param, "common.label.error.numericletters");
-                    LOGGER.info("content objectTo error");
-                } else if (accountFacade.getAccountByNumber(accountNumberTo) == null) {
-                    errors.rejectValue(param, "searchaccount.label.error.accountnotexist");
-                    LOGGER.info("objectTo not exist error");
-                } else {
-                    checkAmountOfMoney(transactionForm.getAmountOfTransferredMoney(), accountNumberFrom, errors, "amountOfTransferredMoney");
-                }
+                checkAmountOfMoney(transactionForm.getAmountOfTransferredMoney(), accountNumberFrom, errors, "amountOfTransferredMoney");
             }
         }
     }
@@ -100,9 +98,9 @@ public class MoneyTransactionValidator implements Validator {
                 errors.rejectValue(param, "common.label.error.numeric");
                 LOGGER.info(param + " content error");
             } else {
-                String amountOfMoneyFrom = accountFacade.getAccountByNumber(numberAccountFrom).getAmountOfMoney();
-//                String amountOfTransferredMoney = new BigDecimal(amountOfMoney);
-                if (amountOfMoneyFrom.compareTo(amountOfMoney) <= LESS_VALUE ||
+                BigDecimal amountOfMoneyFrom = accountService.getAccountByNumber(numberAccountFrom).getAmountOfMoney();
+                BigDecimal amountOfTransferredMoney = new BigDecimal(amountOfMoney);
+                if (amountOfMoneyFrom.compareTo(amountOfTransferredMoney) == LESS_VALUE ||
                         amountOfMoney.compareTo(MIN_VALUE) == LESS_VALUE) {
                     errors.rejectValue(param, "moneytrans.label.error.moneyless");
                     LOGGER.info(param + " not enough error");

@@ -11,7 +11,7 @@ public class AccessController {
 
     @RequestMapping("/403error")
     public String error403() {
-        LOGGER.warn("ACCESS DENIED");
+        LOGGER.warn("HTTP Status 403 - Access is denied!");
         return "errors/403";
     }
 }

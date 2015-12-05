@@ -16,11 +16,11 @@
 <html>
 <head>
     <title><spring:message code="createuser.label.create"/></title>
+    <jsp:include page="common/navAdmin.jsp"/>
 </head>
 <body>
 
 <div class="container full-height-border">
-    <jsp:include page="common/navAdmin.jsp"/>
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="registration.label.registration"/></h1>
     </div>
