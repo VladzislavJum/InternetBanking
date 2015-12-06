@@ -2,6 +2,7 @@ package by.jum.internetbanking.form.validator;
 
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
+import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class RegistrationUserFormValidator implements Validator {
     private static final String PASSPORT_NUMBER_LOGIN_PASS_PATTERN = "[a-zA-Z0-9]+";
 
     @Autowired
-    private UserFacade userFacade;
+    private UserService userService;
 
     private Pattern pattern;
     private Matcher matcher;
@@ -72,7 +73,7 @@ public class RegistrationUserFormValidator implements Validator {
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
                 LOGGER.info(param + " content error");
-            } else if (userFacade.isExistUserWithPassportNumber(passportNumber)) {
+            } else if (userService.isExistUserWithPassportNumber(passportNumber)) {
                 errors.rejectValue(param, "registration.label.error.passportnumberexist");
                 LOGGER.info(param + " already exist error");
             }
@@ -92,7 +93,7 @@ public class RegistrationUserFormValidator implements Validator {
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
                 LOGGER.info(param + " content error");
-            } else if (userFacade.getUserByUserName(userLogin) != null) {
+            } else if (userService.getByUserName(userLogin) != null) {
                 errors.rejectValue(param, "registration.label.error.loginexist");
                 LOGGER.info(param + " already exist error");
             }

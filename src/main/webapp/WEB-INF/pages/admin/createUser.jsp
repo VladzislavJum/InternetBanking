@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="2">
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="registration.label.registration"/></h1>
     </div>

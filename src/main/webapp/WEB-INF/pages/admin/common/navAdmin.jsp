@@ -24,6 +24,7 @@
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
     <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
     <script src="<c:url value="/resources/js/navAdminAjax.js"/>"></script>
+    <script src="<c:url value="/resources/js/currentItem.js"/>"></script>
 </head>
 <body>
 <div class="container" style="border: 1px solid #ffffff; border-bottom: none; border-top: none;">
@@ -33,9 +34,9 @@
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${users}"><spring:message code="navadmin.button.users"/> </a></li>
-                <li><a href="${signupform}"><spring:message code="navadmin.button.createuser"/> </a></li>
-                <li><a href="${createaccountform}"><spring:message code="navadmin.button.createaccount"/> </a>
+                <li><a id="1" href="${users}"><spring:message code="navadmin.button.users"/> </a></li>
+                <li><a id="2" href="${signupform}"><spring:message code="navadmin.button.createuser"/> </a></li>
+                <li><a id="3" href="${createaccountform}"><spring:message code="navadmin.button.createaccount"/> </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

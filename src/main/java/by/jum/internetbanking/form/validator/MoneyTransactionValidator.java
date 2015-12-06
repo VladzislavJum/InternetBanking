@@ -1,8 +1,8 @@
 package by.jum.internetbanking.form.validator;
 
-import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import by.jum.internetbanking.service.BankAccountService;
+import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class MoneyTransactionValidator implements Validator {
     private static final String NUMBER_PATTERN = "[0-9]+";
     private static final String NUMBER_ACCOUNT_PATTERN = "[a-zA-Z0-9]+";
     private static final int LESS_VALUE = -1;
-    private static final String MIN_VALUE = "100";
+    private static final int MIN_VALUE = 100;
 
     private Pattern pattern;
     private Matcher matcher;
@@ -31,7 +31,7 @@ public class MoneyTransactionValidator implements Validator {
     private BankAccountService accountService;
 
     @Autowired
-    private UserFacade userFacade;
+    private UserService userService;
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -41,22 +41,36 @@ public class MoneyTransactionValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         MoneyTransactionForm transactionForm = (MoneyTransactionForm) target;
-        if (StringUtils.isEmpty(transactionForm.getNumberAccountFrom())) {
+        String numberAccountFrom = transactionForm.getNumberAccountFrom();
+        if (StringUtils.isEmpty(numberAccountFrom)) {
             errors.rejectValue("numberAccountFrom", "moneytrans.label.error.requiredaccount");
             LOGGER.info("empty numberAccountFrom error");
+        } else if (numberAccountFrom.length() > 10 || numberAccountFrom.length() < 4) {
+            errors.rejectValue("numberAccountFrom", "createaccount.label.error.accountnumbersize");
+            LOGGER.info("size numberAccountFrom error");
         } else {
-            checkAccountNumber(transactionForm, errors, "objectTo");
+            pattern = Pattern.compile(NUMBER_ACCOUNT_PATTERN);
+            matcher = pattern.matcher(numberAccountFrom);
+            if (!matcher.matches()) {
+                errors.rejectValue("numberAccountFrom", "common.label.error.numericletters");
+                LOGGER.info("content numberAccountFrom error");
+            } else if (accountService.getAccountByNumber(numberAccountFrom) == null) {
+                errors.rejectValue("numberAccountFrom", "searchaccount.label.error.accountnotexist");
+                LOGGER.info("numberAccountFrom not exist error");
+            } else {
+                checkAccountNumberTo(transactionForm, errors, "objectTo");
+            }
         }
     }
 
     private void checkBelongUser(String numberAccountFrom, Errors errors) {
-        if (accountService.getAccountByNumber(numberAccountFrom).getUser().getUserID() != userFacade.getIDCurrentUser()) {
+        if (accountService.getAccountByNumber(numberAccountFrom).getUser().getUserID() != userService.getIDCurrentUser()) {
             errors.rejectValue("numberAccountFrom", "moneytrans.label.error.belong");
             LOGGER.info("not belong user error");
         }
     }
 
-    private void checkAccountNumber(MoneyTransactionForm transactionForm, Errors errors, String param) {
+    private void checkAccountNumberTo(MoneyTransactionForm transactionForm, Errors errors, String param) {
         String accountNumberTo = transactionForm.getObjectTo();
         String accountNumberFrom = transactionForm.getNumberAccountFrom();
 
@@ -101,7 +115,7 @@ public class MoneyTransactionValidator implements Validator {
                 BigDecimal amountOfMoneyFrom = accountService.getAccountByNumber(numberAccountFrom).getAmountOfMoney();
                 BigDecimal amountOfTransferredMoney = new BigDecimal(amountOfMoney);
                 if (amountOfMoneyFrom.compareTo(amountOfTransferredMoney) == LESS_VALUE ||
-                        amountOfMoney.compareTo(MIN_VALUE) == LESS_VALUE) {
+                        amountOfTransferredMoney.compareTo(new BigDecimal(MIN_VALUE)) == LESS_VALUE) {
                     errors.rejectValue(param, "moneytrans.label.error.moneyless");
                     LOGGER.info(param + " not enough error");
                 } else {

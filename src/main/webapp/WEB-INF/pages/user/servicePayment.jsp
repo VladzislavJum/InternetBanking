@@ -14,7 +14,7 @@
     <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
-<div class="container full-height-border">
+<div class="container full-height-border"/>
     <div class="row head-color-green">
         <h1 class="head-inf">${name}</h1>
     </div>

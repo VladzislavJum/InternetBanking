@@ -18,7 +18,7 @@
     <script src="<c:url value="/resources/js/userSelectAjax.js"/>"></script>
 </head>
 <body>
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="3">
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="createaccount.label.newaccount"/></h1>
     </div>
@@ -45,20 +45,12 @@
             <form:label path="userLogin" cssClass="control-label col-xs-5"
                         cssStyle="color:#9d9d9d; margin-right: 15px;">${userLogin}</form:label>
 
-
             <div class="navbar-form" method="post" role="search">
                 <form:select id="userSelect" data-placeholder="${userLogin}" form="accountForm"
                              url="${searchUserUrlAjax}" path="userLogin">
                 </form:select>
                 <form:errors path="userLogin" cssClass="error-text" cssStyle="margin-left: 10px;"/>
             </div>
-
-
-
-            <%--  <div class="col-xs-3">
-                  <form:input class="form-control" path="userLogin" placeholder="${userLogin}"/>
-              </div>
-              <br/><br/>--%>
 
             <div class="form-group">
                 <div class="col-xs-offset-5 col-xs-9">

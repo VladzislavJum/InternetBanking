@@ -3,6 +3,8 @@ package by.jum.internetbanking.form.validator;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
+import by.jum.internetbanking.service.BankAccountService;
+import by.jum.internetbanking.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,10 +24,10 @@ public class CreateBankAccountFormValidator implements Validator {
     private static final String LOGIN_NUMBER_PATTERN = "[a-zA-Z0-9]+";
 
     @Autowired
-    private UserFacade userFacade;
+    private UserService userService;
 
     @Autowired
-    private BankAccountFacade accountFacade;
+    private BankAccountService accountService;
 
     private Pattern pattern;
     private Matcher matcher;
@@ -56,7 +58,7 @@ public class CreateBankAccountFormValidator implements Validator {
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
                 LOGGER.info(param + " content error");
-            } else if (accountFacade.getAccountByNumber(accountNumber) != null) {
+            } else if (accountService.getAccountByNumber(accountNumber) != null) {
                 errors.rejectValue(param, "createaccount.label.error.numberexist");
                 LOGGER.info(param + " already exist error");
             }
@@ -92,7 +94,7 @@ public class CreateBankAccountFormValidator implements Validator {
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
                 LOGGER.info(param + " content error");
-            } else if (userFacade.getUserByUserName(userLogin) == null) {
+            } else if (userService.getByUserName(userLogin) == null) {
                 errors.rejectValue(param, "createaccount.label.error.usernotexist");
                 LOGGER.info(param + " not exist error");
             }

@@ -4,7 +4,6 @@
 body {
     background-color: #122b40;
 }
-
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: #398439;
     color: white; }
@@ -40,7 +39,14 @@ body {
 .navbar-inverse .navbar-nav > li > a:focus {
     color: red;
 }
-
+.navbar-inverse .navbar-nav > .active > a {
+    background-color: #449d44;
+    color: #000000;
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #449d44;
+    color: whitesmoke;
+}
 .head-inf {
     font-family: serif;
     font-size: 55px;
@@ -92,7 +98,6 @@ body {
     color: #4cae4c;
     line-height: 50px;
 }
-
 
 .thead-text {
     font-family: serif;

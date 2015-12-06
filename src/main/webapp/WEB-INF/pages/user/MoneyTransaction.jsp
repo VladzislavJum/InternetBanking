@@ -5,6 +5,7 @@
 <spring:message code="createaccount.label.amountofmoney" var="money"/>
 <spring:message code="createaccount.label.accountnumber" var="number"/>
 <spring:message code="moneytrans.button.transfer" var="transfer"/>
+<spring:message code="locale.label.lang" var="lang"/>
 <spring:url value="/user/transfer" var="transferUrl"/>
 <spring:url value="/user/account/searchAcc" var="searchAccUrlAjax"/>
 <html>
@@ -17,7 +18,7 @@
     <script src="<c:url value="/resources/js/accountSelectAjax.js"/>"></script>
 </head>
 <body>
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="2">
     <div class="row head-color-green">
         <img style="height: 100px; width: 150px;" class="col-sm-2"
              src="<c:url value="/resources/images/transfer1.jpg"/> ">

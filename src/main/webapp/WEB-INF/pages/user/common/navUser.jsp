@@ -15,6 +15,7 @@
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
+    <script src="<c:url value="/resources/js/currentItem.js"/>"></script>
 </head>
 <body>
 <div class="container" style="border: 1px solid #ffffff;
@@ -26,10 +27,10 @@
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${accounts}"><spring:message code="navuser.button.bankaccount"/> </a></li>
-                <li><a href="${payment}"><spring:message code="navuser.button.payment"/> </a></li>
-                <li><a href="${transaction}"><spring:message code="navuser.button.moneytransaction"/> </a></li>
-                <li><a href="${history}"><spring:message code="navuser.button.paymenthistory"/> </a></li>
+                <li><a id="1" href="${accounts}"><spring:message code="navuser.button.bankaccount"/> </a></li>
+                <li><a id="2" href="${transaction}"><spring:message code="navuser.button.moneytransaction"/> </a></li>
+                <li><a id="3" href="${payment}"><spring:message code="navuser.button.payment"/> </a></li>
+                <li><a id="4" href="${history}"><spring:message code="navuser.button.paymenthistory"/> </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

@@ -7,7 +7,7 @@
   <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="4">
   <div class="row head-color-green">
     <h1 class="head-inf"><spring:message code="payment.label.history"/></h1>
   </div>

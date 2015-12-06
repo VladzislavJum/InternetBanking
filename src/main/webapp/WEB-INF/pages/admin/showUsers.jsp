@@ -12,7 +12,7 @@
 <spring:message code="showusersoraccounts.label.action" var="actonLabel"/>
 <spring:message code="action.button.delete" var="deleteButton"/>
 <spring:message code="action.button.accounts" var="accountsButton"/>
-<spring:message code="action.button.unlocked" var="lockButton"/>
+<spring:message code="action.button.lock" var="lockButton"/>
 <spring:message code="action.button.unlock" var="unlockButton"/>
 <spring:url value="/resources/images/button/" var="lockUnlockUrlImg"/>
 <spring:url value="/admin/users/deleteuser" var="deleteUrljs"/>
@@ -25,13 +25,13 @@
 </head>
 <body>
 
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="1" >
     <h4 class="error-search"> ${message}</h4>
     <c:if test="${!empty userList}">
         <c:choose>
         <c:when test="${userList.size() == 1}">
             <div class="row head-color-green">
-                <h1 class="head-inf"><spring:message code="showusers.label.user"/></h1>
+                <h1 class="head-inf"><spring:message code="showusers.label.user"/>&nbsp;${userList.get(0).login}</h1>
             </div>
         </c:when>
         <c:otherwise>

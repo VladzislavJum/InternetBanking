@@ -13,9 +13,9 @@
     <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
-<div class="container full-height-border">
+<div class="container full-height-border" id="container" pageID="1">
     <div class="row head-color-green">
-        <h1 class="head-inf"><spring:message code="showaccounts.label.accounts"/></h1>
+        <h1 class="head-inf"><spring:message code="showaccounts.label.accs"/></h1>
     </div>
     <div class="row margin-top5">
         <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
