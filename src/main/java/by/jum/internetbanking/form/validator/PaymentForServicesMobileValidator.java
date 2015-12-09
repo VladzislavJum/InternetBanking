@@ -4,6 +4,7 @@ import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.BankAccountService;
 import by.jum.internetbanking.service.CorporationService;
 import by.jum.internetbanking.service.UserService;
+import by.jum.internetbanking.util.ValidationConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,11 +17,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class PaymentForServicesValidator implements Validator {
+public class PaymentForServicesMobileValidator implements Validator {
 
-    private static final Logger LOGGER = Logger.getLogger(PaymentForServicesValidator.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentForServicesMobileValidator.class);
 
-    private static final String NUMBER_PATTERN = "[0-9]+";
     private static final int LESS_VALUE = -1;
     private static final int MIN_VALUE = 100;
 
@@ -35,7 +35,7 @@ public class PaymentForServicesValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return PaymentForServicesForm.class.isAssignableFrom(clazz);
+        return PaymentForServicesMobileValidator.class.isAssignableFrom(clazz);
     }
 
     @Override
@@ -46,11 +46,29 @@ public class PaymentForServicesValidator implements Validator {
             errors.rejectValue("nameCorp", "paymentserv.label.namecorp");
             LOGGER.info("nameCorp not exist error");
         } else {
+            checkNumberPhone(servicesForm.getPhoneNumber(), errors);
             if (StringUtils.isEmpty(servicesForm.getNumberAccountFrom())) {
                 errors.rejectValue("numberAccountFrom", "moneytrans.label.error.requiredaccount");
                 LOGGER.info("empty nameCorp error");
             } else {
-               checkAmountOfMoney(servicesForm.getAmountOfMoney(), servicesForm.getNumberAccountFrom(), errors, "amountOfMoney");
+                checkAmountOfMoney(servicesForm.getAmountOfMoney(), servicesForm.getNumberAccountFrom(), errors, "amountOfMoney");
+            }
+        }
+    }
+
+    private void checkNumberPhone(String phoneNumber, Errors errors) {
+        if (StringUtils.isEmpty(phoneNumber)) {
+            errors.rejectValue("phoneNumber", "common.label.error.emptyfield");
+            LOGGER.info("empty phoneNumber error");
+        } else if (phoneNumber.length() != 13) {
+            errors.rejectValue("phoneNumber", "paymentserv.label.error.phonenumbersize");
+            LOGGER.info("size phoneNumber error");
+        } else {
+            Pattern pattern = Pattern.compile(ValidationConstants.PHONE_NUMBER.getPattern());
+            Matcher matcher = pattern.matcher(phoneNumber);
+            if (!matcher.matches()) {
+                errors.rejectValue("phoneNumber", "common.label.error.numericletters");
+                LOGGER.info("content phoneNumber error");
             }
         }
     }
@@ -63,7 +81,7 @@ public class PaymentForServicesValidator implements Validator {
             errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
             LOGGER.info(param + " size error");
         } else {
-            Pattern pattern = Pattern.compile(NUMBER_PATTERN);
+            Pattern pattern = Pattern.compile(ValidationConstants.NUMBER_PATTERN.getPattern());
             Matcher matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numeric");

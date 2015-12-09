@@ -4,7 +4,6 @@ $(document).ready(function () {
         $("#" + $('[id*=refill]').attr('id')).click();
     }
     clickRefill();
-
 });
 
 function clickDelete() {

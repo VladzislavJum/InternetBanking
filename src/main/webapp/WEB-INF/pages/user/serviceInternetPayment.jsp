@@ -2,22 +2,28 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<spring:url value="${pageContext.servletContext.contextPath}" var="path"/>
 <spring:message code="createaccount.label.amountofmoney" var="money"/>
 <spring:message code="createaccount.label.accountnumber" var="accountNumber"/>
 <spring:message code="moneytrans.button.transfer" var="transfer"/>
 <spring:message code="paymentserv.button.pay" var="pay"/>
-<spring:url value="/user/payment/service/pay" var="payUrl"/>
+<spring:url value="/user/payment/service/internet/${name}/pay" var="payUrl"/>
+<spring:message code="paymentserv.label.electricity" var="electricity"/>
+<spring:message code="paymentserv.label.gas" var="gas"/>
+<spring:message code="paymentserv.label.water" var="water"/>
+<spring:message code="paymentserv.label.utilitiesinternet.personalacc" var="personalAccNumber"/>
+<spring:message code="paymentserv.label.phonenumber" var="phoneNumber"/>
+
 <html>
 <head>
     <title><spring:message code="servicepay.label.services"/></title>
     <jsp:include page="common/navUser.jsp"/>
 </head>
 <body>
-<div class="container full-height-border"/>
+<div class="container full-height-border">
     <div class="row head-color-green">
         <h1 class="head-inf">${name}</h1>
     </div>
+    <div class="success-transfer">${result}</div>
     <form:form commandName="servicesForm" method="post" action="${payUrl}" cssClass="margin-top5">
         <c:if test="${!empty accountList}">
 
@@ -44,15 +50,32 @@
             </c:forEach>
 
             <form:hidden path="nameCorp"/>
+
             <div class="row margin-top5">
-                <div class="col-sm-4 col-sm-offset-4">
+                <div class="col-sm-3 col-sm-offset-3">
+                    <label class="payment-inf">${personalAccNumber}</label>
+                </div>
+                <div class="col-sm-3">
+                    <label class="payment-inf">${money}</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-3">
+                    <form:input class="form-control form-control-moresize" path="numberCorporationAcc"
+                                placeholder="${personalAccNumber}"/>
+                </div>
+                <div class="col-sm-3">
                     <form:input class="form-control form-control-moresize" path="amountOfMoney"
                                 placeholder="${money}"/>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-5">
+                <div class="col-sm-3 col-sm-offset-3">
+                    <form:errors path="numberCorporationAcc" cssClass="error-text"/>
+                </div>
+                <div class="col-sm-3">
                     <form:errors path="amountOfMoney" cssClass="error-text"/>
                 </div>
             </div>

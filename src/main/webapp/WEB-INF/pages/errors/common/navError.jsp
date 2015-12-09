@@ -18,6 +18,18 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/>
+                    <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
+                    </a></li>
+                    <li><a href="?lang=ru"><spring:message code="nav.button.lang_ru"/>
+                    </a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
 </div>
 </body>

@@ -1,6 +1,7 @@
 package by.jum.internetbanking.form.validator;
 
 import by.jum.internetbanking.form.money.RefillMoneyForm;
+import by.jum.internetbanking.util.ValidationConstants;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -14,8 +15,6 @@ import java.util.regex.Pattern;
 public class RefillMoneyValidator implements Validator {
 
     private static final Logger LOGGER = Logger.getLogger(RefillMoneyValidator.class);
-
-    private static final String MONEY_PATTERN = "[0-9]+";
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -33,7 +32,7 @@ public class RefillMoneyValidator implements Validator {
             errors.rejectValue("amountOfMoney", "createaccount.label.error.amounofmoneysize");
             LOGGER.info("size amountOfMoney error");
         } else {
-            Pattern pattern = Pattern.compile(MONEY_PATTERN);
+            Pattern pattern = Pattern.compile(ValidationConstants.NUMBER_PATTERN.getPattern());
             Matcher matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
                 errors.rejectValue("amountOfMoney", "common.label.error.numeric");

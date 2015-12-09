@@ -1,10 +1,9 @@
 package by.jum.internetbanking.form.validator;
 
-import by.jum.internetbanking.facade.BankAccountFacade;
-import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;
 import by.jum.internetbanking.service.BankAccountService;
 import by.jum.internetbanking.service.UserService;
+import by.jum.internetbanking.util.ValidationConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,9 +18,6 @@ import java.util.regex.Pattern;
 public class CreateBankAccountFormValidator implements Validator {
 
     private static final Logger LOGGER = Logger.getLogger(CreateBankAccountFormValidator.class);
-
-    private static final String MONEY_PATTERN = "[0-9]+";
-    private static final String LOGIN_NUMBER_PATTERN = "[a-zA-Z0-9]+";
 
     @Autowired
     private UserService userService;
@@ -53,7 +49,7 @@ public class CreateBankAccountFormValidator implements Validator {
             errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(LOGIN_NUMBER_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(accountNumber);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
@@ -73,7 +69,7 @@ public class CreateBankAccountFormValidator implements Validator {
             errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
             LOGGER.info(param + " size amountOfMoney error");
         } else {
-            pattern = Pattern.compile(MONEY_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.NUMBER_PATTERN.getPattern());
             matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numeric");
@@ -89,7 +85,7 @@ public class CreateBankAccountFormValidator implements Validator {
         } else if (userLogin.length() > 15 || userLogin.length() < 4) {
             errors.rejectValue(param, "common.label.error.loginsize");
         } else {
-            pattern = Pattern.compile(LOGIN_NUMBER_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");

@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Locale;
 
-@Component
-public class CorporationFacadeImpl implements CorporationFacade {
+@Component("corporationInternetMobileFacade")
+public class CorporationInternetMobileFacadeImpl implements CorporationFacade {
 
-    private static final Logger LOGGER = Logger.getLogger(CorporationFacadeImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(CorporationInternetMobileFacadeImpl.class);
 
     @Autowired
     private BankAccountService accountService;

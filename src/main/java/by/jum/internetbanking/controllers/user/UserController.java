@@ -35,4 +35,8 @@ public class UserController {
         return "user/showUserAccounts";
     }
 
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    public String pay() {
+        return "user/paymentForServices";
+    }
 }

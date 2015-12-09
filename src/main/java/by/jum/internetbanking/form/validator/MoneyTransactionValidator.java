@@ -3,6 +3,7 @@ package by.jum.internetbanking.form.validator;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;
 import by.jum.internetbanking.service.BankAccountService;
 import by.jum.internetbanking.service.UserService;
+import by.jum.internetbanking.util.ValidationConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,6 @@ public class MoneyTransactionValidator implements Validator {
 
     private static final Logger LOGGER = Logger.getLogger(MoneyTransactionValidator.class);
 
-    private static final String NUMBER_PATTERN = "[0-9]+";
-    private static final String NUMBER_ACCOUNT_PATTERN = "[a-zA-Z0-9]+";
     private static final int LESS_VALUE = -1;
     private static final int MIN_VALUE = 100;
 
@@ -49,7 +48,7 @@ public class MoneyTransactionValidator implements Validator {
             errors.rejectValue("numberAccountFrom", "createaccount.label.error.accountnumbersize");
             LOGGER.info("size numberAccountFrom error");
         } else {
-            pattern = Pattern.compile(NUMBER_ACCOUNT_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(numberAccountFrom);
             if (!matcher.matches()) {
                 errors.rejectValue("numberAccountFrom", "common.label.error.numericletters");
@@ -81,7 +80,7 @@ public class MoneyTransactionValidator implements Validator {
             errors.rejectValue(param, "createaccount.label.error.accountnumbersize");
             LOGGER.info("size objectTo error");
         } else {
-            pattern = Pattern.compile(NUMBER_ACCOUNT_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(accountNumberTo);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
@@ -106,7 +105,7 @@ public class MoneyTransactionValidator implements Validator {
             errors.rejectValue(param, "createaccount.label.error.amounofmoneysize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(NUMBER_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.NUMBER_PATTERN.getPattern());
             matcher = pattern.matcher(amountOfMoney);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numeric");

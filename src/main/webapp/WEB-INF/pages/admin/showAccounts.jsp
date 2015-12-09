@@ -28,12 +28,12 @@
     <c:if test="${!empty accountList}">
         <c:choose>
             <c:when test="${accountList.size() == 1}">
-                <a href="${allAccsUsrl}${user.userID}/accounts"><span class="col-sm-offset-10 user-acc-text">
-                    <spring:message code="showaccounts.label.allaccs"/>&nbsp;${user.login}</span></a>
                 <div class="row head-color-green">
                     <h1 class="head-inf"><spring:message code="showaccounts.label.account"/>&nbsp;<a
                             href="${userInfUrl}${user.userID}" style="color: #d58512">${user.login}</a></h1>
                 </div>
+                <a href="${allAccsUsrl}${user.userID}/accounts"><span class="col-sm-offset-10 user-acc-text">
+                    <spring:message code="showaccounts.label.allaccs"/>&nbsp;${user.login}</span></a>
             </c:when>
             <c:otherwise>
                 <div class="row head-color-green">
@@ -47,7 +47,6 @@
             <div class="col-sm-4 head-users-accounts">${money}</div>
             <div class="col-sm-4 head-users-accounts">${action}</div>
         </div>
-
         <div id="rowDivForEach">
             <c:forEach items="${accountList}" var="account">
                 <div class="row" id="account${account.bankAccountID}">

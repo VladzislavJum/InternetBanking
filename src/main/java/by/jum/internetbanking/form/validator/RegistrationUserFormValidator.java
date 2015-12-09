@@ -1,8 +1,8 @@
 package by.jum.internetbanking.form.validator;
 
-import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.service.UserService;
+import by.jum.internetbanking.util.ValidationConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,9 +17,6 @@ import java.util.regex.Pattern;
 public class RegistrationUserFormValidator implements Validator {
 
     private static final Logger LOGGER = Logger.getLogger(RegistrationUserFormValidator.class);
-
-    private static final String NAME_PATTERN = "[a-zA-Z]+";
-    private static final String PASSPORT_NUMBER_LOGIN_PASS_PATTERN = "[a-zA-Z0-9]+";
 
     @Autowired
     private UserService userService;
@@ -51,7 +48,7 @@ public class RegistrationUserFormValidator implements Validator {
             errors.rejectValue(param, "registration.label.error.namesize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(NAME_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.NAME_PATTERN.getPattern());
             matcher = pattern.matcher(name);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "registration.label.error.letters");
@@ -68,7 +65,7 @@ public class RegistrationUserFormValidator implements Validator {
             errors.rejectValue(param, "registration.label.error.passportnumbersize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(passportNumber);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
@@ -88,7 +85,7 @@ public class RegistrationUserFormValidator implements Validator {
             errors.rejectValue(param, "common.label.error.loginsize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(userLogin);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");
@@ -108,7 +105,7 @@ public class RegistrationUserFormValidator implements Validator {
             errors.rejectValue(param, "registration.label.error.passwordsize");
             LOGGER.info(param + " size error");
         } else {
-            pattern = Pattern.compile(PASSPORT_NUMBER_LOGIN_PASS_PATTERN);
+            pattern = Pattern.compile(ValidationConstants.PASSPORT_NUMBER_LOGIN_PASS_PATTERN.getPattern());
             matcher = pattern.matcher(password);
             if (!matcher.matches()) {
                 errors.rejectValue(param, "common.label.error.numericletters");

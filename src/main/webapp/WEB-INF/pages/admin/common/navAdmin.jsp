@@ -46,7 +46,6 @@
                                 onchange="window.location.href='${accountSearchUrl}'+this.value;"
                                 url="${searchAccUrlAjax}">
                         </select>
-                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
                 </li>
                 <li>
@@ -55,14 +54,12 @@
                                 onchange="window.location.href='${userSearchUrl}'+this.value;"
                                 url="${searchUserUrlAjax}">
                         </select>
-                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
                 </li>
 
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle"><spring:message code="navuser.button.language"/>
-                        <b
-                                class="caret"></b></a>
+                        <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="?lang=en"><spring:message code="nav.button.lang_en"/>
                         </a></li>

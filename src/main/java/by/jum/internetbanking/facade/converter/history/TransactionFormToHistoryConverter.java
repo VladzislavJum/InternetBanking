@@ -24,6 +24,7 @@ public class TransactionFormToHistoryConverter implements Converter<MoneyTransac
         history.setAmountOfMoney(new BigDecimal(transactionForm.getAmountOfTransferredMoney()));
         history.setNumberAccountFrom(transactionForm.getNumberAccountFrom());
         history.setObjectTo(transactionForm.getObjectTo());
+
         history.setDateTime(new Timestamp(new Date().getTime()));
         return history;
     }

@@ -11,6 +11,9 @@
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="label.error.error"/><br/></h1>
     </div>
+<!--
+<c:forEach items="${trace.stackTrace}" var="tracemsg"> ${tracemsg}</c:forEach>
+-->
 </div>
 </body>
 <jsp:include page="../footer.jsp"/>

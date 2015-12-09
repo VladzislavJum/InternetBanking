@@ -14,6 +14,26 @@ body {
     color: red;
 }
 
+.payment-inf{
+    font-family: serif;
+    font-size: 20px;
+    color: #398439;
+    text-align: center;
+}
+
+.tariff-inf{
+    font-family: serif;
+    font-size: 30px;
+    color: #ec971f;
+    text-align: center;
+}
+.success-transfer{
+    font-family: serif;
+    font-size: 30px;
+    color: #ec971f;
+    text-align: center;
+}
+
 .error-text-trans {
     font-family: serif;
     font-size: 30px;

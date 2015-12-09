@@ -23,6 +23,7 @@ public class PaymentForServicesFormToHistoryConverter implements Converter<Payme
         history.setUser(userService.getUserByID(paymentForServicesForm.getUserID()));
         history.setObjectTo(paymentForServicesForm.getNameCorp());
         history.setNumberAccountFrom(paymentForServicesForm.getNumberAccountFrom());
+
         history.setDateTime(new Timestamp(new Date().getTime()));
         history.setAmountOfMoney(new BigDecimal(paymentForServicesForm.getAmountOfMoney()));
         return history;

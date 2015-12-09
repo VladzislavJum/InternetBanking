@@ -7,14 +7,10 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 @Component
 public class AccountToDTOConverter implements Converter<BankAccount, BankAccountDTO> {
-
-
 
     @Override
     public BankAccountDTO convert(BankAccount account) {

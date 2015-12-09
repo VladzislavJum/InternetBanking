@@ -16,6 +16,7 @@
     <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
     <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
     <script src="<c:url value="/resources/js/accountSelectAjax.js"/>"></script>
+    <script src="<c:url value="/resources/js/popUpSuccesTrans.js"/>"></script>
 </head>
 <body>
 <div class="container full-height-border" id="container" pageID="2">
@@ -24,7 +25,11 @@
              src="<c:url value="/resources/images/transfer1.jpg"/> ">
         <span class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></span>
     </div>
-    <form:form commandName="transactionForm" method="post" action="${transferUrl}" cssClass="margin-top5" id="trans">
+
+    <div class="success-transfer">${result}</div>
+
+
+<form:form commandName="transactionForm" method="post" action="${transferUrl}" cssClass="margin-top5" id="trans">
     <c:if test="${!empty accountList}">
     <div class="row">
         <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
@@ -56,7 +61,6 @@
                          url="${searchAccUrlAjax}" path="objectTo">
             </form:select>
         </div>
-
 
         <div class="row">
             <div class="col-sm-3 col-sm-offset-3">

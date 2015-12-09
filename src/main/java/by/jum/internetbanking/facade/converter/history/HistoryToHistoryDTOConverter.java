@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 @Component
 public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, PaymentHistoryDTO> {
@@ -22,7 +24,6 @@ public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, P
         historyDTO.setObjectTo(history.getObjectTo());
         historyDTO.setPaymentHistoryID(history.getHistoryID());
         DateFormat dateFormat = new SimpleDateFormat(DATA_FORMAT);
-
         historyDTO.setDateTime(dateFormat.format(history.getDateTime()));
         return historyDTO;
     }

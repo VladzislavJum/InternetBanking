@@ -41,7 +41,7 @@ public class AccountsController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(value = "/{id}/accounts/{acoountid}/refill", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/accounts/{acoountid}/refill", method = {RequestMethod.POST, RequestMethod.GET})
     public String refill(@ModelAttribute("refillForm") RefillMoneyForm refillMoneyForm, Model model,
                          @PathVariable("acoountid") long accountID, @PathVariable("id") long id, final BindingResult result) {
         moneyValidator.validate(refillMoneyForm, result);
@@ -64,8 +64,12 @@ public class AccountsController {
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("user", userFacade.getUserByID(id));
         model.addAttribute("refillForm", new RefillMoneyForm());
+        LOGGER.error(userFacade.getUserAccountList(id));
         if (userFacade.getUserByID(id) == null) {
             String message = messageSource.getMessage("searchaccount.label.error.usernotexist", null, LocaleContextHolder.getLocale());
+            model.addAttribute("notExist", message);
+        } else if (userFacade.getUserAccountList(id).size() == 0) {
+            String message = messageSource.getMessage("showaccounts.label.error.notaccs", null, LocaleContextHolder.getLocale());
             model.addAttribute("notExist", message);
         }
         return "admin/showAccounts";

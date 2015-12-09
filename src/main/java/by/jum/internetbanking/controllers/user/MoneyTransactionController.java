@@ -10,14 +10,19 @@ import by.jum.internetbanking.json.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -30,7 +35,10 @@ public class MoneyTransactionController {
     private static final Logger LOGGER = Logger.getLogger(MoneyTransactionController.class);
 
     @Autowired
-    private MoneyTransactionValidator moneyTransactionValidator;
+    private Validator moneyTransactionValidator;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private UserFacade userFacade;
@@ -42,7 +50,11 @@ public class MoneyTransactionController {
     private PaymentHistoryFacade historyFacade;
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET)
-    public String selectAccount(Model model) {
+    public String selectAccount(Model model, @RequestParam(required = false) String success) {
+        if (success != null) {
+            String message = messageSource.getMessage("moneytrans.label.resultsuccess", null, LocaleContextHolder.getLocale());
+            model.addAttribute("result", message);
+        }
         List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(userFacade.getIDCurrentUser());
         model.addAttribute("accountList", accountDTOList);
         model.addAttribute("transactionForm", new MoneyTransactionForm());
@@ -56,15 +68,17 @@ public class MoneyTransactionController {
         moneyTransactionValidator.validate(transactionForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation moneyTransaction error");
+            String message = messageSource.getMessage("moneytrans.label.resultunsuccess", null, LocaleContextHolder.getLocale());
             List<BankAccountDTO> accountDTOList = userFacade.getUserAccountList(currentUserID);
             model.addAttribute("accountList", accountDTOList);
             model.addAttribute("transactionForm", transactionForm);
+            model.addAttribute("result", message);
             return "user/moneyTransaction";
         }
         transactionForm.setUserID(currentUserID);
         accountFacade.transferMoney(transactionForm);
         historyFacade.saveTransactionHistory(transactionForm);
-        return "redirect:/user/accounts";
+        return "redirect:/user/transaction?success";
     }
 
     @JsonView(Views.Account.class)

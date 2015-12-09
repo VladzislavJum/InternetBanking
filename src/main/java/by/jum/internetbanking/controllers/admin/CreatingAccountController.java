@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ public class CreatingAccountController {
     private BankAccountFacade accountFacade;
 
     @Autowired
-    private CreateBankAccountFormValidator accountFormValidator;
+    private Validator createBankAccountFormValidator;
 
     @RequestMapping(value = "/createaccountform", method = RequestMethod.GET)
     public String showCreatingAccountForm(Model model) {
@@ -33,7 +34,7 @@ public class CreatingAccountController {
     @RequestMapping(value = "/createaccount", method = {RequestMethod.POST, RequestMethod.GET})
     public String createAccount(@ModelAttribute("accountForm") CreateBankAccountForm accountForm,
                                 final BindingResult result) {
-        accountFormValidator.validate(accountForm, result);
+        createBankAccountFormValidator.validate(accountForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation createAccount error");
             return "admin/createAccount";

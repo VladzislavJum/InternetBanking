@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,7 @@ public class RegistrationController {
     private static final Logger LOGGER = Logger.getLogger(RegistrationController.class);
 
     @Autowired
-    private RegistrationUserFormValidator userFormValidator;
+    private Validator registrationUserFormValidator;
 
     @Autowired
     private UserFacade userFacade;
@@ -34,7 +35,7 @@ public class RegistrationController {
     @RequestMapping(value = "/register", method = {RequestMethod.POST, RequestMethod.GET})
     public String registerUser(@ModelAttribute("userForm") RegistrationUserForm registrationUserForm,
                                final BindingResult result) {
-        userFormValidator.validate(registrationUserForm, result);
+        registrationUserFormValidator.validate(registrationUserForm, result);
         if (result.hasErrors()) {
             LOGGER.info("Validation registration error");
             return "admin/createUser";
