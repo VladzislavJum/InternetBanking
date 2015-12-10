@@ -6,7 +6,7 @@ $(document).ready(function () {
 function searchAccount() {
     $("#selectAccID").select2({
         language: "ru",
-        maximumSelectionLength: 1,
+        maximumSelectionLength: 2,
         minimumInputLength: 1,
         ajax: {
             type: "POST",

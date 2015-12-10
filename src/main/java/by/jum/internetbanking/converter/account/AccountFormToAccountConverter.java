@@ -1,4 +1,4 @@
-package by.jum.internetbanking.facade.converter.account;
+package by.jum.internetbanking.converter.account;
 
 import by.jum.internetbanking.entity.BankAccount;
 import by.jum.internetbanking.form.account.CreateBankAccountForm;

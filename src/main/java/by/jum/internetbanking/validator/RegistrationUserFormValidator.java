@@ -1,4 +1,4 @@
-package by.jum.internetbanking.form.validator;
+package by.jum.internetbanking.validator;
 
 import by.jum.internetbanking.form.user.RegistrationUserForm;
 import by.jum.internetbanking.service.UserService;

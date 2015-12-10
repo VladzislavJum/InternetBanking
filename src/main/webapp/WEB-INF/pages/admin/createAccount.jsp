@@ -47,13 +47,13 @@
 
             <div class="navbar-form" method="post" role="search">
                 <form:select id="userSelect" data-placeholder="${userLogin}" form="accountForm"
-                             url="${searchUserUrlAjax}" path="userLogin">
+                             url="${searchUserUrlAjax}" path="userLogin" cssStyle="max-width: 50px;">
                 </form:select>
                 <form:errors path="userLogin" cssClass="error-text" cssStyle="margin-left: 10px;"/>
             </div>
 
             <div class="form-group">
-                <div class="col-xs-offset-5 col-xs-9">
+                <div class="col-xs-offset-5 col-xs-2">
                     <input type="submit" class="btn btn-primary"
                            value="${create}"/>
                 </div>

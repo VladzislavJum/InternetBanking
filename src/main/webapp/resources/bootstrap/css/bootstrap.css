@@ -4031,7 +4031,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 5px 5px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4486,8 +4486,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     width: auto;
     padding-top: 0;
     padding-bottom: 0;
-    margin-right: 0;
-    margin-left: 0;
+    /*margin-right: 0;*/
+    /*margin-left: 0;*/
     border: 0;
     -webkit-box-shadow: none;
             box-shadow: none;

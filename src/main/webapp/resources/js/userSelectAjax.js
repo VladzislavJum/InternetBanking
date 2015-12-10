@@ -4,9 +4,9 @@ $(document).ready(function () {
 
 function searchUserInCreate() {
     $("#userSelect").select2({
-        width: '256px',
+        width: '21%',
         language: "ru",
-        maximumSelectionLength: 1,
+        maximumSelectionLength: 2,
         minimumInputLength: 1,
         ajax: {
             type: "POST",

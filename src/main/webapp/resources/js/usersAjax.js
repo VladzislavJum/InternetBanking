@@ -32,8 +32,10 @@ function lockOrUnlockViaAjax(button, url, imgUrl) {
         data: userID,
         dataType: 'text',
         timeout: 100000,
-        success: function () {
-            lockOrUnlockUserOnJSP(button, imgUrl);
+        success: function (isLocked) {
+            if (isLocked == 'true') {
+                lockOrUnlockUserOnJSP(button, imgUrl);
+            }
         }
     });
 }

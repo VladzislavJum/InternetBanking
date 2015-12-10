@@ -6,6 +6,7 @@ import by.jum.internetbanking.facade.CorporationFacade;
 import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.BankAccountService;
 import by.jum.internetbanking.service.CorporationService;
+import by.jum.internetbanking.util.TariffConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -18,9 +19,6 @@ import java.util.Locale;
 public class CorporationUtilitiesFacadeImpl implements CorporationFacade {
 
     private static final Logger LOGGER = Logger.getLogger(CorporationUtilitiesFacadeImpl.class);
-    private static final int ELECTRICITY_TARIFF = 1000;
-    private static final int WATER_TARIFF = 1500;
-    private static final int GAS_TARIFF = 850;
 
     @Autowired
     private BankAccountService accountService;
@@ -44,11 +42,11 @@ public class CorporationUtilitiesFacadeImpl implements CorporationFacade {
 
         BigDecimal transferredAmount = new BigDecimal(amount);
         if (name.equals("Electricity")) {
-            transferredAmount = transferredAmount.multiply(new BigDecimal(ELECTRICITY_TARIFF));
+            transferredAmount = transferredAmount.multiply(new BigDecimal(TariffConstants.ELECTRICITY_TARIFF.getTariff()));
         } else if (name.equals("Water")) {
-            transferredAmount = transferredAmount.multiply(new BigDecimal(WATER_TARIFF));
+            transferredAmount = transferredAmount.multiply(new BigDecimal(TariffConstants.WATER_TARIFF.getTariff()));
         } else {
-            transferredAmount = transferredAmount.multiply(new BigDecimal(GAS_TARIFF));
+            transferredAmount = transferredAmount.multiply(new BigDecimal(TariffConstants.GAS_TARIFF.getTariff()));
         }
         servicesForm.setAmountOfMoney(transferredAmount.toString());
         BankAccount accountFrom = accountService.getAccountByNumber(numberAccountFrom);

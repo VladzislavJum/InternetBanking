@@ -20,7 +20,7 @@ public class ExceptionsHandler {
         modelAndView.addObject("trace", ex);
         StackTraceElement[] stackTraceElements = ex.getStackTrace();
         LOGGER.error("Exception!!!");
-        for (StackTraceElement trace: stackTraceElements){
+        for (StackTraceElement trace : stackTraceElements) {
             LOGGER.error(trace);
         }
         return modelAndView;

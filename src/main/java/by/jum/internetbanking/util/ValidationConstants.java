@@ -6,14 +6,13 @@ public enum ValidationConstants {
     NUMBER_PATTERN("[0-9]+"),
     PHONE_NUMBER("[+]{1}[0-9]+");
 
-
     private String pattern;
 
     ValidationConstants(String pattern) {
         this.pattern = pattern;
     }
 
-    public String getPattern(){
+    public String getPattern() {
         return pattern;
     }
 }

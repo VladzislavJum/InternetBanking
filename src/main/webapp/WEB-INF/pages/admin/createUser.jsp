@@ -74,7 +74,7 @@
         <br/><br/>
 
         <div class="form-group">
-            <div class="col-xs-offset-5 col-xs-9">
+            <div class="col-xs-offset-5 col-xs-3">
                 <input type="submit" class="btn btn-primary"
                        value="<spring:message code="registration.button.signup"/>"/>
             </div>

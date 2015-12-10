@@ -50,7 +50,7 @@
             <input type="password" name="password" class="form-control margin-top5"
                    placeholder="${password}"/>
             <div class="checkbox">
-                <label style="color: white"><input type="checkbox" name="remember-me"><spring:message
+                <label style="color: #ffff00"><input type="checkbox" name="remember-me"><spring:message
                         code="authorization.label.remember"/></label>
             </div>
             <button class="btn btn-default btn-primary btn-block margin-top5" type="submit"

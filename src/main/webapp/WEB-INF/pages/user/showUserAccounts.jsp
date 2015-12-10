@@ -17,10 +17,18 @@
     <div class="row head-color-green">
         <h1 class="head-inf"><spring:message code="showaccounts.label.accs"/></h1>
     </div>
-    <div class="row margin-top5">
-        <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
-        <div class="col-sm-3 head-users-accounts">${money}</div>
-    </div>
+
+    <c:choose>
+        <c:when test="${empty accountList}">
+            <div class="error-search"><spring:message code="showaccounts.label.notaccs"/></div>
+        </c:when>
+        <c:otherwise>
+            <div class="row margin-top5">
+                <div class="col-sm-3 col-sm-offset-3 head-users-accounts">${number}</div>
+                <div class="col-sm-3 head-users-accounts">${money}</div>
+            </div>
+        </c:otherwise>
+    </c:choose>
 
     <c:forEach items="${accountList}" var="account">
         <div class="row">

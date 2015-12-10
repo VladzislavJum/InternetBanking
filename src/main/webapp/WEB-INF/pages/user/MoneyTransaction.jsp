@@ -16,14 +16,11 @@
     <script src="<c:url value="/resources/select2/js/select2.js"/>"></script>
     <script src="<c:url value="/resources/select2/js/i18n/${lang}.js"/>"></script>
     <script src="<c:url value="/resources/js/accountSelectAjax.js"/>"></script>
-    <script src="<c:url value="/resources/js/popUpSuccesTrans.js"/>"></script>
 </head>
 <body>
 <div class="container full-height-border" id="container" pageID="2">
     <div class="row head-color-green">
-        <img style="height: 100px; width: 150px;" class="col-sm-2"
-             src="<c:url value="/resources/images/transfer1.jpg"/> ">
-        <span class="col-sm-5 col-sm-offset-2 head-inf"><spring:message code="moneytrans.label.trans"/></span>
+        <h1 class="head-inf"><spring:message code="moneytrans.label.trans"/></h1>
     </div>
 
     <div class="success-transfer">${result}</div>
@@ -81,6 +78,5 @@
         </form:form>
     </div>
 </div>
-<jsp:include page="../footer.jsp"/>
 </body>
 </html>

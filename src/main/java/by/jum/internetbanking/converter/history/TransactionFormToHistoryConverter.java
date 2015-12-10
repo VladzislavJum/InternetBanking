@@ -1,4 +1,4 @@
-package by.jum.internetbanking.facade.converter.history;
+package by.jum.internetbanking.converter.history;
 
 import by.jum.internetbanking.entity.PaymentHistory;
 import by.jum.internetbanking.form.money.MoneyTransactionForm;

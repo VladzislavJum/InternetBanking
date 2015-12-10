@@ -1,4 +1,4 @@
-package by.jum.internetbanking.json.jsonview;
+package by.jum.internetbanking.util.jsonview;
 
 public class Views {
     public static class Account {}

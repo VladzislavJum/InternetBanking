@@ -13,7 +13,6 @@
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.js"/>"></script>
 </head>
 <body>
-<div class="container" style="border: 1px solid #ffffff; border-bottom: none; border-top: none;">
     <nav role="navigation" class="navbar navbar-inverse">
         <div class="navbar-header">
             <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
@@ -29,8 +28,8 @@
                     </a></li>
                 </ul>
             </li>
+            <li><a href="${logout}"><spring:message code="nav.button.logout"/> </a></li>
         </ul>
     </nav>
-</div>
 </body>
 </html>

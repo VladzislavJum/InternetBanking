@@ -27,7 +27,7 @@ public class AuthorizationUserServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         by.jum.internetbanking.entity.User user = userDao.getByUserName(login);
-        if (user == null){
+        if (user == null) {
             String authFailed = "AuthService: User with same login not exist: login " + login;
             LOGGER.info(authFailed);
             throw new UsernameNotFoundException(authFailed);

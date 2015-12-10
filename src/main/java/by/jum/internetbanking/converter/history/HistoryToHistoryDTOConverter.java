@@ -1,4 +1,4 @@
-package by.jum.internetbanking.facade.converter.history;
+package by.jum.internetbanking.converter.history;
 
 import by.jum.internetbanking.dto.PaymentHistoryDTO;
 import by.jum.internetbanking.entity.PaymentHistory;
@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 @Component
 public class HistoryToHistoryDTOConverter implements Converter<PaymentHistory, PaymentHistoryDTO> {

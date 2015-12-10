@@ -18,9 +18,9 @@
     <script src="<c:url value="/resources/js/currentItem.js"/>"></script>
 </head>
 <body>
-<div class="container" style="border: 1px solid #ffffff;
-    border-bottom: none;
-    border-top: none;">
+<%--<div class="container" style="border: 1px solid #ffffff;--%>
+  <%--  border-bottom: none;
+    border-top: none;">--%>
     <nav role="navigation" class="navbar navbar-inverse">
         <div class="navbar-header">
             <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
@@ -48,6 +48,6 @@
             </ul>
         </div>
     </nav>
-</div>
+<%--</div>--%>
 </body>
 </html>

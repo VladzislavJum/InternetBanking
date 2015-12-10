@@ -27,7 +27,6 @@
     <script src="<c:url value="/resources/js/currentItem.js"/>"></script>
 </head>
 <body>
-<div class="container" style="border: 1px solid #ffffff; border-bottom: none; border-top: none;">
     <header role="navigation" class="navbar navbar-inverse">
         <div class="navbar-header">
             <a class="navbar-brand" href="${firstUrl}"><spring:message code="label.internetbanking"/></a>
@@ -44,7 +43,7 @@
                     <div class="navbar-form" method="post" role="search">
                         <select multiple id="selectAccID" data-placeholder="${searchAccountLabel}" class="form-control"
                                 onchange="window.location.href='${accountSearchUrl}'+this.value;"
-                                url="${searchAccUrlAjax}">
+                                url="${searchAccUrlAjax}" style="max-width: 120px;">
                         </select>
                     </div>
                 </li>
@@ -52,7 +51,7 @@
                     <div class="navbar-form" method="post" role="search">
                         <select multiple id="selectUserID" data-placeholder="${searchUserLabel}" class="form-control"
                                 onchange="window.location.href='${userSearchUrl}'+this.value;"
-                                url="${searchUserUrlAjax}">
+                                url="${searchUserUrlAjax}" style="max-width: 120px;">
                         </select>
                     </div>
                 </li>
@@ -71,6 +70,5 @@
             </ul>
         </div>
     </header>
-</div>
 </body>
 </html>

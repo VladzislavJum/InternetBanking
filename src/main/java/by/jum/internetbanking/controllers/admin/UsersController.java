@@ -2,7 +2,7 @@ package by.jum.internetbanking.controllers.admin;
 
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.json.jsonview.Views;
+import by.jum.internetbanking.util.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +34,15 @@ public class UsersController {
     @RequestMapping(value = "/users/lockorunlock", method = RequestMethod.POST)
     public
     @ResponseBody
-    void lockOrUnlockUser(@RequestBody long userID) {
-        LOGGER.info("LockOrUnlock");
-        userFacade.lockOrUnlockUser(userID);
+    boolean lockOrUnlockUser(@RequestBody long userID) {
+        LOGGER.info(userFacade.getIDCurrentUser());
+        if (userFacade.getIDCurrentUser() != userID) {
+            userFacade.lockOrUnlockUser(userID);
+            LOGGER.info("LockOrUnlock user id: " + userID);
+            return true;
+        }
+        LOGGER.info("Not LockOrUnlock user id: " + userID);
+        return false;
     }
 
     @RequestMapping(value = "/users/deleteuser", method = RequestMethod.POST)
@@ -46,8 +52,10 @@ public class UsersController {
     boolean deleteAcc(@RequestBody long userID) {
         if (userFacade.getIDCurrentUser() != userID) {
             userFacade.deleteUserByID(userID);
+            LOGGER.info("Delete user id: " + userID);
             return true;
         }
+        LOGGER.info("Not Deleting user id: " + userID);
         return false;
     }
 }

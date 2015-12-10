@@ -92,7 +92,7 @@
                 </c:when>
                 <c:when test="${name.equals('Electricity')}">
                     <div class="tariff-inf col-sm-6 col-sm-offset-3"><spring:message code="paymentserv.label.electrkvh"/>
-                        <sup>3</sup>: 1000</div>
+                        : 1000</div>
                     <div class="row margin-top5">
                         <div class="col-sm-3 col-sm-offset-3">
                             <label class="payment-inf">${personalAccNumber}</label>
@@ -116,7 +116,7 @@
                 </c:when>
                 <c:when test="${name.equals('Water')}">
                     <div class="tariff-inf col-sm-6 col-sm-offset-3"><spring:message code="paymentserv.label.waterm3"/>
-                        : 1500</div>
+                        <sup>3</sup>: 1500</div>
                     <div class="row margin-top5">
                         <div class="col-sm-3 col-sm-offset-3">
                             <label class="payment-inf">${personalAccNumber}</label>
@@ -166,6 +166,6 @@
         </c:if>
     </form:form>
 </div>
-<jsp:include page="../footer.jsp"/>
+<%--<jsp:include page="../footer.jsp"/>--%>
 </body>
 </html>

@@ -4,7 +4,7 @@ import by.jum.internetbanking.dto.BankAccountDTO;
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.facade.BankAccountFacade;
 import by.jum.internetbanking.facade.UserFacade;
-import by.jum.internetbanking.json.jsonview.Views;
+import by.jum.internetbanking.util.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

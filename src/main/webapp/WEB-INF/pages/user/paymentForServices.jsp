@@ -46,7 +46,7 @@
             <button class="btn btn-success dropdown-toggle col-sm-4 button-actions-text service-button" type="button"
                     data-toggle="dropdown"><spring:message code="paymentserv.button.internet"/>
             </button>
-            <ul class="dropdown-menu menu-3 ">
+            <ul class="dropdown-menu menu-3">
                 <b>
                     <li><a href="${serviceInternet}FlyNet">FlyNet</a></li>
                     <li><a href="${serviceInternet}Infolan">Infolan</a></li>

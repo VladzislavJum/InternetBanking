@@ -1,10 +1,9 @@
 package by.jum.internetbanking.dto;
 
-import by.jum.internetbanking.json.jsonview.Views;
+import by.jum.internetbanking.util.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class BankAccountDTO implements Serializable {
 

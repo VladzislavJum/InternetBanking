@@ -5,7 +5,6 @@ import by.jum.internetbanking.facade.CorporationFacade;
 import by.jum.internetbanking.facade.PaymentHistoryFacade;
 import by.jum.internetbanking.facade.UserFacade;
 import by.jum.internetbanking.form.money.PaymentForServicesForm;
-import by.jum.internetbanking.form.validator.PaymentForServicesMobileValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,7 +48,7 @@ public class PaymentForServicesMobileController {
 
     @RequestMapping(value = "/payment/service/mobile/{name}", method = RequestMethod.GET)
     public String showMobile(Model model, @PathVariable("name") String name,
-                           @RequestParam(required = false) String success) {
+                             @RequestParam(required = false) String success) {
         if (success != null) {
             String message = messageSource.getMessage("moneytrans.label.resultsuccess", null, LocaleContextHolder.getLocale());
             model.addAttribute("result", message);
@@ -69,7 +68,7 @@ public class PaymentForServicesMobileController {
 
     @RequestMapping(value = "/payment/service/mobile/{name}/pay", method = {RequestMethod.POST, RequestMethod.GET})
     public String mobilePay(@ModelAttribute("servicesForm") PaymentForServicesForm servicesForm,
-                              final BindingResult result, Model model, @PathVariable("name") String nameServ) {
+                            final BindingResult result, Model model, @PathVariable("name") String nameServ) {
         if (StringUtils.isEmpty(servicesForm.getNameCorp())) {
             return "redirect:/user/payment/service/mobile/" + nameServ;
         }

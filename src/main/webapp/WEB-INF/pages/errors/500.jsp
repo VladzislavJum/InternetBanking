@@ -4,7 +4,7 @@
 
 <html>
 <head>
-  <title><spring:message code="error.label.404"/></title>
+  <title><spring:message code="label.error.500"/></title>
   <jsp:include page="common/navError.jsp"/>
 </head>
 <body>

@@ -50,15 +50,15 @@
           class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean class="by.jum.internetbanking.facade.converter.account.AccountFormToAccountConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.account.AccountToDTOConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.account.DTOToAccountConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.user.FormToUserConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.user.UserDTOToUserConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.user.UserToDTOConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.history.TransactionFormToHistoryConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.history.HistoryToHistoryDTOConverter"/>
-                <bean class="by.jum.internetbanking.facade.converter.history.PaymentForServicesFormToHistoryConverter"/>
+                <bean class="by.jum.internetbanking.converter.account.AccountFormToAccountConverter"/>
+                <bean class="by.jum.internetbanking.converter.account.AccountToDTOConverter"/>
+                <bean class="by.jum.internetbanking.converter.account.DTOToAccountConverter"/>
+                <bean class="by.jum.internetbanking.converter.user.FormToUserConverter"/>
+                <bean class="by.jum.internetbanking.converter.user.UserDTOToUserConverter"/>
+                <bean class="by.jum.internetbanking.converter.user.UserToDTOConverter"/>
+                <bean class="by.jum.internetbanking.converter.history.TransactionFormToHistoryConverter"/>
+                <bean class="by.jum.internetbanking.converter.history.HistoryToHistoryDTOConverter"/>
+                <bean class="by.jum.internetbanking.converter.history.PaymentForServicesFormToHistoryConverter"/>
             </set>
         </property>
     </bean>

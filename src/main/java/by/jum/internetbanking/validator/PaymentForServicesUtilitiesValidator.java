@@ -1,4 +1,4 @@
-package by.jum.internetbanking.form.validator;
+package by.jum.internetbanking.validator;
 
 import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.BankAccountService;

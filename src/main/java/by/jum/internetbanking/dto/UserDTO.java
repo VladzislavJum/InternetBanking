@@ -1,6 +1,6 @@
 package by.jum.internetbanking.dto;
 
-import by.jum.internetbanking.json.jsonview.Views;
+import by.jum.internetbanking.util.jsonview.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class UserDTO {

@@ -1,4 +1,4 @@
-package by.jum.internetbanking.facade.converter.user;
+package by.jum.internetbanking.converter.user;
 
 import by.jum.internetbanking.dto.UserDTO;
 import by.jum.internetbanking.entity.User;

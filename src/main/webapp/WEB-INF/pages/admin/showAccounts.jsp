@@ -32,7 +32,7 @@
                     <h1 class="head-inf"><spring:message code="showaccounts.label.account"/>&nbsp;<a
                             href="${userInfUrl}${user.userID}" style="color: #d58512">${user.login}</a></h1>
                 </div>
-                <a href="${allAccsUsrl}${user.userID}/accounts"><span class="col-sm-offset-10 user-acc-text">
+                <a href="${allAccsUsrl}${user.userID}/accounts"><span class="col-sm-offset-8 user-acc-text">
                     <spring:message code="showaccounts.label.allaccs"/>&nbsp;${user.login}</span></a>
             </c:when>
             <c:otherwise>

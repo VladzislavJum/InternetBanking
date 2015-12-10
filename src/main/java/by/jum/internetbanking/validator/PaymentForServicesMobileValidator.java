@@ -1,4 +1,4 @@
-package by.jum.internetbanking.form.validator;
+package by.jum.internetbanking.validator;
 
 import by.jum.internetbanking.form.money.PaymentForServicesForm;
 import by.jum.internetbanking.service.BankAccountService;
@@ -67,7 +67,7 @@ public class PaymentForServicesMobileValidator implements Validator {
             Pattern pattern = Pattern.compile(ValidationConstants.PHONE_NUMBER.getPattern());
             Matcher matcher = pattern.matcher(phoneNumber);
             if (!matcher.matches()) {
-                errors.rejectValue("phoneNumber", "common.label.error.numericletters");
+                errors.rejectValue("phoneNumber", "paymentserv.label.error.phonenumbercontent");
                 LOGGER.info("content phoneNumber error");
             }
         }
